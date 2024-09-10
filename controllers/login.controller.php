@@ -1,9 +1,9 @@
 <?php
 session_start();
-require "../function.php";
+require "function.php";
 $phone = $_POST['phone'];
 $password = $_POST['password'];
-require '../models/Database.php';
+require '/models/Database.php';
 $db = new Database();
 $propertys = $db->query("SELECT * FROM `users`")->fetchAll(PDO::FETCH_ASSOC);
 $text = 'Bạn đã nhập sai tài khoản hoặc mật khẩu';

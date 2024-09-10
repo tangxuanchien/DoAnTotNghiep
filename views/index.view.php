@@ -18,9 +18,14 @@ require 'partials/header.php';
 require 'partials/navigation.php';
 
 require 'partials/banner.php';
+?>
+<!-- <div class="mt-5">
+    <img src="/images/house.jpg" width="200px" alt="Ảnh nền">
+</div> -->
+<?php
 
-if (isset($_SESSION['id'])) {
-    require 'controllers/index.controller.php';
-}
+// if (isset($_SESSION['id'])) {
+require 'controllers/index.controller.php';
+// }
 
 require 'partials/footer.php';

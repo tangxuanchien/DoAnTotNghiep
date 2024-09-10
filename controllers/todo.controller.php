@@ -1,7 +1,7 @@
 <?php
 
 $id = $_GET['id'];
-require '../models/Database.php';
+require '/models/Database.php';
 $db = new Database();
 $property = $db->query("SELECT * FROM `notes` WHERE id = $id")->fetch(PDO::FETCH_ASSOC); //fetchAll cho nhieu ban ghi
 ?>

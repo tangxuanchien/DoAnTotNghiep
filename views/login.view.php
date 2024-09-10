@@ -1,5 +1,5 @@
 <?php 
-require '../function.php';
+require 'function.php';
 session_start();
 $title = "Trang chủ";
 $banner = "Danh sách việc cần làm";
@@ -8,8 +8,8 @@ if(!isset($_SESSION['error'])){
     $_SESSION['error'] = '';
 }
 
-require '../partials/header.php';
-require '../partials/navigation.php';
+require 'partials/header.php';
+require 'partials/navigation.php';
 ?>
     <style>
         html,

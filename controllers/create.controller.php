@@ -1,9 +1,9 @@
 <?php
     session_start();
-    require '../models/Database.php';
+    require '/models/Database.php';
     $body = $_POST['body'];
     $id = $_SESSION['id'];
-    require '../function.php';
+    require 'function.php';
     // dd($body);
     
     if($body === ""){

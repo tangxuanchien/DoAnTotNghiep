@@ -4,7 +4,7 @@ $email = $_POST['email'];
 $phone = $_POST['phone'];
 $password = $_POST['password'];
 
-require '../models/Database.php';
+require '/models/Database.php';
 
 $db = new Database();
 $property = $db->query(

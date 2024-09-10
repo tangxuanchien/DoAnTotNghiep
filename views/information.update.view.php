@@ -6,15 +6,15 @@ $banner = "Thay đổi thông tin";
 $login = 'Chào, ' . $_SESSION['name'];
 
 $id = $_GET['id'];
-require '../models/Database.php';
+require '/models/Database.php';
 $db = new Database();
 $user = $db->query("SELECT * FROM `users` WHERE id = $id")->fetch(PDO::FETCH_ASSOC);
 
-require '../partials/header.php';
+require 'partials/header.php';
 
-require '../partials/navigation.php';
+require 'partials/navigation.php';
 
-require '../partials/banner.php';
+require 'partials/banner.php';
 
 $password = $user['password'];
 $confirmpassword = '';
@@ -41,5 +41,5 @@ $confirmpassword = '';
     </div>
 </form>
 <?php
-require '../partials/footer.php';
+require 'partials/footer.php';
 ?>

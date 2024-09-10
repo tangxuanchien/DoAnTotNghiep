@@ -6,15 +6,15 @@ $banner = "Cập nhật việc làm";
 $login = 'Chào, '.$_SESSION['name'];
 
 $id = $_GET['id'];
-require '../models/Database.php';
+require '/models/Database.php';
 $db = new Database();
 $property = $db->query("SELECT * FROM `notes` WHERE id = $id")->fetch(PDO::FETCH_ASSOC); 
 
-require '../partials/header.php';
+require 'partials/header.php';
 
-require '../partials/navigation.php';
+require 'partials/navigation.php';
 
-require '../partials/banner.php';
+require 'partials/banner.php';
 ?>
 <form action="/Datn/controllers/update.controller.php?id=<?= $property['id'] ?>" method="POST">
     <div class="form-floating">
@@ -25,5 +25,5 @@ require '../partials/banner.php';
     </div>
 </form>
 <?php
-require '../partials/footer.php';
+require 'partials/footer.php';
 ?>

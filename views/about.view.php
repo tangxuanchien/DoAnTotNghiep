@@ -1,16 +1,16 @@
 <?php
 session_start();
-require '../function.php';
+require 'function.php';
 
 $title = "Về chúng tôi";
 $banner = "Giới thiệu về chúng tôi";
 $login = check_login($_SESSION['name']);
 
-require '../partials/header.php';
+require 'partials/header.php';
 
-require '../partials/navigation.php';
+require 'partials/navigation.php';
 
-require '../partials/banner.php';
+require 'partials/banner.php';
 ?>
 
 <h4 class="text-success mt-3">Lưu ý: Đăng nhập khi sử dụng trang web để bảo mật các thông tin quan trọng</h4>
@@ -22,4 +22,4 @@ require '../partials/banner.php';
 </div>
 
 <?php
-require '../partials/footer.php';
+require 'partials/footer.php';

@@ -4,7 +4,7 @@ require 'function.php';
 $id = $_SESSION['id'];
 
 $db = new Database();
-$propertys = $db->query("SELECT * FROM `notes` WHERE userid=$id")->fetchAll(PDO::FETCH_ASSOC); //fetchAll cho nhieu ban ghi
+$propertys = $db->query("SELECT * FROM `properties` WHERE owner_id=1")->fetchAll(PDO::FETCH_ASSOC); //fetchAll cho nhieu ban ghi
 ?>
 
 <style>
@@ -14,7 +14,7 @@ $propertys = $db->query("SELECT * FROM `notes` WHERE userid=$id")->fetchAll(PDO:
     }
 
     td:hover {
-       background-color: #e0e0e0;
+        background-color: #e0e0e0;
     }
 
     button:hover {
@@ -22,20 +22,27 @@ $propertys = $db->query("SELECT * FROM `notes` WHERE userid=$id")->fetchAll(PDO:
     }
 </style>
 
-<table class="table table-bordered">
-    <tbody>
-        <?php foreach ($propertys as $property) : ?>
-            <tr>
-                <td>
-                    <a href="/Datn/views/property.view.php?id=<?= $property['id'] ?>" ><?= $property['body'] ?></a>
-                </td>
-            </tr>
-        <?php endforeach ?>
-    </tbody>
-</table>
-
+<form action="/Datn/views/create.property.view.php" method="post">
+    <button type="submit">Tạo bài đăng mới</button>
+</form>
 <div class="mt-5">
-    <form action="/Datn/views/create.view.php" method="post">
-        <button type="submit">THÊM MỚI VIỆC LÀM</button>
-    </form>
+    <table class="table table-bordered">
+        <tbody>
+            <?php foreach ($propertys as $property) : ?>
+                <tr>
+                    <td>
+                        <a href=#><?= $property['title'] ?></a>
+                    </td>
+                    <td>
+                        <form action="/Datn/views/detail.property.view.php" method="post">
+                            <button type="submit">Xem chi tiết</button>
+                        </form>
+                    <td>
+                            <button type="button">Liên hệ người bán</button>
+                    </td>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
 </div>

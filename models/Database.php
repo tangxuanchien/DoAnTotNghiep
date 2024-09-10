@@ -7,7 +7,7 @@ class Database
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "myapp";
+        $dbname = "datn";
 
 
         $dsn = "mysql:host=$servername;port=3306;dbname=$dbname;user=$username;password=$password";

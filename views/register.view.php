@@ -1,18 +1,18 @@
 <?php
 session_start();
-require '../function.php';
+require 'function.php';
 
 $title = "Đăng kí";
 $banner = "Đăng kí tài khoản";
 $login = check_login($_SESSION['name']);
 
-require '../models/Database.php';
+require '/models/Database.php';
 
-require '../partials/header.php';
+require 'partials/header.php';
 
-require '../partials/navigation.php';
+require 'partials/navigation.php';
 
-require '../partials/banner.php';
+require 'partials/banner.php';
 
 ?>
 <form action="/Datn/controllers/register.controller.php" method="POST">
@@ -40,5 +40,5 @@ require '../partials/banner.php';
     </div>
 </form>
 <?php
-require '../partials/footer.php';
+require 'partials/footer.php';
 ?>
