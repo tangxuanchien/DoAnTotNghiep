@@ -15,7 +15,7 @@ require '../partials/navigation.php';
 require '../partials/banner.php';
 
 ?>
-<form action="/ToDoApp/controllers/register.controller.php" method="POST">
+<form action="/Datn/controllers/register.controller.php" method="POST">
     <div class="mb-3">
         <label  class="form-label">Họ và tên</label>
         <input type="name" class="form-control" placeholder="Nguyen Van A" name='name' value="">
@@ -35,7 +35,7 @@ require '../partials/banner.php';
     <div class="mt-5">
         <button type="submit" class="btn btn-primary">Đăng kí</button>
         <div class="mt-3 ml-3">
-            <a href="/ToDoApp/views/login.view.php" class="link-dark">Quay lại</a>
+            <a href="/Datn/views/login.view.php" class="link-dark">Quay lại</a>
         </div>
     </div>
 </form>

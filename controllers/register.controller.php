@@ -7,7 +7,7 @@ $password = $_POST['password'];
 require '../models/Database.php';
 
 $db = new Database();
-$todo = $db->query(
+$property = $db->query(
     "INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`) VALUES (:id, :name, :email, :phone, :password)",
     [
         'id' => NULL,
@@ -18,5 +18,5 @@ $todo = $db->query(
     ]
 )->fetch(PDO::FETCH_ASSOC);
 
-header('Location: /ToDoApp/index.php');
+header('Location: /Datn/index.php');
 exit();

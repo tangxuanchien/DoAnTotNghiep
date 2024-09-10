@@ -41,7 +41,7 @@ require '../partials/navigation.php';
 
 <body>
     <main class="form-signin w-100 m-auto mt-5">
-        <form action="/ToDoApp/controllers/login.controller.php" method="POST">
+        <form action="/Datn/controllers/login.controller.php" method="POST">
             <h1 class="h3 mb-3 fw-normal mt-5">Đăng nhập</h1>
 
             <div class="form-floating">
@@ -54,7 +54,7 @@ require '../partials/navigation.php';
             </div>
             <button class="btn btn-primary w-100 py-2" type="submit">Đăng nhập</button>
         </form>
-        <form action="/ToDoApp/views/register.view.php" method="POST">
+        <form action="/Datn/views/register.view.php" method="POST">
             <div>Nếu chưa có tài khoản hãy đăng kí</div>
             <div class="mt-2">
                 <button class="btn btn-primary w-100 py-2" type="submit">Đăng kí</button>

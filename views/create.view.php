@@ -15,7 +15,7 @@ require '../partials/navigation.php';
 
 require '../partials/banner.php';
 ?>
-<form action="/ToDoApp/controllers/create.controller.php" method="POST">
+<form action="/Datn/controllers/create.controller.php" method="POST">
     <div class="text-danger fw-semibold lh-1 fs-5"><?= $_SESSION['textbody'] ?></div>
     <div class="form-floating mt-3">
         <textarea class="form-control"  style="height: 100px" name="body"></textarea>

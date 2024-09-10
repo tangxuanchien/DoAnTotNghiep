@@ -4,7 +4,7 @@ require 'function.php';
 $id = $_SESSION['id'];
 
 $db = new Database();
-$todos = $db->query("SELECT * FROM `notes` WHERE userid=$id")->fetchAll(PDO::FETCH_ASSOC); //fetchAll cho nhieu ban ghi
+$propertys = $db->query("SELECT * FROM `notes` WHERE userid=$id")->fetchAll(PDO::FETCH_ASSOC); //fetchAll cho nhieu ban ghi
 ?>
 
 <style>
@@ -24,10 +24,10 @@ $todos = $db->query("SELECT * FROM `notes` WHERE userid=$id")->fetchAll(PDO::FET
 
 <table class="table table-bordered">
     <tbody>
-        <?php foreach ($todos as $todo) : ?>
+        <?php foreach ($propertys as $property) : ?>
             <tr>
                 <td>
-                    <a href="/ToDoApp/views/todo.view.php?id=<?= $todo['id'] ?>" ><?= $todo['body'] ?></a>
+                    <a href="/Datn/views/property.view.php?id=<?= $property['id'] ?>" ><?= $property['body'] ?></a>
                 </td>
             </tr>
         <?php endforeach ?>
@@ -35,7 +35,7 @@ $todos = $db->query("SELECT * FROM `notes` WHERE userid=$id")->fetchAll(PDO::FET
 </table>
 
 <div class="mt-5">
-    <form action="/ToDoApp/views/create.view.php" method="post">
+    <form action="/Datn/views/create.view.php" method="post">
         <button type="submit">THÊM MỚI VIỆC LÀM</button>
     </form>
 </div>

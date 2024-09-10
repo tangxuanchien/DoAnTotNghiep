@@ -19,7 +19,7 @@ require '../partials/banner.php';
 $password = $user['password'];
 $confirmpassword = '';
 ?>
-<form action="/ToDoApp/controllers/information.update.controller.php?id=<?= $user['id'] ?>" method="POST">
+<form action="/Datn/controllers/information.update.controller.php?id=<?= $user['id'] ?>" method="POST">
     <div class="mb-3">
         <label  class="form-label">Họ và tên</label>
         <input type="name" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>">

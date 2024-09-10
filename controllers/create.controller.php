@@ -8,11 +8,11 @@
     
     if($body === ""){
         $_SESSION['textbody'] = 'Bạn đang để trống, vui lòng nhập nội dung';
-        header('Location: /ToDoApp/views/create.view.php');
+        header('Location: /Datn/views/create.view.php');
     }
     else {
         $db = new Database();
-        $todo = $db->query("INSERT INTO `notes` (`id`, `body`, `userid`) VALUES (:id, :body, :userid)",
+        $property = $db->query("INSERT INTO `notes` (`id`, `body`, `userid`) VALUES (:id, :body, :userid)",
         [
             'id' => NULL,
             'body' => $body,
@@ -20,7 +20,7 @@
         ])->fetch(PDO::FETCH_ASSOC);
     
         $_SESSION['textbody'] = '';
-        header('Location: /ToDoApp/index.php'); 
+        header('Location: /Datn/index.php'); 
         exit();
     }
 

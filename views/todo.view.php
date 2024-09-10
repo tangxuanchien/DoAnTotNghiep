@@ -11,6 +11,6 @@ require '../partials/navigation.php';
 
 require '../partials/banner.php';
 
-require '../controllers/todo.controller.php';
+require '../controllers/property.controller.php';
 
 require '../partials/footer.php';
