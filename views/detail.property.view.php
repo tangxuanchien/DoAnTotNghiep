@@ -1,14 +1,14 @@
 <?php
 session_start();
-require '..function.php';
+require '../function.php';
 
 $title = 'Xem chi tiết';
 $login = 'Đăng nhập';
-// $login = check_login($_SESSION['name']);
+$login = check_login($_SESSION['name']);
 
-// if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id'])) {
 $banner = "Chi tiết bài đăng";
-// } else $banner = "Vui lòng đăng nhập để xem thông tin";
+} else $banner = "Vui lòng đăng nhập để xem thông tin";
 
 
 require 'partials/header.php';
@@ -17,8 +17,8 @@ require 'partials/navigation.php';
 
 require 'partials/banner.php';
 
-// if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id'])) {
 require '../controllers/detail.property.controller.php';
-// }
+}
 
 require 'partials/footer.php';

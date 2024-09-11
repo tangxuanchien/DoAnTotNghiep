@@ -1,6 +1,6 @@
 <?php
 session_start();
-// require 'function.php';
+// require '../function.php';
 
 
 $title = "Trang chủ";
@@ -24,8 +24,8 @@ require 'partials/banner.php';
 </div> -->
 <?php
 
-// if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id'])) {
 require 'controllers/index.controller.php';
-// }
+}
 
 require 'partials/footer.php';

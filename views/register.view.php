@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'function.php';
+require '../../function.php';
 
 $title = "Đăng kí";
 $banner = "Đăng kí tài khoản";

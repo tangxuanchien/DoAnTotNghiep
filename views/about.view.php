@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'function.php';
+require '../function.php';
 
 $title = "Về chúng tôi";
 $banner = "Giới thiệu về chúng tôi";

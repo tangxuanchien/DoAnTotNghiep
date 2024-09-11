@@ -4,7 +4,7 @@ require 'function.php';
 $id = $_SESSION['id'];
 
 $db = new Database();
-$propertys = $db->query("SELECT * FROM `properties` WHERE owner_id=1")->fetchAll(PDO::FETCH_ASSOC); //fetchAll cho nhieu ban ghi
+$propertys = $db->query("SELECT * FROM `properties`")->fetchAll(PDO::FETCH_ASSOC); //fetchAll cho nhieu ban ghi
 ?>
 
 <style>
@@ -22,7 +22,7 @@ $propertys = $db->query("SELECT * FROM `properties` WHERE owner_id=1")->fetchAll
     }
 </style>
 
-<form action="/Datn/views/create.property.view.php" method="post">
+<form action="/Datn/views/create.post.view.php" method="post">
     <button type="submit">Tạo bài đăng mới</button>
 </form>
 <div class="mt-5">
@@ -37,9 +37,6 @@ $propertys = $db->query("SELECT * FROM `properties` WHERE owner_id=1")->fetchAll
                         <form action="/Datn/views/detail.property.view.php" method="post">
                             <button type="submit">Xem chi tiết</button>
                         </form>
-                    <td>
-                            <button type="button">Liên hệ người bán</button>
-                    </td>
                     </td>
                 </tr>
             <?php endforeach ?>

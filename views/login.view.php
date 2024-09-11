@@ -1,7 +1,7 @@
 <?php 
-require 'function.php';
+require '../function.php';
 session_start();
-$title = "Trang chủ";
+$title = "Đăng nhập";
 $banner = "Danh sách việc cần làm";
 $login = check_login($_SESSION['name']);
 if(!isset($_SESSION['error'])){

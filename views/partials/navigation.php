@@ -13,13 +13,13 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/Datn">Trang chủ</a>
+                            <a class='<?= $_SERVER['REQUEST_URI'] == '/Datn/' ? 'nav-link active' : 'nav-link' ?>'href="/Datn">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Datn/views/information.view.php">Thông tin cá nhân</a>
+                            <a class="<?= $_SERVER['REQUEST_URI'] == '/Datn/views/information.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/information.view.php">Thông tin cá nhân</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/Datn/views/about.view.php">Về chúng tôi</a>
+                            <a class="<?= $_SERVER['REQUEST_URI'] == '/Datn/views/about.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/about.view.php">Về chúng tôi</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
