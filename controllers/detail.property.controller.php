@@ -1,8 +1,8 @@
 <?php
-$id = $_SESSION['id'];
+$id = $_GET['id'];
 require '../models/Database.php';
 $db = new Database();
-$property = $db->query("SELECT * FROM `properties`")->fetch(PDO::FETCH_ASSOC); 
+$property = $db->query("SELECT * FROM `properties` where property_id = $id")->fetch(PDO::FETCH_ASSOC); 
 ?>
 
 <div>

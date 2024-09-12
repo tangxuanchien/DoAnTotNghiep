@@ -22,10 +22,6 @@
                             <a class="<?= $_SERVER['REQUEST_URI'] == '/Datn/views/about.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/about.view.php">Về chúng tôi</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Tìm kiếm">
-                        <button class="btn btn-outline-success" type="submit">Tìm</button>
-                    </form>
                 </div>
             </div>
         </nav>

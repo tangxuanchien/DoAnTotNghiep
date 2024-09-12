@@ -22,3 +22,7 @@ function check_banner($banner, $a, $b){
 function get_time(){
     return date('Y-m-d ') . (date('h') + 5) . date(':i:s');
 }
+
+function get_price_per_m2($a, $b){
+    return $a / $b;
+}

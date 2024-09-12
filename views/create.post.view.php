@@ -5,6 +5,9 @@ require '../function.php';
 $title = "Tạo bài đăng";
 $banner = "Bài đăng mới";
 $login = check_login($_SESSION['name']);
+if(!isset($_SESSION['error_post'])){
+    $_SESSION['error_post'] = '';
+}
 
 require 'partials/header.php';
 
@@ -27,6 +30,7 @@ require 'partials/banner.php';
     }
 </style>
 <form action="/Datn/controllers/create.post.controller.php" method="POST">
+    <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?=$_SESSION['error_post']?></div>
     <div class="mb-3">
         <label class="form-label">Tiêu đề</label>
         <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title'>
