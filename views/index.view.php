@@ -1,11 +1,10 @@
 <?php
 session_start();
-// require '../function.php';
 
 
 $title = "Trang chủ";
 if (isset($_SESSION['id'])) {
-    $banner = "Danh sách việc cần làm";
+    $banner = "Trang chủ";
 } else $banner = "Vui lòng đăng nhập để xem việc làm";
 
 if (!isset($_SESSION['name'])) {

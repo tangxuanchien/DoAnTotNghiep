@@ -20,6 +20,5 @@ require 'partials/banner.php';
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/LOGO_DHXD.png/1037px-LOGO_DHXD.png" width="200px" alt="Ảnh logo trường">
     </div>
 </div>
-
 <?php
 require 'partials/footer.php';

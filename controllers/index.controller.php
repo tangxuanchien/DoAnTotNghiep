@@ -31,28 +31,38 @@ $propertys = $db->query("SELECT * FROM `properties`")->fetchAll(PDO::FETCH_ASSOC
     <button type="submit">Tạo bài đăng mới</button>
 </form>
 
-<div class="mt-5">
-    <script>
-    $(document).ready(function() {
-        $('#search').keyup(function(e) {
-            var search = $('#search').val();
-            if (search.length > 0) {
-                $.ajax({
-                    url: '../Datn/controllers/get_searchs.php',
-                    type: 'POST',
-                    data: { search: search },
-                    success: function(response) {
-                        $('#result').html(response);
-                    },
-                });
-            } else {
-                $('#result').html('');
-            }
-        });
-    });
-</script>
-    <div  id="result"></div>
+<div id="result">
     <table class="table table-bordered">
+        <tbody>
+            <script>
+                $(document).ready(function() {
+                    var initialProperties = $('#properties').html();
+                    $('#search').keyup(function(e) {
+                        var search = $('#search').val();
+                        if (search.length > 0) {
+                            $.ajax({
+                                url: '../Datn/controllers/get_searchs.php',
+                                type: 'POST',
+                                data: {
+                                    search: search
+                                },
+                                success: function(response) {
+                                    $('#result').html(response);
+                                    $('#properties').html("");
+                                },
+                            });
+                        } else {
+                            $('#result').html('');
+                            $('#properties').html(initialProperties);
+                        }
+                    });
+                });
+            </script>
+        </tbody>
+    </table>
+</div>
+<div class="mt-5">
+    <table class="table table-bordered" id="properties">
         <tbody>
             <?php foreach ($propertys as $property) : ?>
                 <tr>
