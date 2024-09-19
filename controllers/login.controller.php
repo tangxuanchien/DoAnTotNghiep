@@ -13,7 +13,7 @@ foreach ($propertys as $property) :
         $_SESSION['id'] = $property['user_id'];
         $_SESSION['name'] = $property['name'];
         $_SESSION['error'] = "";
-        header('Location: /Datn/index.php');
+        header('Location: /Datn');
         exit();
     else: ($property['phone'] != $phone || $property['password'] != $password);
         $_SESSION['error'] = "Sai tài khoản hoặc mật khẩu !";

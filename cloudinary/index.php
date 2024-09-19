@@ -3,3 +3,11 @@
     <input type="file" name="image" id="image" multiple>
     <button type="submit">Tải ảnh lên</button>
 </form>
+
+<!-- <div class="mb-3 mt-3">
+        <form action="/cloudinary/upload.php" method="POST" enctype="multipart/form-data">
+            <label for="image" class="form-label">Chọn ảnh chính cho bài đăng</label>
+            <input class="form-control" type="file" name="image_url">
+            <button type="submit">Tải ảnh lên</button>
+        </form>
+    </div> -->

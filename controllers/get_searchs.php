@@ -6,10 +6,10 @@ $properties = $db->query("SELECT * FROM `properties` where title like '%$search%
 if ($properties) {
     foreach ($properties as $property) : ?>
     <tr>
-        <td><?= $property['title'] ?></td>;
+        <td><?= $property['title'] ?></td>
         <td>
             <form action="/Datn/views/detail.property.view.php?id=<?= $property['property_id'] ?>" method="post" class="mx-5 my-2">
-                <button type="submit">Xem chi tiết</button>
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </td>
     </tr>

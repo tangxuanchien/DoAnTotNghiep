@@ -5,7 +5,7 @@ require '../function.php';
 $title = "Tạo bài đăng";
 $banner = "Bài đăng mới";
 $login = check_login($_SESSION['name']);
-if(!isset($_SESSION['error_post'])){
+if (!isset($_SESSION['error_post'])) {
     $_SESSION['error_post'] = '';
 }
 
@@ -29,8 +29,8 @@ require 'partials/banner.php';
         margin-left: 15px;
     }
 </style>
-<form action="/Datn/controllers/create.post.controller.php" method="POST">
-    <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?=$_SESSION['error_post']?></div>
+<form action="/Datn/controllers/create.post.controller.php" method="POST" enctype="multipart/form-data">
+    <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_post'] ?></div>
     <div class="mb-3">
         <label class="form-label">Tiêu đề</label>
         <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title'>
@@ -86,22 +86,23 @@ require 'partials/banner.php';
         <option value="">--Chọn Phường--</option>
     </select>
     <script>
-        $(document).ready(function(){
-            $('.district_id').change(function(e){
+        $(document).ready(function() {
+            $('.district_id').change(function(e) {
                 var district_id = $('.district_id').val();
-                    $.ajax({
-                        url: '../controllers/get_wards.php',
-                        type: 'POST',
-                        data: {district_id: district_id},
-                        success: function(response) {
-                            $('.ward_id').html('<option value="">--Chọn Phường--</option>');
-                            $('.ward_id').append(response);
-                        }
-                    }); 
+                $.ajax({
+                    url: '../controllers/get_wards.php',
+                    type: 'POST',
+                    data: {
+                        district_id: district_id
+                    },
+                    success: function(response) {
+                        $('.ward_id').html('<option value="">--Chọn Phường--</option>');
+                        $('.ward_id').append(response);
+                    }
+                });
             });
         });
     </script>
-
     <div class="mt-5">
         <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn chắc chắn muốn đăng bài không ?')">Đăng bài</button>
         <div class="mt-3 ml-3">

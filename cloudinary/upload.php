@@ -1,7 +1,10 @@
 <?php
 require 'vendor/autoload.php';
+require '../models/Database.php';
+require '../function.php';
 
 use Cloudinary\Cloudinary;
+// $id = $_SESSION['id'];
 
 $cloudinary = new Cloudinary([
     'cloud' => [
@@ -11,22 +14,34 @@ $cloudinary = new Cloudinary([
     ],
 ]);
 
-function extractPublicId($url) {
-    $parts = parse_url($url);
-    $path = $parts['path'];
-    $segments = explode('/', $path);
-    $publicId = $segments[4];
-    return $publicId;
+if (isset($_FILES['image'])) {
+    $file = $_FILES['image']['tmp_name'];
+    $upload = $cloudinary->uploadApi()->upload($file, [
+        'transformation' => [
+            'width' => 1920,  
+            'height' => 1280,       
+            'crop' => 'fill',      
+            'quality' => 'auto',   
+            'fetch_format' => 'auto' 
+        ]
+    ]);
 }
 
-$url = "https://res.cloudinary.com/djdf56dfq/image/upload/v1726156562/mdkh3pjuwqtzfccqe44d.jpg";
-$publicId = extractPublicId($url);
-echo $publicId;
+// $public_id = $upload['public_id'];
+// $image_url = $upload['secure_url'];
+// $created_at = get_time();
 
-
-// if (isset($_FILES['image'])) {
-//     $file = $_FILES['image']['tmp_name'];
-//     $upload = $cloudinary->uploadApi()->upload($file);
-//     echo "Image uploaded successfully. URL: " . $upload['secure_url'] . "</br>";
-//     echo "id: " . $upload['public_id'];
-// }
+// $db = new Database();
+// $image = $db->query(
+//     "INSERT INTO `property_images` (`image_id`, `property_id`, `image_url`, `created_at`, `public_id`) 
+//                                VALUES (:image_id, :property_id, :image_url, :created_at, :public_id)",
+//     [
+//         'image_id' => NULL,
+//         'property_id' => $property_id,
+//         'image_url' => $image_url,
+//         'created_at' => $created_at,
+//         'public_id' => $public_id
+//     ]
+// )->fetch(PDO::FETCH_ASSOC);
+// header('Location: /Datn/index.php');
+// exit();

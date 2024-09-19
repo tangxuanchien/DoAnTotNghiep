@@ -16,6 +16,9 @@
                             <a class='<?= $_SERVER['REQUEST_URI'] == '/Datn/' ? 'nav-link active' : 'nav-link' ?>'href="/Datn">Trang chủ</a>
                         </li>
                         <li class="nav-item">
+                            <a class='<?= $_SERVER['REQUEST_URI'] == '/Datn/views/price-statistics.view.php' ? 'nav-link active' : 'nav-link' ?>'href="/Datn/views/price-statistics.view.php">Thống kê giá</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="<?= $_SERVER['REQUEST_URI'] == '/Datn/views/information.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/information.view.php">Thông tin cá nhân</a>
                         </li>
                         <li class="nav-item">

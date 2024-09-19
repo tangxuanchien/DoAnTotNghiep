@@ -15,8 +15,6 @@
     $ward_id = $_POST['ward_id'];
     $created_at = get_time();
     $price_per_m2 = get_price_per_m2($price, $area);
-
-    var_dump($title, $description, $price, $area, $contact_info, $num_bathrooms, $num_bedrooms, $type_id, $ward_id, $created_at, $price_per_m2, $id);
     
     if(empty($title) or empty($description) or empty($price) or empty($area) or empty($description)
     or empty($contact_info) or empty($num_bedrooms) or empty($type_id) or empty($ward_id)){
@@ -30,7 +28,7 @@
                                VALUES (:property_id, :title, :description, :price, :area, :price_per_m2,
                                 :type_id, :ward_id, :contact_info, :created_at, :num_bedrooms, :num_bathrooms)",
         [
-            'property_id' => 2,
+            'property_id' => NULL,
             'title' => $title,
             'description' => $description,
             'price' => $price,
