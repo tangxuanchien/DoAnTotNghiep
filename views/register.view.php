@@ -15,7 +15,21 @@ require 'partials/navigation.php';
 require 'partials/banner.php';
 
 ?>
-<form action="/Datn/controllers/register.controller.php" method="POST">
+<script>
+    function handleSubmit() {
+        Swal.fire({
+            title: "Đăng kí thành công",
+            text: "Nhấn OK để về trang đăng nhập",
+            icon: "success",
+            confirmButtonText: "OK"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('registerForm').submit();
+            }
+        });
+    }
+</script>
+<form action="/Datn/controllers/register.controller.php" method="POST" id="registerForm">
     <div class="row g-3">
         <div class="col">
             <label class="form-label">Họ và tên</label>
@@ -41,7 +55,7 @@ require 'partials/banner.php';
         <input type="password" class="form-control" name='password' value="">
     </div>
     <div class="mt-5">
-        <button type="submit" class="btn btn-primary">Đăng kí</button>
+        <button type="button" class="btn btn-primary" onclick="handleSubmit()">Đăng kí</button>
         <div class="mt-3 ml-3">
             <a href="/Datn/views/login.view.php" class="link-dark">Quay lại</a>
         </div>

@@ -6,23 +6,29 @@ function dd($data)
     echo '</pre>';
 }
 
-function check_login($name){
-    if(!isset($name)){
+function check_login($name)
+{
+    if (!isset($name)) {
         return 'Đăng nhập';
-    } else return 'Chào, '.$name;
+    } else return 'Chào, ' . $name;
 }
 
-function check_banner($banner, $a, $b){
-    if(empty($banner)){
+function check_banner($banner, $a, $b)
+{
+    if (empty($banner)) {
         return $a;
-    }
-    else return $b;
+    } else return $b;
 }
 
-function get_time(){
+function get_time()
+{
     return date('Y-m-d ') . (date('h') + 5) . date(':i:s');
 }
 
-function get_price_per_m2($a, $b){
-    return $a / $b;
+function get_price_per_m2($a, $b)
+{
+    if (empty($a) or empty($b)) {
+        return 0;
+    } else
+        return $a / $b;
 }
