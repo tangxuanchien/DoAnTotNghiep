@@ -1,29 +1,15 @@
-<?php
-$mail             = new PHPMailer();
-
-$mail->IsSMTP(); // telling the class to use SMTP
-$mail->Host       = "mail.yourdomain.com"; // SMTP server
-$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
-                                           // 1 = errors and messages
-                                           // 2 = messages only
-$mail->SMTPAuth   = true;                  // enable SMTP authentication
-$mail->SMTPSecure = "tls";                 
-$mail->Host       = "smtp.gmail.com";      // SMTP server
-$mail->Port       = 587;                   // SMTP port
-$mail->Username   = "yourusername@gmail.com";  // username
-$mail->Password   = "yourpassword";            // password
-
-$mail->SetFrom('user@gmail.com', 'Test');
-
-$mail->Subject    = "I hope this works!";
-
-$mail->MsgHTML('Blah');
-
-$address = "test@test.com";
-$mail->AddAddress($address, "Test");
-
-if(!$mail->Send()) {
-  echo "Mailer Error: " . $mail->ErrorInfo;
-} else {
-  echo "Message sent!";
-}
+<style>
+  .container{
+    text-align: center;
+    margin: 50px 50px;
+  }
+  .label{
+    padding: 0 20px;
+  }
+</style>
+<div class="container">
+  <form action="#" method="POST"></form>
+  <label for="email" class="label">Vui lòng nhập địa chỉ email của bạn</label></br>
+  <input type="email" name="email" placeholder="Ví dụ: nguyenvana@gmail.com"></br>
+  <button type="submit">Xác thực</button>
+</div>

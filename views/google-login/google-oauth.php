@@ -37,18 +37,19 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
         // Make sure the profile data exists
         if (isset($profile['email'])) {
             $google_name_parts = [];
-            $google_name_parts[] = isset($profile['given_name']) ? preg_replace('/[^a-zA-Z0-9]/s', '', $profile['given_name']) : '';
-            $google_name_parts[] = isset($profile['family_name']) ? preg_replace('/[^a-zA-Z0-9]/s', '', $profile['family_name']) : '';
+            $google_name_parts[] = isset($profile['given_name']) ? preg_replace('/[^a-zA-Z0-9àáạãâầấậẩẫăằắặẳẵèéẹẽêềếệểễìíịĩòóọõôồốộổỗơờớợởỡùúụũưừứựửữỳýỵỹđ]/u', '', $profile['given_name']) : '';
+            $google_name_parts[] = isset($profile['family_name']) ? preg_replace('/[^a-zA-Z0-9àáạãâầấậẩẫăằắặẳẵèéẹẽêềếệểễìíịĩòóọõôồốộổỗơờớợởỡùúụũưừứựửữỳýỵỹđ]/u', '', $profile['family_name']) : '';
 
             $db = new Database();
             $max_id = $db->query("SELECT max(user_id) FROM users")->fetch(PDO::FETCH_ASSOC);
 
-            $user = $db->query('SELECT * FROM users WHERE email = :email', [
+            $user = $db->query('SELECT * FROM users WHERE method = :method and email = :email', [
+                'method' => 'google',
                 'email' => $profile['email']
             ])->fetch(PDO::FETCH_ASSOC);
 
             if (!$user) {
-                $db->query('INSERT INTO users (user_id, email, name, picture, password, citizen_id, phone, created_at) VALUES (:user_id, :email, :name, :picture, :password, :citizen_id, :phone, :created_at)', [
+                $db->query('INSERT INTO users (user_id, email, name, picture, password, citizen_id, phone, method, created_at) VALUES (:user_id, :email, :name, :picture, :password, :citizen_id, :phone, :method, :created_at)', [
                     'user_id' => $max_id['max(user_id)'] + 1,
                     'email' => $profile['email'],
                     'name' => implode(' ', $google_name_parts),
@@ -56,18 +57,19 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
                     'phone' => 1,
                     'password' => 1,
                     'citizen_id' => 1,
-                    'created_at' => get_time(),
+                    'method' => 'google',
+                    'created_at' => get_time()
                 ]);
                 $user_id = $max_id['max(user_id)'] + 1;
             } else {
                 $user_id = $user['user_id'];
             }
             session_regenerate_id();
-            $_SESSION['google_loggedin'] = TRUE;
-            $_SESSION['google_id'] = $user_id;
+            $_SESSION['id'] = $user_id;
+            $_SESSION['method'] = 'google';
+            $_SESSION['name'] = implode(' ', $google_name_parts);
 
-            // header('Location: profile.php');
-            header('Location: profile.php');
+            header('Location: /Datn');
             exit;
         } else {
             exit('Could not retrieve profile information! Please try again later!');

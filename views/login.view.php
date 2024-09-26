@@ -7,7 +7,6 @@ $login = check_login($_SESSION['name']);
 if (!isset($_SESSION['error'])) {
     $_SESSION['error'] = '';
 }
-
 require 'partials/header.php';
 require 'partials/navigation.php';
 ?>
@@ -113,7 +112,7 @@ require 'partials/navigation.php';
                 <input type="password" class="form-control" name="password" placeholder="Password" id="password">
                 <label for="floatingPassword">Mật khẩu</label>
             </div>
-            <a href="#" class="text-dark fw-bold text-decoration-none">Quên mật khẩu</a>
+            <a href="/Datn/views/forgetpw.view.php" class="text-dark fw-bold text-decoration-none">Quên mật khẩu</a>
             <button class="btn-login w-100 py-2" type="button" onclick="handleSubmit()">Đăng nhập</button>
         </form>
         <form action="/Datn/views/google-login/google-oauth.php" method="POST">
