@@ -56,8 +56,19 @@ $date = date_parse($user['created_at']);
         <img src="<?= $user['picture'] ?>" alt="avatar" class="avatar">
     </div>
     <div>
-        <a href="#" class="a-edit"><i class="fa-regular fa-pen-to-square"></i> Thay đổi</a>
+        <form action="../cloudinary/upload.php" method="POST" enctype="multipart/form-data">
+            <!-- <label id="btnChooseFile" class="a-edit"><i class="fa-regular fa-pen-to-square"></i> Thay đổi</label> -->
+            <!-- <button id="btnChooseFile" class="a-edit"><i class="fa-regular fa-pen-to-square"></i> Thay đổi</button> -->
+            <input type="file" id="image" name="image"/>
+        </form>
     </div>
+    <script>
+        const imageInput = document.getElementById('image');
+
+        imageInput.addEventListener('change', () => {
+            imageInput.form.submit();
+        });
+    </script>
     <div class="div-info">
         <ul>
             <li>

@@ -21,6 +21,7 @@
                     </li>
                 </ul>
             </div>
+            <a class="navbar-brand" href="#"><i class="fa-regular fa-circle-user" style="font-size: 25px;"></i></a>
             <a class="navbar-brand" href="<?= $login === 'Đăng nhập' ? "/Datn/views/login.view.php" : "" ?>"><?= $login ?></a>
         </nav>
     </header>

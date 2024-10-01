@@ -1,0 +1,44 @@
+.container-footer {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.box-footer {
+    position: absolute;
+    background-color: whitesmoke;
+    width: 1100px;
+    height: 300px;
+    z-index: 1;
+    top: 105%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-child-footer {
+    position: absolute;
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #808080;
+    color: white;
+    width: 1100px;
+    height: 50px;
+    z-index: 1;
+    top: 147%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image-footer {
+    position: relative;
+}
+
+.image-footer img {
+    width: 100%;
+    height: auto;
+    filter: saturate(0.7);
+}

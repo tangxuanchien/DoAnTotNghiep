@@ -18,7 +18,6 @@ require 'partials/banner.php';
 
 
 ?>
-<a href="/Datn/controllers/logout.controller.php">Dang xuat</a>
 <?php
 if (isset($_SESSION['id'])) :
     require 'controllers/index.controller.php';

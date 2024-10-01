@@ -27,6 +27,8 @@ if (isset($_FILES['image'])) {
     ]);
 }
 
+// header('/Datn/cloudinary/index.php');
+
 // $public_id = $upload['public_id'];
 // $image_url = $upload['secure_url'];
 // $created_at = get_time();
