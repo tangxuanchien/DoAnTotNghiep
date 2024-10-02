@@ -13,7 +13,7 @@ require 'partials/navigation.php';
 require 'partials/banner.php';
 ?>
 
-<h4 class="text-success mt-3">Lưu ý: Đăng nhập khi sử dụng trang web để bảo mật các thông tin quan trọng</h4>
+<h4 class="text-success mt-3"> Đăng nhập khi sử dụng trang web để bảo mật các thông tin quan trọng</h4>
 <div>
     Đoạn mã được sử dụng cho báo cáo thực tập tốt nghiệp vui lòng không tái sử dụng dưới mọi hình thức</br>
     <div class="mt-5">
