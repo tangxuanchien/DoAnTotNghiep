@@ -43,7 +43,7 @@
         ])->fetch(PDO::FETCH_ASSOC);
     
         $_SESSION['error_post'] = '';
-        header('Location: /Datn/index.php'); 
+        header('Location: /Datn/'); 
         exit();
     }
 

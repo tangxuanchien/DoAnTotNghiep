@@ -4,7 +4,7 @@ require 'function.php';
 $method = $_SESSION['method'];
 $id = $_SESSION['id'];
 $db = new Database();
-$propertys = $db->query("SELECT * FROM `properties` LIMIT 6")->fetchAll(PDO::FETCH_ASSOC); //fetchAll cho nhieu ban ghi
+$propertys = $db->query("SELECT * FROM `properties` LIMIT 6")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <style>
