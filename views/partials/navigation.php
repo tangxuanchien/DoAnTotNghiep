@@ -1,7 +1,6 @@
 <body>
     <header>
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div style="padding: 3px 10px;">
                 <a href="/Datn"><img src="https://res.cloudinary.com/djdf56dfq/image/upload/v1726818573/rxold0efbwrvj3r9rwjr.png" alt="logo-hanoihome" height="50px"></a>
             </div>
@@ -25,5 +24,4 @@
             <a class="navbar-brand" href="<?= $login === 'Đăng nhập' ? "/Datn/views/login.view.php" : "" ?>"><?= $login ?></a>
         </nav>
     </header>
-    <!-- Begin page content -->
-    <main class="flex-shrink-0">
+    <main>

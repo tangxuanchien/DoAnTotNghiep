@@ -11,13 +11,3 @@
     <link rel="stylesheet" href="/Datn/templates/style.css">
     <title><?= $title ?></title>
 </head>
-
-<style>
-    main>.container {
-        padding: 60px 15px 0;
-    }
-
-    main>.view-a {
-        color: red;
-    }
-</style>

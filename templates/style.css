@@ -1,3 +1,27 @@
+.container-body{
+    padding: 60px 70px 0;
+}
+
+#div-lists li{
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+.container-footer {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.btn-view-all{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
 .container-footer {
     position: relative;
     width: 100%;

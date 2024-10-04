@@ -17,13 +17,7 @@ $propertys = $db->query("SELECT * FROM `properties` LIMIT 6")->fetchAll(PDO::FET
         background-color: #e0e0e0;
     }
 
-    button:hover {
-        background-color: #e0e0e0;
-    }
-
-    #div-lists li {
-        display: inline-block;
-    }
+    
 </style>
 
 <form class="d-flex my-3" role="search">
@@ -65,7 +59,7 @@ $propertys = $db->query("SELECT * FROM `properties` LIMIT 6")->fetchAll(PDO::FET
         </tbody>
     </table>
 </div>
-<div class="mt-5" id="div-lists">
+<div id="div-lists">
     <ul>
         <?php foreach ($propertys as $property) : ?>
             <?php
@@ -87,7 +81,7 @@ $propertys = $db->query("SELECT * FROM `properties` LIMIT 6")->fetchAll(PDO::FET
                                     <img src="<?= $image['image_url'] ?>" class="card-img-top" alt="image_house">
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $property['title'] ?></h5>
+                                    <h5 class="card-title"><?= strlen($property['title']) > 80 ? substr_replace($property['title'], ' ...', 80) : $property['title'] ?></h5>
                                     <p>
                                         <i class="fa-solid fa-bed"></i> <?= $property['num_bedrooms'] . " ngủ" ?>
                                         <i class="fa-solid fa-bath" style="margin-left: 10px;"></i> <?= $property['num_bathrooms'] . " tắm" ?>
