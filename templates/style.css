@@ -1,13 +1,57 @@
+.slogan li{
+    display: inline-block;
+    margin: 20px 40px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+.slogan{
+    text-align: center;
+    padding: 40px 0;
+    background-color: #EBEBEB;
+}
+
+.slogan-text{
+    margin-top: 15px;
+}
+
 .container-body{
-    padding: 60px 70px 0;
+    padding: 90px 70px 0;
 }
 
 #div-lists li{
     display: inline-block;
+    padding: 0 10px;
+    text-align: left;
+}
+
+#div-lists>ul p{
+    padding-left: 0px;
+}
+
+.div-lists{
+    text-align: center;
+}
+
+button{
+    background-color: white;
+    color: black;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+i{
+    color: black;
 }
 
 button:hover {
     background-color: #e0e0e0;
+}
+
+#navbar{
+    background-color: #e0e0e0;
+    color: black;
 }
 
 .container-footer {
@@ -20,6 +64,7 @@ button:hover {
     display: flex;
     justify-content: center;
     padding: 20px 0;
+    font-size: large;
 }
 
 .container-footer {

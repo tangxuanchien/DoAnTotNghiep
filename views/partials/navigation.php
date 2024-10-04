@@ -1,6 +1,6 @@
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-md fixed-top" id="navbar">
             <div style="padding: 3px 10px;">
                 <a href="/Datn"><img src="https://res.cloudinary.com/djdf56dfq/image/upload/v1726818573/rxold0efbwrvj3r9rwjr.png" alt="logo-hanoihome" height="50px"></a>
             </div>
