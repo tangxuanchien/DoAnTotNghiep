@@ -2,7 +2,7 @@
     <header>
         <nav class="navbar navbar-expand-md fixed-top" id="navbar">
             <div style="padding: 3px 10px;">
-                <a href="/Datn"><img src="https://res.cloudinary.com/djdf56dfq/image/upload/v1726818573/rxold0efbwrvj3r9rwjr.png" alt="logo-hanoihome" height="50px"></a>
+                <a href="/Datn"><img src="https://res.cloudinary.com/djdf56dfq/image/upload/v1728370944/nb6vvykp5cfauwifdhm5.png" alt="logo-hanoihome" height="50px"></a>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">

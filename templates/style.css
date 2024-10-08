@@ -7,6 +7,11 @@ p {
     margin: 5px 0;
 }
 
+ul {
+    margin-bottom: 0;
+    padding: 0 0;
+}
+
 .slogan{
     text-align: center;
     padding: 40px 0;
@@ -50,8 +55,7 @@ button:hover {
 }
 
 #navbar{
-    background-color: #e0e0e0;
-    color: black;
+    background-color: #EBEBEB;
 }
 
 .container-footer {
@@ -82,9 +86,28 @@ button:hover {
     top: 105%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    justify-content: left;
+    /* align-items: center; */
+}
+
+.box-footer > ul > li{
+    display: inline-block;
+    padding: 10px 30px;
+    margin-top: 10px;
+}
+
+.box-footer li li{
+    display: inline-block;
+    margin: 20px 40px 0px 0px;
+}
+
+.box-footer-content{
+    margin-top: 15px;
+}
+
+.li-link i{
+    font-size: 25px;
 }
 
 .box-child-footer {
@@ -92,21 +115,22 @@ button:hover {
     align-items: center;
     display: flex;
     justify-content: flex-start;
-    background-color: #808080;
-    color: white;
+    background-color: #ebebeb;
+    color: black;
     width: 1100px;
     height: 50px;
     z-index: 1;
     top: 147%;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding: 0 20px;
 }
 
 .image-footer {
     position: relative;
 }
 
-.image-footer img {
+.image-footer > img {
     width: 100%;
     height: auto;
     filter: saturate(0.7);
