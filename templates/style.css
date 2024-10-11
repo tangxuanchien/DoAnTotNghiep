@@ -107,10 +107,6 @@ button:hover {
     font-weight: 600;
 }
 
-a-inactive {
-    color: gray;
-}
-
 .page-numbers li:active {
     background-color: #6e9eeb;
 }

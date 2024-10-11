@@ -20,7 +20,8 @@ $db = new Database();
 $properties = $db->query("SELECT * FROM `properties` LIMIT $limit OFFSET $offset")->fetchAll(PDO::FETCH_ASSOC);
 $total_properties = $db->query("SELECT Count(property_id) FROM `properties`")->fetch(PDO::FETCH_ASSOC);
 $residual_page_number = ((int)$total_properties["Count(property_id)"] % $limit);
-$last_page_number = ($residual_page_number === 0) ? ((int)$total_properties["Count(property_id)"] / $limit) : (((int)$total_properties["Count(property_id)"] - $residual_page_number) / $limit) + 1;
+$last_page_numbers = ($residual_page_number === 0) ? ((int)$total_properties["Count(property_id)"] / $limit) : (((int)$total_properties["Count(property_id)"] - $residual_page_number) / $limit) + 1;
+$total_pages = range(1, $last_page_numbers);
 foreach ($properties as $property):
     $property_id = $property['property_id'];
     $date = date_parse($property['created_at']);
@@ -47,29 +48,16 @@ endforeach ?>
 <div class="page-numbers">
     <ul>
         <li>
-            <a href="<?= checkpagenumber($page_number, 1, '', '/Datn/views/property-all.view.php?page_number=' . ($page_number - 1)) ?>" class="<?= checkpagenumber($page_number, 1, 'a-inactive', '') ?>">
+            <a href="<?= checkpagenumber($page_number, 1, '', '/Datn/views/property-all.view.php?page_number=' . ($page_number - 1)) ?>">
                 <i class="fa-solid fa-angles-left"></i> Trước
             </a>
         </li>
-        <?php if ($page_number > 2) : ?>
-            <li><a href="/Datn/views/property-all.view.php?page_number=1">1</li>
-            <li>...</li>
-        <?php endif ?>
-        <li class='page-current'>
-            <a href="/Datn/views/property-all.view.php?page_number=<?= $page_number ?>"><?= $page_number ?></a>
-        </li>
-        <li>
-            <a href="/Datn/views/property-all.view.php?page_number=<?= $page_number + 1 ?>"><?= $page_number + 1 ?></a>
-        </li>
-        <li>
-            <a href="/Datn/views/property-all.view.php?page_number=<?= $page_number + 2 ?>"><?= $page_number + 2 ?></a>
-        </li>
-        <?php if (($page_number + 2) < $last_page_number) : ?>
-            <li>...</li>
-            <li>
-                <a href="#"><?= $last_page_number ?></a>
+        <?php 
+        foreach ($total_pages as $number) : ?>
+            <li class="<?= ($number == $page_number) ? 'page-current' : ''?>">
+                <a href="/Datn/views/property-all.view.php?page_number=<?= $number ?>"><?= $number ?></a>
             </li>
-        <?php endif ?>
+        <?php endforeach ?>
         <li>
             <a href="/Datn/views/property-all.view.php?page_number=<?= $page_number + 1 ?>">Sau <i class="fa-solid fa-angles-right"></i></a>
         </li>
