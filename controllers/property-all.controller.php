@@ -48,18 +48,22 @@ endforeach ?>
 <div class="page-numbers">
     <ul>
         <li>
-            <a href="<?= checkpagenumber($page_number, 1, '', '/Datn/views/property-all.view.php?page_number=' . ($page_number - 1)) ?>">
-                <i class="fa-solid fa-angles-left"></i> Trước
+            <a href="<?= checkpagenumber($page_number, 1, '', '/Datn/views/property-all.view.php?page_number=' . ($page_number - 1)) ?>" style="color: <?= ($page_number == 1) ? 'gray' : 'black' ?>">
+                <i class="fa-solid fa-angles-left" style="color: <?= ($page_number == 1) ? 'gray' : 'black' ?>"></i> Trước
             </a>
         </li>
-        <?php 
+        <?php
         foreach ($total_pages as $number) : ?>
-            <li class="<?= ($number == $page_number) ? 'page-current' : ''?>">
-                <a href="/Datn/views/property-all.view.php?page_number=<?= $number ?>"><?= $number ?></a>
+            <li>
+                <form action="/Datn/views/property-all.view.php?page_number=<?= $number ?>" method="post">
+                    <button type="submit" style="background-color: <?= ($number == $page_number) ? '#6e9eeb' : 'white' ?>"><?= $number ?></button>  
+                </form>
             </li>
         <?php endforeach ?>
         <li>
-            <a href="/Datn/views/property-all.view.php?page_number=<?= $page_number + 1 ?>">Sau <i class="fa-solid fa-angles-right"></i></a>
+            <a href="<?= checkpagenumber($page_number, $last_page_numbers, '', '/Datn/views/property-all.view.php?page_number=' . ($page_number + 1)) ?>" style="color: <?= ($page_number == $last_page_numbers) ? 'gray' : 'black' ?>">
+                Sau <i class="fa-solid fa-angles-right" style="color: <?= ($page_number == $last_page_numbers) ? 'gray' : 'black' ?>"></i>
+            </a>
         </li>
     </ul>
 </div>
