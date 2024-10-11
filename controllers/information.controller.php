@@ -43,7 +43,6 @@ $date = date_parse($user['created_at']);
 
     .a-edit {
         position: absolute;
-        text-decoration: none;
         border: 3px solid #cccccc;
         border-radius: 15px;
         color: black;

@@ -1,8 +1,4 @@
-.slogan li{
-    display: inline-block;
-    margin: 20px 40px;
-}
-
+/* DEFAULT */
 p {
     margin: 5px 0;
 }
@@ -12,16 +8,42 @@ ul {
     padding: 0 0;
 }
 
+button{
+    background-color: white;
+    color: black;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+
+i{
+    color: black;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+/* SLOGAN */
 .slogan{
     text-align: center;
     padding: 40px 0;
     background-color: #EBEBEB;
 }
 
+.slogan li{
+    display: inline-block;
+    margin: 20px 40px;
+}
+
 .slogan-text{
     margin-top: 15px;
 }
 
+/* INDEX */
 .container-body{
     padding: 90px 70px 0;
 }
@@ -38,20 +60,6 @@ ul {
 
 .div-lists{
     text-align: center;
-}
-
-button{
-    background-color: white;
-    color: black;
-    border: 1px solid grey;
-    border-radius: 8px;
-}
-i{
-    color: black;
-}
-
-button:hover {
-    background-color: #e0e0e0;
 }
 
 #navbar{
@@ -71,6 +79,42 @@ button:hover {
     font-size: large;
 }
 
+/* PROPERTY-ALL */
+.property-lists{
+    margin: 2px 0;
+    border: 1px solid #e0e0e0;
+    padding: 4px 5px;
+}
+
+.property-lists li {
+    display: inline-block;
+    margin: 0 20px 0 0;
+}
+
+.page-numbers{
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 10px 0;
+}
+
+.page-numbers li{
+    display: inline-block;
+    margin: 0 30px 0 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-weight: 600;
+}
+
+.page-numbers li:active{
+    background-color: #6e9eeb;
+}
+
+.page-numbers li::selection{
+    background-color: #6e9eeb;
+}
+
+/* FOOTER */
 .container-footer {
     position: relative;
     width: 100%;

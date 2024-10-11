@@ -21,13 +21,14 @@ require 'partials/banner.php';
 <?php
 if (isset($_SESSION['id'])) :
     require 'controllers/index.controller.php';
-endif;
+
 ?>
 <div class="btn-view-all">
-    <form action="/Datn/views/property-all.view.php" method="post">
+    <form action="/Datn/views/property-all.view.php?page_number=1&id=1" method="post">
         <button type="submit">Xem tất cả <i class="fa-solid fa-arrow-right"></i></button>
     </form>
 </div>
 
 <?php
+endif;
 require 'partials/footer.php';
