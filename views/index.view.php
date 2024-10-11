@@ -24,7 +24,7 @@ if (isset($_SESSION['id'])) :
 
 ?>
 <div class="btn-view-all">
-    <form action="/Datn/views/property-all.view.php?page_number=1&id=1" method="post">
+    <form action="/Datn/views/property-all.view.php?page_number=1" method="post">
         <button type="submit">Xem tất cả <i class="fa-solid fa-arrow-right"></i></button>
     </form>
 </div>

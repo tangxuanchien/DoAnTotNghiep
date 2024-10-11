@@ -8,18 +8,18 @@ ul {
     padding: 0 0;
 }
 
-button{
+button {
     background-color: white;
     color: black;
     border: 1px solid grey;
     border-radius: 8px;
 }
 
-i{
+i {
     color: black;
 }
 
-a{
+a {
     color: black;
     text-decoration: none;
 }
@@ -27,42 +27,43 @@ a{
 button:hover {
     background-color: #e0e0e0;
 }
+
 /* SLOGAN */
-.slogan{
+.slogan {
     text-align: center;
     padding: 40px 0;
     background-color: #EBEBEB;
 }
 
-.slogan li{
+.slogan li {
     display: inline-block;
     margin: 20px 40px;
 }
 
-.slogan-text{
+.slogan-text {
     margin-top: 15px;
 }
 
 /* INDEX */
-.container-body{
+.container-body {
     padding: 90px 70px 0;
 }
 
-#div-lists li{
+#div-lists li {
     display: inline-block;
     padding: 0 10px;
     text-align: left;
 }
 
-#div-lists>ul p{
+#div-lists>ul p {
     padding-left: 0px;
 }
 
-.div-lists{
+.div-lists {
     text-align: center;
 }
 
-#navbar{
+#navbar {
     background-color: #EBEBEB;
 }
 
@@ -72,7 +73,7 @@ button:hover {
     height: 300px;
 }
 
-.btn-view-all{
+.btn-view-all {
     display: flex;
     justify-content: center;
     padding: 20px 0;
@@ -80,7 +81,7 @@ button:hover {
 }
 
 /* PROPERTY-ALL */
-.property-lists{
+.property-lists {
     margin: 2px 0;
     border: 1px solid #e0e0e0;
     padding: 4px 5px;
@@ -91,13 +92,13 @@ button:hover {
     margin: 0 20px 0 0;
 }
 
-.page-numbers{
+.page-numbers {
     display: flex;
     justify-content: center;
     margin: 60px 0 10px 0;
 }
 
-.page-numbers li{
+.page-numbers li {
     display: inline-block;
     margin: 0 30px 0 0;
     border: 1px solid black;
@@ -106,11 +107,15 @@ button:hover {
     font-weight: 600;
 }
 
-.page-numbers li:active{
+a-inactive {
+    color: gray;
+}
+
+.page-numbers li:active {
     background-color: #6e9eeb;
 }
 
-.page-numbers li::selection{
+.page-current {
     background-color: #6e9eeb;
 }
 
@@ -135,22 +140,22 @@ button:hover {
     /* align-items: center; */
 }
 
-.box-footer > ul > li{
+.box-footer>ul>li {
     display: inline-block;
     padding: 10px 30px;
     margin-top: 10px;
 }
 
-.box-footer li li{
+.box-footer li li {
     display: inline-block;
     margin: 20px 40px 0px 0px;
 }
 
-.box-footer-content{
+.box-footer-content {
     margin-top: 15px;
 }
 
-.li-link i{
+.li-link i {
     font-size: 25px;
 }
 
@@ -174,7 +179,7 @@ button:hover {
     position: relative;
 }
 
-.image-footer > img {
+.image-footer>img {
     width: 100%;
     height: auto;
     filter: saturate(0.7);
