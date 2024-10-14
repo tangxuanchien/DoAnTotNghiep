@@ -28,7 +28,6 @@ if (isset($_SESSION['id'])) :
         <button type="submit">Xem tất cả <i class="fa-solid fa-arrow-right"></i></button>
     </form>
 </div>
-
 <?php
 endif;
 require 'partials/footer.php';
