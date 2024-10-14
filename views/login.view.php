@@ -112,7 +112,7 @@ require 'partials/navigation.php';
                 <input type="password" class="form-control" name="password" placeholder="Password" id="password">
                 <label for="floatingPassword">Mật khẩu</label>
             </div>
-            <a href="/Datn/views/forgetpw.view.php" class="text-dark fw-bold text-decoration-none">Quên mật khẩu</a>
+            <a href="/Datn/views/forgetpw.view.php" class="text-dark fw-bold">Quên mật khẩu</a>
             <button class="btn-login w-100 py-2" type="button" onclick="handleSubmit()">Đăng nhập</button>
         </form>
         <form action="/Datn/views/google-login/google-oauth.php" method="POST">
@@ -123,7 +123,7 @@ require 'partials/navigation.php';
                 </button>
             </div>
         </form>
-        <div>Nếu chưa có tài khoản? <a href="/Datn/views/register.view.php" class="text-dark fw-bold text-decoration-none">Đăng kí tại đây</a></div>
+        <div>Nếu chưa có tài khoản? <a href="/Datn/views/register.view.php" class="text-dark fw-bold">Đăng kí tại đây</a></div>
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3" id="error"><?= $_SESSION['error'] ?></div>
     </main>
 </body>

@@ -1,7 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+require '../models/Database.php';
 require '../vendor/autoload.php';
 
 $mail = new PHPMailer(true);
@@ -17,14 +17,19 @@ try {
   $mail->Port       = 587; 
 
   $mail->setFrom('tmtmganga@gmail.com', 'HANOIHOME');
-  $mail->addAddress('tangxuanchien511@gmail.com', 'Chien Thu Hai'); // Địa chỉ người nhận
+  $mail->addAddress('tangxuanchien511@gmail.com', 'Chien Thu Hai');
+
+  $confirm_number = rand(100000, 999999);
+  $db = new Database();
 
   // Nội dung email
   $mail->isHTML(true);
   $mail->CharSet = 'UTF-8';
-  $mail->Subject = 'Mã xác minh mật khẩu của bạn'; // Tiêu đề email
-  $mail->Body    = 'Mã xác nhận của bạn là <b>in bold!</b>'; // Nội dung HTML
-  $mail->AltBody = 'Mã xác nhận của bạn là'; // Nội dung dạng text (cho máy không hỗ trợ HTML)
+  $mail->Subject = 'Mã xác minh mật khẩu của bạn'; // Title
+  $mail->Body    = 'Mã xác nhận của bạn là <b>in bold!</b>';
+  $mail->AltBody = 'Mã xác nhận của bạn là'.$confirm_number;
+
+
 
   $mail->send();
 
