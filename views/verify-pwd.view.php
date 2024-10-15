@@ -2,7 +2,7 @@
 require '../function.php';
 session_start();
 $title = "";
-$banner = "Danh sách việc cần làm";
+$banner = "";
 $login = check_login($_SESSION['name']);
 if (!isset($_SESSION['error'])) {
     $_SESSION['error'] = '';
@@ -31,12 +31,6 @@ require 'partials/navigation.php';
         border-bottom-left-radius: 0;
     }
 
-    .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-
     #progress-bar {
         background-color: #228B22;
     }
@@ -49,23 +43,8 @@ require 'partials/navigation.php';
         color: white;
         margin-top: 20px;
     }
-
-    .btn-login-google {
-        border: 1px solid #cccccc;
-        border-radius: 10px;
-        font-weight: bold;
-    }
 </style>
 <script>
-    function errorMessage() {
-        let message = document.getElementById('error');
-        if (phoneInput.value === 1) {
-            return "Sai tài khoản hoặc mật khẩu";
-        } else {
-            return "Bạn đang để trống tài khoản hoặc mật khẩu";
-        }
-    }
-
     function handleSubmit() {
         let phoneInput = document.getElementById('phone');
         let error = "document.getElementById('phone')";
@@ -97,17 +76,35 @@ require 'partials/navigation.php';
             });
         }
     }
+
+    function countDown() {
+        let timeLeft = 90;
+        const countdownTimer = setInterval(function() {
+            timeLeft--;
+            document.getElementById('countdown').innerHTML = timeLeft + 's';
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('countdown').innerHTML = "Hết giờ!";
+            }
+        }, 1000);
+
+    }
+    window.onload = function() {
+        countDown();
+    };
 </script>
+
 <body>
     <main class="form-signin w-100 m-auto mt-5">
-        <form action="/Datn/controllers/forget-password.controller.php" method="POST" id="forgetPassword">
-            <h3 class="mb-3 fw-normal mt-5">Quên mật khẩu</h3>
-            <div class="fw-normal">Vui lòng nhập email để gửi mã xác thực</div>
+        <form action="/Datn/controllers/verify-pwd.controller.php" method="POST" id="forgetPassword">
+            <h3 class="mb-3 fw-normal mt-5">Mã xác thực</h3>
             <div class="form-floating">
-                <input type="text" class="form-control" name="phone" placeholder="nguyenvana@gmail.com" id="email">
-                <label for="floatingInput">Email</label>
+                <input type="text" class="form-control" name="email" placeholder="nguyenvana@gmail.com" id="email">
+                <label for="floatingInput">Mã xác thực</label>
             </div>
-            <button class="btn-login w-100 py-2" type="button" onclick="handleSubmit()">Gửi mã xác nhận</button>
+            <div class="countdown">90s</div>
+            <button class="btn-login w-100 py-2" type="submit">Gửi mã xác nhận</button>
             <a href="/Datn/views/login.view.php"><i class="fa-solid fa-arrow-left"></i> Quay lại đăng nhập</a>
         </form>
 </body>

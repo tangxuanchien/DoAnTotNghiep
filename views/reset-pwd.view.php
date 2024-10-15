@@ -1,11 +1,11 @@
 <?php
 require '../function.php';
 session_start();
-$title = "Đăng nhập";
+$title = "";
 $banner = "Danh sách việc cần làm";
 $login = check_login($_SESSION['name']);
-if (!isset($_SESSION['error'])) {
-    $_SESSION['error'] = '';
+if (!isset($_SESSION['error-reset'])) {
+    $_SESSION['error-reset'] = '';
 }
 require 'partials/header.php';
 require 'partials/navigation.php';
@@ -67,13 +67,11 @@ require 'partials/navigation.php';
     }
 
     function handleSubmit() {
-        let phoneInput = document.getElementById('phone');
-        let error = "document.getElementById('phone')";
-        let passwordInput = document.getElementById('password');
-        if (phoneInput.value && passwordInput.value) {
+        let emailInput = document.getElementById('phone');
+        if (emailInput.value) {
             Swal.fire({
-                title: "Đăng nhập thành công",
-                text: "Nhấn OK để vào trang chủ",
+                title: "Xác thực thành công",
+                text: "Vui lòng kiểm tra email để lấy mật khẩu",
                 icon: "success",
                 showConfirmButton: false,
                 timer: 1500,
@@ -83,13 +81,13 @@ require 'partials/navigation.php';
                 }
             }).then(() => {
                 // if (result.isConfirmed) {
-                document.getElementById('loginForm').submit();
+                document.getElementById('forgetPassword').submit();
                 // }
             });
         } else {
             Swal.fire({
                 title: console.log(errorMessage()),
-                text: "Bạn đang để trống tài khoản hoặc mật khẩu",
+                text: "Sai Email",
                 icon: "error",
                 showConfirmButton: false,
                 timer: 1500,
@@ -101,31 +99,15 @@ require 'partials/navigation.php';
 
 <body>
     <main class="form-signin w-100 m-auto mt-5">
-        <form action="/Datn/controllers/login.controller.php" method="POST" id="loginForm">
-            <h1 class="h3 mb-3 fw-normal mt-5">Đăng nhập</h1>
-
+        <form action="/Datn/controllers/reset-pwd.controller.php" method="POST" id="forgetPassword">
+            <h3 class="mb-3 fw-normal mt-5">Quên mật khẩu</h3>
+            <div class="fw-normal">Vui lòng nhập email để gửi mã xác thực</div>
             <div class="form-floating">
-                <input type="text" class="form-control" name="phone" placeholder="0123-456-789" id="phone">
-                <label for="floatingInput">Số điện thoại</label>
+                <input type="text" class="form-control" name="email" placeholder="nguyenvana@gmail.com">
+                <label for="floatingInput">Email</label>
             </div>
-            <div class="form-floating mt-2">
-                <input type="password" class="form-control" name="password" placeholder="Password" id="password">
-                <label for="floatingPassword">Mật khẩu</label>
-            </div>
-            <a href="/Datn/views/reset-pwd.view.php" class="text-dark fw-bold">Quên mật khẩu</a>
-            <button class="btn-login w-100 py-2" type="button" onclick="handleSubmit()">Đăng nhập</button>
+            <button class="btn-login w-100 py-2" type="submit">Gửi mã xác nhận</button>
+            <a href="/Datn/views/login.view.php"><i class="fa-solid fa-arrow-left"></i> Quay lại đăng nhập</a>
+            <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error-reset'] ?></div>
         </form>
-        <form action="/Datn/views/google-login/google-oauth.php" method="POST">
-            <div>
-                <button class=" w-100 py-2 btn-login-google" type="submit">
-                    <img src="../images/google_icon.png" alt="google.icon" style="height:24px">
-                    Đăng nhập bằng Google
-                </button>
-            </div>
-        </form>
-        <div>Nếu chưa có tài khoản? <a href="/Datn/views/register.view.php" class="text-dark fw-bold">Đăng kí tại đây</a></div>
-        <div class="text-danger fw-semibold lh-1 fs-5 mt-3" id="error"><?= $_SESSION['error'] ?></div>
-    </main>
 </body>
-
-</html>
