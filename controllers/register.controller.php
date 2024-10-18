@@ -25,8 +25,3 @@ $property = $db->query(
 )->fetch(PDO::FETCH_ASSOC);
 
 header('Location: /Datn/views/login.view.php');
-
-// echo '<script>
-// alert("Dang ki thanh cong");
-// window.location.href="/Datn/views/login.view.php";
-// </script>';

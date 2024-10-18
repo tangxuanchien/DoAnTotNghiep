@@ -10,52 +10,6 @@ if (!isset($_SESSION['error-reset'])) {
 require 'partials/header.php';
 require 'partials/navigation.php';
 ?>
-<style>
-    html,
-    body {
-        height: 100%;
-    }
-
-    .form-signin {
-        max-width: 330px;
-        padding: 1rem;
-    }
-
-    .form-signin .form-floating:focus-within {
-        z-index: 2;
-    }
-
-    .form-signin input[type="email"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-
-    #progress-bar {
-        background-color: #228B22;
-    }
-
-    .btn-login {
-        border: 1px solid #cccccc;
-        border-radius: 10px;
-        font-weight: bold;
-        background-color: black;
-        color: white;
-        margin-top: 20px;
-    }
-
-    .btn-login-google {
-        border: 1px solid #cccccc;
-        border-radius: 10px;
-        font-weight: bold;
-    }
-</style>
 <script>
     function errorMessage() {
         let message = document.getElementById('error');
@@ -97,17 +51,22 @@ require 'partials/navigation.php';
     }
 </script>
 
-<body>
-    <main class="form-signin w-100 m-auto mt-5">
-        <form action="/Datn/controllers/reset-pwd.controller.php" method="POST" id="forgetPassword">
-            <h3 class="mb-3 fw-normal mt-5">Quên mật khẩu</h3>
-            <div class="fw-normal">Vui lòng nhập email để gửi mã xác thực</div>
+<div class="reset-pwd">
+        <form action="/Datn/controllers/confirm-email.controller.php" method="POST" id="forgetPassword">
+            <h3>Quên mật khẩu</h3>
+            <div>Vui lòng nhập email để gửi mã xác thực</div>
             <div class="form-floating">
-                <input type="text" class="form-control" name="email" placeholder="nguyenvana@gmail.com">
-                <label for="floatingInput">Email</label>
+                <input type="text" class="form-control" name="password" placeholder="nguyenvana@gmail.com">
+                <label for="floatingInput">Mật khẩu</label>
             </div>
-            <button class="btn-login w-100 py-2" type="submit">Gửi mã xác nhận</button>
-            <a href="/Datn/views/login.view.php"><i class="fa-solid fa-arrow-left"></i> Quay lại đăng nhập</a>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="confirm-password" placeholder="nguyenvana@gmail.com">
+                <label for="floatingInput">Xác nhận mật khẩu</label>
+            </div>
+            <button class="btn-confirm" type="submit">Gửi mã xác nhận</button>
+            <div>
+                <a href="/Datn/views/login.view.php"><i class="fa-solid fa-arrow-left"></i> Quay lại đăng nhập</a>
+            </div>
             <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error-reset'] ?></div>
         </form>
-</body>
+</div>

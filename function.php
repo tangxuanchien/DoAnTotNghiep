@@ -22,7 +22,15 @@ function check_banner($banner, $a, $b)
 
 function get_time()
 {
-    return date('Y-m-d ') . (date('h') + 5) . date(':i:s');
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    return date('Y-m-d H:i:s');
+}
+
+function get_time_extra()
+{
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $new_time = time() + 60; 
+    return date('Y-m-d H:i:s', $new_time);
 }
 
 function get_price_per_m2($a, $b)

@@ -41,20 +41,7 @@ require 'partials/navigation.php';
         background-color: #228B22;
     }
 
-    .btn-login {
-        border: 1px solid #cccccc;
-        border-radius: 10px;
-        font-weight: bold;
-        background-color: black;
-        color: white;
-        margin-top: 20px;
-    }
 
-    .btn-login-google {
-        border: 1px solid #cccccc;
-        border-radius: 10px;
-        font-weight: bold;
-    }
 </style>
 <script>
     function errorMessage() {
@@ -112,7 +99,7 @@ require 'partials/navigation.php';
                 <input type="password" class="form-control" name="password" placeholder="Password" id="password">
                 <label for="floatingPassword">Mật khẩu</label>
             </div>
-            <a href="/Datn/views/reset-pwd.view.php" class="text-dark fw-bold">Quên mật khẩu</a>
+            <a href="/Datn/views/confirm-email.view.php" class="text-dark fw-bold">Quên mật khẩu</a>
             <button class="btn-login w-100 py-2" type="button" onclick="handleSubmit()">Đăng nhập</button>
         </form>
         <form action="/Datn/views/google-login/google-oauth.php" method="POST">

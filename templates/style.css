@@ -116,6 +116,72 @@ button:hover {
     background-color: #6e9eeb;
 }
 
+
+/* LOGIN */
+.btn-login {
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+}
+
+.btn-login-google {
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn-login:hover {
+    background-color: #404040;
+    color: white;
+}
+
+/* RESET PASSWORD */
+.reset-pwd {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.reset-pwd div {
+    margin-top: 13px;
+}
+
+.reset-pwd a {
+    color: black;
+    font-size: 17px;
+}
+
+.reset-pwd i {
+    margin-right: 8px;
+}
+
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.btn-confirm {
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+    width: 300px;
+    height: 40px;
+}
+
+.btn-confirm:hover {
+    background-color: #404040;
+    color: white;
+}
+
+
 /* FOOTER */
 .container-footer {
     position: relative;
