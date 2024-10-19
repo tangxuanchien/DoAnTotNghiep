@@ -24,5 +24,4 @@ if ($user) {
 } else {
     $_SESSION['error-login'] = 'Sai thông tin đăng nhập';
 }
-// header('Location: /Datn/views/login.view.php');
-// exit();
+header('Location: /Datn/views/login.view.php');

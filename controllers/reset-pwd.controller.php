@@ -7,6 +7,7 @@ $confirm_password = $_POST['confirm_password'];
 $password = $_POST['password'];
 $uuid = $_GET['uuid'];
 $verification_code = $_GET['verification_code'];
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $db = new Database();
 
 if ($confirm_password !== $password) {
@@ -26,9 +27,7 @@ if ($confirm_password !== $password) {
     } else {
         $_SESSION['error-reset'] = '';
         $_SESSION['error-login'] = 'Thay đổi mật khẩu thành công';
-
-        $hash_password = password_hash($password, PASSWORD_DEFAULT);
-        $update_verify = $db->query("UPDATE `users` SET password='$hash_password' WHERE user_id = $user_id")->fetch(PDO::FETCH_ASSOC);    
+        $update_verify = $db->query("UPDATE `users` SET password='$hashed_password' WHERE user_id = $user_id")->fetch(PDO::FETCH_ASSOC);    
         header('Location: /Datn/views/login.view.php');
     }
 }
