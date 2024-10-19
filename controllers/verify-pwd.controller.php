@@ -3,14 +3,21 @@ session_start();
 require '../function.php';
 require '../models/Database.php';
 
-$verification_code = $_POST['verification_code'];
+$entered_code = $_POST['verification_code'];
+$email = $_GET['email'];
+
 $db = new Database();
-$verification = $db->query("SELECT * FROM `password-resets` where verification_code = :verification_code", [
-    'verification_code' => $verification_code
+$user = $db->query("SELECT * FROM `users` where email = :email", [
+    'email' => $email,
 ])->fetch(PDO::FETCH_ASSOC);
 
-if (empty($verification['user_id'])) {
+$verification = $db->query("SELECT * FROM `password_resets` where user_id = :user_id", [
+    'user_id' => $user['user_id'],
+])->fetch(PDO::FETCH_ASSOC);
+
+if (password_verify($entered_code, $verification['verification_code'])) {
+    header('Location: /Datn/views/reset-pwd.view.php?uuid='.$verification['uuid'].'&verification_code='.$verification['verification_code']);
+} else {
     $_SESSION['error_verify'] = 'Sai mã xác nhận';
-    header('Location: /Datn/views/verify-pwd.view.php');
+    header('Location: /Datn/views/verify-pwd.view.php?email=' . $email);
 }
-header('Location: /Datn/views/reset-pwd.view.php');

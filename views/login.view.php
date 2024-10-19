@@ -4,8 +4,8 @@ session_start();
 $title = "Đăng nhập";
 $banner = "Danh sách việc cần làm";
 $login = check_login($_SESSION['name']);
-if (!isset($_SESSION['error'])) {
-    $_SESSION['error'] = '';
+if (!isset($_SESSION['error-login'])) {
+    $_SESSION['error-login'] = '';
 }
 require 'partials/header.php';
 require 'partials/navigation.php';
@@ -92,11 +92,11 @@ require 'partials/navigation.php';
             <h1 class="h3 mb-3 fw-normal mt-5">Đăng nhập</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" name="phone" placeholder="0123-456-789" id="phone">
+                <input type="text" class="form-control" name="phone" placeholder="" id="phone">
                 <label for="floatingInput">Số điện thoại</label>
             </div>
             <div class="form-floating mt-2">
-                <input type="password" class="form-control" name="password" placeholder="Password" id="password">
+                <input type="password" class="form-control" name="password" placeholder="" id="password">
                 <label for="floatingPassword">Mật khẩu</label>
             </div>
             <a href="/Datn/views/confirm-email.view.php" class="text-dark fw-bold">Quên mật khẩu</a>
@@ -111,7 +111,7 @@ require 'partials/navigation.php';
             </div>
         </form>
         <div>Nếu chưa có tài khoản? <a href="/Datn/views/register.view.php" class="text-dark fw-bold">Đăng kí tại đây</a></div>
-        <div class="text-danger fw-semibold lh-1 fs-5 mt-3" id="error"><?= $_SESSION['error'] ?></div>
+        <div class="text-danger fw-semibold lh-1 fs-5 mt-3" id="error"><?= $_SESSION['error-login'] ?></div>
     </main>
 </body>
 

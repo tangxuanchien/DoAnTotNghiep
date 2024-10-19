@@ -13,12 +13,18 @@ class ComposerStaticInit418fb6ce7eab8bc00fb18512a6c10bed
         '1f87db08236948d07391152dccb70f04' => __DIR__ . '/..' . '/google/apiclient-services/autoload.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         'a8d3953fd9959404dd22d3dfcd0a79f0' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
+        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
             'phpseclib\\' => 10,
+        ),
+        'R' => 
+        array (
+            'Ramsey\\Uuid\\' => 12,
+            'Ramsey\\Collection\\' => 18,
         ),
         'P' => 
         array (
@@ -45,12 +51,24 @@ class ComposerStaticInit418fb6ce7eab8bc00fb18512a6c10bed
         array (
             'Firebase\\JWT\\' => 13,
         ),
+        'B' => 
+        array (
+            'Brick\\Math\\' => 11,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'phpseclib\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+        ),
+        'Ramsey\\Uuid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ramsey/uuid/src',
+        ),
+        'Ramsey\\Collection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ramsey/collection/src',
         ),
         'Psr\\Log\\' => 
         array (
@@ -104,6 +122,10 @@ class ComposerStaticInit418fb6ce7eab8bc00fb18512a6c10bed
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+        'Brick\\Math\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/brick/math/src',
         ),
     );
 

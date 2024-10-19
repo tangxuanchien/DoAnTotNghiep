@@ -9,6 +9,7 @@ if (!isset($_SESSION['error_verify'])) {
 }
 require 'partials/header.php';
 require 'partials/navigation.php';
+$email = $_GET['email'];
 ?>
 <script>
     function handleSubmit() {
@@ -62,7 +63,7 @@ require 'partials/navigation.php';
 </script>
 
 <div class="reset-pwd">
-        <form action="/Datn/controllers/verify-pwd.controller.php" method="POST" id="forgetPassword">
+        <form action="/Datn/controllers/verify-pwd.controller.php?email=<?=$email?>" method="POST" id="forgetPassword">
             <h3>Xác nhận bằng email</h3>
             <div>Vui lòng nhập mã xác được gửi tới email</div>
             <div class="form-floating">

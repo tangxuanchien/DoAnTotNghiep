@@ -9,6 +9,8 @@ if (!isset($_SESSION['error-reset'])) {
 }
 require 'partials/header.php';
 require 'partials/navigation.php';
+$uuid = $_GET['uuid'];
+$verification_code = $_GET['verification_code'];
 ?>
 <script>
     function errorMessage() {
@@ -52,18 +54,18 @@ require 'partials/navigation.php';
 </script>
 
 <div class="reset-pwd">
-        <form action="/Datn/controllers/confirm-email.controller.php" method="POST" id="forgetPassword">
+        <form action="/Datn/controllers/reset-pwd.controller.php?uuid=<?=$uuid?>&verification_code=<?=$verification_code?>" method="POST" id="resetPassword">
             <h3>Quên mật khẩu</h3>
             <div>Vui lòng nhập email để gửi mã xác thực</div>
             <div class="form-floating">
-                <input type="text" class="form-control" name="password" placeholder="nguyenvana@gmail.com">
+                <input type="password" class="form-control" name="password" placeholder="">
                 <label for="floatingInput">Mật khẩu</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control" name="confirm-password" placeholder="nguyenvana@gmail.com">
+                <input type="password" class="form-control" name="confirm_password" placeholder="">
                 <label for="floatingInput">Xác nhận mật khẩu</label>
             </div>
-            <button class="btn-confirm" type="submit">Gửi mã xác nhận</button>
+            <button class="btn-confirm" type="submit">Xác nhận</button>
             <div>
                 <a href="/Datn/views/login.view.php"><i class="fa-solid fa-arrow-left"></i> Quay lại đăng nhập</a>
             </div>

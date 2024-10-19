@@ -3,6 +3,7 @@ session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Ramsey\Uuid\Uuid;
 
 require '../models/Database.php';
 require '../function.php';
@@ -12,8 +13,10 @@ $mail = new PHPMailer(true);
 
 $email = $_POST['email'];
 $verification_code = rand(100000, 999999);
+$hashed_code = password_hash($verification_code, PASSWORD_DEFAULT);
 $created_at = get_time();
 $expires_at = get_time_extra();
+$uuid = Uuid::uuid4()->toString();
 
 $db = new Database();
 $user = $db->query('Select * from `users` where email = :email', [
@@ -22,7 +25,7 @@ $user = $db->query('Select * from `users` where email = :email', [
 
 if (empty($user['email'])) {
   $_SESSION['error-reset'] = 'Vui lòng nhập email của bạn !';
-  header('Location: /Datn/views/reset-pwd.view.php');
+  header('Location: /Datn/views/confirm-email.view.php');
 } else {
   try {
     $mail->isSMTP();
@@ -54,20 +57,21 @@ if (empty($user['email'])) {
 
     if (empty($verification['user_id'])) {
       $create_verify = $db->query(
-        "INSERT INTO `password_resets` (`user_id`, `verification_code`, `created_at`, `expires_at`) 
-                               VALUES (:user_id, :verification_code, :created_at, :expires_at)",
+        "INSERT INTO `password_resets` (`uuid`, `user_id`, `verification_code`, `created_at`, `expires_at`) 
+                               VALUES (:uuid, :user_id, :verification_code, :created_at, :expires_at)",
         [
+          'uuid' => $uuid,
           'user_id' => $user_id,
-          'verification_code' => $verification_code,
+          'verification_code' => $hashed_code,
           'created_at' => $created_at,
           'expires_at' => $expires_at
         ]
       )->fetch(PDO::FETCH_ASSOC);
     } else {
-      $update_verify = $db->query("UPDATE `password_resets` SET user_id='$user_id', verification_code='$verification_code', created_at='$created_at', expires_at='$expires_at' WHERE user_id = $user_id")->fetch(PDO::FETCH_ASSOC);
+      $update_verify = $db->query("UPDATE `password_resets` SET uuid='$uuid', user_id='$user_id', verification_code='$hashed_code', created_at='$created_at', expires_at='$expires_at' WHERE user_id = $user_id")->fetch(PDO::FETCH_ASSOC);
     }
   } catch (Exception $e) {
     echo "Email chưa được gửi. Mailer Error: {$mail->ErrorInfo}";
   }
-  header('Location: /Datn/views/verify-pwd.view.php?email='.$email);
+  header('Location: /Datn/views/verify-pwd.view.php?email=' . $email);
 }
