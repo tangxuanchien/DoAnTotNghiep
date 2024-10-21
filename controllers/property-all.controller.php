@@ -2,7 +2,7 @@
 require '../models/Database.php';
 
 $page_number = $_GET['page_number'];
-$limit = 3;
+$limit = 10;
 if ($page_number == 1) {
     $offset = 0;
 } else

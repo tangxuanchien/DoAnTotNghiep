@@ -80,9 +80,6 @@ $date = date_parse($user['created_at']);
                 Số điện thoại người dùng: <b><?= $user['phone'] ?></b>
             </li>
             <li>
-                Mật khẩu người dùng: <b><?= $user['password'] ?></b>
-            </li>
-            <li>
                 Đã tham gia vào: <b><?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></b>
             </li>
         </ul>

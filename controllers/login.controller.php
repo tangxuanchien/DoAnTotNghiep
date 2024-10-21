@@ -18,6 +18,7 @@ if ($user) {
         $_SESSION['method'] = 'local';
         $_SESSION['error-login'] = '';
         header('Location: /Datn');
+        exit();
     } else {
         $_SESSION['error-login'] = 'Sai thông tin đăng nhập';
     }
@@ -25,3 +26,4 @@ if ($user) {
     $_SESSION['error-login'] = 'Sai thông tin đăng nhập';
 }
 header('Location: /Datn/views/login.view.php');
+exit();

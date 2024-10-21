@@ -181,6 +181,47 @@ button:hover {
     color: white;
 }
 
+/* CHART JS */
+.select-ward{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.select-ward select{
+    padding: 5px 60px;
+    margin: 0 20px;
+}
+
+.statistic-label {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.statistic-label>ul>li {
+    display: inline-block;
+    padding: 10px 60px;
+}
+
+.statistic-number{
+    color: green;
+    text-align: center;
+    font-size: xxx-large;
+    font-weight: 500;
+}
+
+.border-left{
+    border-left: 1px solid #cccccc;
+}
+
+.chart {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
 
 /* FOOTER */
 .container-footer {
