@@ -17,15 +17,15 @@
             <img src="/Datn/images/magnifying-glass.png" alt="banner" width="100px"></br>
             <div class="slogan-text">
                 <h5>Đơn giản</h5>
-                <p>Thao tác sử dụng vô cùng đơn giản</p>
-                <p>chỉ với vài bước là có thể đăng bài liên hệ</p>
+                <p>Thao tác sử dụng vô cùng đơn giản chỉ</p>
+                <p>với vài bước là có thể đăng bài liên hệ</p>
             </div>
         </li>
         <li>
             <img src="/Datn/images/handshake.png" alt="banner" width="100px"></br>
             <div class="slogan-text">
                 <h5>Phát triển</h5>
-                <p>Trong tương lai HANOIHOME sẽ cố gắng mang tới</p>
+                <p>Tương lai HANOIHOME sẽ cố gắng mang tới</p>
                 <p>nhiều sản phẩm tiện ích hơn cho người dùng</p>
             </div>
         </li>

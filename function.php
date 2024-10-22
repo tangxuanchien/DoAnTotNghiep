@@ -10,7 +10,7 @@ function check_login($name)
 {
     if (!isset($name)) {
         return 'Đăng nhập';
-    } else return 'Chào, ' . $name;
+    } else return $name;
 }
 
 function check_banner($banner, $a, $b)

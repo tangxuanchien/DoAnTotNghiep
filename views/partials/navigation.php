@@ -20,8 +20,17 @@
                     </li>
                 </ul>
             </div>
-            <a class="navbar-brand" href="#"><i class="fa-regular fa-circle-user" style="font-size: 25px;"></i></a>
-            <a class="navbar-brand" href="<?= $login === 'Đăng nhập' ? "/Datn/views/login.view.php" : "" ?>"><?= $login ?></a>
+            <div class="profile-menu">
+                <div class="profile" onclick="toggleMenu()">
+                    <a class="navbar-brand"><i class="fa-regular fa-circle-user" style="font-size: 25px;"></i></a>
+                    <a class="navbar-brand" href="<?= $login === 'Đăng nhập' ? "/Datn/views/login.view.php" : "" ?>"><?= $login ?></a>
+                </div>
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="#">Thông tin cá nhân</a>
+                    <a href="#">Đổi mật khẩu</a>
+                    <a href="#">Đăng xuất</a>
+                </div>
+            </div>
         </nav>
     </header>
     <main>

@@ -7,7 +7,7 @@ if (isset($_SESSION['id'])) {
 } else $banner = "Vui lòng đăng nhập để xem việc làm";
 if (!isset($_SESSION['name'])) {
     $login = 'Đăng nhập';
-} else $login = 'Chào, ' . $_SESSION['name'];
+} else $login = $_SESSION['name'];
 
 
 require 'partials/header.php';
