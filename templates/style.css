@@ -41,7 +41,7 @@ button:hover {
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     right: 10px;
-    top: 100%; 
+    top: 100%;
 }
 
 .profile-menu:hover .dropdown-content {
@@ -148,6 +148,39 @@ button:hover {
     background-color: #6e9eeb;
 }
 
+/* CREATE POST */
+.container-create-post {
+    width: 800px;
+    transform: translateX(38%);
+}
+
+.select-room li {
+    display: inline-block;
+    margin-right: 50px;
+    width: 140px;
+}
+
+.select-room label {
+    margin-bottom: 10px;
+}
+
+.select-location li {
+    display: inline-block;
+    padding-right: 20px;
+    width: 250px;
+}
+
+/* DETAIL PROPERTY */
+.container-detail {
+    margin: 20px 0;
+    width: 800px;
+    transform: translateX(40%);
+}
+
+.container-detail > button {
+    width: 40px;
+    height: 332px;
+}
 
 /* LOGIN */
 .btn-login {
@@ -214,13 +247,13 @@ button:hover {
 }
 
 /* CHART JS */
-.select-ward{
+.select-ward {
     display: flex;
     justify-content: center;
     margin-top: 50px;
 }
 
-.select-ward select{
+.select-ward select {
     padding: 5px 60px;
     margin: 0 20px;
 }
@@ -236,14 +269,14 @@ button:hover {
     padding: 10px 60px;
 }
 
-.statistic-number{
+.statistic-number {
     color: green;
     text-align: center;
     font-size: xxx-large;
     font-weight: 500;
 }
 
-.border-left{
+.border-left {
     border-left: 1px solid #cccccc;
 }
 

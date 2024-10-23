@@ -22,6 +22,6 @@ $property = $db->query(
         'citizen_id' => $citizen_id,
         'created_at' => $created_at
     ]
-)->fetch(PDO::FETCH_ASSOC);
+);
 
 header('Location: /Datn/views/login.view.php');
