@@ -174,12 +174,54 @@ button:hover {
 .container-detail {
     margin: 20px 0;
     width: 800px;
-    transform: translateX(40%);
 }
 
-.container-detail > button {
+.container-detail button {
     width: 40px;
-    height: 332px;
+    height: 532px;
+}
+
+.carousel-inner{
+    border-radius: 20px;
+}
+
+.detail-left{
+    position: absolute;
+    top: 0;
+    left: 930px;
+}
+
+.detail-fixed{
+    position: fixed;
+    top: 158px;
+    width: 100%;
+}
+
+.detail-info-seller{
+    border: 5px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 20px 20px;
+    background-color: #e0e0e0;
+    height: 500px;
+    width: 450px;
+}
+
+.detail-support li{
+    display: inline-block;
+    padding: 20px 56px;
+}
+
+.detail-support a{
+    color: grey;
+}
+
+.detail-support a:hover{
+    color: #808080;
+}
+
+.detail-left i{
+    padding: 0 5px;
+    color: #808080;
 }
 
 /* LOGIN */
