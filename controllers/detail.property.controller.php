@@ -2,14 +2,21 @@
 $id = $_GET['id'];
 require '../models/Database.php';
 $db = new Database();
-$property = $db->query("SELECT * FROM `properties` where property_id = $id")->fetch(PDO::FETCH_ASSOC);
-$location = $db->query("
-SELECT w.ward_name, d.district_name, w.ward_id FROM `wards` w 
-INNER JOIN districts d on d.district_id = w.district_id
-where d.district_id = :district_id and w.ward_id = :ward_id", [
-        'district_id' => 1,
-        'ward_id' => 9
+$property = $db->query("SELECT * FROM `properties` where property_id = :property_id", [
+        'property_id' => $id
 ])->fetch(PDO::FETCH_ASSOC);
+$post = $db->query("SELECT *, count(property_id) as total FROM `posts` where property_id = :property_id", [
+        'property_id' => $id
+])->fetch(PDO::FETCH_ASSOC);
+$location = $db->query("
+SELECT w.ward_name, d.district_name, p.property_id FROM `properties` p 
+INNER JOIN wards w on w.ward_id = p.ward_id
+INNER JOIN districts d on d.district_id = w.district_id
+where p.property_id = :property_id", [
+        'property_id' => $id
+])->fetch(PDO::FETCH_ASSOC);
+$created_at = $post['created_at'];
+$formatted_create_at = date("d-m-Y", strtotime($created_at));
 ?>
 <div class="position-relative">
         <div id="carouselAutoplaying" class="carousel slide container-detail" data-bs-ride="carousel" data-bs-interval="3000">
@@ -37,61 +44,18 @@ where d.district_id = :district_id and w.ward_id = :ward_id", [
                                 <span class="visually-hidden">Next</span>
                         </button>
                 </div>
-                <div class="mt-3">
-                        <h4><?= $property['title'] ?></h4>
-                        <i class="fa-solid fa-location-dot"></i> <?= 'Phường ' .$location['ward_name'] . ', Quận ' . $location['district_name']. ', TP.Hà Nội, Việt Nam' ?></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>Tiêu đề bài đăng: <b><?= $property['title'] ?></b></br>
-                        Mô tả dự án: <b><?= $property['description'] ?></b></br>
-                        Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>Tiêu đề bài đăng: <b><?= $property['title'] ?></b></br>
-                        Mô tả dự án: <b><?= $property['description'] ?></b></br>
-                        Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>Tiêu đề bài đăng: <b><?= $property['title'] ?></b></br>
-                        Mô tả dự án: <b><?= $property['description'] ?></b></br>
-                        Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>Tiêu đề bài đăng: <b><?= $property['title'] ?></b></br>
-                        Mô tả dự án: <b><?= $property['description'] ?></b></br>
-                        Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>Tiêu đề bài đăng: <b><?= $property['title'] ?></b></br>
-                        Mô tả dự án: <b><?= $property['description'] ?></b></br>
-                        Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>Tiêu đề bài đăng: <b><?= $property['title'] ?></b></br>
-                        Mô tả dự án: <b><?= $property['description'] ?></b></br>
-                        Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>Tiêu đề bài đăng: <b><?= $property['title'] ?></b></br>
-                        Mô tả dự án: <b><?= $property['description'] ?></b></br>
-                        Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>Tiêu đề bài đăng: <b><?= $property['title'] ?></b></br>
-                        Mô tả dự án: <b><?= $property['description'] ?></b></br>
-                        Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></br>
-                        Diện tích: <b><?= $property['area'] ?></b></br>
-                        Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></br>
-                        Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></br>
-                        Phòng vệ sinh: <b><?= $property['num_bathrooms'] ?></b>
+                <div class="mt-3 detail-body">
+                        <h3><?= $property['title'] ?></h3>
+                        <i class="fa-solid fa-location-dot"></i> <?= 'Phường ' . $location['ward_name'] . ', Quận ' . $location['district_name'] . ', TP.Hà Nội, Việt Nam' ?></br>
+                        <div class="mt-3">
+                                <h4>Mô tả dự án</h4>
+                                <p><?= $property['description'] ?></p>
+                                <p>Diện tích: <b><?= $property['area'] ?></b></p>
+                                <p>Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></p>
+                                <p>Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></p>
+                                <p>Phòng vệ sinh: <?= $property['num_bathrooms'] ?></p>
+                                <p>Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></p>
+                        </div>
                 </div>
 
         </div>
@@ -100,7 +64,8 @@ where d.district_id = :district_id and w.ward_id = :ward_id", [
                         <div class="detail-info-seller">
                                 <img src="/Datn/images/avatar.jpg" alt="avatar" style="border-radius: 50px; width: 80px; margin: 0 20px 10px 0; border: 2px solid black">
                                 <b>HIEUTHUHAI</b> <i class="fa-solid fa-briefcase"></i></br>
-                                <b>21 Tin đăng</b></br>
+                                <b>Tham gia từ:</b> <?= $formatted_create_at ?></br>
+                                <?= $post['total'] ?> tin đăng</br>
                                 Mức độ uy tín: <b>5.0</b></br>
                                 Sản phẩm: <b>Ai cũng phải bắt đầu từ rang cơm</b></br>
                                 <button class="btn btn-primary mt-3">Liên hệ người bán</button>

@@ -44,7 +44,7 @@ if (empty($user['email'])) {
     // Nội dung email
     $mail->isHTML(true);
     $mail->CharSet = 'UTF-8';
-    $mail->Subject = 'XÁC MINH TÀI KHOẢN'; // Title
+    $mail->Subject = 'XÁC MINH TÀI KHOẢN'; 
     $mail->Body    = '<div>Mã xác nhận tài khoản của bạn là: <b>' . $verification_code . '</b></div>
                       <div>Vui lòng nhập đúng mã xác nhận để đăng nhập. Mã xác nhận có hiệu lực 60 giây</div>';
     $mail->AltBody = 'Mã xác nhận tài khoản: ' . $verification_code;
