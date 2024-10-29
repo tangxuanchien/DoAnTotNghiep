@@ -78,6 +78,7 @@ button:hover {
 /* INDEX */
 .container-body {
     padding: 90px 70px 0;
+    overflow-y: auto;
 }
 
 #div-lists li {
@@ -184,6 +185,21 @@ button:hover {
 
 .carousel-inner{
     border-radius: 20px;
+}
+
+.detail-post-related {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 16px 16px 0;
+    scroll-behavior: smooth;
+}
+
+.detail-card {
+    flex: 0 0 auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .detail-left{

@@ -5,16 +5,29 @@ $db = new Database();
 $property = $db->query("SELECT * FROM `properties` where property_id = :property_id", [
         'property_id' => $id
 ])->fetch(PDO::FETCH_ASSOC);
-$post = $db->query("SELECT *, count(property_id) as total FROM `posts` where property_id = :property_id", [
+$post = $db->query("
+        SELECT *, count(property_id) as total FROM `posts` p 
+        INNER JOIN users u on u.user_id = p.user_id
+        where property_id = :property_id", [
         'property_id' => $id
 ])->fetch(PDO::FETCH_ASSOC);
 $location = $db->query("
-SELECT w.ward_name, d.district_name, p.property_id FROM `properties` p 
-INNER JOIN wards w on w.ward_id = p.ward_id
-INNER JOIN districts d on d.district_id = w.district_id
-where p.property_id = :property_id", [
+        SELECT w.ward_name, d.district_name, d.district_id, p.property_id FROM `properties` p 
+        INNER JOIN wards w on w.ward_id = p.ward_id
+        INNER JOIN districts d on d.district_id = w.district_id
+        where p.property_id = :property_id", [
         'property_id' => $id
 ])->fetch(PDO::FETCH_ASSOC);
+
+$district_id = $location['district_id'];
+$posts_related = $db->query("
+        SELECT * FROM `properties` p 
+        INNER JOIN wards w on w.ward_id = p.ward_id
+        INNER JOIN districts d on d.district_id = w.district_id
+        where d.district_id = :district_id", [
+        'district_id' => $district_id
+])->fetchAll(PDO::FETCH_ASSOC);
+
 $created_at = $post['created_at'];
 $formatted_create_at = date("d-m-Y", strtotime($created_at));
 ?>
@@ -44,38 +57,53 @@ $formatted_create_at = date("d-m-Y", strtotime($created_at));
                                 <span class="visually-hidden">Next</span>
                         </button>
                 </div>
-                <div class="mt-3 detail-body">
+                <div class="mt-3 detail-post">
                         <h3><?= $property['title'] ?></h3>
                         <i class="fa-solid fa-location-dot"></i> <?= 'Phường ' . $location['ward_name'] . ', Quận ' . $location['district_name'] . ', TP.Hà Nội, Việt Nam' ?></br>
                         <div class="mt-3">
                                 <h4>Mô tả dự án</h4>
                                 <p><?= $property['description'] ?></p>
-                                <p>Diện tích: <b><?= $property['area'] ?></b></p>
-                                <p>Giá bán trên mét vuông: <b><?= $property['price_per_m2'] ?>tr/m2</b></p>
-                                <p>Phòng ngủ: <b><?= $property['num_bedrooms'] ?></b></p>
+                                <p>Diện tích: <?= $property['area'] ?></p>
+                                <p>Giá bán trên mét vuông: <?= $property['price_per_m2'] ?>tr/m2</p>
+                                <p>Phòng ngủ: <?= $property['num_bedrooms'] ?></p>
                                 <p>Phòng vệ sinh: <?= $property['num_bathrooms'] ?></p>
-                                <p>Giá bán: <b><?= $property['price'] ?>VND (Có thương lượng)</b></p>
+                                <p>Giá bán: <?= $property['price'] ?>VND (Có thương lượng)</p>
                         </div>
                 </div>
-
-        </div>
-        <div class="detail-fixed">
-                <div class="detail-left">
-                        <div class="detail-info-seller">
-                                <img src="/Datn/images/avatar.jpg" alt="avatar" style="border-radius: 50px; width: 80px; margin: 0 20px 10px 0; border: 2px solid black">
-                                <b>HIEUTHUHAI</b> <i class="fa-solid fa-briefcase"></i></br>
-                                <b>Tham gia từ:</b> <?= $formatted_create_at ?></br>
-                                <?= $post['total'] ?> tin đăng</br>
-                                Mức độ uy tín: <b>5.0</b></br>
-                                Sản phẩm: <b>Ai cũng phải bắt đầu từ rang cơm</b></br>
-                                <button class="btn btn-primary mt-3">Liên hệ người bán</button>
-                        </div>
-                        <div class="detail-support">
-                                <ul>
-                                        <li><a href="http://"></a:href><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li>
-                                        <li><a href="http://"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
-                                </ul>
-                        </div>
+                <h4 class="mt-4">Tin đăng khác ở <?= 'quận ' . $location['district_name'] ?></h4>
+                <div class="detail-post-related">
+                        <?php foreach ($posts_related as $post_related) : ?>
+                                <div class="detail-card card mx-3 mt-3" style="width: 21rem;">
+                                        <div class="card-body">
+                                                <h5 class="card-title"><?= strlen($post_related['title']) > 80 ? substr_replace($post_related['title'], ' ...', 80) : $post_related['title'] ?></h5>
+                                                <p>
+                                                        <i class="fa-solid fa-bed"></i> <?= $post_related['num_bedrooms'] . " ngủ" ?>
+                                                        <i class="fa-solid fa-bath" style="margin-left: 10px;"></i> <?= $post_related['num_bathrooms'] . " tắm" ?>
+                                                        <i class="fa-solid fa-chart-line" style="margin-left: 10px;"></i> <?= $post_related['area'] . " m<sup>2</sup>" ?>
+                                                </p>
+                                                <p class="card-description"><i class="fa-solid fa-location-dot"></i> <?= $post_related['ward_name'] . ", " . $post_related['district_name'] ?></p>
+                                                <a href="/Datn/views/detail.property.view.php?id=<?= $post_related['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
+                                        </div>
+                                </div>
+                        <?php endforeach; ?>
                 </div>
         </div>
+</div>
+<div class="detail-fixed">
+        <div class="detail-left">
+                <div class="detail-info-seller">
+                        <img src="/Datn/images/avatar.jpg" alt="avatar" style="border-radius: 50px; width: 80px; margin: 0 20px 10px 0; border: 2px solid black">
+                        <b><?= $post['name'] ?></b> <i class="fa-solid fa-briefcase"></i></br>
+                        Tham gia từ: <?= $formatted_create_at ?></br>
+                        Đánh giá: <b>5.0 - <?= $post['total'] ?> tin đăng </b></br>
+                        <button class="btn btn-primary mt-3">Liên hệ người bán</button>
+                </div>
+                <div class="detail-support">
+                        <ul>
+                                <li><a href="http://"></a:href><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li>
+                                <li><a href="http://"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
+                        </ul>
+                </div>
+        </div>
+</div>
 </div>

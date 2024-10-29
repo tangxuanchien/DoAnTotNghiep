@@ -9,7 +9,6 @@ $properties = $db->query("SELECT * FROM `properties` LIMIT 6")->fetchAll(PDO::FE
 
 <style>
     a {
-        text-decoration: none;
         color: black;
     }
 
