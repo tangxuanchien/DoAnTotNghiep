@@ -4,26 +4,23 @@ require 'function.php';
 $method = $_SESSION['method'];
 $id = $_SESSION['id'];
 $db = new Database();
-$properties = $db->query("SELECT * FROM `properties` LIMIT 6")->fetchAll(PDO::FETCH_ASSOC);
+$posts = $db->query("
+SELECT * FROM `posts` p
+inner join properties pr on pr.property_id = p.property_id
+inner join users u on u.user_id = p.user_id
+inner join wards w on w.ward_id = pr.ward_id
+inner join districts d on d.district_id = w.district_id 
+inner join property_images i on i.property_id = pr.property_id 
+LIMIT 6")->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
-<style>
-    a {
-        color: black;
-    }
-
-    td:hover {
-        background-color: #e0e0e0;
-    }
-</style>
 
 <form class="d-flex my-3" role="search">
     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Tìm kiếm" id="search">
-    <button class="btn btn-outline-success" id="search-btn" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="btn btn-outline-dark" id="search-btn" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
 </form>
 
-<form action="/Datn/views/create.post.view.php" method="post">
-    <button type="submit">Tạo bài đăng mới</button>
+<form action="/Datn/views/create.post.view.php?user_id=<?= $id ?>" method="post">
+    <button class="btn btn-outline-dark" type="submit">Tạo bài đăng mới</button>
 </form>
 
 <div id="result">
@@ -59,39 +56,26 @@ $properties = $db->query("SELECT * FROM `properties` LIMIT 6")->fetchAll(PDO::FE
 <div class="div-lists">
     <div id="div-lists">
         <ul>
-            <?php foreach ($properties as $property) :
-                $ward_id = $property['ward_id'];
-                $property_id = $property['property_id'];
-                $wards = $db->query("SELECT * FROM `wards` where ward_id = $ward_id")->fetchAll(PDO::FETCH_ASSOC);
-                $images = $db->query("SELECT * FROM `property_images` where property_id = $property_id")->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach ($images as $image) :
-                    foreach ($wards as $ward) :
-                        $district_id = $ward['district_id'];
-                        $districts = $db->query("SELECT * FROM `districts` WHERE district_id = $district_id")->fetchAll(PDO::FETCH_ASSOC);
-
-                        foreach ($districts as $district) : ?>
-                            <li>
-                                <div class="card mx-3 mt-3" style="width: 21rem;">
-                                    <div>
-                                        <img src="<?= $image['image_url'] ?>" class="card-img-top" alt="image_house">
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= strlen($property['title']) > 80 ? substr_replace($property['title'], ' ...', 80) : $property['title'] ?></h5>
-                                        <p>
-                                            <i class="fa-solid fa-bed"></i> <?= $property['num_bedrooms'] . " ngủ" ?>
-                                            <i class="fa-solid fa-bath" style="margin-left: 10px;"></i> <?= $property['num_bathrooms'] . " tắm" ?>
-                                            <i class="fa-solid fa-chart-line" style="margin-left: 10px;"></i> <?= $property['area'] . " m<sup>2</sup>" ?>
-                                        </p>
-                                        <p class="card-description"><i class="fa-solid fa-location-dot"></i> <?= $ward['ward_name'] . ", " . $district['district_name'] ?></p>
-                                        <a href="/Datn/views/detail.property.view.php?id=<?= $property['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </li>
-            <?php endforeach;
-                    endforeach;
-                endforeach;
-            endforeach ?>
+            <?php foreach ($posts as $post) : ?>
+                <li>
+                    <div class="card mx-3 mt-3 index-card">
+                        <div>
+                            <img src="<?= $post['image_url'] ?>" class="card-img-top" alt="image_house">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><?= strlen($post['title']) > 80 ? substr_replace($post['title'], ' ...', 80) : $post['title'] ?></h5>
+                            <p>
+                                <i class="fa-solid fa-bed"></i> <?= $post['num_bedrooms'] . " ngủ" ?>
+                                <i class="fa-solid fa-bath" style="margin-left: 10px;"></i> <?= $post['num_bathrooms'] . " tắm" ?>
+                                <i class="fa-solid fa-chart-line" style="margin-left: 10px;"></i> <?= $post['area'] . " m<sup>2</sup>" ?>
+                            </p>
+                            <p class="card-description"><i class="fa-solid fa-location-dot"></i> <?= 'P. '.$post['ward_name'] . ", Q. " . $post['district_name'] ?></p>
+                            <p><i class="fa-solid fa-user-tie"></i> <?= $post['name'] ?></p>
+                            <a href="/Datn/views/detail.property.view.php?id=<?= $post['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </div>
 </div>

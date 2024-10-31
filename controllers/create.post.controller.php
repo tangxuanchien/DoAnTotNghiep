@@ -5,7 +5,14 @@ require '../models/Database.php';
 require '../function.php';
 use Cloudinary\Cloudinary;
 
+$db = new Database();
+$post = $db->query("SELECT max(post_id) as last_post_id FROM `posts`")->fetch(PDO::FETCH_ASSOC);
+
 $property_id = $_GET['property_id'];
+$user_id = $_GET['user_id'];
+$post_id = $post['last_post_id'] + 1;
+$status = 'available';
+
 $title = $_POST['title'];
 $description = $_POST['description'];
 $price = $_POST['price'];
@@ -16,8 +23,8 @@ $num_bathrooms = $_POST['num_bathrooms'];
 $type_id = $_POST['type_id'];
 $ward_id = $_POST['ward_id'];
 $created_at = get_time();
+$updated_at = get_time();
 $price_per_m2 = get_price_per_m2($price, $area);
-$db = new Database();
 
 if (
     empty($title) or empty($description) or empty($price) or empty($area) or empty($description)
@@ -44,6 +51,18 @@ if (
             'num_bedrooms' => $num_bedrooms,
             'num_bathrooms' => $num_bathrooms,
             'contact_info' => $contact_info
+        ]
+    );
+    $post = $db->query(
+        "INSERT INTO `posts` (`post_id`, `property_id`, `user_id`, `status`, `created_at`, `updated_at`) 
+                               VALUES (:post_id, :property_id, :user_id, :status, :created_at, :updated_at)",
+        [
+            'post_id' => $post_id,
+            'property_id' => $property_id,
+            'user_id' => $user_id,
+            'status' => $status,
+            'created_at' => $created_at,
+            'updated_at' => $updated_at
         ]
     );
 

@@ -112,6 +112,15 @@ button:hover {
     font-size: large;
 }
 
+.index-card {
+    width: 350px;
+    height: 450px;
+}
+
+.card-title {
+    height: 48px;
+}
+
 /* PROPERTY-ALL */
 .property-lists {
     margin: 2px 0;

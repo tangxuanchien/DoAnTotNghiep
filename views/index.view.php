@@ -3,7 +3,7 @@ session_start();
 
 $title = "Trang chủ";
 if (isset($_SESSION['id'])) {
-    $banner = "Trang chủ";
+    $banner = "Tìm kiếm theo tiêu đề";
 } else $banner = "Vui lòng đăng nhập để xem việc làm";
 if (!isset($_SESSION['name'])) {
     $login = 'Đăng nhập';
