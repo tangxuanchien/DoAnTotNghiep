@@ -163,4 +163,3 @@ $formatted_create_at = date("d-m-Y", strtotime($created_at));
                 </div>
         </div>
 </div>
-</div>

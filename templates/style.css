@@ -78,7 +78,6 @@ button:hover {
 /* INDEX */
 .container-body {
     padding: 90px 70px 0;
-    overflow-y: auto;
 }
 
 #div-lists li {

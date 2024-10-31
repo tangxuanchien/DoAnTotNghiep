@@ -40,3 +40,11 @@ function get_price_per_m2($a, $b)
     } else
         return $a / $b;
 }
+
+function checkpagenumber($condition_a, $condition_b, $result_a, $result_b)
+{
+    if ($condition_a == $condition_b) {
+        return $result_a;
+    } else
+        return $result_b;
+}

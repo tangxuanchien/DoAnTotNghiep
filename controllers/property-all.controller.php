@@ -8,20 +8,13 @@ if ($page_number == 1) {
 } else
     $offset = $limit * ($page_number - 1);
 
-function checkpagenumber($condition_a, $condition_b, $result_a, $result_b)
-{
-    if ($condition_a == $condition_b) {
-        return $result_a;
-    } else
-        return $result_b;
-}
-
 $db = new Database();
 $properties = $db->query("SELECT * FROM `properties` LIMIT $limit OFFSET $offset")->fetchAll(PDO::FETCH_ASSOC);
 $total_properties = $db->query("SELECT Count(property_id) FROM `properties`")->fetch(PDO::FETCH_ASSOC);
 $residual_page_number = ((int)$total_properties["Count(property_id)"] % $limit);
 $last_page_numbers = ($residual_page_number === 0) ? ((int)$total_properties["Count(property_id)"] / $limit) : (((int)$total_properties["Count(property_id)"] - $residual_page_number) / $limit) + 1;
 $total_pages = range(1, $last_page_numbers);
+
 foreach ($properties as $property):
     $property_id = $property['property_id'];
     $date = date_parse($property['created_at']);
