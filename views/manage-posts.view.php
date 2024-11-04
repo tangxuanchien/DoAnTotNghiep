@@ -45,7 +45,9 @@ if (!empty($_SESSION['id'])) :
                             <div class="mt-2 post-edit">
                                 <ul>
                                     <li>
-                                        <button class="btn btn-outline-secondary"><i class="fa-solid fa-pen"></i> Sửa tin</button>
+                                        <form action="/Datn/views/edit-post.view.php?property_id=<?= $my_post['property_id'] ?>" method="post">
+                                            <button class="btn btn-outline-secondary"><i class="fa-solid fa-pen"></i> Sửa tin</button>
+                                        </form>
                                     </li>
                                     <li>
                                         <form action="/Datn/controllers/hide-post.php?property_id=<?= $my_post['property_id'] ?>" method="post">
