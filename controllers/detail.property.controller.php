@@ -51,18 +51,19 @@ $posts_related = $db->query("
 
 $user_id = $post['user_id'];
 $posts_other = $db->query("
-        SELECT * FROM `posts` p
-        inner join properties pr on pr.property_id = p.property_id
-        inner join users u on u.user_id = p.user_id
-        inner join wards w on w.ward_id = pr.ward_id
-        inner join districts d on d.district_id = w.district_id 
-        inner join property_images i on i.property_id = pr.property_id
-        where u.user_id = :user_id
-        and i.image_id = (
-        SELECT MIN(image_id)
-        FROM property_images
-        WHERE property_id = pr.property_id)", [
-        'user_id' => $user_id
+SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images
+FROM `posts` p
+INNER JOIN properties pr on pr.property_id = p.property_id
+INNER JOIN users u on u.user_id = p.user_id
+INNER JOIN wards w on w.ward_id = pr.ward_id
+INNER JOIN districts d on d.district_id = w.district_id 
+INNER JOIN property_images i on i.property_id = pr.property_id
+WHERE u.user_id = :user_id
+AND i.image_id = (
+SELECT MIN(image_id)
+FROM property_images
+WHERE property_id = pr.property_id)", [
+    'user_id' => $user_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
 $created_at = $post['created_at'];

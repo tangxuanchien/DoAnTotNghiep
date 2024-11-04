@@ -22,7 +22,7 @@ foreach ($properties as $property):
 
     foreach ($images as $image):
 ?>
-        <div class="property-lists">
+        <div class="post-lists">
             <ul>
                 <li>
                     <img src="<?= $image['image_url'] ?>" alt="image_property" width="150px">

@@ -121,15 +121,19 @@ button:hover {
 }
 
 /* PROPERTY-ALL */
-.property-lists {
-    margin: 2px 0;
+.container-post{
+    transform: translateX(10%);
+}
+
+.post-lists {
+    margin: 3px 0;
     border: 1px solid #e0e0e0;
     padding: 4px 5px;
 }
 
-.property-lists li {
+.post-lists li {
     display: inline-block;
-    margin: 0 20px 0 0;
+    margin: 0 30px 0 10px;
 }
 
 .page-numbers {
@@ -247,6 +251,61 @@ button:hover {
 .detail-left i{
     padding: 0 5px;
     color: #808080;
+}
+
+/* MANAGE POSTS */
+.navigation-post{
+    margin: 0 0 10px 0;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+}
+
+.navigation-post li{
+    display: inline-block;
+    margin: 3px 10px 7px 0;
+    padding: 6px 15px;
+}
+
+.navigation-post li:hover{
+    background-color: black;
+    border-radius: 25px;
+    color: white;
+}
+
+.image-container {
+    position: relative;
+}
+.image-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.image-overlay i {
+    color: white;
+}
+
+.image-overlay i {
+    color: white;
+}
+
+.post-edit{
+    transform: translatex(500px);
+}
+
+.post-edit i {
+    color: grey;
+}
+
+.post-edit button:hover i{
+    color: white;
 }
 
 /* LOGIN */
