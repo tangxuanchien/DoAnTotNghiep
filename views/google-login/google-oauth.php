@@ -67,7 +67,7 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
             session_regenerate_id();
             $_SESSION['id'] = $user_id;
             $_SESSION['method'] = 'google';
-            $_SESSION['name'] = implode(' ', $google_name_parts);
+            $_SESSION['name'] = $user['name'];
 
             header('Location: /Datn');
             exit;

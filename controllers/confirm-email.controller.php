@@ -39,8 +39,6 @@ if (empty($user['email'])) {
     $mail->setFrom('tmtmganga@gmail.com', 'HANOIHOME');
     $mail->addAddress($user['email'], $user['name']);
 
-
-
     // Nội dung email
     $mail->isHTML(true);
     $mail->CharSet = 'UTF-8';

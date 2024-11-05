@@ -6,7 +6,7 @@ $title = "Thông tin cá nhân";
 $login = check_login($_SESSION['name']);
 
 if (isset($_SESSION['id'])) {
-    $banner = "Thông tin cá nhân";
+    $banner = "";
 } else $banner = "Vui lòng đăng nhập để xem việc làm";
 
 require 'partials/header.php';

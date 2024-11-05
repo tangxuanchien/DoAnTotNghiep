@@ -16,14 +16,18 @@ INNER JOIN districts d on d.district_id = w.district_id
 WHERE property_id = :property_id", [
     'property_id' => $property_id
 ])->fetch(PDO::FETCH_ASSOC);
+$images = $db->query("SELECT * FROM `property_images` WHERE property_id = :property_id", [
+    'property_id' => $property_id
+])->fetchAll(PDO::FETCH_ASSOC);
+
 $types = $db->query("SELECT * FROM `property_types`")->fetchAll(PDO::FETCH_ASSOC);
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
 
 $_SESSION['ward_id_selected'] = $edit_post['ward_id'];
 $_SESSION['district_id_selected'] = $edit_post['district_id'];
 $login = check_login($_SESSION['name']);
-if (!isset($_SESSION['error_post'])) {
-    $_SESSION['error_post'] = '';
+if (!isset($_SESSION['error_edit_post'])) {
+    $_SESSION['error_edit_post'] = '';
 }
 
 require 'partials/header.php';
@@ -76,10 +80,9 @@ require 'partials/banner.php';
         }
     }
 </script>
-
 <div class="container-create-post">
-    <form action="/Datn/controllers/create.post.controller.php?user_id=<?= $user_id ?> &property_id=<?= $property_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
-        <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_post'] ?></div>
+    <form action="/Datn/controllers/edit-post.controller.php?property_id=<?= $property_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
+        <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_edit_post'] ?></div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>
             <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title' value="<?= $edit_post['title'] ?>">
@@ -148,14 +151,26 @@ require 'partials/banner.php';
             </ul>
         </div>
         <div class="mb-3">
-            <label class="form-label">Chọn ảnh để tải lên:</label>
+            <label class="form-label">Chọn ảnh để tải lên: (Lưu ý chọn ảnh mới và nó sẽ thay thế các ảnh cũ bạn đã chọn)</label>
             <input class="form-control mb-3" type="file" name="image[]" id="image" multiple onchange="previewImage()">
-            <div id="preview"></div>
+
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="keep_images" value="yes" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Giữ lại ảnh cũ
+                </label>
+            </div>
+            <div id="preview">
+                <?php foreach ($images as $image): ?>
+                    <img src="<?= $image['image_url'] ?>" alt="preview" width="200px">
+                <?php endforeach; ?>
+            </div>
+
         </div>
         <div class="mt-3 mb-5">
             <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn chắc chắn chỉnh sửa bài đăng không ?')">Chỉnh sửa</button>
             <div class="mt-3 ml-3">
-                <a href="/Datn/views/login.view.php" class="link-dark">Quay lại</a>
+                <a href="/Datn/views/manage-posts.view.php" class="link-dark">Quay lại</a>
             </div>
         </div>
     </form>
