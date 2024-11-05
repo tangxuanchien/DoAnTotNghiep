@@ -1,8 +1,36 @@
 <?php
-$id = $_SESSION['id'];
 require '../models/Database.php';
+
+$user_id = $_SESSION['id'];
 $db = new Database();
-$user = $db->query("SELECT * FROM `users` where user_id = $id")->fetch(PDO::FETCH_ASSOC);
+$user = $db->query("SELECT * FROM `users` where user_id = $user_id")->fetch(PDO::FETCH_ASSOC);
+
+$total_post = $db->query("
+SELECT count(*) as total_post FROM `posts` p
+INNER JOIN properties pr on pr.property_id = p.property_id
+INNER JOIN users u on u.user_id = p.user_id
+INNER JOIN wards w on w.ward_id = pr.ward_id
+INNER JOIN districts d on d.district_id = w.district_id
+INNER JOIN property_images i on i.property_id = pr.property_id
+WHERE u.user_id = :user_id LIMIT 3", [
+    'user_id' => $user_id
+])->fetch(PDO::FETCH_ASSOC);
+
+$posts = $db->query("
+SELECT * FROM `posts` p
+INNER JOIN properties pr on pr.property_id = p.property_id
+INNER JOIN users u on u.user_id = p.user_id
+INNER JOIN wards w on w.ward_id = pr.ward_id
+INNER JOIN districts d on d.district_id = w.district_id
+INNER JOIN property_images i on i.property_id = pr.property_id
+WHERE u.user_id = :user_id LIMIT 3", [
+    'user_id' => $user_id
+])->fetchAll(PDO::FETCH_ASSOC);
+
+if(empty($user['introduce'])){
+    $user['introduce'] = 'Chưa có giới thiệu';
+}
+
 $date = date_parse($user['created_at']);
 ?>
 <style>
@@ -92,9 +120,9 @@ $date = date_parse($user['created_at']);
                     <h2 class="mb-0"><?= $user['name'] ?></h2>
                     <p class="text-light mb-3">Tham gia ngày <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></p>
                     <div class="d-flex justify-content-center mb-3">
-                        <a href="#" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-facebook" style="color: white"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-tiktok" style="color: white"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-telegram" style="color: white"></i></a>
                     </div>
                 </div>
                 <div class="mb-4">
@@ -112,12 +140,17 @@ $date = date_parse($user['created_at']);
                         <span class="badge-real-estate">Nhà phố</span>
                     </div>
                 </div>
-                <button class="btn btn-light w-100 mb-3">
-                    <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa hồ sơ
-                </button>
-                <button class="btn btn-outline-light w-100">
-                    <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
-                </button>
+                <form action="/Datn/views/edit-information.view.php?user_id=<?= $user['user_id']?>" method="post">
+                    <button class="btn btn-light w-100 mb-3">
+                        <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa hồ sơ
+                    </button>
+                </form>
+                <form action="/Datn/controllers/logout.controller.php" method="post">
+                    <button class="btn btn-outline-light w-100" type="submit">
+                        <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
+                    </button>
+                </form>
+
             </div>
             <div class="col-lg-8 col-xl-9 profile-main">
                 <h1 class="mb-4">Thông tin cá nhân</h1>
@@ -126,8 +159,8 @@ $date = date_parse($user['created_at']);
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-person-vcard me-2"></i>Thông tin liên hệ</h5>
-                                <p><strong>Email:</strong> chien0181966@huce.edu.vn</p>
-                                <p><strong>Số điện thoại:</strong> 1</p>
+                                <p><strong>Email:</strong> <?= $user['email']?></p>
+                                <p><strong>Số điện thoại:</strong> <?= $user['phone']?></p>
                                 <p><strong>Địa chỉ:</strong> Hà Nội, Việt Nam</p>
                             </div>
                         </div>
@@ -135,10 +168,10 @@ $date = date_parse($user['created_at']);
                     <div class="col-md-6">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="bi bi-building me-2"></i>Thông tin đầu tư</h5>
-                                <p><strong>Số dự án đã tham gia:</strong> 7</p>
-                                <p><strong>Tổng giá trị đầu tư:</strong> 15 tỷ VNĐ</p>
-                                <p><strong>Loại hình ưa thích:</strong> Chung cư cao cấp</p>
+                                <h5 class="card-title"><i class="bi bi-building me-2"></i>Thông tin giao dịch</h5>
+                                <p><strong>Số bài đăng:</strong> <?= $total_post['total_post']?> </p>
+                                <p><strong>Khu vực chủ yếu:</strong> Hai Bà Trưng</p>
+                                <p><strong>Loại hình ưa thích:</strong> Chung cư</p>
                             </div>
                         </div>
                     </div>
@@ -146,7 +179,7 @@ $date = date_parse($user['created_at']);
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-file-text me-2"></i>Giới thiệu</h5>
-                                <p>Tôi là một nhà đầu tư bất động sản với hơn 5 năm kinh nghiệm trong lĩnh vực. Tôi chuyên về các dự án chung cư cao cấp và biệt thự nghỉ dưỡng. Mục tiêu của tôi là tạo ra giá trị bền vững cho cộng đồng thông qua các dự án bất động sản chất lượng.</p>
+                                <p><?= $user['introduce']?></p>
                             </div>
                         </div>
                     </div>
@@ -154,27 +187,15 @@ $date = date_parse($user['created_at']);
                 <div class="mt-4">
                     <h5>Dự án gần đây</h5>
                     <div class="list-group">
+                        <?php foreach($posts as $post): ?>
                         <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             <div>
-                                <h6 class="mb-1">Chung cư Green Park</h6>
-                                <p class="mb-1 text-muted">Hà Nội</p>
+                                <h6 class="mb-1"><?= $post['title'] ?></h6>
+                                <p class="mb-1 text-muted"><?= 'Phường '.$post['ward_name'].', Quận '.$post['district_name'] ?>, Hà Nội</p>
                             </div>
-                            <span class="badge bg-primary rounded-pill">Đang đầu tư</span>
+                            <span class="badge bg-primary rounded-pill">Đang bán</span>
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-1">Biệt thự Vinhomes Ocean Park</h6>
-                                <p class="mb-1 text-muted">Hưng Yên</p>
-                            </div>
-                            <span class="badge bg-success rounded-pill">Hoàn thành</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-1">Đất nền KĐT Thanh Hà</h6>
-                                <p class="mb-1 text-muted">Hà Nội</p>
-                            </div>
-                            <span class="badge bg-warning rounded-pill">Đang xem xét</span>
-                        </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

@@ -5,10 +5,10 @@ $title = "Việc cần làm";
 $banner = "Thay đổi thông tin";
 $login = 'Chào, ' . $_SESSION['name'];
 
-$id = $_GET['id'];
+$user_id = $_GET['user_id'];
 require '../models/Database.php';
 $db = new Database();
-$user = $db->query("SELECT * FROM `users` WHERE user_id = $id")->fetch(PDO::FETCH_ASSOC);
+$user = $db->query("SELECT * FROM `users` WHERE user_id = $user_id")->fetch(PDO::FETCH_ASSOC);
 
 require 'partials/header.php';
 
@@ -20,7 +20,7 @@ $password = $user['password'];
 $confirmpassword = '';
 ?>
     <div style="width: 20%;">
-        <form action="/Datn/controllers/information.update.controller.php?id=<?= $id ?>" method="POST">
+        <form action="/Datn/controllers/edit-information.controller.php?id=<?= $id ?>" method="POST">
             <div class="mb-3">
                 <label class="form-label">Họ và tên</label>
                 <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>">
