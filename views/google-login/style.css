@@ -73,13 +73,13 @@
   .content .google-login-btn:hover .icon {
     background-color: #c63f2a;
   }
-  .content .profile-picture {
+  .content .profile-avatar {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 15px 0 25px 0;
   }
-  .content .profile-picture img {
+  .content .profile-avatar img {
     width: 100%;
     max-width: 100px;
     border-radius: 50%;

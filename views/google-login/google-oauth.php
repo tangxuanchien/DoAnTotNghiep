@@ -49,11 +49,11 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
             ])->fetch(PDO::FETCH_ASSOC);
 
             if (!$user) {
-                $db->query('INSERT INTO users (user_id, email, name, picture, password, citizen_id, phone, method, created_at) VALUES (:user_id, :email, :name, :picture, :password, :citizen_id, :phone, :method, :created_at)', [
+                $db->query('INSERT INTO users (user_id, email, name, avatar, password, citizen_id, phone, method, created_at) VALUES (:user_id, :email, :name, :avatar, :password, :citizen_id, :phone, :method, :created_at)', [
                     'user_id' => $max_id['max(user_id)'] + 1,
                     'email' => $profile['email'],
                     'name' => implode(' ', $google_name_parts),
-                    'picture' => isset($profile['picture']) ? $profile['picture'] : '',
+                    'avatar' => isset($profile['picture']) ? $profile['picture'] : '',
                     'phone' => 1,
                     'password' => 1,
                     'citizen_id' => 1,
@@ -68,6 +68,7 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
             $_SESSION['id'] = $user_id;
             $_SESSION['method'] = 'google';
             $_SESSION['name'] = $user['name'];
+            $_SESSION['avatar'] = $user['avatar'];
 
             header('Location: /Datn');
             exit;

@@ -48,3 +48,22 @@ function checkpagenumber($condition_a, $condition_b, $result_a, $result_b)
     } else
         return $result_b;
 }
+
+function randomRGBAColors($count) {
+    $colors = [];
+    for ($i = 0; $i < $count; $i++) {
+        $red = rand(0, 255);
+        $green = rand(0, 255);
+        $blue = rand(0, 255);
+        $colors[] = "rgba($red, $green, $blue, 0.2)";
+    }
+    return $colors;
+}
+
+function borderColors($count){
+    $colors = [];
+    for ($i = 0; $i < $count; $i++) {
+        $colors[] = "rgba(0, 0, 0, 0.3)";
+    }
+    return $colors;
+}

@@ -13,7 +13,7 @@ if (!isset($_SESSION['google_loggedin'])) {
 $google_loggedin = $_SESSION['google_loggedin'];
 $google_email = $user['email'];
 $google_name = $user['name'];
-$google_picture = $user['picture'];
+$google_avatar = $user['avatar'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,8 +27,8 @@ $google_picture = $user['picture'];
 
 		<div class="content home">
 
-			<div class="profile-picture">
-                <img src="<?=$google_picture?>" alt="<?=$google_name?>" width="100" height="100">
+			<div class="profile-avatar">
+                <img src="<?=$google_avatar?>" alt="<?=$google_name?>" width="100" height="100">
             </div>
 
             <div class="profile-details">

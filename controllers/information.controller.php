@@ -27,7 +27,7 @@ WHERE u.user_id = :user_id LIMIT 3", [
     'user_id' => $user_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
-if(empty($user['introduce'])){
+if (empty($user['introduce'])) {
     $user['introduce'] = 'Chưa có giới thiệu';
 }
 
@@ -115,7 +115,7 @@ $date = date_parse($user['created_at']);
             <div class="col-lg-4 col-xl-3 profile-sidebar">
                 <div class="text-center mb-4">
                     <div class="profile-avatar mx-auto">
-                        <img src="<?= $user['picture'] ?>" alt="avatar" class="avatar">
+                        <img src="<?= $user['avatar'] ?>" alt="avatar" class="avatar">
                     </div>
                     <h2 class="mb-0"><?= $user['name'] ?></h2>
                     <p class="text-light mb-3">Tham gia ngày <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></p>
@@ -131,23 +131,14 @@ $date = date_parse($user['created_at']);
                         <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <h5>Lĩnh vực quan tâm</h5>
-                    <div>
-                        <span class="badge-real-estate">Chung cư</span>
-                        <span class="badge-real-estate">Biệt thự</span>
-                        <span class="badge-real-estate">Đất nền</span>
-                        <span class="badge-real-estate">Nhà phố</span>
-                    </div>
-                </div>
-                <form action="/Datn/views/edit-information.view.php?user_id=<?= $user['user_id']?>" method="post">
+                <form action="/Datn/views/edit-information.view.php?user_id=<?= $user['user_id'] ?>" method="post">
                     <button class="btn btn-light w-100 mb-3">
-                        <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa hồ sơ
+                        <i class="fa-solid fa-pen-to-square" style="color: var(--primary-color)"></i> Chỉnh sửa hồ sơ
                     </button>
                 </form>
                 <form action="/Datn/controllers/logout.controller.php" method="post">
                     <button class="btn btn-outline-light w-100" type="submit">
-                        <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
+                        <i class="fa-solid fa-arrow-right-from-bracket" style="color: white"></i> Đăng xuất
                     </button>
                 </form>
 
@@ -158,9 +149,9 @@ $date = date_parse($user['created_at']);
                     <div class="col-md-6">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="bi bi-person-vcard me-2"></i>Thông tin liên hệ</h5>
-                                <p><strong>Email:</strong> <?= $user['email']?></p>
-                                <p><strong>Số điện thoại:</strong> <?= $user['phone']?></p>
+                                <h5 class="card-title"><i class="fa-regular fa-address-card"></i> Thông tin liên hệ</h5>
+                                <p><strong>Email:</strong> <?= $user['email'] ?></p>
+                                <p><strong>Số điện thoại:</strong> <?= $user['phone'] ?></p>
                                 <p><strong>Địa chỉ:</strong> Hà Nội, Việt Nam</p>
                             </div>
                         </div>
@@ -168,8 +159,8 @@ $date = date_parse($user['created_at']);
                     <div class="col-md-6">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="bi bi-building me-2"></i>Thông tin giao dịch</h5>
-                                <p><strong>Số bài đăng:</strong> <?= $total_post['total_post']?> </p>
+                                <h5 class="card-title"><i class="fa-regular fa-building"></i> Thông tin giao dịch</h5>
+                                <p><strong>Số bài đăng:</strong> <?= $total_post['total_post'] ?> </p>
                                 <p><strong>Khu vực chủ yếu:</strong> Hai Bà Trưng</p>
                                 <p><strong>Loại hình ưa thích:</strong> Chung cư</p>
                             </div>
@@ -178,8 +169,8 @@ $date = date_parse($user['created_at']);
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="bi bi-file-text me-2"></i>Giới thiệu</h5>
-                                <p><?= $user['introduce']?></p>
+                                <h5 class="card-title"><i class="fa-regular fa-file-lines"></i> Giới thiệu</h5>
+                                <p><?= $user['introduce'] ?></p>
                             </div>
                         </div>
                     </div>
@@ -187,14 +178,14 @@ $date = date_parse($user['created_at']);
                 <div class="mt-4">
                     <h5>Dự án gần đây</h5>
                     <div class="list-group">
-                        <?php foreach($posts as $post): ?>
-                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-1"><?= $post['title'] ?></h6>
-                                <p class="mb-1 text-muted"><?= 'Phường '.$post['ward_name'].', Quận '.$post['district_name'] ?>, Hà Nội</p>
-                            </div>
-                            <span class="badge bg-primary rounded-pill">Đang bán</span>
-                        </a>
+                        <?php foreach ($posts as $post): ?>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1"><?= $post['title'] ?></h6>
+                                    <p class="mb-1 text-muted"><?= 'Phường ' . $post['ward_name'] . ', Quận ' . $post['district_name'] ?>, Hà Nội</p>
+                                </div>
+                                <span class="badge bg-primary rounded-pill">Đang bán</span>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 </div>

@@ -7,6 +7,9 @@ $ward_id = trim($_POST['ward_id']);
 
 $title = "Thống kê giá bán";
 $login = check_login($_SESSION['name']);
+if (isset($ward['ward_name'])) {
+	$banner = "Thống kê giá bán của phường " . $ward['ward_name'];
+} else $banner = '';
 
 $db = new Database();
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
@@ -15,7 +18,6 @@ $ward = $db->query("SELECT ward_name, district_id FROM `wards` where ward_id = :
 	'ward_id' => $ward_id
 ])->fetch(PDO::FETCH_ASSOC);
 
-$banner = "Thống kê giá bán của phường " . $ward['ward_name'];
 
 $types = $db->query("select * from `property_types`")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -41,6 +43,8 @@ $yValues_statistic = array_map(function ($row) {
 
 $ward_price = floatval(str_replace(',', '.', $statistic_of_ward['avg_ward']));
 $price_difference = $ward_price - $statistic_of_district['avg_district'];
+$backgroundColors = randomRGBAColors(count($districts));
+$borderColors = borderColors(count($districts));
 
 require 'partials/header.php';
 
@@ -104,52 +108,59 @@ require 'partials/banner.php';
 		</li>
 	</ul>
 </div>
-<div class="chart">
-	<canvas id="myChart"></canvas>
+<div class="mt-4">
+	<h2>Giá bán trung bình các quận thuộc thủ đô Hà Nội</h2>
 </div>
-<div>
-
+<div class="chart">
+	<canvas id="districtChart"></canvas>
+</div>
+<div class="chart">
+<canvas id="wardChart"></canvas>
 </div>
 
 <script>
-	var xValues = <?= json_encode(array_column($districts, 'district_name')); ?>;
-	var yValues = <?= json_encode($yValues_statistic) ?>;
-	var ctx = document.getElementById('myChart').getContext('2d');
-	var myChart = new Chart(ctx, {
+	var backgroundColors = <?= json_encode($backgroundColors); ?>;
+	var borderColors = <?= json_encode($borderColors); ?>;
+
+	var xDistricts = <?= json_encode(array_column($districts, 'district_name')); ?>;
+	var yDistricts = <?= json_encode($yValues_statistic) ?>;
+
+	var xWards = <?= json_encode(array_column($districts, 'district_name')); ?>;
+	var yWards = <?= json_encode($yValues_statistic) ?>;
+
+
+	var ctxDistricts = document.getElementById('districtChart').getContext('2d');
+	var myChart = new Chart(ctxDistricts, {
 		type: 'bar',
 		data: {
-			labels: xValues,
+			labels: xDistricts,
 			datasets: [{
-				label: 'Giá nhà đất (VNĐ/m2)',
-				data: yValues,
-				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)'
-				],
-				borderColor: [
-					'rgba(255, 99, 132, 1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)'
-				],
+				label: 'Giá nhà đất (triệu VNĐ/m2)',
+				data: yDistricts,
+				backgroundColor: backgroundColors,
+				borderColor: borderColors,
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true
+				}
+			}
+		}
+	});
+
+	var ctxWards = document.getElementById('wardChart').getContext('2d');
+	var myChart = new Chart(ctxWards, {
+		type: 'bar',
+		data: {
+			labels: xWards,
+			datasets: [{
+				label: 'Giá nhà đất (triệu VNĐ/m2)',
+				data: yWards,
+				backgroundColor: backgroundColors,
+				borderColor: borderColors,
 				borderWidth: 1
 			}]
 		},

@@ -19,11 +19,15 @@ require 'partials/banner.php';
 $password = $user['password'];
 $confirmpassword = '';
 ?>
-    <div style="width: 20%;">
-        <form action="/Datn/controllers/edit-information.controller.php?id=<?= $id ?>" method="POST">
+    <div style="width: 40%;">
+        <form action="/Datn/controllers/edit-information.controller.php?user_id=<?= $user_id ?>" method="POST">
             <div class="mb-3">
                 <label class="form-label">Họ và tên</label>
                 <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Giới thiệu (dưới 200 kí tự)</label>
+                <textarea type="number" class="form-control" placeholder="Giới thiệu bản thân" name='introduce'><?= $user['introduce'] ?></textarea>
             </div>
             <?php if ($_SESSION['method'] == 'local'): ?>
                 <div class="mb-3">

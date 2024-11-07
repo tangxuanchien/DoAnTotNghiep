@@ -15,6 +15,7 @@ if ($user) {
         $_SESSION['id'] = $user['user_id'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['method'] = 'local';
+        $_SESSION['avatar'] = $user['avatar'];
         $_SESSION['error-login'] = '';
         header('Location: /Datn');
         exit();

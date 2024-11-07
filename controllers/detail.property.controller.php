@@ -150,7 +150,7 @@ $formatted_create_at = date("d-m-Y", strtotime($created_at));
 <div class="detail-fixed">
         <div class="detail-left">
                 <div class="detail-info-seller">
-                        <img src="<?= $post['picture'] ?>" alt="avatar" style="border-radius: 50px; width: 80px; margin: 0 20px 10px 0; border: 2px solid black">
+                        <img src="<?= $post['avatar'] ?>" alt="avatar" style="border-radius: 50px; width: 80px; margin: 0 20px 10px 0; border: 2px solid black">
                         <b><?= $post['name'] ?></b> <i class="fa-solid fa-briefcase"></i></br>
                         Tham gia từ: <?= $formatted_create_at ?></br>
                         Đánh giá: <b>5.0 - <?= $post['total'] ?> tin đăng </b></br>

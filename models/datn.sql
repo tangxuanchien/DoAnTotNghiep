@@ -308,14 +308,14 @@ CREATE TABLE `users` (
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
   `citizen_id` varchar(12) NOT NULL,
   `method` enum('google','local','','') NOT NULL,
-  `picture` varchar(100) NOT NULL
+  `avatar` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `password`, `created_at`, `citizen_id`, `method`, `picture`) VALUES
+INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `password`, `created_at`, `citizen_id`, `method`, `avatar`) VALUES
 (1, 'Tăng Xuân Chiến', 'tangxuanchien511@gmail.com', '0911275613', '$2y$10$fCRvQ6P0NNTdwOX21jsnZuXK7/JJiLD1l//jzXqS533kb/CbQfyvK', '2024-09-08 16:07:37.000000', '015320404567', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1726152431/samples/man-portrait.jpg'),
 (2, 'Trần Mạnh Tuấn', 'tuantran@gmail.com', '0973202361', '1', '2024-09-08 16:08:56.000000', '015320404563', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1726152431/samples/man-portrait.jpg'),
 (3, 'Chiến Tăng', 'tangxuanchien511@gmail.com', '1', '1', '2024-10-01 09:32:16.000000', '1', 'google', 'https://lh3.googleusercontent.com/a/ACg8ocJ1INLbK2xSmYoDZZoHfJFgE3XxL2D5UbFDaF3c_aLXoy4vOw=s96-c'),
