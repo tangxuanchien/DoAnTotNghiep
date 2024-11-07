@@ -2,7 +2,7 @@
 require 'models/Database.php';
 require 'function.php';
 $method = $_SESSION['method'];
-$id = $_SESSION['id'];
+// $id = $_SESSION['id'];
 $db = new Database();
 $posts = $db->query("
 SELECT * FROM `posts` p
@@ -17,10 +17,6 @@ LIMIT 6")->fetchAll(PDO::FETCH_ASSOC);
 <form class="d-flex my-3" role="search">
     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Tìm kiếm" id="search">
     <button class="btn btn-outline-dark" id="search-btn" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-</form>
-
-<form action="/Datn/views/create.post.view.php?user_id=<?= $id ?>" method="post">
-    <button class="btn btn-outline-dark" type="submit">Tạo bài đăng mới</button>
 </form>
 
 <div id="result">
