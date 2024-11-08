@@ -2,7 +2,7 @@
 require '../models/Database.php';
 
 
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 $db = new Database();
 $my_posts = $db->query("
 SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images

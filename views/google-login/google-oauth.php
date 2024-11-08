@@ -65,7 +65,7 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
                 $user_id = $user['user_id'];
             }
             session_regenerate_id();
-            $_SESSION['id'] = $user_id;
+            $_SESSION['user_id'] = $user_id;
             $_SESSION['method'] = 'google';
             $_SESSION['name'] = $user['name'];
             $_SESSION['avatar'] = $user['avatar'];

@@ -5,7 +5,7 @@ require '../function.php';
 $title = "Thông tin cá nhân";
 $login = check_login($_SESSION['name']);
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['user_id'])) {
     $banner = "";
 } else $banner = "Vui lòng đăng nhập để xem việc làm";
 
@@ -15,7 +15,7 @@ require 'partials/navigation.php';
 
 require 'partials/banner.php';
 
-if (!empty($_SESSION['id'])) {
+if (!empty($_SESSION['user_id'])) {
 require '../controllers/information.controller.php';
 }
 

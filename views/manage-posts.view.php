@@ -12,7 +12,7 @@ require 'partials/navigation.php';
 
 require 'partials/banner.php';
 
-if (!empty($_SESSION['id'])) :
+if (!empty($_SESSION['user_id'])) :
     require '../controllers/manage-posts.controller.php';
     $my_posts = $_SESSION['my_posts'];
 ?>

@@ -12,7 +12,7 @@ $user = $db->query("SELECT * FROM `users` where phone = :phone", [
 
 if ($user) {
     if (password_verify($password, $user['password'])) {
-        $_SESSION['id'] = $user['user_id'];
+        $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['method'] = 'local';
         $_SESSION['avatar'] = $user['avatar'];

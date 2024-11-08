@@ -21,8 +21,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['id'])): ?>
-                                <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/create.post.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/create.post.view.php?user_id=<?= $_SESSION['id'] ?>">
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/create.post.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/create.post.view.php?user_id=<?= $_SESSION['user_id'] ?>">
                                     <i class="fa-solid fa-pen-to-square"></i> Đăng tin mới
                                 </a>
                             <?php endif ?>

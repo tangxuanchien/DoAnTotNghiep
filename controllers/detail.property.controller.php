@@ -1,9 +1,9 @@
 <?php
-$id = $_GET['id'];
+$id = $_GET['user_id'];
 require '../models/Database.php';
 $db = new Database();
 $property = $db->query("SELECT * FROM `properties` where property_id = :property_id", [
-        'property_id' => $id
+        'property_id' => $user_id
 ])->fetch(PDO::FETCH_ASSOC);
 $post = $db->query("
         SELECT *, count(p.property_id) as total FROM `posts` p 

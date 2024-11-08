@@ -8,7 +8,7 @@ $types = $db->query("SELECT * FROM `property_types`")->fetchAll(PDO::FETCH_ASSOC
 $property = $db->query("SELECT max(property_id) as last_id FROM `properties`")->fetch(PDO::FETCH_ASSOC);
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
 
-$user_id = $_GET['user_id'];
+$user_id = $_SESSION['user_id'];
 $property_id = $property['last_id'] + 1;
 $title = "Tạo bài đăng";
 $banner = "Bài đăng mới";
@@ -62,7 +62,6 @@ require 'partials/banner.php';
         }
     }
 </script>
-
 <div class="container-create-post">
     <form action="/Datn/controllers/create.post.controller.php?user_id=<?= $user_id ?> &property_id=<?= $property_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_post'] ?></div>

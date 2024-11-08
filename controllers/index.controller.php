@@ -2,7 +2,7 @@
 require 'models/Database.php';
 require 'function.php';
 $method = $_SESSION['method'];
-// $id = $_SESSION['id'];
+// $id = $_SESSION['user_id'];
 $db = new Database();
 $posts = $db->query("
 SELECT * FROM `posts` p

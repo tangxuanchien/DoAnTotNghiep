@@ -3,7 +3,7 @@ require 'routes.php';
 session_start();
 
 $title = "Trang chủ";
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['user_id'])) {
     $banner = "Tìm kiếm theo tiêu đề";
 } else $banner = "Vui lòng đăng nhập để xem việc làm";
 if (!isset($_SESSION['name'])) {
@@ -20,7 +20,7 @@ require 'partials/banner.php';
 
 ?>
 <?php
-if (isset($_SESSION['id'])) :
+if (isset($_SESSION['user_id'])) :
     require 'controllers/index.controller.php';
 
 ?>
