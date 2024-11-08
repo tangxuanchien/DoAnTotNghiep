@@ -1,4 +1,5 @@
 <?php
+require 'routes.php';
 session_start();
 
 $title = "Trang chủ";

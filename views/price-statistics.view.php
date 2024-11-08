@@ -2,30 +2,36 @@
 session_start();
 require '../function.php';
 require '../models/Database.php';
+require '../controllers/price-statistics.controller.php';
+
 
 $db = new Database();
-$ward_id = trim($_POST['ward_id']);
+if (!isset($_POST['ward_id'])) {
+	$ward_id = '';
+} else {
+	$ward_id = trim($_POST['ward_id']);
+}
 $title = "Thống kê giá bán";
 $login = check_login($_SESSION['name']);
 
-$districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
+$ward = $_SESSION['ward'];
 
-$ward = $db->query("
-SELECT * FROM `wards` w 
-INNER JOIN districts d ON d.district_id = w.district_id 
-WHERE ward_id = :ward_id", [
-	'ward_id' => $ward_id
-])->fetch(PDO::FETCH_ASSOC);
-
-$wards = $db->query("SELECT * FROM `wards` WHERE district_id = :district_id", [
-	'district_id' => $ward['district_id']
-])->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($ward['ward_name'])) {
 	$banner = "Thống kê giá bán của phường " . $ward['ward_name'];
 } else $banner = '';
 
-$types = $db->query("select * from `property_types`")->fetchAll(PDO::FETCH_ASSOC);
+if (!isset($ward['district_id'])) {
+	$ward['district_id'] = 0;
+}
+
+$wards = $db->query("
+SELECT * FROM `wards` 
+WHERE district_id = :district_id 
+ORDER BY ward_id", [
+	'district_id' => $ward['district_id']
+])->fetchAll(PDO::FETCH_ASSOC);
+
 
 $statistic_of_ward = $db->query("Select count(*) AS total, REPLACE(CAST(avg(price_per_m2) AS DECIMAL(5, 1)), '.', ',') AS avg_ward from `properties` where ward_id = :ward_id", [
 	'ward_id' => $ward_id
@@ -36,31 +42,6 @@ $statistic_of_district = $db->query("SELECT CAST(avg(price_per_m2) AS DECIMAL(5,
 	'district_id' => $ward['district_id']
 ])->fetch(PDO::FETCH_ASSOC);
 
-$avg_wards = $db->query("
-	SELECT 
-	d.district_name, w.ward_id, w.ward_name, CAST(AVG(p.price_per_m2) AS DECIMAL(5,1)) AS avg_ward
-	FROM 
-	properties p
-	INNER JOIN wards w ON p.ward_id = w.ward_id
-	INNER JOIN districts d ON w.district_id = d.district_id
-	WHERE d.district_id = :district_id
-	GROUP BY w.ward_id", [
-	'district_id' => $ward['district_id']
-])->fetchAll(PDO::FETCH_ASSOC);
-
-
-$avg_districts = $db->query("
-	SELECT 
-		CAST(AVG(properties.price_per_m2) AS DECIMAL(5,1)) AS avg_district
-	FROM 
-		properties
-	INNER JOIN wards ON properties.ward_id = wards.ward_id
-	INNER JOIN districts ON wards.district_id = districts.district_id
-	GROUP BY districts.district_id")->fetchAll(PDO::FETCH_ASSOC);
-
-$backgroundColors = randomRGBAColors(count($districts));
-$borderColors = borderColors(count($districts));
-
 require 'partials/header.php';
 
 require 'partials/navigation.php';
@@ -68,7 +49,7 @@ require 'partials/navigation.php';
 require 'partials/banner.php';
 
 ?>
-<form action="/Datn/views/price-statistics.view.php?ward_id=<?= $ward_id ?>" method="post">
+<form action="/Datn/views/price-statistics.view.php" method="post">
 	<div class="select-ward">
 		<select class="type_id form-select w-auto" name="type_id">
 			<option value="">--Chọn loại hình--</option>
@@ -118,7 +99,7 @@ require 'partials/banner.php';
 				</div>
 			</li>
 		</ul>
-	<?php elseif ($_SERVER['QUERY_STRING'] != ""): ?>
+	<?php else: ?>
 		<h2 class="text-danger"><i class="fa-solid fa-xmark text-danger"></i> Chưa có bất động sản nào được rao bán ở đây</h2>
 	<?php endif ?>
 </div>
@@ -127,7 +108,7 @@ require 'partials/banner.php';
 	<canvas id="districtChart"></canvas>
 </div>
 <div class="chart">
-	<h2>Biểu đồ giá <?= $_SERVER['QUERY_STRING'] == "" ? '' : 'các phường thuộc quận ' . $ward['district_name'] ?></h2>
+	<h2>Biểu đồ giá <?= !isset($ward['district_name']) ? '' : 'các phường thuộc quận ' . $ward['district_name'] ?></h2>
 	<canvas id="wardChart"></canvas>
 </div>
 
