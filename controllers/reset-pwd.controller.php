@@ -27,7 +27,7 @@ if ($confirm_password !== $password) {
     } else {
         $_SESSION['error-reset'] = '';
         $_SESSION['error-login'] = 'Thay đổi mật khẩu thành công';
-        $update_verify = $db->query("UPDATE `users` SET password='$hashed_password' WHERE user_id = $user_id")->fetch(PDO::FETCH_ASSOC);    
+        $update_verify = $db->query("UPDATE `users` SET password='$hashed_password' WHERE user_id = $user_id");    
         header('Location: /Datn/views/login.view.php');
     }
 }

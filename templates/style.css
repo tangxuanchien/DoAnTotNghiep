@@ -407,12 +407,12 @@ body {
     padding: 6px 15px;
 }
 
-.navigation-post li:hover{
+.navigation-post li:hover {
     background-color: black;
     border-radius: 25px;
 }
 
-.navigation-post a{
+.navigation-post a {
     color: black;
 }
 
@@ -526,6 +526,44 @@ body {
 .btn-confirm:hover {
     background-color: #404040;
     color: white;
+}
+
+/* Change password */
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-control:required:invalid {
+    border-color: #dc3545;
+}
+
+.form-control:required:valid {
+    border-color: #198754;
+}
+
+.form-control:required:invalid {
+    display: block;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-control:required:invalid:focus {
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.form-control:required:valid:focus {
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
 }
 
 /* CHART JS */

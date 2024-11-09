@@ -44,63 +44,27 @@ require 'partials/navigation.php';
 
 </style>
 <script>
-    function errorMessage() {
-        let message = document.getElementById('error');
-        if (phoneInput.value === 1) {
-            return "Sai tài khoản hoặc mật khẩu";
-        } else {
-            return "Bạn đang để trống tài khoản hoặc mật khẩu";
+    function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
         }
-    }
-
-    function handleSubmit() {
-        let phoneInput = document.getElementById('phone');
-        let error = "document.getElementById('phone')";
-        let passwordInput = document.getElementById('password');
-        if (phoneInput.value && passwordInput.value) {
-            Swal.fire({
-                title: "Đăng nhập thành công",
-                text: "Nhấn OK để vào trang chủ",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                customClass: {
-                    timerProgressBar: '#progress-bar'
-                }
-            }).then(() => {
-                // if (result.isConfirmed) {
-                document.getElementById('loginForm').submit();
-                // }
-            });
-        } else {
-            Swal.fire({
-                title: console.log(errorMessage()),
-                text: "Bạn đang để trống tài khoản hoặc mật khẩu",
-                icon: "error",
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-            });
-        }
-    }
 </script>
-
 <body>
     <main class="form-signin w-100 m-auto mt-5">
         <form action="/Datn/controllers/login.controller.php" method="POST" id="loginForm">
             <h1 class="h3 mb-3 fw-normal mt-5">Đăng nhập</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" name="phone" placeholder="" id="phone">
+                <input type="text" class="form-control" name="phone" placeholder="" id="phone" required>
                 <label for="floatingInput">Số điện thoại</label>
             </div>
             <div class="form-floating mt-2">
-                <input type="password" class="form-control" name="password" placeholder="" id="password">
+                <input type="password" class="form-control" name="password" placeholder="" id="password" required>
                 <label for="floatingPassword">Mật khẩu</label>
+                <span class="toggle-password" onclick="togglePassword('password')"><i class="fa-solid fa-eye"></i></span>
             </div>
             <a href="/Datn/views/confirm-email.view.php" class="text-dark fw-bold">Quên mật khẩu</a>
-            <button class="btn-login w-100 py-2" type="button" onclick="handleSubmit()">Đăng nhập</button>
+            <button class="btn-login w-100 py-2" type="submit">Đăng nhập</button>
         </form>
         <form action="/Datn/views/google-login/google-oauth.php" method="POST">
             <div>
@@ -114,5 +78,5 @@ require 'partials/navigation.php';
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3" id="error"><?= $_SESSION['error-login'] ?></div>
     </main>
 </body>
-
+<?php $_SESSION['error-login'] = "" ?>
 </html>
