@@ -16,7 +16,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="<?= $_SERVER['REQUEST_URI'] == '/Datn/views/manage-posts.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/manage-posts.view.php">
+                            <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/manage-posts.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/manage-posts.view.php/available">
                                 <i class="fa-solid fa-id-badge"></i> Quản lí bài đăng
                             </a>
                         </li>
@@ -34,9 +34,9 @@
                             <?php if ($login == 'Đăng nhập') : ?>
                                 <div class="user-profile">
                                     <div class="user-avatar">
-                                        <i class="fa-solid fa-user"></i>
+                                        <i class="fa-solid fa-user text-light"></i>
                                     </div>
-                                    <a href="/Datn/views/login.view.php" style="color: #2c3e50"><?= $login ?></a>
+                                    <a href="/Datn/views/login.view.php" style="color: #2c3e50 !important; font-weight: 500;"><?= $login ?></a>
                                 <?php else: ?>
                                     <div class="user-profile" data-bs-toggle="dropdown">
                                         <div>
@@ -48,8 +48,8 @@
                                     </div>
                                     <?php if ($login != 'Đăng nhập') : ?>
                                         <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="/Datn/views/information.view.php"><i class="fas fa-user"></i> Hồ sơ</a></li>
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Cài đặt</a></li>
+                                            <li><a class="dropdown-item" href="/Datn/views/information.view.php"><i class="fa-solid fa-user"></i> Hồ sơ</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a></li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>

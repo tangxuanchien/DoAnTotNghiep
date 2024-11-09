@@ -403,9 +403,25 @@ button:hover {
     padding: 6px 15px;
 }
 
-.navigation-post li:hover {
+.navigation-post li:hover{
     background-color: black;
     border-radius: 25px;
+}
+
+.navigation-post a{
+    color: black;
+}
+
+.navigation-post li:hover a {
+    color: white;
+}
+
+.active-manage {
+    background-color: black;
+    border-radius: 25px;
+}
+
+.active-manage a {
     color: white;
 }
 

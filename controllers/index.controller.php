@@ -67,7 +67,7 @@ LIMIT 6")->fetchAll(PDO::FETCH_ASSOC);
                             </p>
                             <p class="card-description"><i class="fa-solid fa-location-dot"></i> <?= 'P. '.$post['ward_name'] . ", Q. " . $post['district_name'] ?></p>
                             <p><i class="fa-solid fa-user-tie"></i> <?= $post['name'] ?></p>
-                            <a href="/Datn/views/detail.property.view.php?id=<?= $post['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
+                            <a href="/Datn/views/detail.property.view.php?property_id=<?= $post['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
                         </div>
                     </div>
                 </li>

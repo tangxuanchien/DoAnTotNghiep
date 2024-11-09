@@ -14,14 +14,26 @@ require 'partials/banner.php';
 
 if (!empty($_SESSION['user_id'])) :
     require '../controllers/manage-posts.controller.php';
-    $my_posts = $_SESSION['my_posts'];
 ?>
     <div class="container-post" style="width: 80%;">
         <div class="navigation-post">
             <ul>
-                <li>Tin đang bán</li>
-                <li>Tin cho thuê</li>
-                <li>Tin đã bán (đã ẩn)</li>
+                <li <?=($_SERVER['PATH_INFO'] == '/available') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/available">
+                        Tin đang bán
+                    </a>
+                </li>
+                <li <?=($_SERVER['PATH_INFO'] == '/sold') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/sold">
+                        Tin đã bán
+                    </a>
+                </li>
+                <li <?=($_SERVER['PATH_INFO'] == '/for-rent') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/for-rent">
+                        Tin cho thuê
+                    </a>
+                </li>
+                <li <?=($_SERVER['PATH_INFO'] == '/hide') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/hide">
+                        Tin bị ẩn
+                    </a>
+                </li>
             </ul>
         </div>
         <?php
@@ -40,7 +52,9 @@ if (!empty($_SESSION['user_id'])) :
                     </li>
                     <li>
                         <div style="transform: translateY(15%);">
-                            <h5><?= $my_post['title'] ?></h5>
+                            <a href="/Datn/views/detail.property.view.php?property_id=<?= $my_post['property_id'] ?>" class="text-dark">
+                                <h5><?= $my_post['title'] ?></h5>
+                            </a>
                             <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small>
                             <div class="mt-2 post-edit">
                                 <ul>

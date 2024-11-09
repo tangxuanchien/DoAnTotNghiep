@@ -35,7 +35,7 @@ $cloudinary = new Cloudinary([
 
 if (
     empty($title) or empty($description) or empty($price) or empty($area) or empty($description)
-    or empty($contact_info) or empty($num_bedrooms) or empty($type_id) or empty($ward_id) or empty($_FILES['image']['name'][0])
+    or empty($contact_info) or empty($num_bedrooms) or empty($type_id) or empty($ward_id)
 ) {
     $_SESSION['error_edit_post'] = 'Bạn đang để trống nội dung';
     header('Location: /Datn/views/edit-post.view.php?property_id=' . $property_id);
@@ -67,50 +67,47 @@ if (
         ]
     );
 
+    if ($_FILES['image']['name'][0] != "" and $_POST['keep_images'] == 'no') {
+        $files = $_FILES['image'];
+        $count_files = count($files['name']);
 
-    if ($_POST['keep_images'] == 'no') {
-        if (!empty($_FILES['image'])) {
-            $files = $_FILES['image'];
-            $count_files = count($files['name']);
+        $delete_images_server = $db->query("SELECT * FROM `property_images` WHERE property_id = :property_id", [
+            'property_id' => $property_id
+        ])->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($delete_images_server as $delete_image_server) {
+            $cloudinary->uploadApi()->destroy($delete_image_server['public_id']);
+        }
 
-            $delete_images_server = $db->query("SELECT * FROM `property_images` WHERE property_id = :property_id", [
-                'property_id' => $property_id
-            ])->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($delete_images_server as $delete_image_server) {
-                $cloudinary->uploadApi()->destroy($delete_image_server['public_id']);
-            }
+        $delete_images_sql = $db->query("DELETE FROM `property_images` WHERE property_id = :property_id", [
+            'property_id' => $property_id
+        ]);
 
-            $delete_images_sql = $db->query("DELETE FROM `property_images` WHERE property_id = :property_id", [
-                'property_id' => $property_id
+        for ($i = 0; $i < $count_files; $i++) {
+            $file = $files['tmp_name'][$i];
+
+            $upload = $cloudinary->uploadApi()->upload($file, [
+                'transformation' => [
+                    'width' => 1920,
+                    'height' => 1280,
+                    'crop' => 'fill',
+                    'quality' => 'auto',
+                    'fetch_format' => 'auto'
+                ]
             ]);
 
-            for ($i = 0; $i < $count_files; $i++) {
-                $file = $files['tmp_name'][$i];
-
-                $upload = $cloudinary->uploadApi()->upload($file, [
-                    'transformation' => [
-                        'width' => 1920,
-                        'height' => 1280,
-                        'crop' => 'fill',
-                        'quality' => 'auto',
-                        'fetch_format' => 'auto'
-                    ]
-                ]);
-
-                $public_id = $upload['public_id'];
-                $image_url = $upload['secure_url'];
-                $image = $db->query(
-                    "INSERT `property_images` (`image_id`, `property_id`, `image_url`, `created_at`, `public_id`) 
+            $public_id = $upload['public_id'];
+            $image_url = $upload['secure_url'];
+            $image = $db->query(
+                "INSERT `property_images` (`image_id`, `property_id`, `image_url`, `created_at`, `public_id`) 
                                        VALUES (:image_id, :property_id, :image_url, :created_at, :public_id)",
-                    [
-                        'image_id' => NULL,
-                        'property_id' => $property_id,
-                        'image_url' => $image_url,
-                        'created_at' => $created_at,
-                        'public_id' => $public_id
-                    ]
-                );
-            }
+                [
+                    'image_id' => NULL,
+                    'property_id' => $property_id,
+                    'image_url' => $image_url,
+                    'created_at' => $created_at,
+                    'public_id' => $public_id
+                ]
+            );
         }
     }
     $_SESSION['error_edit_post'] = '';
