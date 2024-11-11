@@ -165,7 +165,6 @@ require 'partials/banner.php';
                     <img src="<?= $image['image_url'] ?>" alt="preview" width="200px">
                 <?php endforeach; ?>
             </div>
-
         </div>
         <div class="mt-3 mb-5">
             <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn chắc chắn chỉnh sửa bài đăng không ?')">Chỉnh sửa</button>
