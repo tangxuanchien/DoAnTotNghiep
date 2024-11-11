@@ -14,6 +14,7 @@ if (!isset($_POST['ward_id'])) {
 $title = "Thống kê giá bán";
 $login = check_login($_SESSION['name']);
 
+
 $ward = $_SESSION['ward'];
 
 

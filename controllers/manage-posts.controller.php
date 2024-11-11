@@ -4,6 +4,22 @@ require '../models/Database.php';
 
 $user_id = $_SESSION['user_id'];
 $db = new Database();
+
+switch ($_SERVER['PATH_INFO']) {
+    case '/available':
+        $status = 'available';
+        break;
+    case '/for_rent':
+        $status = 'for_rent';
+        break;
+    case '/hide':
+        $status = 'hide';
+        break;
+    case '/sold':
+        $status = 'sold';
+        break;
+}
+
 $my_posts = $db->query("
 SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images
 FROM `posts` p
@@ -13,12 +29,29 @@ INNER JOIN wards w on w.ward_id = pr.ward_id
 INNER JOIN districts d on d.district_id = w.district_id 
 INNER JOIN property_images i on i.property_id = pr.property_id
 WHERE u.user_id = :user_id
-AND p.status = 'available'
+AND p.status = :status
 AND i.image_id = (
 SELECT MIN(image_id)
 FROM property_images
 WHERE property_id = pr.property_id)", [
-    'user_id' => $user_id
+    'user_id' => $user_id,
+    'status' => $status
 ])->fetchAll(PDO::FETCH_ASSOC);
+
+
+$total_status = ['available', 'sold', 'hide', 'for_rent'];
+
+foreach ($total_status as $type_status) {
+    $index = $db->query("
+    SELECT count(*) as total
+    FROM `posts`
+    WHERE user_id = :user_id
+    AND status = :status", [
+        'user_id' => $user_id,
+        'status' => $type_status
+    ])->fetch(PDO::FETCH_ASSOC);
+    
+    $num_status[$type_status] = $index['total'];
+}
 
 $_SESSION['my_posts'] = $my_posts;

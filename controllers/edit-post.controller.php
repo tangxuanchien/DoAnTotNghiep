@@ -33,13 +33,7 @@ $cloudinary = new Cloudinary([
     ],
 ]);
 
-if (
-    empty($title) or empty($description) or empty($price) or empty($area) or empty($description)
-    or empty($contact_info) or empty($num_bedrooms) or empty($type_id) or empty($ward_id)
-) {
-    $_SESSION['error_edit_post'] = 'Bạn đang để trống nội dung';
-    header('Location: /Datn/views/edit-post.view.php?property_id=' . $property_id);
-} else {
+{
     $property = $db->query(
         "UPDATE `properties` 
         SET title = :title, description = :description, price = :price, price_per_m2 = :price_per_m2,
@@ -111,6 +105,6 @@ if (
         }
     }
     $_SESSION['error_edit_post'] = '';
-    header('Location: /Datn/views/manage-posts.view.php');
+    header('Location: /Datn/views/manage-posts.view.php/available');
     exit();
 }

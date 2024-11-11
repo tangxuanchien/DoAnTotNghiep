@@ -85,33 +85,33 @@ require 'partials/banner.php';
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_edit_post'] ?></div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>
-            <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title' value="<?= $edit_post['title'] ?>">
+            <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title' value="<?= $edit_post['title'] ?>" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Mô tả chi tiết</label>
-            <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name='description'><?= $edit_post['description'] ?></textarea>
+            <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name='description' required><?= $edit_post['description'] ?></textarea>
         </div>
         <div class="mb-3">
             <label class="form-label">Số điện thoại liên hệ người bán</label>
-            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='contact_info' value="<?= $edit_post['contact_info'] ?>">
+            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='contact_info' value="<?= $edit_post['contact_info'] ?>" required>
         </div>
         <div class="select-room mb-3">
             <ul>
                 <li>
                     <label class="form-label">Giá bán (triệu VND)</label>
-                    <input type="text" class="form-control" placeholder="Đơn vị triệu đồng (2,2 tỉ = 2200 triệu đồng)" name='price' value="<?= $edit_post['price'] ?>">
+                    <input type="text" class="form-control" placeholder="Đơn vị triệu đồng (2,2 tỉ = 2200 triệu đồng)" name='price' value="<?= $edit_post['price'] ?>" required>
                 </li>
                 <li>
                     <label class="form-label">Diện tích đất (m2)</label>
-                    <input type="text" class="form-control" placeholder="Diện tích đất trên sổ đỏ theo mét vuông" name='area' value="<?= $edit_post['area'] ?>">
+                    <input type="text" class="form-control" placeholder="Diện tích đất trên sổ đỏ theo mét vuông" name='area' value="<?= $edit_post['area'] ?>" required>
                 </li>
                 <li>
                     <label class="form-label">Số phòng ngủ</label>
-                    <input type="number" class="form-control" name='num_bedrooms' value="<?= $edit_post['num_bedrooms'] ?>">
+                    <input type="number" class="form-control" name='num_bedrooms' value="<?= $edit_post['num_bedrooms'] ?>" required>
                 </li>
                 <li>
                     <label class="form-label">Số phòng vệ sinh</label>
-                    <input type="number" class="form-control" name='num_bathrooms' value="<?= $edit_post['num_bathrooms'] ?>">
+                    <input type="number" class="form-control" name='num_bathrooms' value="<?= $edit_post['num_bathrooms'] ?>" required>
                 </li>
             </ul>
         </div>
@@ -119,7 +119,7 @@ require 'partials/banner.php';
             <ul>
                 <li>
                     <label class="form-label">Phân loại bất động sản</label></br>
-                    <select class="form-select" name="type_id">
+                    <select class="form-select" name="type_id" required>
                         <option value="">--Chọn Loại--</option>
                         <?php foreach ($types as $type): ?>
                             <option value="<?= $type['type_id'] ?>" <?= $type['type_id'] == $edit_post['type_id'] ? 'selected' : '' ?>>
@@ -130,7 +130,7 @@ require 'partials/banner.php';
                 </li>
                 <li>
                     <label class="form-label">Chọn Quận</label></br>
-                    <select class="district_id form-select" name="district_id">
+                    <select class="district_id form-select" name="district_id" required>
                         <option value="">--Chọn Quận--</option>
                         <?php foreach ($districts as $district): ?>
                             <option value="<?= $district['district_id'] ?>" <?= $district['district_id'] == $edit_post['district_id'] ? 'selected' : '' ?>>
@@ -141,7 +141,7 @@ require 'partials/banner.php';
                 </li>
                 <li>
                     <label class="form-label">Chọn Phường:</label></br>
-                    <select class="ward_id form-select" name="ward_id">
+                    <select class="ward_id form-select" name="ward_id" required>
                         <option value="">--Chọn Phường--</option>
                         <?php if (isset($edit_post['ward_id'])): ?>
                             <option value="<?= $edit_post['ward_id'] ?>" selected><?= $edit_post['ward_name'] ?></option>

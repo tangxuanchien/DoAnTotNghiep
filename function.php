@@ -9,7 +9,7 @@ function dd($data)
 function check_login($name)
 {
     if (!isset($name)) {
-        return 'Đăng nhập';
+        return $name = 'Đăng nhập';
     } else return $name;
 }
 

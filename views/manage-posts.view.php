@@ -19,19 +19,19 @@ if (!empty($_SESSION['user_id'])) :
         <div class="navigation-post">
             <ul>
                 <li <?=($_SERVER['PATH_INFO'] == '/available') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/available">
-                        Tin đang bán
+                        Tin đang bán (<?= $num_status['available'] ?>)
                     </a>
                 </li>
                 <li <?=($_SERVER['PATH_INFO'] == '/sold') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/sold">
-                        Tin đã bán
+                        Tin đã bán (<?= $num_status['sold'] ?>)
                     </a>
                 </li>
-                <li <?=($_SERVER['PATH_INFO'] == '/for-rent') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/for-rent">
-                        Tin cho thuê
+                <li <?=($_SERVER['PATH_INFO'] == '/for_rent') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/for_rent">
+                        Tin cho thuê (<?= $num_status['for_rent'] ?>)
                     </a>
                 </li>
                 <li <?=($_SERVER['PATH_INFO'] == '/hide') ? 'class="active-manage"' : ''?>><a href="/Datn/views/manage-posts.view.php/hide">
-                        Tin bị ẩn
+                        Tin bị ẩn (<?= $num_status['hide'] ?>)
                     </a>
                 </li>
             </ul>
@@ -64,7 +64,7 @@ if (!empty($_SESSION['user_id'])) :
                                         </form>
                                     </li>
                                     <li>
-                                        <form action="/Datn/controllers/hide-post.php?property_id=<?= $my_post['property_id'] ?>" method="post">
+                                        <form action="/Datn/controllers/status-post.controller.php?property_id=<?= $my_post['property_id'] ?>&status=hide" method="post">
                                             <button class="btn btn-outline-secondary" onclick="return confirm('Bạn chắc chắn muốn ẩn tin này ?')"><i class="fa-regular fa-eye-slash"></i> Ẩn tin</button>
                                         </form>
                                     </li>
