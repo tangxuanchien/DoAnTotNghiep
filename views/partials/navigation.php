@@ -40,7 +40,7 @@
                                 <?php else: ?>
                                     <div class="user-profile" data-bs-toggle="dropdown">
                                         <div>
-                                            <img src="<?= $_SESSION['avatar'] ?>" alt="avatar" width="35px">
+                                            <img src="<?= $_SESSION['avatar'] ?>" alt="avatar" class="image-avatar">
                                         </div>
                                         <span class="user-name d-none d-lg-block"><?= $login ?></span>
                                         <i class="fas fa-chevron-down ms-2"></i>

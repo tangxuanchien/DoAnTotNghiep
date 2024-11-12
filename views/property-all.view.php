@@ -36,20 +36,20 @@ foreach ($posts as $post):
                             <li><small><i class="far fa-clock me-1 text-muted"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small></li>
                             <li><i class="fa-solid fa-user-tie text-muted"></i> <?= $post['name'] ?></li>
                         </ul>
-                        <div class="mt-2 post-edit">
-                            <ul>
-                                <li>
-                                    <form action="/Datn/views/edit-post.view.php?property_id=<?= $post['property_id'] ?>" method="post">
-                                        <button class="btn btn-outline-secondary"><i class="fa-solid fa-pen"></i> Sửa tin</button>
-                                    </form>
-                                </li>
-                                <li>
-                                    <form action="/Datn/controllers/status-post.controller.php?property_id=<?= $post['property_id'] ?>&status=hide" method="post">
-                                        <button class="btn btn-outline-secondary" onclick="return confirm('Bạn chắc chắn muốn ẩn tin này ?')"><i class="fa-regular fa-eye-slash"></i> Ẩn tin</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
+                    </div>
+                    <div class="mt-2 post-edit">
+                        <ul>
+                            <li>
+                                <form action="/Datn/views/edit-post.view.php?property_id=<?= $post['property_id'] ?>" method="post">
+                                    <button class="btn btn-outline-secondary"><i class="fa-solid fa-pen"></i> Sửa tin</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/Datn/controllers/status-post.controller.php?property_id=<?= $post['property_id'] ?>&status=hide" method="post">
+                                    <button class="btn btn-outline-secondary" onclick="return confirm('Bạn chắc chắn muốn ẩn tin này ?')"><i class="fa-regular fa-eye-slash"></i> Ẩn tin</button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </li>
             </ul>

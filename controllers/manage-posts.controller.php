@@ -33,7 +33,8 @@ AND p.status = :status
 AND i.image_id = (
 SELECT MIN(image_id)
 FROM property_images
-WHERE property_id = pr.property_id)", [
+WHERE property_id = pr.property_id)
+ORDER BY p.created_at DESC", [
     'user_id' => $user_id,
     'status' => $status
 ])->fetchAll(PDO::FETCH_ASSOC);

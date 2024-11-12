@@ -59,7 +59,7 @@ require 'partials/navigation.php';
                 <label for="floatingInput">Số điện thoại</label>
             </div>
             <div class="form-floating mt-2">
-                <input type="password" class="form-control" name="password" placeholder="" id="password" required>
+                <input type="password" class="form-control" name="password" placeholder="" id="password" required minlength="8">
                 <label for="floatingPassword">Mật khẩu</label>
                 <span class="toggle-password" onclick="togglePassword('password')"><i class="fa-solid fa-eye"></i></span>
             </div>

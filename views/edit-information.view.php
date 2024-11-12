@@ -20,32 +20,32 @@ $password = $user['password'];
 $confirmpassword = '';
 ?>
 <div style="width: 50%;">
-    <form action="/Datn/controllers/edit-information.controller.php?user_id=<?= $user_id ?>" method="POST">
+    <form action="/Datn/controllers/edit-information.controller.php?user_id=<?= $user_id ?>" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Họ và tên</label>
-            <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>">
+            <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Giới thiệu (dưới 200 kí tự)</label>
-            <textarea type="number" class="form-control" placeholder="Giới thiệu bản thân" name='introduce'><?= $user['introduce'] ?></textarea>
+            <textarea type="text" class="form-control" placeholder="Giới thiệu ngắn gọn" name='introduce'><?= $user['introduce'] ?></textarea>
         </div>
         <?php if ($_SESSION['method'] == 'local'): ?>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" placeholder="name@gmail.com" name='email' value="<?= $user['email'] ?>">
+                <input type="email" class="form-control" placeholder="name@gmail.com" name='email' value="<?= $user['email'] ?>" required>
             </div>
         <?php endif ?>
         <div class="mb-3">
             <label class="form-label">Số điện thoại</label>
-            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='phone' value="<?= $user['phone'] ?>">
+            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='phone' value="<?= $user['phone'] ?>" required minlength="10">
         </div>
         <div class="mb-3">
             <label class="form-label">Căn cước công dân</label>
-            <input type="text" class="form-control" placeholder="Số CCCD" name='citizen_id' value="<?= $user['citizen_id'] ?>">
+            <input type="number" class="form-control" placeholder="Số CCCD" name='citizen_id' value="<?= $user['citizen_id'] ?>" required minlength="12">
         </div>
         <div class="mb-3">
-            <label class="form-label">Chọn ảnh để tải lên: (Lưu ý chọn ảnh mới và nó sẽ thay thế các ảnh cũ bạn đã chọn)</label>
-            <input class="form-control mb-3" type="file" name="image[]" id="image" onchange="previewImage()">
+            <label class="form-label">Chọn ảnh để tải lên: Định dạng JPEG, PNG (Lưu ý chọn ảnh mới và nó sẽ thay thế các ảnh cũ bạn đã chọn)</label>
+            <input class="form-control mb-3" type="file" name="image" id="image" onchange="previewImage()">
 
             <div class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" name="keep_images" value="yes" id="flexCheckDefault">

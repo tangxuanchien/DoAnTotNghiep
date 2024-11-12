@@ -61,7 +61,7 @@ $cloudinary = new Cloudinary([
         ]
     );
 
-    if ($_FILES['image']['name'][0] != "" and $_POST['keep_images'] == 'no') {
+    if ($_FILES['image']['name'][0] != "" and $_POST['keep_images'] == 'no' and ($_FILES['image']['type'][0] == 'image/jpeg' or $_FILES['image']['type'][0] == 'image/png')) {
         $files = $_FILES['image'];
         $count_files = count($files['name']);
 
@@ -92,13 +92,12 @@ $cloudinary = new Cloudinary([
             $public_id = $upload['public_id'];
             $image_url = $upload['secure_url'];
             $image = $db->query(
-                "INSERT `property_images` (`image_id`, `property_id`, `image_url`, `created_at`, `public_id`) 
-                                       VALUES (:image_id, :property_id, :image_url, :created_at, :public_id)",
+                "INSERT `property_images` (`image_id`, `property_id`, `image_url`, `public_id`) 
+                                       VALUES (:image_id, :property_id, :image_url, :public_id)",
                 [
                     'image_id' => NULL,
                     'property_id' => $property_id,
                     'image_url' => $image_url,
-                    'created_at' => $created_at,
                     'public_id' => $public_id
                 ]
             );

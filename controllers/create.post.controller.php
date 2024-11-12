@@ -35,9 +35,9 @@ if (
 } else {
     $property = $db->query(
         "INSERT INTO `properties` (`property_id`, `title`, `description`, `price`, `area`, `price_per_m2`,
-                               `type_id`, `ward_id`, `contact_info`, `created_at`, `num_bedrooms`, `num_bathrooms`) 
+                               `type_id`, `ward_id`, `contact_info`, `num_bedrooms`, `num_bathrooms`) 
                                VALUES (:property_id, :title, :description, :price, :area, :price_per_m2,
-                                :type_id, :ward_id, :contact_info, :created_at, :num_bedrooms, :num_bathrooms)",
+                                :type_id, :ward_id, :contact_info, :num_bedrooms, :num_bathrooms)",
         [
             'property_id' => $property_id,
             'title' => $title,
@@ -45,7 +45,6 @@ if (
             'price' => $price,
             'area' => $area,
             'price_per_m2' => $price_per_m2,
-            'created_at' => $created_at,
             'type_id' => $type_id,
             'ward_id' => $ward_id,
             'num_bedrooms' => $num_bedrooms,
@@ -96,8 +95,8 @@ if (!empty($_FILES['image'])) {
         $public_id = $upload['public_id'];
         $image_url = $upload['secure_url'];
         $image = $db->query(
-            "INSERT INTO `property_images` (`image_id`, `property_id`, `image_url`, `created_at`, `public_id`) 
-                                       VALUES (:image_id, :property_id, :image_url, :created_at, :public_id)",
+            "INSERT INTO `property_images` (`image_id`, `property_id`, `image_url`, `public_id`) 
+                                       VALUES (:image_id, :property_id, :image_url, :public_id)",
             [
                 'image_id' => NULL,
                 'property_id' => $property_id,

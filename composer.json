@@ -6,11 +6,5 @@
         "phpmailer/phpmailer": "^6.9",
         "cloudinary/cloudinary_php": "^2.14",
         "ramsey/uuid": "^4.7"
-    },
-    "scripts": {
-        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
-    },
-    "extra": {
-        "google/apiclient-services": []
     }
 }
