@@ -115,7 +115,9 @@ $date = date_parse($user['created_at']);
             <div class="col-lg-4 col-xl-3 profile-sidebar">
                 <div class="text-center mb-4">
                     <div class="profile-avatar mx-auto">
-                        <img src="<?= $user['avatar'] ?>" alt="avatar" class="avatar">
+                        <a href="<?= $user['avatar'] ?>" data-lightbox="avatar" data-title="Ảnh đại diện">
+                            <img src="<?= $user['avatar'] ?>" alt="avatar" class="avatar">
+                        </a>
                     </div>
                     <h2 class="mb-0"><?= $user['name'] ?></h2>
                     <p class="text-light mb-3">Tham gia ngày <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></p>

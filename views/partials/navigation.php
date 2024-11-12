@@ -43,7 +43,7 @@
                                             <img src="<?= $_SESSION['avatar'] ?>" alt="avatar" class="image-avatar">
                                         </div>
                                         <span class="user-name d-none d-lg-block"><?= $login ?></span>
-                                        <i class="fas fa-chevron-down ms-2"></i>
+                                        <i class="fa-solid fa-chevron-down"></i>
                                     <?php endif ?>
                                     </div>
                                     <?php if ($login != 'Đăng nhập') : ?>

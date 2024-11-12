@@ -37,14 +37,16 @@ if (!empty($_SESSION['user_id'])) :
             </ul>
         </div>
         <?php
-        foreach ($my_posts as $my_post):
+        foreach ($my_posts as $index => $my_post):
             $date = date_parse($my_post['created_at']);
         ?>
             <div class="post-lists">
                 <ul>
                     <li>
-                        <div class="image-container" style="transform: translateY(-5%);">
-                            <img src="<?= $my_post['image_url'] ?>" alt="image_property" width="200px">
+                        <div class="image-container">
+                            <a href="<?= $my_post['image_url'] ?>" data-lightbox="image_property_<?= $index ?>" data-title="Ảnh mô tả">
+                                <img src="<?= $my_post['image_url'] ?>" alt="Thumbnail" style="width: 200px;">
+                            </a>
                             <div class="image-overlay">
                                 <i class="fa-regular fa-images"></i> <?= $my_post['total_images'] ?>
                             </div>

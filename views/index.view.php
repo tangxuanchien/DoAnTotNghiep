@@ -3,9 +3,8 @@ require 'routes.php';
 session_start();
 
 $title = "Trang chủ";
-if (isset($_SESSION['user_id'])) {
-    $banner = "Tìm kiếm theo tiêu đề";
-} else $banner = "Vui lòng đăng nhập để xem việc làm";
+$banner = "Tìm kiếm theo tiêu đề";
+
 if (!isset($_SESSION['name'])) {
     $login = 'Đăng nhập';
 } else $login = $_SESSION['name'];
@@ -17,11 +16,7 @@ require 'partials/navigation.php';
 
 require 'partials/banner.php';
 
-
-?>
-<?php
-if (isset($_SESSION['user_id'])) :
-    require 'controllers/index.controller.php';
+require 'controllers/index.controller.php';
 
 ?>
 <div class="btn-view-all">
@@ -30,5 +25,4 @@ if (isset($_SESSION['user_id'])) :
     </form>
 </div>
 <?php
-endif;
 require 'partials/footer.php';

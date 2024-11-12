@@ -52,11 +52,13 @@ LIMIT 6")->fetchAll(PDO::FETCH_ASSOC);
 <div class="div-lists">
     <div id="div-lists">
         <ul>
-            <?php foreach ($posts as $post) : ?>
+            <?php foreach ($posts as $index => $post) : ?>
                 <li>
                     <div class="card mx-3 mt-3 index-card">
                         <div>
-                            <img src="<?= $post['image_url'] ?>" class="card-img-top" alt="image_house">
+                            <a href="<?= $post['image_url'] ?>" data-lightbox="image_property_<?= $index ?>" data-title="Ảnh mô tả">
+                                <img src="<?= $post['image_url'] ?>" alt="Thumbnail" class="card-img-top">
+                            </a>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?= strlen($post['title']) > 80 ? substr_replace($post['title'], ' ...', 80) : $post['title'] ?></h5>
