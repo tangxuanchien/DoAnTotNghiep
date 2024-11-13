@@ -2,13 +2,16 @@
 if (!isset($_POST['ward_id'])) {
 	$ward_id = '';
 } else {
-	$ward_id = trim($_POST['ward_id']);
+	$ward_id = $_POST['ward_id'];
+};
+if (!isset($_POST['type'])) {
+	$type = '';
+} else {
+	$type = $_POST['type'];
 };
 
 $db = new Database();
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
-
-$types = $db->query("select * from `property_types`")->fetchAll(PDO::FETCH_ASSOC);
 
 $ward = $db->query("
 SELECT * FROM `wards` w 
@@ -18,6 +21,12 @@ WHERE ward_id = :ward_id", [
 ])->fetch(PDO::FETCH_ASSOC);
 
 $_SESSION['ward'] = $ward;
+
+if (!isset($ward['district_id'])) {
+	$district_id = '';
+} else {
+	$district_id = $ward['district_id'];
+};
 
 $avg_wards = $db->query("
 	SELECT 
@@ -35,7 +44,7 @@ GROUP BY
     w.ward_id
 ORDER BY 
     w.ward_id;", [
-	'district_id' => $ward['district_id']
+	'district_id' => $district_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
 $avg_districts = $db->query("

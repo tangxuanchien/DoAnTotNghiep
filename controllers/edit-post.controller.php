@@ -20,7 +20,7 @@ $area = $_POST['area'];
 $contact_info = $_POST['contact_info'];
 $num_bedrooms = $_POST['num_bedrooms'];
 $num_bathrooms = $_POST['num_bathrooms'];
-$type_id = $_POST['type_id'];
+$type = $_POST['type'];
 $ward_id = $_POST['ward_id'];
 $updated_at = get_time();
 $price_per_m2 = get_price_per_m2($price, $area);
@@ -37,7 +37,7 @@ $cloudinary = new Cloudinary([
     $property = $db->query(
         "UPDATE `properties` 
         SET title = :title, description = :description, price = :price, price_per_m2 = :price_per_m2,
-        area = :area, type_id = :type_id, ward_id = :ward_id, contact_info = :contact_info,
+        area = :area, type = :type, ward_id = :ward_id, contact_info = :contact_info,
         num_bedrooms = :num_bedrooms, num_bathrooms = :num_bathrooms
         WHERE property_id = :property_id",
         [
@@ -47,7 +47,7 @@ $cloudinary = new Cloudinary([
             'price' => $price,
             'area' => $area,
             'price_per_m2' => $price_per_m2,
-            'type_id' => $type_id,
+            'type' => $type,
             'ward_id' => $ward_id,
             'num_bedrooms' => $num_bedrooms,
             'num_bathrooms' => $num_bathrooms,

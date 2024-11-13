@@ -4,12 +4,9 @@ require '../function.php';
 require '../models/Database.php';
 
 $db = new Database();
-$types = $db->query("SELECT * FROM `property_types`")->fetchAll(PDO::FETCH_ASSOC);
-$property = $db->query("SELECT max(property_id) as last_id FROM `properties`")->fetch(PDO::FETCH_ASSOC);
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
 
 $user_id = $_SESSION['user_id'];
-$property_id = $property['last_id'] + 1;
 $title = "Tạo bài đăng";
 $banner = "Bài đăng mới";
 $login = check_login($_SESSION['name']);
@@ -63,37 +60,37 @@ require 'partials/banner.php';
     }
 </script>
 <div class="container-create-post">
-    <form action="/Datn/controllers/create.post.controller.php?user_id=<?= $user_id ?> &property_id=<?= $property_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
+    <form action="/Datn/controllers/create.post.controller.php?user_id=<?= $user_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_post'] ?></div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>
-            <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title'>
+            <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title' required maxlength="100">
         </div>
         <div class="mb-3">
             <label class="form-label">Mô tả chi tiết</label>
-            <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name="description"></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Giá bán</label>
-            <input type="text" class="form-control" placeholder="Đơn vị triệu đồng (2,2 tỉ = 2200 triệu đồng)" name='price'>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Diện tích đất</label>
-            <input type="text" class="form-control" placeholder="Diện tích đất trên sổ đỏ theo mét vuông" name='area'>
+            <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name='description' required maxlength="300"></textarea>
         </div>
         <div class="mb-3">
             <label class="form-label">Số điện thoại liên hệ người bán</label>
-            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='contact_info'>
+            <input type="number" class="form-control" name='contact_info' required min="100000000" max="999999999">
         </div>
         <div class="select-room mb-3">
             <ul>
                 <li>
+                    <label class="form-label">Giá bán (triệu VND)</label>
+                    <input type="number" class="form-control" name='price' required min="500" max="1000000">
+                </li>
+                <li>
+                    <label class="form-label">Diện tích đất (m<sup>2</sup>)</label>
+                    <input type="number" class="form-control" name='area' required min="50" max="1000">
+                </li>
+                <li>
                     <label class="form-label">Số phòng ngủ</label>
-                    <input type="number" class="form-control" name='num_bedrooms'>
+                    <input type="number" class="form-control" name='num_bedrooms' required max="20">
                 </li>
                 <li>
                     <label class="form-label">Số phòng vệ sinh</label>
-                    <input type="number" class="form-control" name='num_bathrooms'>
+                    <input type="number" class="form-control" name='num_bathrooms' required max="20">
                 </li>
             </ul>
         </div>
@@ -101,16 +98,16 @@ require 'partials/banner.php';
             <ul>
                 <li>
                     <label class="form-label">Phân loại bất động sản</label></br>
-                    <select class="form-select" name="type_id">
-                        <option value="">--Chọn loại hình--</option>
-                        <?php foreach ($types as $type): ?>
-                            <option value="<?= $type['type_id'] ?>"><?= $type['type_name'] ?></option>
-                        <?php endforeach ?>
+                    <select class="form-select" name="type" required>
+                        <option value="">--Chọn Loại--</option>
+                            <option value="home">Nhà ở</option>
+                            <option value="apartment">Chung cư/Căn hộ</option>
+                            <option value="land">Đất</option>
                     </select>
                 </li>
                 <li>
                     <label class="form-label">Chọn Quận</label></br>
-                    <select class="district_id form-select" name="district_id">
+                    <select class="district_id form-select" name="district_id" required>
                         <option value="">--Chọn Quận--</option>
                         <?php foreach ($districts as $district): ?>
                             <option value="<?= $district['district_id'] ?>"><?= $district['district_name'] ?></option>
@@ -119,7 +116,7 @@ require 'partials/banner.php';
                 </li>
                 <li>
                     <label class="form-label">Chọn Phường:</label></br>
-                    <select class="ward_id form-select" name="ward_id">
+                    <select class="ward_id form-select" name="ward_id" required>
                         <option value="">--Chọn Phường--</option>
                     </select>
                 </li>
@@ -127,7 +124,7 @@ require 'partials/banner.php';
         </div>
         <div class="mb-3">
             <label class="form-label">Chọn ảnh để tải lên:</label>
-            <input class="form-control mb-3" type="file" name="image[]" id="image" multiple onchange="previewImage()">
+            <input class="form-control mb-3" type="file" name="image[]" id="image" multiple onchange="previewImage()" required>
             <div id="preview"></div>
         </div>
         <div class="mt-3 mb-5">

@@ -6,15 +6,8 @@ require '../controllers/price-statistics.controller.php';
 
 
 $db = new Database();
-if (!isset($_POST['ward_id'])) {
-	$ward_id = '';
-} else {
-	$ward_id = trim($_POST['ward_id']);
-}
 $title = "Thống kê giá bán";
 $login = check_login($_SESSION['name']);
-
-
 $ward = $_SESSION['ward'];
 
 
@@ -52,13 +45,11 @@ require 'partials/banner.php';
 ?>
 <form action="/Datn/views/price-statistics.view.php" method="post">
 	<div class="select-ward">
-		<select class="type_id form-select w-auto" name="type_id">
-			<option value="">--Chọn loại hình--</option>
-			<?php foreach ($types as $type): ?>
-				<option value="<?= $type['type_id'] ?>" <?= isset($_POST['type_id']) && $_POST['type_id'] == $type['type_id'] ? 'selected' : '' ?>>
-					<?= $type['type_name'] ?>
-				</option>
-			<?php endforeach ?>
+		<select class="type_id form-select w-auto" name="type">
+			<option value="">--Chọn Loại--</option>
+			<option value="home" <?= $type == 'home' ? 'selected' : '' ?>>Nhà ở</option>
+			<option value="apartment" <?= $type == 'apartment' ? 'selected' : '' ?>>Chung cư/Căn hộ</option>
+			<option value="land" <?= $type == 'land' ? 'selected' : '' ?>>Đất</option>
 		</select>
 		<select class="district_id form-select w-auto" name="district_id">
 			<option value="">--Chọn Quận--</option>

@@ -10,7 +10,6 @@ $property_id = $_GET['property_id'];
 $db = new Database();
 $edit_post = $db->query("
 SELECT * FROM `properties` p
-INNER JOIN property_types pt on pt.type_id = p.type_id 
 INNER JOIN wards w on w.ward_id = p.ward_id
 INNER JOIN districts d on d.district_id = w.district_id 
 WHERE property_id = :property_id", [
@@ -20,7 +19,7 @@ $images = $db->query("SELECT * FROM `property_images` WHERE property_id = :prope
     'property_id' => $property_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
-$types = $db->query("SELECT * FROM `property_types`")->fetchAll(PDO::FETCH_ASSOC);
+$type = $edit_post['type'];
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
 
 $_SESSION['ward_id_selected'] = $edit_post['ward_id'];
@@ -85,33 +84,33 @@ require 'partials/banner.php';
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_edit_post'] ?></div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>
-            <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title' value="<?= $edit_post['title'] ?>" required>
+            <input type="text" class="form-control" placeholder="Tiêu đề ngắn gọn" name='title' value="<?= $edit_post['title'] ?>" required maxlength="100">
         </div>
         <div class="mb-3">
             <label class="form-label">Mô tả chi tiết</label>
-            <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name='description' required><?= $edit_post['description'] ?></textarea>
+            <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name='description' required maxlength="300"><?= $edit_post['description'] ?></textarea>
         </div>
         <div class="mb-3">
             <label class="form-label">Số điện thoại liên hệ người bán</label>
-            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='contact_info' value="<?= $edit_post['contact_info'] ?>" required>
+            <input type="number" class="form-control" name='contact_info' value="<?= $edit_post['contact_info'] ?>" required min="100000000" max="999999999">
         </div>
         <div class="select-room mb-3">
             <ul>
                 <li>
                     <label class="form-label">Giá bán (triệu VND)</label>
-                    <input type="text" class="form-control" placeholder="Đơn vị triệu đồng (2,2 tỉ = 2200 triệu đồng)" name='price' value="<?= $edit_post['price'] ?>" required>
+                    <input type="number" class="form-control" placeholder="Đơn vị triệu đồng (2,2 tỉ = 2200 triệu đồng)" name='price' value="<?= $edit_post['price'] ?>" required min="500" max="1000000">
                 </li>
                 <li>
-                    <label class="form-label">Diện tích đất (m2)</label>
-                    <input type="text" class="form-control" placeholder="Diện tích đất trên sổ đỏ theo mét vuông" name='area' value="<?= $edit_post['area'] ?>" required>
+                    <label class="form-label">Diện tích đất (m<sup>2</sup>)</label>
+                    <input type="number" class="form-control" placeholder="Diện tích đất trên sổ đỏ theo mét vuông" name='area' value="<?= $edit_post['area'] ?>" required min="50" max="1000">
                 </li>
                 <li>
                     <label class="form-label">Số phòng ngủ</label>
-                    <input type="number" class="form-control" name='num_bedrooms' value="<?= $edit_post['num_bedrooms'] ?>" required>
+                    <input type="number" class="form-control" name='num_bedrooms' value="<?= $edit_post['num_bedrooms'] ?>" required max="20">
                 </li>
                 <li>
                     <label class="form-label">Số phòng vệ sinh</label>
-                    <input type="number" class="form-control" name='num_bathrooms' value="<?= $edit_post['num_bathrooms'] ?>" required>
+                    <input type="number" class="form-control" name='num_bathrooms' value="<?= $edit_post['num_bathrooms'] ?>" required max="20">
                 </li>
             </ul>
         </div>
@@ -119,13 +118,11 @@ require 'partials/banner.php';
             <ul>
                 <li>
                     <label class="form-label">Phân loại bất động sản</label></br>
-                    <select class="form-select" name="type_id" required>
+                    <select class="form-select" name="type" required>
                         <option value="">--Chọn Loại--</option>
-                        <?php foreach ($types as $type): ?>
-                            <option value="<?= $type['type_id'] ?>" <?= $type['type_id'] == $edit_post['type_id'] ? 'selected' : '' ?>>
-                                <?= $type['type_name'] ?>
-                            </option>
-                        <?php endforeach ?>
+                            <option value="home" <?= $edit_post['type'] == 'home' ? 'selected' : '' ?>>Nhà ở</option>
+                            <option value="apartment" <?= $edit_post['type'] == 'apartment' ? 'selected' : '' ?>>Chung cư/Căn hộ</option>
+                            <option value="land" <?= $edit_post['type'] == 'land' ? 'selected' : '' ?>>Đất</option>
                     </select>
                 </li>
                 <li>
