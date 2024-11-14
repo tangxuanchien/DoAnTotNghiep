@@ -3,7 +3,7 @@ session_start();
 
 $title = "Việc cần làm";
 $banner = "Thay đổi thông tin";
-$login = 'Chào, ' . $_SESSION['name'];
+$login = $_SESSION['name'];
 
 $user_id = $_GET['user_id'];
 require '../models/Database.php';
@@ -19,15 +19,15 @@ require 'partials/banner.php';
 $password = $user['password'];
 $confirmpassword = '';
 ?>
-<div style="width: 50%;">
+<div style="width: 50%; margin-bottom: 50px;">
     <form action="/Datn/controllers/edit-information.controller.php?user_id=<?= $user_id ?>" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Họ và tên</label>
-            <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>" required>
+            <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>" required minlength="6">
         </div>
         <div class="mb-3">
             <label class="form-label">Giới thiệu (dưới 200 kí tự)</label>
-            <textarea type="text" class="form-control" placeholder="Giới thiệu ngắn gọn" name='introduce'><?= $user['introduce'] ?></textarea>
+            <textarea type="text" class="form-control" placeholder="Giới thiệu ngắn gọn" name='introduce' maxlength="200"><?= $user['introduce'] ?></textarea>
         </div>
         <?php if ($_SESSION['method'] == 'local'): ?>
             <div class="mb-3">
@@ -37,11 +37,11 @@ $confirmpassword = '';
         <?php endif ?>
         <div class="mb-3">
             <label class="form-label">Số điện thoại</label>
-            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='phone' value="<?= $user['phone'] ?>" required minlength="10">
+            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='phone' value="<?= $user['phone'] ?>" required min="100000000" max="999999999">
         </div>
         <div class="mb-3">
             <label class="form-label">Căn cước công dân</label>
-            <input type="number" class="form-control" placeholder="Số CCCD" name='citizen_id' value="<?= $user['citizen_id'] ?>" required minlength="12">
+            <input type="number" class="form-control" placeholder="Số CCCD" name='citizen_id' value="<?= $user['citizen_id'] ?>" required min="10000000000" max="99999999999">
         </div>
         <div class="mb-3">
             <label class="form-label">Chọn ảnh để tải lên: Định dạng JPEG, PNG (Lưu ý chọn ảnh mới và nó sẽ thay thế các ảnh cũ bạn đã chọn)</label>
@@ -54,11 +54,15 @@ $confirmpassword = '';
                 </label>
             </div>
             <div id="preview">
-                    <img src="<?= $user['avatar'] ?>" alt="preview" width="200px">
+                <img src="<?= $user['avatar'] ?>" alt="preview" width="200px">
             </div>
         </div>
-        <div class="mt-5">
-            <button type="submit" class="btn btn-primary">Cập nhật</button>
+        <div class="mt-5 btn-submit">
+            <ul>
+                <li>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </li>
+            </ul>
         </div>
     </form>
 </div>

@@ -42,16 +42,16 @@ require '../controllers/detail.property.controller.php'; ?>
             </button>
         </div>
         <div class="mt-3 detail-post">
-            <h3><?= $property['title'] ?></h3>
+            <h3><?= $post['title'] ?></h3>
             <i class="fa-solid fa-location-dot"></i> <?= 'Phường ' . $location['ward_name'] . ', Quận ' . $location['district_name'] . ', TP.Hà Nội, Việt Nam' ?></br>
             <div class="mt-3">
                 <h4>Mô tả dự án</h4>
-                <p><?= $property['description'] ?></p>
-                <p>Diện tích: <?= $property['area'] ?></p>
-                <p>Giá bán trên mét vuông: <?= $property['price_per_m2'] ?> triệu/m<sup>2</sup></p>
-                <p>Phòng ngủ: <?= $property['num_bedrooms'] ?></p>
-                <p>Phòng vệ sinh: <?= $property['num_bathrooms'] ?></p>
-                <p>Giá bán: <?= $property['price'] ?> triệu VND (Có thương lượng)</p>
+                <p><?= $post['description'] ?></p>
+                <p>Diện tích: <?= $post['area'] ?></p>
+                <p>Giá bán trên mét vuông: <?= $post['price_per_m2'] ?> triệu/m<sup>2</sup></p>
+                <p>Phòng ngủ: <?= $post['num_bedrooms'] ?></p>
+                <p>Phòng vệ sinh: <?= $post['num_bathrooms'] ?></p>
+                <p>Giá bán: <?= strlen($post['price']) > 3 ? ($post['price']/1000).' tỷ VND' : $post['price'].' triệu VND' ?> (Có thương lượng)</p>
             </div>
         </div>
         <h4 class="mt-4">Tin đăng khác ở <?= 'quận ' . $location['district_name'] ?></h4>
@@ -102,7 +102,7 @@ require '../controllers/detail.property.controller.php'; ?>
             <img src="<?= $post['avatar'] ?>" alt="avatar" style="border-radius: 50px; width: 80px; margin: 0 20px 10px 0; border: 2px solid black">
             <b><?= $post['name'] ?></b> <i class="fa-solid fa-briefcase"></i></br>
             Tham gia từ: <?= $formatted_create_at ?></br>
-            Đánh giá: <b>5.0 - <?= $post['total'] ?> tin đăng </b></br>
+            Đánh giá: <b>5.0 - <?= $total_post['total'] ?> tin đăng </b></br>
             <button class="btn btn-primary mt-3">Liên hệ người bán</button>
         </div>
         <div class="detail-support">

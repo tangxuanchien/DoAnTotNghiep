@@ -2,15 +2,22 @@
 $property_id = $_GET['property_id'];
 require '../models/Database.php';
 $db = new Database();
-$property = $db->query("SELECT * FROM `properties` where property_id = :property_id", [
-        'property_id' => $property_id
-])->fetch(PDO::FETCH_ASSOC);
 $post = $db->query("
-        SELECT *, count(p.property_id) as total FROM `posts` p 
+        SELECT * FROM `posts` p 
         INNER JOIN users u on u.user_id = p.user_id
         inner join properties pr on pr.property_id = p.property_id
         where p.property_id = :property_id", [
         'property_id' => $property_id
+])->fetch(PDO::FETCH_ASSOC);
+$user_id = $post['user_id'];
+
+$total_post = $db->query("
+        SELECT count(p.property_id) as total FROM `posts` p 
+        INNER JOIN users u on u.user_id = p.user_id
+        inner join properties pr on pr.property_id = p.property_id
+        where p.user_id = :user_id
+        AND p.status = 'available'", [
+        'user_id' => $user_id
 ])->fetch(PDO::FETCH_ASSOC);
 
 $slides = $db->query("
@@ -42,14 +49,15 @@ $posts_related = $db->query("
         inner join districts d on d.district_id = w.district_id 
         inner join property_images i on i.property_id = pr.property_id
         where d.district_id = :district_id
+        and pr.property_id != :property_id
         and i.image_id = (
         SELECT MIN(image_id)
         FROM property_images
         WHERE property_id = pr.property_id)", [
-        'district_id' => $district_id
+        'district_id' => $district_id,
+        'property_id' => $property_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
-$user_id = $post['user_id'];
 $posts_other = $db->query("
 SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images
 FROM `posts` p
@@ -59,13 +67,14 @@ INNER JOIN wards w on w.ward_id = pr.ward_id
 INNER JOIN districts d on d.district_id = w.district_id 
 INNER JOIN property_images i on i.property_id = pr.property_id
 WHERE u.user_id = :user_id
+AND pr.property_id != :property_id
 AND i.image_id = (
 SELECT MIN(image_id)
 FROM property_images
 WHERE property_id = pr.property_id)", [
-    'user_id' => $user_id
+        'user_id' => $user_id,
+        'property_id' => $property_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
 $created_at = $post['created_at'];
 $formatted_create_at = date("d-m-Y", strtotime($created_at));
-?>

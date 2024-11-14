@@ -264,6 +264,15 @@ body {
     height: 48px;
 }
 
+/* REGISTER */
+.btn-submit ul li{
+    display: inline-block;
+}
+
+.btn-submit button{
+    width: 120px;
+}
+
 /* PROPERTY-ALL */
 .container-post {
     transform: translateX(10%);
