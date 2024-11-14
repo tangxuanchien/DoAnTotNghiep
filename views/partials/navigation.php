@@ -16,9 +16,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/manage-posts.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/manage-posts.view.php/available">
+                            <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/manage-posts.view.php' ? 'nav-link active' : 'nav-link' ?>">
                                 <i class="fa-solid fa-id-badge"></i> Quản lí bài đăng
                             </a>
+                            <div class="mega-menu">
+                                    <ul class="list-unstyled">
+                                        <li><a href="/Datn/views/manage-posts.view.php/save" class="mega-dropdown-item">Tin đã lưu</a></li>
+                                        <li><a href="/Datn/views/manage-posts.view.php/available" class="mega-dropdown-item">Quản lý bài đăng</a></li>
+                                    </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <?php if (isset($_SESSION['user_id'])): ?>
@@ -53,7 +59,7 @@
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a class="dropdown-item text-danger" href="/Datn/controllers/logout.controller.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                                            <li><a class="dropdown-item text-danger" href="/Datn/controllers/logout.controller.php"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
                                         </ul>
                                     <?php endif ?>
                                 </div>

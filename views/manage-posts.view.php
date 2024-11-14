@@ -38,7 +38,7 @@ if (!empty($_SESSION['user_id'])) :
         </div>
         <?php
         foreach ($my_posts as $index => $my_post):
-            $date = date_parse($my_post['created_at']);
+            $date = date_parse($my_post['updated_at']);
         ?>
             <div class="post-lists">
                 <ul>

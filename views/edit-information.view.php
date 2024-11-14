@@ -62,6 +62,11 @@ $confirmpassword = '';
                 <li>
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </li>
+                <li style="margin-left: 20px;">
+                    <form action="/Datn/information.view.php" method="post">
+                        <button type="submit" class="btn btn-dark">Quay lại</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </form>

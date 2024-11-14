@@ -19,6 +19,7 @@ require 'partials/banner.php';
 require 'controllers/index.controller.php';
 
 ?>
+
 <div class="btn-view-all">
     <form action="/Datn/views/property-all.view.php?page_number=1" method="post">
         <button type="submit" class="btn btn-dark">Xem tất cả bài đăng <i class="fa-solid fa-arrow-right text-light"></i></button>

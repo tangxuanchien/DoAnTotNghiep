@@ -65,7 +65,10 @@ if ($_FILES['image']['name'] != "" and $_POST['keep_images'] == 'no' and ($_FILE
         );
 }
 
-$_SESSION['name'] = $name;
-$_SESSION['avatar'] = $avatar;
+$user = $db->query("SELECT * FROM `users` WHERE user_id = :user_id", [
+    'user_id' => $user_id
+])->fetch(PDO::FETCH_ASSOC);
+$_SESSION['name'] = $user['name'];
+$_SESSION['avatar'] = $user['avatar'];
 header('Location: /Datn/views/information.view.php');
 exit();

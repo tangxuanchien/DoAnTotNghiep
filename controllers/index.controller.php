@@ -1,8 +1,11 @@
 <?php
 require 'models/Database.php';
 require 'function.php';
-$method = $_SESSION['method'];
-// $id = $_SESSION['user_id'];
+if(!isset($_SESSION['method'])){
+    $method = '';
+} else {
+    $method = $_SESSION['method'];
+}
 $db = new Database();
 $posts = $db->query("
 SELECT * FROM `posts` p

@@ -26,9 +26,11 @@ require '../controllers/detail.property.controller.php'; ?>
                     <button type="button" data-bs-target="#carouselAutoplaying" data-bs-slide-to="<?= $i ?>" <?= ($i == 0) ? 'aria-current="true" class="active"' : NULL ?> aria-label="Slide <?= $i ?>"></button>
                 <?php endfor ?>
             </div>
-            <?php foreach ($slides as $slide): ?>
+            <?php foreach ($slides as $index => $slide): ?>
                 <div class="carousel-item <?= ($slide['image_id'] == $first_slide['min']) ? 'active' : '' ?>">
-                    <img src="<?= $slide['image_url'] ?>" class="d-block w-100" alt="Slide">
+                    <a href="<?= $slide['image_url'] ?>" data-lightbox="image_property_<?= $index ?>" data-title="Ảnh mô tả">
+                        <img src="<?= $slide['image_url'] ?>" class="d-block w-100" alt="Slide" style="width: 200px;">
+                    </a>
                 </div>
             <?php endforeach ?>
 
@@ -51,7 +53,7 @@ require '../controllers/detail.property.controller.php'; ?>
                 <p>Giá bán trên mét vuông: <?= $post['price_per_m2'] ?> triệu/m<sup>2</sup></p>
                 <p>Phòng ngủ: <?= $post['num_bedrooms'] ?></p>
                 <p>Phòng vệ sinh: <?= $post['num_bathrooms'] ?></p>
-                <p>Giá bán: <?= strlen($post['price']) > 3 ? ($post['price']/1000).' tỷ VND' : $post['price'].' triệu VND' ?> (Có thương lượng)</p>
+                <p>Giá bán: <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ VND' : $post['price'] . ' triệu VND' ?> (Có thương lượng)</p>
             </div>
         </div>
         <h4 class="mt-4">Tin đăng khác ở <?= 'quận ' . $location['district_name'] ?></h4>
@@ -102,17 +104,21 @@ require '../controllers/detail.property.controller.php'; ?>
             <img src="<?= $post['avatar'] ?>" alt="avatar" style="border-radius: 50px; width: 80px; margin: 0 20px 10px 0; border: 2px solid black">
             <b><?= $post['name'] ?></b> <i class="fa-solid fa-briefcase"></i></br>
             Tham gia từ: <?= $formatted_create_at ?></br>
-            Đánh giá: <b>5.0 - <?= $total_post['total'] ?> tin đăng </b></br>
-            <button class="btn btn-primary mt-3">Liên hệ người bán</button>
+            Đánh giá: <b>5.0 - <?= $post_available['total'] ?> tin đăng - <?= $post_sold['total'] ?> tin đã bán </b></br>
+            <button class="btn btn-primary mt-3" id="btn-contact" onclick="changeContact('<?= $post['contact_info'] ?>')">Liên hệ người bán</button>
         </div>
         <div class="detail-support">
             <ul>
-                <li><a href="http://"></a:href><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li>
-                <li><a href="http://"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
+                <li><a href="#"></a><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li>
+                <li><a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
             </ul>
         </div>
     </div>
 </div>
-
+<script>
+    function changeContact(text) {
+        document.getElementById('btn-contact').textContent = text; 
+    }
+</script>
 <?php
 require 'partials/footer.php';

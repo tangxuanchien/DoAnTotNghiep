@@ -41,16 +41,19 @@ foreach ($posts as $index => $post):
                             <li><i class="fa-solid fa-location-dot text-muted"></i> <?= 'P.' . $post['ward_name'] . ', Q.' . $post['district_name'] . ', Hà Nội' ?></li>
                         </ul>
                     </div>
-                    <div class="mt-2 post-edit">
+                    <div class="mt-2 post-save">
                         <ul>
                             <li>
-                                <form action="/Datn/views/edit-post.view.php?property_id=<?= $post['property_id'] ?>" method="post">
-                                    <button class="btn btn-outline-secondary"><i class="fa-solid fa-pen"></i> Sửa tin</button>
-                                </form>
-                            </li>
-                            <li>
-                                <form action="/Datn/controllers/status-post.controller.php?property_id=<?= $post['property_id'] ?>&status=hide" method="post">
-                                    <button class="btn btn-outline-secondary" onclick="return confirm('Bạn chắc chắn muốn ẩn tin này ?')"><i class="fa-regular fa-eye-slash"></i> Ẩn tin</button>
+                                <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $post['post_id'] ?>&user_id=<?= $post['user_id'] ?>" method="post">
+                                    <?php if (!$post['post_save_id']): ?>
+                                        <button class="btn btn-outline-success">
+                                            <i class="fa-solid fa-bookmark"></i> Lưu tin
+                                        </button>
+                                    <?php else: ?>
+                                        <button class="btn btn-success">
+                                            <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
+                                        </button>
+                                    <?php endif ?>
                                 </form>
                             </li>
                         </ul>

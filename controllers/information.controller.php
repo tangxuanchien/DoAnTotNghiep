@@ -35,7 +35,7 @@ if (empty($user['avatar'])) {
     $user['avatar'] = 'Chưa có giới thiệu';
 }
 
-$date = date_parse($user['created_at']);
+$date = date_parse($user['created_user_at']);
 ?>
 <style>
     :root {

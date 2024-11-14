@@ -118,27 +118,6 @@ body {
     color: #2c3e50;
 }
 
-.notification-badge {
-    position: relative;
-    margin-right: 20px;
-}
-
-.notification-badge i {
-    font-size: 1.2rem;
-    color: #2c3e50;
-}
-
-.badge-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #e74c3c;
-    color: white;
-    border-radius: 50%;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-}
-
 .dropdown-menu {
     border: none;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -163,6 +142,7 @@ body {
     text-align: center;
 }
 
+
 @media (max-width: 991.98px) {
     .navbar-collapse {
         background: white;
@@ -171,29 +151,40 @@ body {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         margin-top: 1rem;
     }
-
+    
     .user-profile {
         margin-top: 1rem;
     }
 }
-
-.navbar-shrink {
-    padding: 0.5rem 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.mega-dropdown-item {
+    display: block;
+    padding: 0.7rem 1.5rem;
+    color: #2c3e50;
+    transition: all 0.2s ease;
 }
+
+.mega-dropdown-item:hover {
+    background: #e0e0e0;
+    color: #e74c3c;
+}
+
 
 .mega-menu {
     position: absolute;
-    width: 100%;
-    left: 0;
+    left: 47%;
     background: white;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s ease;
-    padding: 2rem;
+    padding: 10px;
     z-index: 1000;
+}
+
+.navbar-shrink {
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .nav-item:hover .mega-menu {
@@ -477,6 +468,19 @@ body {
 }
 
 .post-edit button:hover i {
+    color: white;
+}
+
+.post-save {
+    position: absolute;
+    left: 60%;
+}
+
+.post-save i {
+    color: green;
+}
+
+.post-save button:hover i {
     color: white;
 }
 

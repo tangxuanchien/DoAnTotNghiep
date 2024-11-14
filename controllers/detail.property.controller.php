@@ -11,12 +11,22 @@ $post = $db->query("
 ])->fetch(PDO::FETCH_ASSOC);
 $user_id = $post['user_id'];
 
-$total_post = $db->query("
+
+$post_available = $db->query("
         SELECT count(p.property_id) as total FROM `posts` p 
         INNER JOIN users u on u.user_id = p.user_id
         inner join properties pr on pr.property_id = p.property_id
         where p.user_id = :user_id
         AND p.status = 'available'", [
+        'user_id' => $user_id
+])->fetch(PDO::FETCH_ASSOC);
+
+$post_sold = $db->query("
+        SELECT count(p.property_id) as total FROM `posts` p 
+        INNER JOIN users u on u.user_id = p.user_id
+        inner join properties pr on pr.property_id = p.property_id
+        where p.user_id = :user_id
+        AND p.status = 'sold'", [
         'user_id' => $user_id
 ])->fetch(PDO::FETCH_ASSOC);
 
@@ -76,5 +86,5 @@ WHERE property_id = pr.property_id)", [
         'property_id' => $property_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
-$created_at = $post['created_at'];
+$created_at = $post['created_user_at'];
 $formatted_create_at = date("d-m-Y", strtotime($created_at));
