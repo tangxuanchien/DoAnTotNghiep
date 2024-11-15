@@ -12,7 +12,7 @@ require 'partials/navigation.php';
 
 require 'partials/banner.php';
 
-require '../controllers/property-all.controller.php';
+require '../controllers/all-posts.controller.php';
 
 foreach ($posts as $index => $post):
     $date = date_parse($post['created_at']);
@@ -32,7 +32,7 @@ foreach ($posts as $index => $post):
                 </li>
                 <li>
                     <div style="transform: translateY(-10%);">
-                        <a href="/Datn/views/detail.property.view.php?property_id=<?= $post['property_id'] ?>" class="text-dark">
+                        <a href="/Datn/views/detail-post.view.php?property_id=<?= $post['property_id'] ?>" class="text-dark">
                             <h5><?= $post['title'] ?></h5>
                         </a>
                         <ul class="text-muted">
@@ -67,20 +67,20 @@ foreach ($posts as $index => $post):
 <div class="page-numbers">
     <ul>
         <li>
-            <a href="<?= checkpagenumber($page_number, 1, '', '/Datn/views/property-all.view.php?page_number=' . ($page_number - 1)) ?>" style="color: <?= ($page_number == 1) ? 'gray' : 'black' ?>">
+            <a href="<?= checkpagenumber($page_number, 1, '', '/Datn/views/all-posts.view.php?page_number=' . ($page_number - 1)) ?>" style="color: <?= ($page_number == 1) ? 'gray' : 'black' ?>">
                 <i class="fa-solid fa-angles-left" style="color: <?= ($page_number == 1) ? 'gray' : 'black' ?>"></i> Trước
             </a>
         </li>
         <?php
         foreach ($total_pages as $number) : ?>
             <li>
-                <form action="/Datn/views/property-all.view.php?page_number=<?= $number ?>" method="post">
+                <form action="/Datn/views/all-posts.view.php?page_number=<?= $number ?>" method="post">
                     <button type="submit" style="background-color: <?= ($number == $page_number) ? '#6e9eeb' : 'white' ?>"><?= $number ?></button>
                 </form>
             </li>
         <?php endforeach ?>
         <li>
-            <a href="<?= checkpagenumber($page_number, $last_page_numbers, '', '/Datn/views/property-all.view.php?page_number=' . ($page_number + 1)) ?>" style="color: <?= ($page_number == $last_page_numbers) ? 'gray' : 'black' ?>">
+            <a href="<?= checkpagenumber($page_number, $last_page_numbers, '', '/Datn/views/all-posts.view.php?page_number=' . ($page_number + 1)) ?>" style="color: <?= ($page_number == $last_page_numbers) ? 'gray' : 'black' ?>">
                 Sau <i class="fa-solid fa-angles-right" style="color: <?= ($page_number == $last_page_numbers) ? 'gray' : 'black' ?>"></i>
             </a>
         </li>

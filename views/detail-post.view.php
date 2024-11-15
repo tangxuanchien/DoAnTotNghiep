@@ -17,7 +17,7 @@ require 'partials/navigation.php';
 
 require 'partials/banner.php';
 
-require '../controllers/detail.property.controller.php'; ?>
+require '../controllers/detail-post.controller.php'; ?>
 <div class="position-relative">
     <div id="carouselAutoplaying" class="carousel slide container-detail" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
@@ -71,7 +71,7 @@ require '../controllers/detail.property.controller.php'; ?>
                             <i class="fa-solid fa-chart-line" style="margin-left: 10px;"></i> <?= $post_related['area'] . " m<sup>2</sup>" ?>
                         </p>
                         <p class="card-description"><i class="fa-solid fa-location-dot"></i> <?= $post_related['ward_name'] . ", " . $post_related['district_name'] ?></p>
-                        <a href="/Datn/views/detail.property.view.php?property_id=<?= $post_related['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
+                        <a href="/Datn/views/detail-post.view.php?property_id=<?= $post_related['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -91,7 +91,7 @@ require '../controllers/detail.property.controller.php'; ?>
                             <i class="fa-solid fa-chart-line" style="margin-left: 10px;"></i> <?= $post_other['area'] . " m<sup>2</sup>" ?>
                         </p>
                         <p class="card-description"><i class="fa-solid fa-location-dot"></i> <?= $post_other['ward_name'] . ", " . $post_other['district_name'] ?></p>
-                        <a href="/Datn/views/detail.property.view.php?property_id=<?= $post_other['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
+                        <a href="/Datn/views/detail-post.view.php?property_id=<?= $post_other['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
                     </div>
                 </div>
             <?php endforeach; ?>

@@ -88,7 +88,7 @@ require '../controllers/information.controller.php';
                 <h5>Dự án gần đây</h5>
                 <div class="list-group">
                     <?php foreach ($posts as $post): ?>
-                        <a href="/Datn/views/detail.property.view.php?property_id=<?=$post['property_id']?>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="/Datn/views/detail-post.view.php?property_id=<?=$post['property_id']?>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             <div>
                                 <h6 class="mb-1"><?= $post['title'] ?></h6>
                                 <p class="mb-1 text-muted"><?= 'Phường ' . $post['ward_name'] . ', Quận ' . $post['district_name'] ?>, Hà Nội</p>

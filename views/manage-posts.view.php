@@ -12,8 +12,7 @@ require 'partials/navigation.php';
 
 require 'partials/banner.php';
 
-if (!empty($_SESSION['user_id'])) :
-    require '../controllers/manage-posts.controller.php';
+ require '../controllers/manage-posts.controller.php';
 ?>
     <div class="container-post" style="width: 80%;">
         <?php if ($_SERVER['PATH_INFO'] != '/save'): ?>
@@ -56,7 +55,7 @@ if (!empty($_SESSION['user_id'])) :
                     </li>
                     <li>
                         <div style="transform: translateY(15%);">
-                            <a href="/Datn/views/detail.property.view.php?property_id=<?= $my_post['property_id'] ?>" class="text-dark">
+                            <a href="/Datn/views/detail-post.view.php?property_id=<?= $my_post['property_id'] ?>" class="text-dark">
                                 <h5><?= $my_post['title'] ?></h5>
                             </a>
                             <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small>
@@ -88,14 +87,6 @@ if (!empty($_SESSION['user_id'])) :
                                     <li>
                                         <form id="post_hide" action="/Datn/controllers/status-post.controller.php?property_id=<?= $my_post['property_id'] ?>&status=available" method="post">
                                             <button type="button" class="btn btn-outline-secondary" onclick="showAlert('Bạn có chắc muốn hiện này ?', '', 'post_hide')"><i class="fa-regular fa-eye"></i> Hiện tin</button>
-                                        </form>
-                                    </li>
-                                <?php elseif ($_SERVER['PATH_INFO'] == '/save'): ?>
-                                    <li>
-                                        <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $mypost['post_id'] ?>" method="post">
-                                                <button class="btn btn-success">
-                                                    <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
-                                                </button>
                                         </form>
                                     </li>
                                 <?php endif ?>
@@ -144,6 +135,6 @@ if (!empty($_SESSION['user_id'])) :
             closeAlert();
         }
     </script>
-<?php endif;
+<?php
 
 require 'partials/footer.php';

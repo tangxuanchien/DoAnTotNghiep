@@ -21,7 +21,7 @@
                             </a>
                             <div class="mega-menu">
                                     <ul class="list-unstyled">
-                                        <li><a href="/Datn/views/manage-posts.view.php/save" class="mega-dropdown-item">Tin đã lưu</a></li>
+                                        <li><a href="/Datn/views/save-post.view.php" class="mega-dropdown-item">Tin đã lưu</a></li>
                                         <li><a href="/Datn/views/manage-posts.view.php/available" class="mega-dropdown-item">Quản lý bài đăng</a></li>
                                     </ul>
                             </div>

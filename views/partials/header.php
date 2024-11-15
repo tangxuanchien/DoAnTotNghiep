@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox.min.js"></script>
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://res.cloudinary.com/djdf56dfq/image/upload/v1731690520/j3nhkxslgxq4mu0l8ycy.png" type="image/x-icon">
 
     <link rel="stylesheet" href="/Datn/templates/style.css">
     <title><?= $title ?></title>

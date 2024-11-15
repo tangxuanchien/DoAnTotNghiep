@@ -213,6 +213,31 @@ body {
 /* INDEX */
 .container-body {
     padding: 90px 70px 0;
+    position: relative;
+}
+
+.container-search{
+    z-index: 1;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    width: 70%;
+}
+
+.search-result{
+    background-color: white;
+    padding: 20px 20px;
+    width: fit-content;
+}
+
+.search-result{
+    background-color: white;
+    padding: 20px 20px;
+    width: fit-content;
+}
+
+#result {
+    display: none;
 }
 
 #div-lists li {
@@ -264,9 +289,10 @@ body {
     width: 120px;
 }
 
-/* PROPERTY-ALL */
+/* all-posts */
 .container-post {
     transform: translateX(10%);
+    margin-bottom: 30px;
 }
 
 .post-lists {
