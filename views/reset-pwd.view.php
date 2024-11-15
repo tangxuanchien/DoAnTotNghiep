@@ -22,35 +22,6 @@ $verification_code = $_GET['verification_code'];
         }
     }
 
-    function handleSubmit() {
-        let emailInput = document.getElementById('phone');
-        if (emailInput.value) {
-            Swal.fire({
-                title: "Xác thực thành công",
-                text: "Vui lòng kiểm tra email để lấy mật khẩu",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                customClass: {
-                    timerProgressBar: '#progress-bar'
-                }
-            }).then(() => {
-                // if (result.isConfirmed) {
-                document.getElementById('forgetPassword').submit();
-                // }
-            });
-        } else {
-            Swal.fire({
-                title: console.log(errorMessage()),
-                text: "Sai Email",
-                icon: "error",
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-            });
-        }
-    }
 </script>
 
 <div class="reset-pwd">
@@ -58,11 +29,11 @@ $verification_code = $_GET['verification_code'];
             <h3>Quên mật khẩu</h3>
             <div>Vui lòng nhập email để gửi mã xác thực</div>
             <div class="form-floating">
-                <input type="password" class="form-control" name="password" placeholder="">
+                <input type="password" class="form-control" name="password" required minlength="8">
                 <label for="floatingInput">Mật khẩu</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" name="confirm_password" placeholder="">
+                <input type="password" class="form-control" name="confirm_password" required minlength="8">
                 <label for="floatingInput">Xác nhận mật khẩu</label>
             </div>
             <button class="btn-confirm" type="submit">Xác nhận</button>

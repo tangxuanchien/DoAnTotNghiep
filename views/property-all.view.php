@@ -44,14 +44,14 @@ foreach ($posts as $index => $post):
                     <div class="mt-2 post-save">
                         <ul>
                             <li>
-                                <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $post['post_id'] ?>&user_id=<?= $post['user_id'] ?>" method="post">
-                                    <?php if (!$post['post_save_id']): ?>
-                                        <button class="btn btn-outline-success">
-                                            <i class="fa-solid fa-bookmark"></i> Lưu tin
-                                        </button>
-                                    <?php else: ?>
+                                <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $post['post_id'] ?>" method="post">
+                                    <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
                                         <button class="btn btn-success">
                                             <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
+                                        </button>
+                                    <?php else: ?>
+                                        <button class="btn btn-outline-success">
+                                            <i class="fa-solid fa-bookmark"></i> Lưu tin
                                         </button>
                                     <?php endif ?>
                                 </form>
@@ -62,7 +62,8 @@ foreach ($posts as $index => $post):
             </ul>
         </div>
     </div>
-<?php endforeach ?>
+<?php endforeach; ?>
+
 <div class="page-numbers">
     <ul>
         <li>

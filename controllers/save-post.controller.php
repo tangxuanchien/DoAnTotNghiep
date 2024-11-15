@@ -1,10 +1,11 @@
 <?php
+session_start();
 require '../models/Database.php';
 require '../function.php';
 
 $db = new Database();
 $post_id = $_GET['post_id'];
-$user_id = $_GET['user_id'];
+$user_id = $_SESSION['user_id'];
 
 $last_post_save_id = $db->query("SELECT max(post_save_id) as max FROM `post_saves`")->fetch(PDO::FETCH_ASSOC);
 $post_save_id = $last_post_save_id['max'] + 1;

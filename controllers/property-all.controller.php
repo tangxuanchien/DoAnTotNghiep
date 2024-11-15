@@ -2,6 +2,7 @@
 require '../models/Database.php';
 
 $page_number = $_GET['page_number'];
+$user_id = $_SESSION['user_id'];
 $limit = 8;
 if ($page_number == 1) {
     $offset = 0;
@@ -28,6 +29,7 @@ ORDER BY p.post_id
 LIMIT $limit OFFSET $offset", [
     'status' => $status
 ])->fetchAll(PDO::FETCH_ASSOC);
+
 $total_properties = $db->query("SELECT Count(post_id) as total FROM `posts`")->fetch(PDO::FETCH_ASSOC);
 
 $residual_page_number = ((int)$total_properties["total"] % $limit);

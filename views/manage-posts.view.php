@@ -16,26 +16,28 @@ if (!empty($_SESSION['user_id'])) :
     require '../controllers/manage-posts.controller.php';
 ?>
     <div class="container-post" style="width: 80%;">
-        <div class="navigation-post">
-            <ul>
-                <li <?= ($_SERVER['PATH_INFO'] == '/available') ? 'class="active-manage"' : '' ?>><a href="/Datn/views/manage-posts.view.php/available">
-                        Tin đang bán (<?= $num_status['available'] ?>)
-                    </a>
-                </li>
-                <li <?= ($_SERVER['PATH_INFO'] == '/sold') ? 'class="active-manage"' : '' ?>><a href="/Datn/views/manage-posts.view.php/sold">
-                        Tin đã bán (<?= $num_status['sold'] ?>)
-                    </a>
-                </li>
-                <li <?= ($_SERVER['PATH_INFO'] == '/for_rent') ? 'class="active-manage"' : '' ?>><a href="/Datn/views/manage-posts.view.php/for_rent">
-                        Tin cho thuê (<?= $num_status['for_rent'] ?>)
-                    </a>
-                </li>
-                <li <?= ($_SERVER['PATH_INFO'] == '/hide') ? 'class="active-manage"' : '' ?>><a href="/Datn/views/manage-posts.view.php/hide">
-                        Tin bị ẩn (<?= $num_status['hide'] ?>)
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <?php if ($_SERVER['PATH_INFO'] != '/save'): ?>
+            <div class="navigation-post">
+                <ul>
+                    <li <?= ($_SERVER['PATH_INFO'] == '/available') ? 'class="active-manage"' : '' ?>><a href="/Datn/views/manage-posts.view.php/available">
+                            Tin đang bán (<?= $num_status['available'] ?>)
+                        </a>
+                    </li>
+                    <li <?= ($_SERVER['PATH_INFO'] == '/sold') ? 'class="active-manage"' : '' ?>><a href="/Datn/views/manage-posts.view.php/sold">
+                            Tin đã bán (<?= $num_status['sold'] ?>)
+                        </a>
+                    </li>
+                    <li <?= ($_SERVER['PATH_INFO'] == '/for_rent') ? 'class="active-manage"' : '' ?>><a href="/Datn/views/manage-posts.view.php/for_rent">
+                            Tin cho thuê (<?= $num_status['for_rent'] ?>)
+                        </a>
+                    </li>
+                    <li <?= ($_SERVER['PATH_INFO'] == '/hide') ? 'class="active-manage"' : '' ?>><a href="/Datn/views/manage-posts.view.php/hide">
+                            Tin bị ẩn (<?= $num_status['hide'] ?>)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <?php endif ?>
         <?php
         foreach ($my_posts as $index => $my_post):
             $date = date_parse($my_post['updated_at']);
@@ -86,6 +88,14 @@ if (!empty($_SESSION['user_id'])) :
                                     <li>
                                         <form id="post_hide" action="/Datn/controllers/status-post.controller.php?property_id=<?= $my_post['property_id'] ?>&status=available" method="post">
                                             <button type="button" class="btn btn-outline-secondary" onclick="showAlert('Bạn có chắc muốn hiện này ?', '', 'post_hide')"><i class="fa-regular fa-eye"></i> Hiện tin</button>
+                                        </form>
+                                    </li>
+                                <?php elseif ($_SERVER['PATH_INFO'] == '/save'): ?>
+                                    <li>
+                                        <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $mypost['post_id'] ?>" method="post">
+                                                <button class="btn btn-success">
+                                                    <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
+                                                </button>
                                         </form>
                                     </li>
                                 <?php endif ?>
