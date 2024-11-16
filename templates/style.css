@@ -236,6 +236,14 @@ body {
     width: fit-content;
 }
 
+.search li {
+    display: inline-block;
+}
+
+.container-post .search button:hover i{
+    color: white;
+}
+
 #result {
     display: none;
 }
@@ -499,7 +507,23 @@ body {
 
 .post-save {
     position: absolute;
-    left: 60%;
+    top: 90px;
+    left: 65%;
+}
+
+.post-price {
+    position: absolute;
+    top: 92px;
+}
+
+.post-time {
+    position: absolute;
+    left: 40%;
+}
+
+.post-location {
+    position: absolute;
+    left: 55%;
 }
 
 .post-save i {

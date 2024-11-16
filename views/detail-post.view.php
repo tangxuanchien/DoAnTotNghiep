@@ -53,7 +53,7 @@ require '../controllers/detail-post.controller.php'; ?>
                 <p>Giá bán trên mét vuông: <?= $post['price_per_m2'] ?> triệu/m<sup>2</sup></p>
                 <p>Phòng ngủ: <?= $post['num_bedrooms'] ?></p>
                 <p>Phòng vệ sinh: <?= $post['num_bathrooms'] ?></p>
-                <p>Giá bán: <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ VND' : $post['price'] . ' triệu VND' ?> (Có thương lượng)</p>
+                <p>Giá bán: <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?> (Có thương lượng)</p>
             </div>
         </div>
         <h4 class="mt-4">Tin đăng khác ở <?= 'quận ' . $location['district_name'] ?></h4>

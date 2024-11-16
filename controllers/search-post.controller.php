@@ -6,6 +6,35 @@ $limit = 8;
 
 $status = 'available';
 $db = new Database();
+if (!isset($_POST['sort_by_price'])) {
+    $sort_by_created_at = ' ';
+} else {
+    $sort_by_price = $_POST['sort_by_price'];
+}
+if (!isset($_POST['sort_by_created_at'])) {
+    $sort_by_price = ' ';
+} else {
+    $sort_by_created_at = $_POST['sort_by_created_at'];
+}
+
+$sort = [];
+if ($sort_by_price == 'price_DESC') {
+    $sort['price'] = 'pr.price DESC';
+} else if ($sort_by_price == 'price_ASC') {
+    $sort['price'] = 'pr.price ASC';
+}
+
+if ($sort_by_created_at == 'created_at_DESC') {
+    $sort['created_at'] = 'p.created_at DESC';
+} else if ($sort_by_created_at == 'created_at_ASC') {
+    $sort['created_at'] = 'p.created_at ASC';
+}
+$order_by = implode(', ', $sort);
+
+if (empty($order_by)) {
+    $order_by = 'p.created_at DESC';
+}
+
 $posts = $db->query("
 SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images
 FROM `posts` p
@@ -21,8 +50,7 @@ AND i.image_id = (
 SELECT MIN(image_id)
 FROM property_images
 WHERE property_id = pr.property_id)
-ORDER BY p.post_id
-LIMIT $limit", [
+ORDER BY $order_by", [
     'status' => $status
 ])->fetchAll(PDO::FETCH_ASSOC);
 

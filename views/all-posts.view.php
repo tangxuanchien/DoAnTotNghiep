@@ -31,19 +31,24 @@ foreach ($posts as $index => $post):
                     </div>
                 </li>
                 <li>
-                    <div style="transform: translateY(-10%);">
+                    <div>
                         <a href="/Datn/views/detail-post.view.php?property_id=<?= $post['property_id'] ?>" class="text-dark">
                             <h5><?= $post['title'] ?></h5>
                         </a>
                         <ul class="text-muted">
                             <li><i class="fa-solid fa-user-tie text-muted"></i> <?= $post['name'] ?></li>
-                            <li><small><i class="far fa-clock me-1 text-muted"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small></li>
-                            <li><i class="fa-solid fa-location-dot text-muted"></i> <?= 'P.' . $post['ward_name'] . ', Q.' . $post['district_name'] . ', Hà Nội' ?></li>
+                            <li class="post-time"><i class="far fa-clock me-1 text-muted"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></li>
+                            <li class="post-location"><i class="fa-solid fa-location-dot text-muted"></i> <?= 'P.' . $post['ward_name'] . ', Q.' . $post['district_name'] . ', Hà Nội' ?></li>
                         </ul>
                     </div>
-                    <div class="mt-2 post-save">
+                    <div class="mt-2">
                         <ul>
-                            <li>
+                            <li class="post-price">
+                                <h5 class="text-danger">
+                                    <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?>
+                                </h5>
+                            </li>
+                            <li class="post-save">
                                 <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $post['post_id'] ?>" method="post">
                                     <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
                                         <button class="btn btn-success">
