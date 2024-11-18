@@ -4,12 +4,9 @@ require '../function.php';
 require '../models/Database.php';
 require '../controllers/price-statistics.controller.php';
 
-
 $db = new Database();
 $title = "Thống kê giá bán";
 $login = check_login($_SESSION['name']);
-$ward = $_SESSION['ward'];
-
 
 if (isset($ward['ward_name'])) {
 	$banner = "Thống kê giá bán của phường " . $ward['ward_name'];
@@ -25,16 +22,6 @@ WHERE district_id = :district_id
 ORDER BY ward_id", [
 	'district_id' => $ward['district_id']
 ])->fetchAll(PDO::FETCH_ASSOC);
-
-
-$statistic_of_ward = $db->query("Select count(*) AS total, REPLACE(CAST(avg(price_per_m2) AS DECIMAL(5, 1)), '.', ',') AS avg_ward from `properties` where ward_id = :ward_id", [
-	'ward_id' => $ward_id
-])->fetch(PDO::FETCH_ASSOC);
-
-
-$statistic_of_district = $db->query("SELECT CAST(avg(price_per_m2) AS DECIMAL(5, 0)) AS avg_district FROM `properties` WHERE ward_id IN (SELECT ward_id FROM `wards` WHERE district_id = :district_id)", [
-	'district_id' => $ward['district_id']
-])->fetch(PDO::FETCH_ASSOC);
 
 require 'partials/header.php';
 
@@ -73,13 +60,13 @@ require 'partials/banner.php';
 	<?php if ($statistic_of_ward['total'] != 0): ?>
 		<ul>
 			<li>
-				Giá bán trung bình
+				Giá bán trung bình của phường
 				<div class="statistic-number">
 					<?= $statistic_of_ward['avg_ward'] ?> triệu/m<sup>2</sup>
 				</div>
 			</li>
 			<li class="border-left">
-				Tổng số bài đăng
+				Tổng số bài đăng của phường
 				<div class="statistic-number">
 					<?= $statistic_of_ward['total'] ?>
 				</div>
@@ -87,7 +74,7 @@ require 'partials/banner.php';
 			<li class="border-left">
 				Giá bán trung bình của quận
 				<div class="statistic-number">
-					<?= $statistic_of_ward['avg_ward'] ?> triệu/m<sup>2</sup>
+					<?= $statistic_of_district['avg_district'] ?> triệu/m<sup>2</sup>
 				</div>
 			</li>
 		</ul>
@@ -95,13 +82,32 @@ require 'partials/banner.php';
 		<h2 class="text-danger"><i class="fa-solid fa-xmark text-danger"></i> Chưa có bất động sản nào được rao bán ở đây</h2>
 	<?php endif ?>
 </div>
-<div class="chart">
-	<h2>Biểu đồ giá các quận thuộc thủ đô Hà Nội</h2>
-	<canvas id="districtChart"></canvas>
+<div class="statistic-label">
+	<?php if ($statistic_of_ward['total'] > 0): ?>
+		<a href="/Datn/views/all-posts.view.php?page_number=1" class="text-dark fs-5">
+			Xem tất cả bài đăng ở phường <?= $ward['ward_name'] ?> <i class="fa-solid fa-angles-right"></i>
+		</a>
+	<?php endif ?>
 </div>
 <div class="chart">
-	<h2>Biểu đồ giá <?= !isset($ward['district_name']) ? '' : 'các phường thuộc quận ' . $ward['district_name'] ?></h2>
-	<canvas id="wardChart"></canvas>
+	<ul>
+		<li>
+			<h2>Biểu đồ giá các quận thuộc thủ đô Hà Nội</h2>
+			<canvas id="districtChart"></canvas>
+			<a href="/Datn/views/all-posts.view.php?page_number=1" class="text-dark fs-5">
+				Xem tất cả bài đăng ở Hà Nội <i class="fa-solid fa-angles-right"></i>
+			</a>
+		</li>
+		<li style="margin-left: 50px;">
+			<h2>Biểu đồ giá các phường <?= !isset($ward['district_name']) ? '' : 'thuộc quận ' . $ward['district_name'] ?></h2>
+			<canvas id="wardChart"></canvas>
+			<?php if (isset($ward['district_name'])): ?>
+				<a href="/Datn/views/all-posts.view.php?page_number=1" class="text-dark fs-5">
+					Xem tất cả bài đăng ở quận <?= $ward['district_name'] ?> <i class="fa-solid fa-angles-right"></i>
+				</a>
+			<?php endif ?>
+		</li>
+	</ul>
 </div>
 
 <script>

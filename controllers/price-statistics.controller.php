@@ -20,13 +20,19 @@ WHERE ward_id = :ward_id", [
 	'ward_id' => $ward_id
 ])->fetch(PDO::FETCH_ASSOC);
 
-$_SESSION['ward'] = $ward;
-
 if (!isset($ward['district_id'])) {
 	$district_id = '';
 } else {
 	$district_id = $ward['district_id'];
 };
+
+$statistic_of_ward = $db->query("Select count(*) AS total, REPLACE(CAST(avg(price_per_m2) AS DECIMAL(5, 1)), '.', ',') AS avg_ward from `properties` where ward_id = :ward_id", [
+	'ward_id' => $ward_id
+])->fetch(PDO::FETCH_ASSOC);
+
+$statistic_of_district = $db->query("SELECT CAST(avg(price_per_m2) AS DECIMAL(5, 0)) AS avg_district FROM `properties` WHERE ward_id IN (SELECT ward_id FROM `wards` WHERE district_id = :district_id)", [
+	'district_id' => $ward['district_id']
+])->fetch(PDO::FETCH_ASSOC);
 
 $avg_wards = $db->query("
 	SELECT 
