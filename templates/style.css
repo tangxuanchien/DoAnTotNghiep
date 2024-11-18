@@ -193,17 +193,38 @@ body {
     transform: translateY(0);
 }
 
+/* BANNER */
+.banner{
+    position: relative;
+    background: #2c3e50;
+    height: 700px;
+}
+
+.banner>img{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
 
 /* SLOGAN */
 .slogan {
     text-align: center;
     padding: 40px 0;
-    background-color: #EBEBEB;
+    border-bottom: 2px solid #e74c3c;
+    border-top: 2px solid #e74c3c;
+    width: 80%;
+    margin: 30px auto 0 auto; 
+    /* Css center */
 }
 
 .slogan li {
     display: inline-block;
     margin: 20px 40px;
+}
+
+.slogan li i{
+    font-size: 70px;
+    color: #2c3e50;
 }
 
 .slogan-text {
@@ -212,16 +233,16 @@ body {
 
 /* INDEX */
 .container-body {
-    padding: 90px 50px 0;
+    padding: 100px 50px 0;
     position: relative;
 }
 
 .container-search{
     z-index: 1;
     position: absolute;
-    top: 30%;
-    left: 15%;
-    width: 70%;
+    top: 20%;
+    left: 40px;
+    width: 50%;
 }
 
 .search-result{
@@ -238,6 +259,22 @@ body {
 
 .search li {
     display: inline-block;
+}
+
+.select-ward-index {
+    display: flex;
+    justify-content: start;
+    margin-top: 15px;
+}
+
+.select-ward-index select {
+    padding: 5px 40px;
+    margin-right: 20px;
+}
+
+.select-ward-index button{
+    background-color: #e74c3c;
+    color: white;
 }
 
 .container-post .search button:hover i{

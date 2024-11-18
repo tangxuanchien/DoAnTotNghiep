@@ -177,7 +177,6 @@ require 'partials/banner.php';
 					ward_id: ward_id
 				},
 				success: function(response) {
-					console.log(response);
 					$('.ward_id').html('<option value="">--Chọn Phường--</option>');
 					$('.ward_id').append(response);
 
