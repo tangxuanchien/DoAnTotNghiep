@@ -20,6 +20,14 @@ function check_banner($banner, $a, $b)
     } else return $b;
 }
 
+function check_isset($var){
+    if (!isset($var)) {
+        return ' ';
+    } else {
+        return $var;
+    }
+}
+
 function get_time()
 {
     date_default_timezone_set('Asia/Ho_Chi_Minh');

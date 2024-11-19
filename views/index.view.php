@@ -23,7 +23,6 @@ require 'controllers/index.controller.php';
         <form action="/Datn/views/search-post.view.php?page_number=1" method="post" class="d-flex my-3" role="search">
             <input class="form-control me-2" type="search" placeholder="Tìm kiếm theo tiêu đề" aria-label="Tìm kiếm" name="search" id="search">
             <button class="btn btn-light" id="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-
         </form>
     </div>
     <h4 class="mt-5 text-light">TÌM KIẾM THEO BỘ LỌC</h4>
@@ -91,7 +90,7 @@ require 'partials/banner.php';
             var search = $('#search').val();
             if (search.length > 0) {
                 $.ajax({
-                    url: '../Datn/controllers/get_searchs.php',
+                    url: '/Datn/controllers/get_searchs.php',
                     type: 'POST',
                     data: {
                         search: search

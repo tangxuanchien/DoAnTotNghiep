@@ -9,8 +9,18 @@ if (!isset($_POST['search'])) {
     $_POST['search'] = '';
 }
 $search = $_POST['search'];
+
 if (!isset($_POST['sort_by_price'])) {
     $_POST['sort_by_price'] = ' ';
+}
+if (!isset($_POST['type'])) {
+    $_POST['type'] = ' ';
+}
+if (!isset($_POST['ward_id'])) {
+    $_POST['ward_id'] = ' ';
+}
+if (!isset($_POST['district_id'])) {
+    $_POST['district_id'] = ' ';
 }
 if (!isset($_POST['sort_by_created_at'])) {
     $_POST['sort_by_created_at'] = ' ';
@@ -27,33 +37,60 @@ require '../controllers/search-post.controller.php';
 <div class="container-post search" style="width: 80%;">
     <form action="/Datn/views/search-post.view.php?page_number=1" method="post" class="d-flex my-3" role="search">
         <input class="form-control me-2" type="search" placeholder="Tìm kiếm theo tiêu đề" aria-label="Tìm kiếm" name="search" id="search" value="<?= $search ?>">
-        <button class="btn btn-outline-dark" id="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="btn btn-primary" id="search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass text-light"></i>
+        </button>
     </form>
+    <div id="result" class="search-result">
+    </div>
     <?php if (!$posts): ?>
-        <h5>Không có kết quả nào trùng khớp</h5>
+        <h4><i class="fa-solid fa-square-xmark text-danger"></i> Không có kết quả nào trùng khớp</h4>
     <?php else: ?>
-        <h5 class="text-danger"><?= count($posts) ?> kết quả tìm kiếm</h5>
+        <h4 class="text-danger"><?= count($posts) ?> kết quả tìm kiếm</h4>
     <?php endif; ?>
     <ul>
         <form action="/Datn/views/search-post.view.php?page_number=1" method="post">
             <li>
-                <p>Sắp xếp theo:</p>
+                <p><i class="fa-solid fa-sort"></i> Bộ lọc :</p>
             </li>
-            <li style=" margin-left: 20px;">
+            <li style=" margin-left: 15px;">
                 <select class="form-select w-auto" name="sort_by_price">
                     <option value="">-Giá bán-</option>
-                    <option value="price_ASC" <?= ($_POST['sort_by_price'] == 'price_ASC') ? 'selected' : ''?>>Giá từ thấp nhất</option>
-                    <option value="price_DESC" <?= ($_POST['sort_by_price'] == 'price_DESC') ? 'selected' : ''?>>Giá từ cao nhất</option>
+                    <option value="price_ASC" <?= ($_POST['sort_by_price'] == 'price_ASC') ? 'selected' : '' ?>>Giá từ thấp nhất</option>
+                    <option value="price_DESC" <?= ($_POST['sort_by_price'] == 'price_DESC') ? 'selected' : '' ?>>Giá từ cao nhất</option>
                 </select>
             </li>
-            <li style=" margin-left: 20px;">
+            <li style=" margin-left: 15px;">
                 <select class="form-select w-auto" name="sort_by_created_at">
                     <option value="">-Thời gian-</option>
-                    <option value="created_at_DESC" <?= ($_POST['sort_by_created_at'] == 'created_at_DESC') ? 'selected' : ''?>>Thời gian mới nhất</option>
-                    <option value="created_at_ASC" <?= ($_POST['sort_by_created_at'] == 'created_at_ASC') ? 'selected' : ''?>>Thời gian cũ nhất</option>
+                    <option value="created_at_DESC" <?= ($_POST['sort_by_created_at'] == 'created_at_DESC') ? 'selected' : '' ?>>Thời gian mới nhất</option>
+                    <option value="created_at_ASC" <?= ($_POST['sort_by_created_at'] == 'created_at_ASC') ? 'selected' : '' ?>>Thời gian cũ nhất</option>
                 </select>
             </li>
-            <li style="margin-left: 20px;">
+            <li style=" margin-left: 15px;">
+                <select class="type_id form-select w-auto" name="type">
+                    <option value="">--Chọn Loại hình--</option>
+                    <option value="home">Nhà ở</option>
+                    <option value="apartment">Chung cư/Căn hộ</option>
+                    <option value="land">Đất</option>
+                </select>
+            <li style=" margin-left: 15px;">
+                <select class="district_id form-select w-auto" name="district_id">
+                    <option value="">--Chọn Quận--</option>
+                    <?php foreach ($districts as $district): ?>
+                        <option value="<?= $district['district_id'] ?>">
+                            <?= $district['district_name'] ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </li>
+            <li style=" margin-left: 15px;">
+                <select class="ward_id form-select w-auto" name="ward_id">
+                    <option value="">--Chọn Phường--</option>
+                </select>
+            </li>
+            </li>
+            <li style="margin-left: 15px;">
                 <button class="btn btn-success" type="submit">Áp dụng</button>
             </li>
         </form>
@@ -112,5 +149,53 @@ require '../controllers/search-post.controller.php';
             </ul>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            var initialProperties = $('#properties').html();
+            $('#search').keyup(function(e) {
+                var search = $('#search').val();
+                if (search.length > 0) {
+                    $.ajax({
+                        url: '/Datn/controllers/get_searchs.php',
+                        type: 'POST',
+                        data: {
+                            search: search
+                        },
+                        success: function(response) {
+                            $('#result').html(response).show();
+                            $('#properties').html("");
+                        },
+                    });
+                } else {
+                    $('#result').html('').hide();
+                    $('#properties').html(initialProperties);
+                }
+            });
+        });
+
+        $(document).ready(function() {
+            $('.district_id').change(function(e) {
+                var district_id = $('.district_id').val().trim();
+                var ward_id = $('.ward_id').val().trim();
+                $.ajax({
+                    url: '/Datn/controllers/get_wards.php',
+                    type: 'POST',
+                    data: {
+                        district_id: district_id,
+                        ward_id: ward_id
+                    },
+                    success: function(response) {
+                        console.log("District ID:", district_id);
+                        $('.ward_id').html('<option value="">--Chọn Phường--</option>');
+                        $('.ward_id').append(response);
+
+                        if (selectedWardId) {
+                            $('.ward_id').val(selectedWardId);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 <?php endforeach;
 require 'partials/footer.php';

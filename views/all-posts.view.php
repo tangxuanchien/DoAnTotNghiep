@@ -2,8 +2,8 @@
 session_start();
 require '../function.php';
 
-$title = "Xem tất cả";
-$banner = "Xem tất cả bài đăng";
+$title = "Tất cả bài đăng";
+$banner = "Tất cả bài đăng";
 $login = check_login($_SESSION['name']);
 
 require 'partials/header.php';

@@ -6,16 +6,12 @@ $limit = 8;
 
 $status = 'available';
 $db = new Database();
-if (!isset($_POST['sort_by_price'])) {
-    $sort_by_created_at = ' ';
-} else {
-    $sort_by_price = $_POST['sort_by_price'];
-}
-if (!isset($_POST['sort_by_created_at'])) {
-    $sort_by_price = ' ';
-} else {
-    $sort_by_created_at = $_POST['sort_by_created_at'];
-}
+
+$sort_by_created_at = check_isset($_POST['sort_by_created_at']);
+$sort_by_price = check_isset($_POST['sort_by_price']);
+$type = check_isset($_POST['type']);
+$district_id = check_isset($_POST['district_id']);
+$ward_id = check_isset($_POST['ward_id']);
 
 $sort = [];
 if ($sort_by_price == 'price_DESC') {
@@ -35,6 +31,24 @@ if (empty($order_by)) {
     $order_by = 'p.created_at DESC';
 }
 
+
+$sort_filter = [];
+if(!empty($district_id)){
+    $sort_filter['district_id'] = 'AND d.district_id = '.$district_id;
+}
+if(!empty($type)){
+    $sort_filter['type'] = 'AND pr.type = "'.$type.'"';
+}
+if(!empty($ward_id)){
+    $sort_filter['ward_id'] = 'AND w.ward_id = '.$ward_id;
+}
+$filter = implode(' ', $sort_filter);
+var_dump($filter);
+
+if (empty($filter)) {
+    $filter = '';
+}
+
 $posts = $db->query("
 SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images
 FROM `posts` p
@@ -46,6 +60,7 @@ LEFT JOIN post_saves ps on ps.post_sid = p.post_id
 INNER JOIN property_images i on i.property_id = pr.property_id
 WHERE p.status = :status
 AND pr.title like '%$search%'
+$filter
 AND i.image_id = (
 SELECT MIN(image_id)
 FROM property_images
@@ -60,3 +75,6 @@ FROM `post_saves`
 WHERE user_sid = :user_sid", [
     'user_sid' => $user_id
 ])->fetchAll(PDO::FETCH_ASSOC);
+
+$districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
+

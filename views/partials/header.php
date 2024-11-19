@@ -15,7 +15,6 @@
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Patrick+Hand&family=Handlee&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="https://res.cloudinary.com/djdf56dfq/image/upload/v1731690520/j3nhkxslgxq4mu0l8ycy.png" type="image/x-icon">
-
     <link rel="stylesheet" href="/Datn/templates/style.css">
     <title><?= $title ?></title>
 </head>
