@@ -3,7 +3,7 @@
         <img src="/Datn/images/banner-removebg.png" alt="banner" width="800px">
     </div>
     <div class="slogan">
-        <h3>TẠI SAO LẠI LÀ HANOIHOME ?</h3>
+        <h3>TẠI SAO NÊN SỬ DỤNG HANOIHOME ?</h3>
         <ul>
             <li>
                 <i class="fa-solid fa-lightbulb"></i>
@@ -30,6 +30,15 @@
                 </div>
             </li>
         </ul>
+    </div>
+    <div class="intro-hanoihome">
+        <h2>GIỚI THIỆU VỀ CHÚNG TÔI</h2>
+        <img src="/Datn/images/hanoi.png" alt="intro" width="1170px">
+        <p>"Hà Nội, thủ đô nghìn năm văn hiến của Việt Nam, là trung tâm văn hóa, giáo dục và chính trị hàng đầu cả nước.
+            Thành phố nổi bật với sự kết hợp giữa nhịp sống hiện đại và không gian thanh bình, 
+            tạo nên một môi trường sống lý tưởng. Với mật độ dân số đang phát triển nhanh chóng,
+            nhu cầu sở hữu bất động sản của người dân ngày càng gia tăng. 
+            Hãy tham khảo ngay các bài đăng tại HANOIHOME !"</p>
     </div>
 <?php endif ?>
 <div class="container-body">
