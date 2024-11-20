@@ -19,16 +19,22 @@
                             <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/manage-posts.view.php' ? 'nav-link active' : 'nav-link' ?>">
                                 <i class="fa-solid fa-id-badge"></i> Quản lí bài đăng
                             </a>
-                            <div class="mega-menu">
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <div class="mega-menu">
                                     <ul class="list-unstyled">
                                         <li><a href="/Datn/views/save-post.view.php" class="mega-dropdown-item">Tin đã lưu</a></li>
                                         <li><a href="/Datn/views/manage-posts.view.php/available" class="mega-dropdown-item">Quản lý bài đăng</a></li>
                                     </ul>
-                            </div>
+                                </div>
+                            <?php endif ?>
                         </li>
                         <li class="nav-item">
                             <?php if (isset($_SESSION['user_id'])): ?>
                                 <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/create.post.view.php' ? 'nav-link active' : 'nav-link' ?>" href="/Datn/views/create.post.view.php?user_id=<?= $_SESSION['user_id'] ?>">
+                                    <i class="fa-solid fa-pen-to-square"></i> Đăng tin mới
+                                </a>
+                            <?php else: ?>
+                                <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/create.post.view.php' ? 'nav-link active' : 'nav-link' ?>" href="#">
                                     <i class="fa-solid fa-pen-to-square"></i> Đăng tin mới
                                 </a>
                             <?php endif ?>
@@ -67,33 +73,5 @@
                     </div>
                 </div>
         </nav>
-        <!-- <div class="mega-menu">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Thống kê theo khu vực</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="dropdown-item">Hà Nội</a></li>
-                        <li><a href="#" class="dropdown-item">TP. Hồ Chí Minh</a></li>
-                        <li><a href="#" class="dropdown-item">Đà Nẵng</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Loại bất động sản</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="dropdown-item">Căn hộ</a></li>
-                        <li><a href="#" class="dropdown-item">Nhà riêng</a></li>
-                        <li><a href="#" class="dropdown-item">Đất nền</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Báo cáo</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="dropdown-item">Báo cáo tháng</a></li>
-                        <li><a href="#" class="dropdown-item">Báo cáo quý</a></li>
-                        <li><a href="#" class="dropdown-item">Báo cáo năm</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div> -->
     </header>
     <main>

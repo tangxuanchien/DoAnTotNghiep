@@ -18,7 +18,7 @@ require 'partials/navigation.php';
 require 'partials/banner.php';
 
 ?>
-<div style="width: 60%;">
+<div class=" container-register">
     <form action="/Datn/controllers/register.controller.php" method="POST" id="registerForm">
         <div class="row g-3">
             <div class="col">
@@ -36,7 +36,7 @@ require 'partials/banner.php';
                 <input type="email" class="form-control" placeholder="nguyenvana@gmail.com" name='email' required>
             </div>
             <div class="col">
-                <label class="form-label">Số điện thoại</label>
+                <label class="form-label">Số điện thoại (sử dụng để đăng nhập)</label>
                 <input type="number" class="form-control" name='phone' required min="100000000" max="999999999">
             </div>
         </div>
@@ -62,9 +62,8 @@ require 'partials/banner.php';
                 </li>
             </ul>
         </div>
-</div>
-</form>
-<div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_register'] ?></div>
+    </form>
+    <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_register'] ?></div>
 </div>
 <?= $_SESSION['error_register'] = "" ?>
 <script>

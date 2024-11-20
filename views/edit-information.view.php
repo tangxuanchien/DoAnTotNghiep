@@ -37,11 +37,11 @@ $confirmpassword = '';
         <?php endif ?>
         <div class="mb-3">
             <label class="form-label">Số điện thoại</label>
-            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='phone' value="<?= $user['phone'] ?>" required min="100000000" max="999999999">
+            <input type="number" class="form-control" placeholder="09xx-xxx-xxx" name='phone' value="<?= $user['phone'] ?>" <?= ($_SESSION['method'] == 'google') ? '' : 'required min="100000000" max="999999999"' ?>>
         </div>
         <div class="mb-3">
             <label class="form-label">Căn cước công dân</label>
-            <input type="number" class="form-control" placeholder="Số CCCD" name='citizen_id' value="<?= $user['citizen_id'] ?>" required min="10000000000" max="99999999999">
+            <input type="number" class="form-control" placeholder="Số CCCD" name='citizen_id' value="<?= $user['citizen_id'] ?>" <?= ($_SESSION['method'] == 'google') ? '' : 'required min="10000000000" max="99999999999"' ?>>
         </div>
         <div class="mb-3">
             <label class="form-label">Chọn ảnh để tải lên: Định dạng JPEG, PNG (Lưu ý chọn ảnh mới và nó sẽ thay thế các ảnh cũ bạn đã chọn)</label>

@@ -355,6 +355,11 @@ body {
 }
 
 /* REGISTER */
+.container-register{
+    width: 60%;
+    margin-left: 120px;
+}
+
 .btn-submit ul li{
     display: inline-block;
 }

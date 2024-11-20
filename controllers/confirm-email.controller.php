@@ -11,7 +11,7 @@ require '../vendor/autoload.php';
 
 $mail = new PHPMailer(true);
 
-$email = $_POST['email'];
+$email = $_GET['email'];
 $verification_code = rand(100000, 999999);
 $hashed_code = password_hash($verification_code, PASSWORD_DEFAULT);
 $created_at = get_time();
@@ -23,8 +23,8 @@ $user = $db->query('Select * from `users` where email = :email', [
   'email' => $email
 ])->fetch(PDO::FETCH_ASSOC);
 
-if (empty($user['email'])) {
-  $_SESSION['error-reset'] = 'Vui lòng nhập email của bạn !';
+if (!$user['email']) {
+  $_SESSION['error-reset'] = 'Email không tồn tại !';
   header('Location: /Datn/views/confirm-email.view.php');
 } else {
   try {

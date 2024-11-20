@@ -23,6 +23,14 @@ $cloudinary = new Cloudinary([
     ],
 ]);
 
+$check_phone = $db->query("SELECT phone FROM `users` WHERE phone = :phone",[
+    'phone' => $phone
+])->fetch(PDO::FETCH_ASSOC);
+if ($check_phone){
+    $_SESSION['error_register'] = 'Số điện thoại này đã tồn tại';
+    header('Location: /Datn/views/register.view.php');
+    exit();
+}
 if ($password != $confirm_password) {
     $_SESSION['error_register'] = 'Hai mật khẩu mới không trùng khớp';
     header('Location: /Datn/views/register.view.php');

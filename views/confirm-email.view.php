@@ -8,23 +8,11 @@ if (!isset($_SESSION['error-reset'])) {
     $_SESSION['error-reset'] = '';
 }
 require 'partials/header.php';
+
 require 'partials/navigation.php';
 ?>
-<script>
-    function errorMessage() {
-        let message = document.getElementById('error');
-        if (phoneInput.value === 1) {
-            return "Sai tài khoản hoặc mật khẩu";
-        } else {
-            return "Bạn đang để trống tài khoản hoặc mật khẩu";
-        }
-    }
-
-
-</script>
-
 <div class="reset-pwd">
-        <form action="/Datn/controllers/confirm-email.controller.php" method="POST" id="forgetPassword">
+        <form action="/Datn/controllers/confirm-email.controller.php" method="GET" id="forgetPassword">
             <h3>Quên mật khẩu</h3>
             <div>Vui lòng nhập email để gửi mã xác thực</div>
             <div class="form-floating">
@@ -38,3 +26,4 @@ require 'partials/navigation.php';
             <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error-reset'] ?></div>
         </form>
 </div>
+<?php $_SESSION['error-reset']  = ''?>

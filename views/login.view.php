@@ -11,11 +11,6 @@ require 'partials/header.php';
 require 'partials/navigation.php';
 ?>
 <style>
-    html,
-    body {
-        height: 100%;
-    }
-
     .form-signin {
         max-width: 330px;
         padding: 1rem;

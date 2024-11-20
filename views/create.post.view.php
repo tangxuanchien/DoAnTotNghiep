@@ -20,45 +20,6 @@ require 'partials/navigation.php';
 
 require 'partials/banner.php';
 ?>
-<script>
-    $(document).ready(function() {
-        $('.district_id').change(function(e) {
-            var district_id = $('.district_id').val();
-            $.ajax({
-                url: '../controllers/get_wards.php',
-                type: 'POST',
-                data: {
-                    district_id: district_id
-                },
-                success: function(response) {
-                    $('.ward_id').html('<option value="">--Chọn Phường--</option>');
-                    $('.ward_id').append(response);
-                }
-            });
-        });
-    });
-
-    function previewImage() {
-        const preview = document.getElementById('preview');
-        preview.innerHTML = '';
-        const files = document.getElementById('image').files;
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '150px';
-                img.style.marginRight = '10px';
-                preview.appendChild(img);
-            }
-
-            reader.readAsDataURL(file);
-        }
-    }
-</script>
 <div class="container-create-post">
     <form action="/Datn/controllers/create.post.controller.php?user_id=<?= $user_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_post'] ?></div>
@@ -135,6 +96,45 @@ require 'partials/banner.php';
         </div>
     </form>
 </div>
+<script>
+    $(document).ready(function() {
+        $('.district_id').change(function(e) {
+            var district_id = $('.district_id').val();
+            $.ajax({
+                url: '../controllers/get_wards.php',
+                type: 'POST',
+                data: {
+                    district_id: district_id
+                },
+                success: function(response) {
+                    $('.ward_id').html('<option value="">--Chọn Phường--</option>');
+                    $('.ward_id').append(response);
+                }
+            });
+        });
+    });
+
+    function previewImage() {
+        const preview = document.getElementById('preview');
+        preview.innerHTML = '';
+        const files = document.getElementById('image').files;
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '150px';
+                img.style.marginRight = '10px';
+                preview.appendChild(img);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 <?php
 require 'partials/footer.php';
 ?>

@@ -8,7 +8,6 @@ $google_oauth_redirect_uri = 'http://localhost/Datn/views/google-login/google-oa
 $google_oauth_version = 'v3';
 
 if (isset($_GET['code']) && !empty($_GET['code'])) {
-    // Execute cURL request to retrieve the access token
     $params = [
         'code' => $_GET['code'],
         'client_id' => $google_oauth_client_id,
@@ -49,16 +48,15 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
             ])->fetch(PDO::FETCH_ASSOC);
 
             if (!$user) {
-                $db->query('INSERT INTO users (user_id, email, name, avatar, password, citizen_id, phone, method, created_at) VALUES (:user_id, :email, :name, :avatar, :password, :citizen_id, :phone, :method, :created_at)', [
+                $db->query('
+                INSERT INTO users (user_id, email, name, avatar, method, created_user_at) 
+                VALUES (:user_id, :email, :name, :avatar, :method, :created_user_at)', [
                     'user_id' => $max_id['max(user_id)'] + 1,
-                    'email' => $profile['email'],
                     'name' => implode(' ', $google_name_parts),
-                    'avatar' => isset($profile['picture']) ? $profile['picture'] : '',
-                    'phone' => 1,
-                    'password' => 1,
-                    'citizen_id' => 1,
+                    'email' => $profile['email'],
+                    'created_user_at' => get_time(),
                     'method' => 'google',
-                    'created_at' => get_time()
+                    'avatar' => isset($profile['picture']) ? $profile['picture'] : ''      
                 ]);
                 $user_id = $max_id['max(user_id)'] + 1;
             } else {
