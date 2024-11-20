@@ -8,7 +8,7 @@
             <div class="box-footer">
                 <ul>
                     <li>
-                        <h3 class="text-light">HANOIHOME</h3>
+                        <img src="https://res.cloudinary.com/djdf56dfq/image/upload/v1726818573/rxold0efbwrvj3r9rwjr.png" alt="logo-light" height="55px">
                         <div class="box-footer-content">
                             <p> HANOIHOME được sáng lập bởi công ty cùng tên đã đi vào vận hành</p>
                             <p> hoạt động từ 2024 với mục tiêu sẽ là đơn vị đi đầu trong lĩnh vực bất</p>

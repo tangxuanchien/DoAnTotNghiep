@@ -22,7 +22,7 @@ function check_banner($banner, $a, $b)
 
 function check_isset($var){
     if (!isset($var)) {
-        return ' ';
+        return '';
     } else {
         return $var;
     }

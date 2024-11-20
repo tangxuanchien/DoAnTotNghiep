@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 require '../models/Database.php';
 
 $user_id = $_SESSION['user_id'];
@@ -43,11 +46,6 @@ if(!empty($ward_id)){
     $sort_filter['ward_id'] = 'AND w.ward_id = '.$ward_id;
 }
 $filter = implode(' ', $sort_filter);
-var_dump($filter);
-
-if (empty($filter)) {
-    $filter = '';
-}
 
 $posts = $db->query("
 SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images

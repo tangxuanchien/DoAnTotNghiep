@@ -11,19 +11,19 @@ if (!isset($_POST['search'])) {
 $search = $_POST['search'];
 
 if (!isset($_POST['sort_by_price'])) {
-    $_POST['sort_by_price'] = ' ';
+    $_POST['sort_by_price'] = '';
 }
 if (!isset($_POST['type'])) {
-    $_POST['type'] = ' ';
+    $_POST['type'] = '';
 }
 if (!isset($_POST['ward_id'])) {
-    $_POST['ward_id'] = ' ';
+    $_POST['ward_id'] = '';
 }
 if (!isset($_POST['district_id'])) {
-    $_POST['district_id'] = ' ';
+    $_POST['district_id'] = '';
 }
 if (!isset($_POST['sort_by_created_at'])) {
-    $_POST['sort_by_created_at'] = ' ';
+    $_POST['sort_by_created_at'] = '';
 }
 
 require 'partials/header.php';
@@ -70,15 +70,15 @@ require '../controllers/search-post.controller.php';
             <li style=" margin-left: 15px;">
                 <select class="type_id form-select w-auto" name="type">
                     <option value="">--Chọn Loại hình--</option>
-                    <option value="home">Nhà ở</option>
-                    <option value="apartment">Chung cư/Căn hộ</option>
-                    <option value="land">Đất</option>
+                    <option value="home" <?= ($_POST['type'] == 'home') ? 'selected' : '' ?>>Nhà ở</option>
+                    <option value="apartment" <?= ($_POST['type'] == 'apartment') ? 'selected' : '' ?>>Chung cư/Căn hộ</option>
+                    <option value="land" <?= ($_POST['type'] == 'land') ? 'selected' : '' ?>>Đất</option>
                 </select>
             <li style=" margin-left: 15px;">
                 <select class="district_id form-select w-auto" name="district_id">
                     <option value="">--Chọn Quận--</option>
                     <?php foreach ($districts as $district): ?>
-                        <option value="<?= $district['district_id'] ?>">
+                        <option value="<?= $district['district_id'] ?>" <?= ($_POST['district_id'] == $district['district_id']) ? 'selected' : '' ?>>
                             <?= $district['district_name'] ?>
                         </option>
                     <?php endforeach ?>

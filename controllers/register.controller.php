@@ -14,7 +14,7 @@ $citizen_id = $_POST['citizen_id'];
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
 $method = 'local';
-$created_at = get_time();
+$created_user_at = get_time();
 $cloudinary = new Cloudinary([
     'cloud' => [
         'cloud_name' => 'djdf56dfq',
@@ -22,6 +22,8 @@ $cloudinary = new Cloudinary([
         'api_secret' => 'r0PTYEveaKAKL5gSXPO5ZVPFBcU',
     ],
 ]);
+$user = $db->query("SELECT max(user_id) as last_id FROM `users`")->fetch(PDO::FETCH_ASSOC);
+$user_id = $user['last_id'] + 1;
 
 $check_phone = $db->query("SELECT phone FROM `users` WHERE phone = :phone",[
     'phone' => $phone
@@ -38,20 +40,6 @@ if ($password != $confirm_password) {
 } else {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $user = $db->query(
-        "INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `password`, `citizen_id`, `method`, `created_at`) 
-             VALUES (:user_id, :name, :email, :phone, :password, :citizen_id, :method, :created_at)",
-        [
-            'user_id' => NULL,
-            'name' => $name,
-            'email' => $email,
-            'phone' => $phone,
-            'password' => $hashed_password,
-            'citizen_id' => $citizen_id,
-            'method' => $method,
-            'created_at' => $created_at
-        ]
-    );
     $file = '../images/man.png';
     $upload = $cloudinary->uploadApi()->upload($file, [
         'transformation' => [
@@ -62,11 +50,27 @@ if ($password != $confirm_password) {
             'radius' => 'max',
             'quality' => 'auto',
             'fetch_format' => 'auto'
-        ]
-    ]);
-
-    $public_id = $upload['public_id'];
-    $avatar = $upload['secure_url'];
+            ]
+        ]);
+        
+        $public_id = $upload['public_id'];
+        $avatar = $upload['secure_url'];
+        $user = $db->query(
+            "INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `password`, `citizen_id`, `avatar`, `public_id`, `method`, `created_user_at`) 
+                 VALUES (:user_id, :name, :email, :phone, :password, :citizen_id, :avatar, :public_id, :method, :created_user_at)",
+            [
+                'user_id' => $user_id,
+                'name' => $name,
+                'email' => $email,
+                'phone' => $phone,
+                'password' => $hashed_password,
+                'citizen_id' => $citizen_id,
+                'avatar' => $avatar,
+                'public_id' => $public_id,
+                'method' => $method,
+                'created_user_at' => $created_user_at
+            ]
+        );
     $_SESSION['error_register'] = '';
     $_SESSION['error-login'] = 'Đăng kí thành công';
 }

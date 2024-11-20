@@ -39,7 +39,7 @@ require 'partials/banner.php';
             <ul>
                 <li>
                     <label class="form-label">Giá bán (triệu VND)</label>
-                    <input type="number" class="form-control" name='price' required min="500" max="1000000">
+                    <input type="number" class="form-control" name='price' required min="500" max="100000">
                 </li>
                 <li>
                     <label class="form-label">Diện tích đất (m<sup>2</sup>)</label>
