@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 20, 2024 lúc 08:13 PM
+-- Thời gian đã tạo: Th10 21, 2024 lúc 07:14 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.1.25
 
@@ -123,7 +123,7 @@ INSERT INTO `posts` (`post_id`, `property_id`, `user_id`, `status`, `created_at`
 (9, 24, 1, 'available', '2024-10-30 04:43:58', '2024-11-20 18:56:54'),
 (10, 25, 2, 'available', '2024-10-30 04:43:58', '2024-11-20 18:56:54'),
 (11, 15, 3, 'available', '2024-10-30 04:43:58', '2024-11-20 18:56:54'),
-(12, 90, 3, 'available', '2024-10-31 07:12:38', '2024-11-20 18:56:54'),
+(12, 90, 6, 'available', '2024-10-31 07:12:38', '2024-11-20 18:56:54'),
 (13, 88, 4, 'available', '2024-10-31 08:09:02', '2024-11-20 18:56:54'),
 (14, 91, 3, 'available', '2024-11-04 06:10:14', '2024-11-20 18:56:54'),
 (15, 96, 1, 'available', '2024-11-08 18:02:55', '2024-11-20 18:56:54'),
@@ -133,7 +133,8 @@ INSERT INTO `posts` (`post_id`, `property_id`, `user_id`, `status`, `created_at`
 (19, 98, 3, 'available', '2024-11-13 15:09:04', '2024-11-20 18:56:54'),
 (20, 99, 4, 'available', '2024-11-14 17:04:41', '2024-11-20 18:56:54'),
 (21, 33, 6, 'available', '2024-11-20 18:54:23', '2024-11-20 18:56:54'),
-(22, 55, 2, 'available', '2024-11-20 18:54:23', '2024-11-20 18:56:54');
+(22, 55, 2, 'available', '2024-11-20 18:54:23', '2024-11-20 18:56:54'),
+(23, 100, 6, 'available', '2024-11-20 19:17:46', '2024-11-20 19:17:46');
 
 -- --------------------------------------------------------
 
@@ -263,7 +264,8 @@ INSERT INTO `properties` (`property_id`, `title`, `description`, `price`, `area`
 (96, 'Bán nhà trong ngõ ở phường Mỹ Đình 3, liên hệ 0357811244', 'Bán nhà trong ngõ ở phường Mỹ Đình 3, liên hệ 0357811244, mặt tiền rộng 4 mét ô tô đỗ trước ngõ', 7700, 65.0, 118.5, 'home', 153, '0357811244', 2, 2),
 (97, 'Bán căn chung cư ở tòa R2 Royal City', 'Bán căn chung cư ở tòa R2 Royal City', 6000, 65.0, 92.3, 'apartment', 36, '0321985322', 2, 2),
 (98, 'Bán đất đã cấp sổ đỏ khu vực Kiều Mai, Phú Diễn', 'Bán đất đã cấp sổ đỏ khu vực Kiều Mai, Phú Diễn', 1200, 50.0, 24.0, 'land', 142, '0975642103', 0, 0),
-(99, 'Cần mua nhà mặt tiền 4m để kinh doanh phố Hàng Đào', 'Cần mua nhà mặt tiền 4m để kinh doanh phố Hàng Đào', 8000, 50.0, 160.0, 'home', 61, '0238951203', 2, 2);
+(99, 'Cần mua nhà mặt tiền 4m để kinh doanh phố Hàng Đào', 'Cần mua nhà mặt tiền 4m để kinh doanh phố Hàng Đào', 8000, 50.0, 160.0, 'home', 61, '0238951203', 2, 2),
+(100, 'Bán nhà trong ngõ 68 Phùng Khoang gần trường Bưu Chính, Y Dược cổ truyền', 'Bán nhà trong ngõ 68 Phùng Khoang gần trường Bưu Chính, Y Dược cổ truyền nhà 4 tầng khóa vân tay có sẵn đồ chỉ việc dọn vào ở', 4650, 60.0, 77.5, 'home', 173, '0357951642', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -303,7 +305,7 @@ INSERT INTO `property_images` (`image_id`, `property_id`, `image_url`, `public_i
 (40, 91, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1730700653/acx6ovwlrti7fctykwgf.jpg', 'acx6ovwlrti7fctykwgf'),
 (70, 90, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1730791080/qcsr4eit0rrcldotfcr9.jpg', 'qcsr4eit0rrcldotfcr9'),
 (71, 90, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1730791087/rxiomewyujxgql6zxtfo.jpg', 'rxiomewyujxgql6zxtfo'),
-(72, 90, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1730791093/pi22gqnh8wvs0lhzj3ok.jpg', 'pi22gqnh8wvs0lhzj3ok'),
+(72, 90, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1726152424/samples/ecommerce/accessories-bag.jpg', 'samples/ecommerce/accessories-bag'),
 (78, 96, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731131052/etyx8bkqvkaihhcixthe.jpg', 'etyx8bkqvkaihhcixthe'),
 (79, 96, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731131056/skm4ktirwr7nb1q3bag1.jpg', 'skm4ktirwr7nb1q3bag1'),
 (80, 96, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731131059/njnxn8ya4yxfj8vb4rxp.jpg', 'njnxn8ya4yxfj8vb4rxp'),
@@ -317,7 +319,9 @@ INSERT INTO `property_images` (`image_id`, `property_id`, `image_url`, `public_i
 (92, 88, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731599283/eddfbaepgqzwhhfhtw4y.jpg', 'eddfbaepgqzwhhfhtw4y'),
 (93, 99, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731603889/whb6gqpqd4jhiief5wff.jpg', 'whb6gqpqd4jhiief5wff'),
 (94, 33, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1732102009/rkvmgf85kbznwezjkbo0.jpg', 'rkvmgf85kbznwezjkbo0'),
-(95, 55, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1732100096/zpnhvyr1jboqf10jynre.jpg', 'zpnhvyr1jboqf10jynre');
+(95, 55, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1732100096/zpnhvyr1jboqf10jynre.jpg', 'zpnhvyr1jboqf10jynre'),
+(96, 100, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1732130279/qj0xiapb3s0gin46spe4.jpg', 'qj0xiapb3s0gin46spe4'),
+(97, 100, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1732130285/cq3ucweucqakflnqivnb.jpg', 'cq3ucweucqakflnqivnb');
 
 -- --------------------------------------------------------
 
@@ -647,7 +651,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `post_saves`
@@ -659,13 +663,13 @@ ALTER TABLE `post_saves`
 -- AUTO_INCREMENT cho bảng `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT cho bảng `property_images`
 --
 ALTER TABLE `property_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`

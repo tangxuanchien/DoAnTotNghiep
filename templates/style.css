@@ -281,7 +281,16 @@ body {
     width: fit-content;
 }
 
-.search li {
+.search {
+    width: 80%;
+}
+
+.search li{
+    display: block;
+    margin-top: 3px;
+}
+
+.search .ul-filter li {
     display: inline-block;
 }
 

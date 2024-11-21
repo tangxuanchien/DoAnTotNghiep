@@ -1,7 +1,5 @@
 <?php
 
-use function PHPSTORM_META\type;
-
 require '../models/Database.php';
 
 $user_id = $_SESSION['user_id'];
@@ -75,4 +73,16 @@ WHERE user_sid = :user_sid", [
 ])->fetchAll(PDO::FETCH_ASSOC);
 
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
+
+if (!isset($_POST['ward_id'])) {
+	$ward_id = '';
+} else {
+	$ward_id = $_POST['ward_id'];
+};
+
+$ward = $db->query("
+SELECT * FROM `wards`
+WHERE ward_id = :ward_id", [
+	'ward_id' => $ward_id
+])->fetch(PDO::FETCH_ASSOC);
 

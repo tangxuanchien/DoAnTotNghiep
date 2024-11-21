@@ -26,6 +26,7 @@ require 'controllers/index.controller.php';
         </form>
     </div>
     <h4 class="mt-5 text-light">TÌM KIẾM THEO BỘ LỌC</h4>
+    <form action="/Datn/views/search-post.view.php?page_number=1" method="post">
     <div class="select-ward-index">
         <select class="type_id form-select w-auto" name="type">
             <option value="">--Chọn Loại hình--</option>
@@ -46,8 +47,8 @@ require 'controllers/index.controller.php';
         </select>
         <button type="submit" class="btn">Áp dụng</button>
     </div>
-    <div id="result" class="search-result">
-    </div>
+    <div id="result" class="search-result"></div>
+    </form>
 </div>
 <?php
 require 'partials/banner.php';
@@ -119,13 +120,12 @@ require 'partials/banner.php';
 					ward_id: ward_id
 				},
 				success: function(response) {
-                    console.log("District ID:", district_id);
 					$('.ward_id').html('<option value="">--Chọn Phường--</option>');
 					$('.ward_id').append(response);
 
-					if (selectedWardId) {
-						$('.ward_id').val(selectedWardId);
-					}
+					// if (selectedWardId) {
+					// 	$('.ward_id').val(selectedWardId);
+					// }
 				}
 			});
 		});
