@@ -75,7 +75,7 @@ WHERE user_sid = :user_sid", [
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!isset($_POST['ward_id'])) {
-	$ward_id = '';
+	$ward_id = 0;
 } else {
 	$ward_id = $_POST['ward_id'];
 };

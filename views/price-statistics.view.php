@@ -177,12 +177,9 @@ require 'partials/banner.php';
 					ward_id: ward_id
 				},
 				success: function(response) {
+					console.log(district_id)
 					$('.ward_id').html('<option value="">--Chọn Phường--</option>');
-					$('.ward_id').append(response);
-
-					if (selectedWardId) {
-						$('.ward_id').val(selectedWardId);
-					}
+					$('.ward_id').append(response); 
 				}
 			});
 		});

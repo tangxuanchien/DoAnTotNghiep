@@ -17,10 +17,10 @@ if (!isset($_POST['type'])) {
     $_POST['type'] = '';
 }
 if (!isset($_POST['ward_id'])) {
-    $_POST['ward_id'] = '';
+    $_POST['ward_id'] = 0;
 }
 if (!isset($_POST['district_id'])) {
-    $_POST['district_id'] = '';
+    $_POST['district_id'] = 0;
 }
 if (!isset($_POST['sort_by_created_at'])) {
     $_POST['sort_by_created_at'] = '';
@@ -39,9 +39,6 @@ require '../controllers/search-post.controller.php';
         <ul>
             <li>
                 <input class="form-control me-2" type="search" placeholder="Tìm kiếm theo tiêu đề" aria-label="Tìm kiếm" name="search" id="search" value="<?= $search ?>">
-                <!-- <button class="btn btn-primary" id="search-btn" type="submit">
-                    <i class="fa-solid fa-magnifying-glass text-light"></i>
-                </button> -->
                 <div id="result" class="search-result">
                 </div>
             </li>
@@ -193,12 +190,13 @@ require '../controllers/search-post.controller.php';
                         ward_id: ward_id
                     },
                     success: function(response) {
+                        console.log(district_id);
                         $('.ward_id').html('<option value="">--Chọn Phường--</option>');
                         $('.ward_id').append(response);
 
-                        if (selectedWardId) {
-                            $('.ward_id').val(selectedWardId);
-                        }
+                        // if (selectedWardId) {
+                        //     $('.ward_id').val(selectedWardId);
+                        // }
                     }
                 });
             });

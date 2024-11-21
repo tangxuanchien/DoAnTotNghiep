@@ -3,7 +3,7 @@ require '../models/Database.php';
 
 $page_number = $_GET['page_number'];
 $user_id = $_SESSION['user_id'];
-$limit = 8;
+$limit = 10;
 if ($page_number == 1) {
     $offset = 0;
 } else {
@@ -42,3 +42,4 @@ $total_properties = $db->query("SELECT Count(post_id) as total FROM `posts`")->f
 $residual_page_number = ((int)$total_properties["total"] % $limit);
 $last_page_numbers = ($residual_page_number === 0) ? ((int)$total_properties["total"] / $limit) : (((int)$total_properties["total"] - $residual_page_number) / $limit) + 1;
 $total_pages = range(1, $last_page_numbers);
+

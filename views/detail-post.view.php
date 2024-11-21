@@ -56,6 +56,25 @@ require '../controllers/detail-post.controller.php'; ?>
                 <p>Giá bán: <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?> (Có thương lượng)</p>
             </div>
         </div>
+        <div class="container-comment" id="container-comment">
+            Xem bình luận bài viết
+        </div>
+        <div class="comment" id="comment">
+            <p>
+                <small>
+                    <h6>Tăng Xuân Chiến</h6>
+                    Nhà này đã bán chưa
+                </small>
+            </p>
+            <p>
+                <small>
+                    Nhà này đã bán chưa
+                </small>
+            </p>
+            <p>
+                Nhà này đã bán chưa
+            </p>
+        </div>
         <h4 class="mt-4">Tin đăng khác ở <?= 'quận ' . $location['district_name'] ?></h4>
         <div class="detail-post-related">
             <?php foreach ($posts_related as $post_related) : ?>
@@ -117,8 +136,14 @@ require '../controllers/detail-post.controller.php'; ?>
 </div>
 <script>
     function changeContact(text) {
-        document.getElementById('btn-contact').textContent = text; 
+        document.getElementById('btn-contact').textContent = text;
     }
+
+    $(document).ready(function() {
+        $("#container-comment").click(function(text) {
+            $("#comment").slideToggle();
+        })
+    })
 </script>
 <?php
 require 'partials/footer.php';
