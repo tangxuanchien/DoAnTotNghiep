@@ -48,32 +48,56 @@ require '../controllers/detail-post.controller.php'; ?>
             <i class="fa-solid fa-location-dot"></i> <?= 'Phường ' . $location['ward_name'] . ', Quận ' . $location['district_name'] . ', TP.Hà Nội, Việt Nam' ?></br>
             <div class="mt-3">
                 <h4>Mô tả dự án</h4>
-                <p><?= $post['description'] ?></p>
-                <p>Diện tích: <?= $post['area'] ?></p>
+                <p>Mô tả: <?= $post['description'] ?></p>
+                <p>Diện tích: <?= $post['area'] ?> m<sup>2</sup></p>
                 <p>Giá bán trên mét vuông: <?= $post['price_per_m2'] ?> triệu/m<sup>2</sup></p>
                 <p>Phòng ngủ: <?= $post['num_bedrooms'] ?></p>
                 <p>Phòng vệ sinh: <?= $post['num_bathrooms'] ?></p>
                 <p>Giá bán: <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?> (Có thương lượng)</p>
             </div>
         </div>
-        <div class="container-comment" id="container-comment">
-            Xem bình luận bài viết
-        </div>
-        <div class="comment" id="comment">
-            <p>
-                <small>
-                    <h6>Tăng Xuân Chiến</h6>
-                    Nhà này đã bán chưa
-                </small>
-            </p>
-            <p>
-                <small>
-                    Nhà này đã bán chưa
-                </small>
-            </p>
-            <p>
-                Nhà này đã bán chưa
-            </p>
+        <div class="container-comment">
+            <div class="create-comment">
+                <form action="/Datn/controllers/create-comment.controller.php" method="post">
+                    <label class="form-label">
+                        <h4>Bình luận</h4>
+                    </label>
+                    <ul>
+                        <li>
+                            <input type="text" name="content" class="form-control" placeholder="Thêm bình luận ..."></input>
+                            <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
+                            <input type="hidden" name="property_id" value="<?= $post['property_id'] ?>">
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-primary">Bình luận</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="view-comment" id="view-comment">
+                Xem bình luận bài viết
+            </div>
+            <div class="comment" id="comment">
+                <?php if (!$comments): ?>
+                    <p>Chưa có bình luận</p>
+                <?php endif ?>
+                <?php foreach ($comments as $comment) :
+                    $created_comment_at = date("d/m/Y H:i", strtotime($comment['created_comment_at'])); ?>
+                    <div class="comment-info">
+                        <img src="<?= $comment['avatar'] ?>" alt="avatar-comment" width="40px">
+                        <?= $comment['name'] ?> - <?= $created_comment_at ?>
+                    </div>
+                    <div class="comment-content">
+                        <?= $comment['content'] ?>
+                    </div>
+                    <form action="/Datn/controllers/delete-comment.controller.php" method="post">
+                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                    <form action="/Datn/controllers/update-comment.controller.php" method="post">
+                        <button type="submit"><i class="fa-solid fa-pencil"></i></button>
+                    </form>
+                <?php endforeach ?>
+            </div>
         </div>
         <h4 class="mt-4">Tin đăng khác ở <?= 'quận ' . $location['district_name'] ?></h4>
         <div class="detail-post-related">
@@ -140,7 +164,7 @@ require '../controllers/detail-post.controller.php'; ?>
     }
 
     $(document).ready(function() {
-        $("#container-comment").click(function(text) {
+        $("#view-comment").click(function(text) {
             $("#comment").slideToggle();
         })
     })

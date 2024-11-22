@@ -86,5 +86,12 @@ WHERE property_id = pr.property_id)", [
         'property_id' => $property_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
+$comments = $db->query("
+SELECT * FROM `comments` c
+INNER JOIN `users` u on u.user_id = c.user_id
+WHERE c.post_id = :post_id",[
+        'post_id' => $post['post_id']
+])->fetchAll(PDO::FETCH_ASSOC);
+
 $created_at = $post['created_user_at'];
 $formatted_create_at = date("d-m-Y", strtotime($created_at));

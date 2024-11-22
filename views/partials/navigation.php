@@ -61,7 +61,9 @@
                                     <?php if ($login != 'Đăng nhập') : ?>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li><a class="dropdown-item" href="/Datn/views/information.view.php"><i class="fa-solid fa-user"></i> Hồ sơ</a></li>
+                                            <?php if ($_SESSION['method'] == 'local') : ?>
                                             <li><a class="dropdown-item" href="/Datn/views/change-password.view.php"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a></li>
+                                            <?php endif ?>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>

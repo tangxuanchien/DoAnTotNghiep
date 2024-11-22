@@ -42,12 +42,12 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
             $db = new Database();
             $max_id = $db->query("SELECT max(user_id) FROM users")->fetch(PDO::FETCH_ASSOC);
 
-            $user = $db->query('SELECT * FROM users WHERE method = :method and email = :email', [
+            $user_login = $db->query('SELECT * FROM users WHERE method = :method and email = :email', [
                 'method' => 'google',
                 'email' => $profile['email']
             ])->fetch(PDO::FETCH_ASSOC);
 
-            if (!$user) {
+            if (!$user_login) {
                 $db->query('
                 INSERT INTO users (user_id, email, name, avatar, method, created_user_at) 
                 VALUES (:user_id, :email, :name, :avatar, :method, :created_user_at)', [
@@ -58,13 +58,15 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
                     'method' => 'google',
                     'avatar' => isset($profile['picture']) ? $profile['picture'] : ''      
                 ]);
-                $user_id = $max_id['max(user_id)'] + 1;
-            } else {
-                $user_id = $user['user_id'];
             }
             session_regenerate_id();
-            $_SESSION['user_id'] = $user_id;
-            $_SESSION['method'] = 'google';
+            $user = $db->query('SELECT * FROM users WHERE method = :method and email = :email', [
+                'method' => 'google',
+                'email' => $profile['email']
+            ])->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['method'] = $user['method'];
             $_SESSION['name'] = $user['name'];
             $_SESSION['avatar'] = $user['avatar'];
 
