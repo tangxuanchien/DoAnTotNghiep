@@ -49,6 +49,7 @@ foreach ($posts as $index => $post):
                                 </h5>
                             </li>
                             <li class="post-save">
+                                <?php if($post['user_id'] != $_SESSION['user_id']): ?>
                                 <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $post['post_id'] ?>" method="post">
                                     <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
                                         <button class="btn btn-success">
@@ -60,6 +61,7 @@ foreach ($posts as $index => $post):
                                         </button>
                                     <?php endif ?>
                                 </form>
+                                <?php endif ?>
                             </li>
                         </ul>
                     </div>

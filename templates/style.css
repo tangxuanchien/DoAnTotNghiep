@@ -516,8 +516,16 @@ body {
     margin-top: 30px;
 }
 
-.create-comment{
-    
+.edit-comment li{
+    display: inline-block;
+}
+
+.edit-comment input{
+    width: 670px;
+}
+
+.edit-comment button{
+    width: 100px;
 }
 
 .create-comment input{

@@ -6,7 +6,6 @@ require '../models/Database.php';
 $user_id = $_SESSION['user_id'];
 $content = $_POST['content'];
 $post_id = $_POST['post_id'];
-$property_id = $_POST['property_id'];
 $created_comment_at = get_time();
 $updated_comment_at = get_time();
 

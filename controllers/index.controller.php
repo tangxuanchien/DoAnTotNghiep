@@ -9,7 +9,8 @@ if (!isset($_SESSION['method'])) {
 
 $db = new Database();
 $posts = $db->query("
-SELECT * FROM `posts` p
+SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images 
+FROM `posts` p
 inner join properties pr on pr.property_id = p.property_id
 inner join users u on u.user_id = p.user_id
 inner join wards w on w.ward_id = pr.ward_id

@@ -88,12 +88,23 @@ require '../controllers/detail-post.controller.php'; ?>
                         <?= $comment['name'] ?> - <?= $created_comment_at ?>
                     </div>
                     <div class="comment-content">
-                        <?= $comment['content'] ?>
-                        <?php if($comment['user_id'] == $_SESSION['user_id']) : ?>
-                        <div>
-                            <a href="/Datn/controllers/update-comment.controller.php"><i class="fa-solid fa-pencil"></i></a>
-                            <a href="/Datn/controllers/delete-comment.controller.php"><i class="fa-solid fa-trash"></i></a>
-                        </div>
+                        <?php if (isset($_SERVER['PATH_INFO']) and $comment['user_id'] == $_SESSION['user_id']):?>
+                            <div class="edit-comment">
+                                <form action="/Datn/controllers/edit-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>" method="post">
+                                    <ul>
+                                        <li><input type="text" name="content" class="form-control" value="<?= $comment['content'] ?>"></li>
+                                        <li><button class="btn btn-primary">Xác nhận</button></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        <?php else: ?>
+                            <?= $comment['content'] ?>
+                        <?php endif ?>
+                        <?php if ($comment['user_id'] == $_SESSION['user_id']) : ?>
+                            <div>
+                                <a href="/Datn/views/detail-post.view.php/edit?post_id=<?= $post['post_id'] ?>"><i class="fa-solid fa-pencil"></i></a>
+                                <a href="/Datn/controllers/delete-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>"><i class="fa-solid fa-trash"></i></a>
+                            </div>
                         <?php endif ?>
                     </div>
                 <?php endforeach ?>
