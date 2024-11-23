@@ -26,5 +26,5 @@ VALUES (:comment_id, :post_id, :user_id, :content, :status_comment, :created_com
     'updated_comment_at' => $updated_comment_at
 ]);
 
-header('Location: /Datn/views/detail-post.view.php?property_id='.$property_id);
+header('Location: /Datn/views/detail-post.view.php?post_id='.$post_id);
 exit();

@@ -89,13 +89,13 @@ require '../controllers/detail-post.controller.php'; ?>
                     </div>
                     <div class="comment-content">
                         <?= $comment['content'] ?>
+                        <?php if($comment['user_id'] == $_SESSION['user_id']) : ?>
+                        <div>
+                            <a href="/Datn/controllers/update-comment.controller.php"><i class="fa-solid fa-pencil"></i></a>
+                            <a href="/Datn/controllers/delete-comment.controller.php"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                        <?php endif ?>
                     </div>
-                    <form action="/Datn/controllers/delete-comment.controller.php" method="post">
-                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    </form>
-                    <form action="/Datn/controllers/update-comment.controller.php" method="post">
-                        <button type="submit"><i class="fa-solid fa-pencil"></i></button>
-                    </form>
                 <?php endforeach ?>
             </div>
         </div>
@@ -114,7 +114,7 @@ require '../controllers/detail-post.controller.php'; ?>
                             <i class="fa-solid fa-chart-line" style="margin-left: 10px;"></i> <?= $post_related['area'] . " m<sup>2</sup>" ?>
                         </p>
                         <p class="card-description"><i class="fa-solid fa-location-dot"></i> <?= $post_related['ward_name'] . ", " . $post_related['district_name'] ?></p>
-                        <a href="/Datn/views/detail-post.view.php?property_id=<?= $post_related['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
+                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $post_related['post_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -134,7 +134,7 @@ require '../controllers/detail-post.controller.php'; ?>
                             <i class="fa-solid fa-chart-line" style="margin-left: 10px;"></i> <?= $post_other['area'] . " m<sup>2</sup>" ?>
                         </p>
                         <p class="card-description"><i class="fa-solid fa-location-dot"></i> <?= $post_other['ward_name'] . ", " . $post_other['district_name'] ?></p>
-                        <a href="/Datn/views/detail-post.view.php?property_id=<?= $post_other['property_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
+                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $post_other['post_id'] ?>" class="btn btn-primary">Xem chi tiết</a>
                     </div>
                 </div>
             <?php endforeach; ?>

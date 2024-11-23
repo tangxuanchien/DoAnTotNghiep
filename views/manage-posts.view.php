@@ -55,7 +55,7 @@ require 'partials/banner.php';
                     </li>
                     <li>
                         <div style="transform: translateY(15%);">
-                            <a href="/Datn/views/detail-post.view.php?property_id=<?= $my_post['property_id'] ?>" class="text-dark">
+                            <a href="/Datn/views/detail-post.view.php?post_id=<?= $my_post['post_id'] ?>" class="text-dark">
                                 <h5><?= $my_post['title'] ?></h5>
                             </a>
                             <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small>
@@ -64,28 +64,28 @@ require 'partials/banner.php';
                             <ul>
                                 <?php if ($_SERVER['PATH_INFO'] == '/available'): ?>
                                     <li>
-                                        <form action="/Datn/views/edit-post.view.php?property_id=<?= $my_post['property_id'] ?>" method="post">
+                                        <form action="/Datn/views/edit-post.view.php?post_id=<?= $my_post['post_id'] ?>" method="post">
                                             <button class="btn btn-outline-secondary"><i class="fa-solid fa-pen"></i> Sửa tin</button>
                                         </form>
                                     </li>
                                     <li>
-                                        <form id="post_hide" action="/Datn/controllers/status-post.controller.php?property_id=<?= $my_post['property_id'] ?>&status=hide" method="post">
+                                        <form id="post_hide" action="/Datn/controllers/status-post.controller.php?post_id=<?= $my_post['post_id'] ?>&status=hide" method="post">
                                             <button type="button" class="btn btn-outline-secondary" onclick="showAlert('Bạn có chắc muốn ẩn tin này ?', '', 'post_hide')"><i class="fa-regular fa-eye-slash"></i> Ẩn tin</button>
                                         </form>
                                     </li>
                                     <li>
-                                        <form id="post_sold" action="/Datn/controllers/status-post.controller.php?property_id=<?= $my_post['property_id'] ?>&status=sold" method="post">
+                                        <form id="post_sold" action="/Datn/controllers/status-post.controller.php?post_id=<?= $my_post['post_id'] ?>&status=sold" method="post">
                                             <button type="button" class="btn btn-outline-secondary" onclick="showAlert('Tin này đã được bán thành công', 'Bạn sẽ không thể thay đổi lại trạng thái của tin ?', 'post_sold')"><i class="fa-solid fa-sack-dollar"></i> Tin đã bán</button>
                                         </form>
                                     </li>
                                 <?php elseif ($_SERVER['PATH_INFO'] == '/hide'): ?>
                                     <li>
-                                        <form action="/Datn/views/edit-post.view.php?property_id=<?= $my_post['property_id'] ?>" method="post">
+                                        <form action="/Datn/views/edit-post.view.php?post_id=<?= $my_post['post_id'] ?>" method="post">
                                             <button class="btn btn-outline-secondary"><i class="fa-solid fa-pen"></i> Sửa tin</button>
                                         </form>
                                     </li>
                                     <li>
-                                        <form id="post_hide" action="/Datn/controllers/status-post.controller.php?property_id=<?= $my_post['property_id'] ?>&status=available" method="post">
+                                        <form id="post_hide" action="/Datn/controllers/status-post.controller.php?post_id=<?= $my_post['post_id'] ?>&status=available" method="post">
                                             <button type="button" class="btn btn-outline-secondary" onclick="showAlert('Bạn có chắc muốn hiện này ?', '', 'post_hide')"><i class="fa-regular fa-eye"></i> Hiện tin</button>
                                         </form>
                                     </li>

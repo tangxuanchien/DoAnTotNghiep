@@ -561,9 +561,12 @@ body {
     font-size: 14px;
 }
 
+.comment-content a{
+    margin: 10px;
+}
 
 .comment {
-    display: none;
+    /* display: none; */
     border-bottom: 2px solid #e74c3c;
     width: 800px;
     margin-bottom: 20px 0px;

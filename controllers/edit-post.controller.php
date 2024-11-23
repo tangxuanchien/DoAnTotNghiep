@@ -8,7 +8,7 @@ use Cloudinary\Cloudinary;
 
 $db = new Database();
 
-$property_id = $_GET['property_id'];
+$post_id = $_GET['post_id'];
 if (empty($_POST['keep_images'])) {
     $_POST['keep_images'] = 'no';
 }
@@ -32,9 +32,13 @@ $cloudinary = new Cloudinary([
         'api_secret' => 'r0PTYEveaKAKL5gSXPO5ZVPFBcU',
     ],
 ]);
+$property = $db->query("SELECT * FROM `posts` WHERE post_id = :post_id", [
+    "post_id" => $post_id
+])->fetch(PDO::FETCH_ASSOC);
+$property_id = $property['property_id'];
 
 {
-    $property = $db->query(
+    $property_update = $db->query(
         "UPDATE `properties` 
         SET title = :title, description = :description, price = :price, price_per_m2 = :price_per_m2,
         area = :area, type = :type, ward_id = :ward_id, contact_info = :contact_info,

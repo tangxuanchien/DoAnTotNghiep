@@ -39,5 +39,5 @@ if (!$check_save) {
     ]);
 }
 
-header('Location: /Datn/views/all-posts.view.php?page_number=1');
+header('Location: /Datn/views/save-post.view.php');
 exit();

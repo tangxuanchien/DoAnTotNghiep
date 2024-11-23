@@ -33,7 +33,7 @@ require '../controllers/manage-posts.controller.php';
                 </li>
                 <li>
                     <div style="transform: translateY(15%);">
-                        <a href="/Datn/views/detail-post.view.php?property_id=<?= $post_saves['property_id'] ?>" class="text-dark">
+                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $post_saves['post_id'] ?>" class="text-dark">
                             <h5><?= $post_saves['title'] ?></h5>
                         </a>
                         <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small>

@@ -119,7 +119,7 @@ require '../controllers/search-post.controller.php';
                 </li>
                 <li>
                     <div>
-                        <a href="/Datn/views/detail-post.view.php?property_id=<?= $post['property_id'] ?>" class="text-dark">
+                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $post['post_id'] ?>" class="text-dark">
                             <h5><?= $post['title'] ?></h5>
                         </a>
                         <ul class="text-muted">

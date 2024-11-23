@@ -11,7 +11,7 @@ if ($properties) {
     <tr>
         <td><?= $property['title'] ?></td>
         <td>
-            <form action="/Datn/views/detail-post.view.php?property_id=<?= $property['property_id'] ?>" method="post" class="mx-5 my-2">
+            <form action="/Datn/views/detail-post.view.php?post_id=<?= $property['post_id'] ?>" method="post" class="mx-5 my-2">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </td>

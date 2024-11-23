@@ -80,4 +80,4 @@ foreach ($total_status as $type_status) {
     $num_status[$type_status] = $index['total'];
 }
 
-$_SESSION['my_posts'] = $my_posts;
+// $_SESSION['my_posts'] = $my_posts;

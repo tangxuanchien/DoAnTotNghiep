@@ -5,18 +5,22 @@ require '../models/Database.php';
 
 $title = "Chỉnh sửa bài đăng";
 $banner = "Chỉnh sửa bài đăng";
-$property_id = $_GET['property_id'];
+$post_id = $_GET['post_id'];
 
 $db = new Database();
 $edit_post = $db->query("
 SELECT * FROM `properties` p
 INNER JOIN wards w on w.ward_id = p.ward_id
 INNER JOIN districts d on d.district_id = w.district_id 
-WHERE property_id = :property_id", [
-    'property_id' => $property_id
+INNER JOIN posts po on po.property_id = p.property_id 
+WHERE po.post_id = :post_id", [
+    'post_id' => $post_id
 ])->fetch(PDO::FETCH_ASSOC);
-$images = $db->query("SELECT * FROM `property_images` WHERE property_id = :property_id", [
-    'property_id' => $property_id
+$images = $db->query("
+SELECT * FROM `property_images` i 
+INNER JOIN posts p on p.property_id = i.property_id 
+WHERE post_id = :post_id", [
+    'post_id' => $post_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
 $type = $edit_post['type'];
@@ -31,7 +35,7 @@ if (!isset($_SESSION['error_edit_post'])) {
 
 require 'partials/header.php';
 
-require 'partials/navigation.php';
+// require 'partials/navigation.php';
 
 require 'partials/banner.php';
 ?>
@@ -80,7 +84,7 @@ require 'partials/banner.php';
     }
 </script>
 <div class="container-create-post">
-    <form action="/Datn/controllers/edit-post.controller.php?property_id=<?= $property_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
+    <form action="/Datn/controllers/edit-post.controller.php?post_id=<?= $post_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_edit_post'] ?></div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>

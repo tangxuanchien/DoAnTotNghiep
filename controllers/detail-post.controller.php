@@ -1,16 +1,16 @@
 <?php
-$property_id = $_GET['property_id'];
+$post_id = $_GET['post_id'];
 require '../models/Database.php';
 $db = new Database();
 $post = $db->query("
         SELECT * FROM `posts` p 
         INNER JOIN users u on u.user_id = p.user_id
         inner join properties pr on pr.property_id = p.property_id
-        where p.property_id = :property_id", [
-        'property_id' => $property_id
+        where p.post_id = :post_id", [
+        'post_id' => $post_id
 ])->fetch(PDO::FETCH_ASSOC);
 $user_id = $post['user_id'];
-
+$property_id = $post['property_id'];
 
 $post_available = $db->query("
         SELECT count(p.property_id) as total FROM `posts` p 
