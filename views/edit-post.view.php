@@ -35,7 +35,7 @@ if (!isset($_SESSION['error_edit_post'])) {
 
 require 'partials/header.php';
 
-// require 'partials/navigation.php';
+require 'partials/navigation.php';
 
 require 'partials/banner.php';
 ?>

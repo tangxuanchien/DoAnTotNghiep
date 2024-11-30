@@ -30,12 +30,12 @@ LIMIT $limit OFFSET $offset", [
     'status' => $status
 ])->fetchAll(PDO::FETCH_ASSOC);
 
-$post_saves = $db->query("
-SELECT *
-FROM `post_saves`
-WHERE user_sid = :user_sid", [
-    'user_sid' => $user_id
-])->fetchAll(PDO::FETCH_ASSOC);
+// $post_saves = $db->query("
+// SELECT *
+// FROM `post_saves`
+// WHERE user_sid = :user_sid", [
+//     'user_sid' => $user_id
+// ])->fetchAll(PDO::FETCH_ASSOC);
 
 $total_properties = $db->query("SELECT Count(post_id) as total FROM `posts`")->fetch(PDO::FETCH_ASSOC);
 

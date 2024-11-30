@@ -6,6 +6,7 @@ $post = $db->query("
         SELECT * FROM `posts` p 
         INNER JOIN users u on u.user_id = p.user_id
         inner join properties pr on pr.property_id = p.property_id
+        LEFT JOIN post_saves ps on ps.post_sid = p.post_id
         where p.post_id = :post_id", [
         'post_id' => $post_id
 ])->fetch(PDO::FETCH_ASSOC);

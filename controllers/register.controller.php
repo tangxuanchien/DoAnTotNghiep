@@ -28,6 +28,15 @@ $user_id = $user['last_id'] + 1;
 $check_phone = $db->query("SELECT phone FROM `users` WHERE phone = :phone",[
     'phone' => $phone
 ])->fetch(PDO::FETCH_ASSOC);
+$check_email = $db->query("SELECT email FROM `users` WHERE email = :email",[
+    'email' => $email
+])->fetch(PDO::FETCH_ASSOC);
+
+if ($check_email){
+    $_SESSION['error_register'] = 'Email này đã tồn tại';
+    header('Location: /Datn/views/register.view.php');
+    exit();
+}
 if ($check_phone){
     $_SESSION['error_register'] = 'Số điện thoại này đã tồn tại';
     header('Location: /Datn/views/register.view.php');

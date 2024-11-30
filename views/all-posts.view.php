@@ -49,18 +49,19 @@ foreach ($posts as $index => $post):
                                 </h5>
                             </li>
                             <li class="post-save">
-                                <?php if($post['user_id'] != $_SESSION['user_id']): ?>
-                                <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $post['post_id'] ?>" method="post">
-                                    <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
-                                        <button class="btn btn-success">
-                                            <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
-                                        </button>
-                                    <?php else: ?>
-                                        <button class="btn btn-outline-success">
-                                            <i class="fa-solid fa-bookmark"></i> Lưu tin
-                                        </button>
-                                    <?php endif ?>
-                                </form>
+                                <?php if ($post['user_id'] != $_SESSION['user_id']): ?>
+                                    <form action="/Datn/controllers/save-post.controller.php" method="get">
+                                        <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
+                                        <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
+                                            <button class="btn btn-success">
+                                                <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
+                                            </button>
+                                        <?php else: ?>
+                                            <button class="btn btn-outline-success">
+                                                <i class="fa-solid fa-bookmark"></i> Lưu tin
+                                            </button>
+                                        <?php endif ?>
+                                    </form>
                                 <?php endif ?>
                             </li>
                         </ul>

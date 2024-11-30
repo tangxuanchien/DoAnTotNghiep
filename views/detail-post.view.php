@@ -5,10 +5,8 @@ require '../function.php';
 $title = 'Xem chi tiết';
 $login = 'Đăng nhập';
 $login = check_login($_SESSION['name']);
+$banner = "";
 
-if (isset($_SESSION['user_id'])) {
-    $banner = "Chi tiết bài đăng";
-} else $banner = "Vui lòng đăng nhập để xem thông tin";
 
 
 require 'partials/header.php';
@@ -18,6 +16,14 @@ require 'partials/navigation.php';
 require 'partials/banner.php';
 
 require '../controllers/detail-post.controller.php'; ?>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="/Datn/views/all-posts.view.php?page_number=1">Tất cả bài đăng</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Chi tiết bài đăng</li>
+    </ol>
+</nav>
+<h1>Chi tiết bài đăng</h1>
 <div class="position-relative">
     <div id="carouselAutoplaying" class="carousel slide container-detail" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
@@ -64,7 +70,7 @@ require '../controllers/detail-post.controller.php'; ?>
                     </label>
                     <ul>
                         <li>
-                            <input type="text" name="content" class="form-control" placeholder="Thêm bình luận ..."></input>
+                            <input type="text" name="content" class="form-control" placeholder="Thêm bình luận ..." required></input>
                             <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
                             <input type="hidden" name="property_id" value="<?= $post['property_id'] ?>">
                         </li>
@@ -88,11 +94,11 @@ require '../controllers/detail-post.controller.php'; ?>
                         <?= $comment['name'] ?> - <?= $created_comment_at ?>
                     </div>
                     <div class="comment-content">
-                        <?php if (isset($_SERVER['PATH_INFO']) and $comment['user_id'] == $_SESSION['user_id']):?>
+                        <?php if (isset($_SERVER['PATH_INFO']) and $comment['user_id'] == $_SESSION['user_id']): ?>
                             <div class="edit-comment">
                                 <form action="/Datn/controllers/edit-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>" method="post">
                                     <ul>
-                                        <li><input type="text" name="content" class="form-control" value="<?= $comment['content'] ?>"></li>
+                                        <li><input type="text" name="content" class="form-control" value="<?= $comment['content'] ?>" required></li>
                                         <li><button class="btn btn-primary">Xác nhận</button></li>
                                     </ul>
                                 </form>
@@ -155,11 +161,25 @@ require '../controllers/detail-post.controller.php'; ?>
 <div class="detail-fixed">
     <div class="detail-left">
         <div class="detail-info-seller">
-            <img src="<?= $post['avatar'] ?>" alt="avatar" style="border-radius: 50px; width: 80px; margin: 0 20px 10px 0; border: 2px solid black">
+            <img src="<?= $post['avatar'] ?>" alt="avatar">
             <b><?= $post['name'] ?></b> <i class="fa-solid fa-briefcase"></i></br>
             Tham gia từ: <?= $formatted_create_at ?></br>
             Đánh giá: <b>5.0 - <?= $post_available['total'] ?> tin đăng - <?= $post_sold['total'] ?> tin đã bán </b></br>
-            <button class="btn btn-primary mt-3" id="btn-contact" onclick="changeContact('<?= $post['contact_info'] ?>')">Liên hệ người bán</button>
+            <button class="btn btn-primary mt-3 mb-3" id="btn-contact" onclick="changeContact('<?= $post['contact_info'] ?>')">Liên hệ người bán</button>
+            <?php if ($post['user_id'] != $_SESSION['user_id']): ?>
+                <form action="/Datn/controllers/save-post.controller.php" method="get">
+                    <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
+                    <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
+                        <button class="btn btn-success">
+                            <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
+                        </button>
+                    <?php else: ?>
+                        <button class="btn btn-outline-success">
+                            <i class="fa-solid fa-bookmark"></i> Lưu tin
+                        </button>
+                    <?php endif ?>
+                </form>
+            <?php endif ?>
         </div>
         <div class="detail-support">
             <ul>

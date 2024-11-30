@@ -31,6 +31,11 @@ body {
     background-color: #f8f9fa;
 }
 
+.btn-primary {
+    background-color: #2c3e50;
+    border-color: #cccccc;
+}
+
 /* NAVIGATION */
 .navbar {
     background: rgba(255, 255, 255, 0.98);
@@ -96,7 +101,7 @@ body {
     background: #e9ecef;
 }
 
-.image-avatar{
+.image-avatar {
     border-radius: 25px;
     width: 40px;
 }
@@ -151,11 +156,12 @@ body {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         margin-top: 1rem;
     }
-    
+
     .user-profile {
         margin-top: 1rem;
     }
 }
+
 .mega-dropdown-item {
     display: block;
     padding: 0.7rem 1.5rem;
@@ -194,13 +200,13 @@ body {
 }
 
 /* BANNER */
-.banner{
+.banner {
     position: relative;
     background: #2c3e50;
     height: 700px;
 }
 
-.banner>img{
+.banner>img {
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -213,7 +219,7 @@ body {
     border-bottom: 2px solid #e74c3c;
     border-top: 2px solid #e74c3c;
     width: 80%;
-    margin: 30px auto 0 auto; 
+    margin: 30px auto 0 auto;
     /* Css center */
 }
 
@@ -222,7 +228,7 @@ body {
     margin: 20px 40px;
 }
 
-.slogan li i{
+.slogan li i {
     font-size: 70px;
     color: #2c3e50;
 }
@@ -231,24 +237,24 @@ body {
     margin-top: 15px;
 }
 
-.intro-hanoihome{
+.intro-hanoihome {
     padding: 40px 20px;
     border-bottom: 2px solid #e74c3c;
     width: 80%;
-    margin: 10px auto 0 auto; 
+    margin: 10px auto 0 auto;
 }
 
-.intro-hanoihome h2{
+.intro-hanoihome h2 {
     color: #2c3e50;
 }
 
-.intro-hanoihome p{
+.intro-hanoihome p {
     margin-top: 20px;
     font-style: italic;
     font-size: 25px;
 }
 
-.intro-hanoihome img{
+.intro-hanoihome img {
     margin-top: 20px;
     opacity: 0.8;
     border-radius: 40px;
@@ -261,7 +267,7 @@ body {
     position: relative;
 }
 
-.container-search{
+.container-search {
     z-index: 1;
     position: absolute;
     top: 20%;
@@ -269,13 +275,13 @@ body {
     width: 50%;
 }
 
-.search-result{
+.search-result {
     background-color: white;
     padding: 20px 20px;
     width: fit-content;
 }
 
-.search-result{
+.search-result {
     background-color: white;
     padding: 20px 20px;
     width: fit-content;
@@ -285,7 +291,7 @@ body {
     width: 80%;
 }
 
-.search li{
+.search li {
     display: block;
     margin-top: 3px;
 }
@@ -305,17 +311,17 @@ body {
     margin-right: 20px;
 }
 
-.select-ward-index button{
+.select-ward-index button {
     background-color: #e74c3c;
     color: white;
 }
 
-.select-ward-index button:hover{
+.select-ward-index button:hover {
     background-color: #e74d3ca4;
     color: white;
 }
 
-.container-post .search button:hover i{
+.container-post .search button:hover i {
     color: white;
 }
 
@@ -364,16 +370,16 @@ body {
 }
 
 /* REGISTER */
-.container-register{
+.container-register {
     width: 60%;
     margin-left: 120px;
 }
 
-.btn-submit ul li{
+.btn-submit ul li {
     display: inline-block;
 }
 
-.btn-submit button{
+.btn-submit button {
     width: 120px;
 }
 
@@ -494,6 +500,21 @@ body {
     width: 450px;
 }
 
+.detail-info-seller img {
+    border-radius: 50px;
+    width: 80px;
+    margin: 0 20px 10px 0;
+    border: 2px solid black;
+}
+
+.detail-info-seller button i{
+    color: #198754;
+}
+
+.detail-info-seller button:hover i{
+    color: white;
+}
+
 .detail-support li {
     display: inline-block;
     padding: 20px 56px;
@@ -512,39 +533,39 @@ body {
     color: #808080;
 }
 
-.container-comment{
+.container-comment {
     margin-top: 30px;
 }
 
-.edit-comment li{
+.edit-comment li {
     display: inline-block;
 }
 
-.edit-comment input{
+.edit-comment input {
     width: 670px;
 }
 
-.edit-comment button{
+.edit-comment button {
     width: 100px;
 }
 
-.create-comment input{
+.create-comment input {
     border-radius: 20px;
     width: 670px;
 }
 
-.create-comment button{
+.create-comment button {
     width: 100px;
     height: 37.6px;
     margin-left: 20px;
     border-radius: 15px;
 }
 
-.create-comment li{
+.create-comment li {
     display: inline-block;
 }
 
-.view-comment{
+.view-comment {
     background-color: #2c3e50;
     color: white;
     margin: 20px auto;
@@ -555,21 +576,21 @@ body {
     justify-content: center;
 }
 
-.comment-info{
+.comment-info {
     font-weight: 500;
     font-size: 16px;
     margin-top: 10px;
 }
 
-.comment-info img{
+.comment-info img {
     margin: 0 10px 6px 0;
 }
 
-.comment-content{
+.comment-content {
     font-size: 14px;
 }
 
-.comment-content a{
+.comment-content a {
     margin: 10px;
 }
 
@@ -581,12 +602,13 @@ body {
     padding-bottom: 20px;
 }
 
-.comment button{
+.comment button {
     /* width: 100px; */
     height: 37.6px;
     margin-left: 20px;
     border-radius: 15px;
 }
+
 /* MANAGE POSTS */
 .navigation-post {
     margin: 0 0 10px 0;
@@ -878,9 +900,10 @@ body {
     margin-top: 50px;
 }
 
-.chart>ul>li{
+.chart>ul>li {
     display: inline-block;
-    vertical-align: top; /* Đảm bảo căn chỉnh theo hàng ngang */
+    vertical-align: top;
+    /* Đảm bảo căn chỉnh theo hàng ngang */
     padding: 10px 0 20px 0;
     width: 48%;
     box-sizing: border-box;
@@ -890,7 +913,7 @@ body {
     margin-right: 50px;
 }
 
-canvas{
+canvas {
     display: block;
     max-width: 100%;
     height: auto;
