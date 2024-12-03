@@ -39,5 +39,13 @@ if (!$check_save) {
     ]);
 }
 
-header('Location: /Datn/views/save-post.view.php');
+
+if (isset($_SERVER['HTTP_REFERER'])) {
+    $previousPage = $_SERVER['HTTP_REFERER'];
+    header("Location: $previousPage");
+    exit();
+} else {
+    header("Location: /Datn/views/save-post.view.php");
+    exit();
+}
 exit();

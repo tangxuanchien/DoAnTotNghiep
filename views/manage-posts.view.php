@@ -15,6 +15,12 @@ require 'partials/banner.php';
 require '../controllers/manage-posts.controller.php';
 ?>
 <div class="container-post" style="width: 80%;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Quản lí bài đăng</li>
+        </ol>
+    </nav>
     <?php if ($_SERVER['PATH_INFO'] != '/save'): ?>
         <div class="navigation-post">
             <ul>
@@ -55,7 +61,7 @@ require '../controllers/manage-posts.controller.php';
                 </li>
                 <li>
                     <div style="transform: translateY(15%);">
-                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $my_post['post_id'] ?>" class="text-dark">
+                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $my_post['post_id'] ?>&source=manage" class="text-dark">
                             <h5><?= $my_post['title'] ?></h5>
                         </a>
                         <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small>

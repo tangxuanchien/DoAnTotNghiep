@@ -6,7 +6,9 @@ $title = 'Xem chi tiết';
 $login = 'Đăng nhập';
 $login = check_login($_SESSION['name']);
 $banner = "";
-
+if(!isset($_GET['source'])){
+    $_GET['source'] = '';
+}
 
 
 require 'partials/header.php';
@@ -19,7 +21,17 @@ require '../controllers/detail-post.controller.php'; ?>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
-        <li class="breadcrumb-item"><a href="/Datn/views/all-posts.view.php?page_number=1">Tất cả bài đăng</a></li>
+        <li class="breadcrumb-item">
+            <?php if($_GET['source'] == 'search'): ?>
+            <a href="/Datn/views/search-post.view.php?page_number=1">Tìm kiếm bài đăng</a>
+            <?php elseif($_GET['source'] == 'save'): ?>
+            <a href="/Datn/views/save-post.view.php">Lưu bài đăng</a>
+            <?php elseif($_GET['source'] == 'manage'): ?>
+                <a href="/Datn/views/manage-posts.view.php/available">Quản lí bài đăng</a>
+            <?php else: ?>
+                <a href="/Datn/views/all-posts.view.php?page_number=1">Tất cả bài đăng</a>
+            <?php endif ?>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Chi tiết bài đăng</li>
     </ol>
 </nav>
@@ -180,10 +192,11 @@ require '../controllers/detail-post.controller.php'; ?>
                     <?php endif ?>
                 </form>
             <?php endif ?>
+            <p class="mt-4">Giới thiệu: <?= (empty($post['introduce'])) ? 'Người này chưa có giới thiệu' : $post['introduce'] ?></p>
         </div>
         <div class="detail-support">
             <ul>
-                <li><a href="#"></a><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li>
+                <li><a href="#"><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li>
                 <li><a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
             </ul>
         </div>

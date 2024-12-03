@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 02, 2024 lúc 10:19 AM
+-- Thời gian đã tạo: Th12 03, 2024 lúc 07:38 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.1.25
 
@@ -140,81 +140,124 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `property_id`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'available', '2024-10-25 09:37:26', '2024-12-02 09:14:48'),
-(2, 3, 3, 'available', '2024-10-25 09:37:26', '2024-12-02 09:14:48'),
-(3, 41, 1, 'available', '2024-10-30 04:43:17', '2024-12-02 09:14:48'),
-(4, 58, 1, 'sold', '2024-10-30 04:43:58', '2024-12-02 09:14:48'),
-(5, 20, 1, 'available', '2024-10-30 04:43:58', '2024-12-02 09:14:48'),
-(6, 21, 2, 'hide', '2024-10-30 04:43:58', '2024-12-02 09:14:48'),
-(7, 22, 3, 'available', '2024-10-30 04:43:58', '2024-12-02 09:14:48'),
-(8, 23, 4, 'available', '2024-10-30 04:43:58', '2024-12-02 09:14:48'),
-(9, 24, 1, 'available', '2024-10-30 04:43:58', '2024-12-02 09:14:48'),
-(10, 25, 2, 'available', '2024-10-30 04:43:58', '2024-12-02 09:14:48'),
-(11, 15, 3, 'available', '2024-10-30 04:43:58', '2024-12-02 09:14:48'),
-(12, 90, 6, 'available', '2024-10-31 07:12:38', '2024-12-02 09:14:48'),
-(13, 88, 4, 'available', '2024-10-31 08:09:02', '2024-12-02 09:14:48'),
-(14, 91, 3, 'available', '2024-11-04 06:10:14', '2024-12-02 09:14:48'),
-(15, 96, 1, 'available', '2024-11-08 18:02:55', '2024-12-02 09:14:48'),
-(16, 34, 4, 'available', '2024-11-13 06:52:33', '2024-12-02 09:14:48'),
-(17, 47, 2, 'available', '2024-11-13 06:53:41', '2024-12-02 09:14:48'),
-(18, 97, 3, 'available', '2024-11-13 14:37:12', '2024-12-02 09:14:48'),
-(19, 98, 3, 'available', '2024-11-13 15:09:04', '2024-12-02 09:14:48'),
-(20, 99, 4, 'available', '2024-11-14 17:04:41', '2024-12-02 09:14:48'),
-(21, 33, 6, 'available', '2024-11-20 18:54:23', '2024-12-02 09:14:48'),
-(22, 55, 2, 'available', '2024-11-20 18:54:23', '2024-12-02 09:14:48'),
-(23, 100, 6, 'available', '2024-11-20 19:17:46', '2024-12-02 09:14:48'),
-(24, 16, 6, 'available', '2024-11-21 08:23:35', '2024-12-02 09:14:48'),
-(25, 17, 4, 'available', '2024-11-21 08:23:35', '2024-12-02 09:14:48'),
-(26, 18, 3, 'available', '2024-11-21 08:26:49', '2024-12-02 09:14:48'),
-(27, 19, 2, 'available', '2024-11-21 08:26:49', '2024-12-02 09:14:48'),
-(28, 42, 2, 'available', '2024-11-21 08:34:53', '2024-12-02 09:14:48'),
-(29, 43, 2, 'available', '2024-11-21 08:34:53', '2024-12-02 09:14:48'),
-(30, 44, 4, 'available', '2024-11-21 08:34:53', '2024-12-02 09:14:48'),
-(31, 45, 1, 'available', '2024-11-21 08:34:53', '2024-12-02 09:14:48'),
-(32, 28, 1, 'available', '2024-11-21 09:00:19', '2024-12-02 09:14:48'),
-(33, 29, 6, 'available', '2024-11-21 09:00:19', '2024-12-02 09:14:48'),
-(34, 30, 4, 'available', '2024-11-21 09:00:19', '2024-12-02 09:14:48'),
-(35, 26, 1, 'available', '2024-11-21 09:10:49', '2024-12-02 09:14:48'),
-(36, 27, 2, 'available', '2024-11-21 09:10:49', '2024-12-02 09:14:48'),
-(37, 48, 1, 'available', '2024-11-21 09:13:53', '2024-12-02 09:14:48'),
-(38, 49, 2, 'available', '2024-11-21 09:13:53', '2024-12-02 09:14:48'),
-(39, 50, 6, 'available', '2024-11-21 09:13:53', '2024-12-02 09:14:48'),
-(41, 51, 1, 'available', '2024-11-21 09:23:57', '2024-12-02 09:14:48'),
-(42, 52, 2, 'sold', '2024-11-21 09:23:57', '2024-12-02 09:14:48'),
-(43, 53, 4, 'available', '2024-11-21 09:23:57', '2024-12-02 09:14:48'),
-(44, 54, 6, 'available', '2024-11-21 09:23:57', '2024-12-02 09:14:48'),
-(45, 59, 1, 'available', '2024-11-21 09:33:52', '2024-12-02 09:14:48'),
-(46, 60, 2, 'sold', '2024-11-21 09:33:52', '2024-12-02 09:14:48'),
-(47, 61, 4, 'available', '2024-11-21 09:33:52', '2024-12-02 09:14:48'),
-(48, 62, 6, 'available', '2024-11-21 09:33:52', '2024-12-02 09:14:48'),
-(49, 63, 6, 'available', '2024-11-21 09:33:52', '2024-12-02 09:14:48'),
-(50, 70, 7, 'available', '2024-12-02 07:19:17', '2024-12-02 09:14:48'),
-(51, 71, 7, 'available', '2024-12-02 07:19:26', '2024-12-02 09:14:48'),
-(52, 72, 7, 'available', '2024-12-02 07:19:32', '2024-12-02 09:14:48'),
-(53, 73, 7, 'available', '2024-12-02 07:19:38', '2024-12-02 09:14:48'),
-(54, 74, 7, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(55, 75, 7, 'available', '2024-12-02 07:19:48', '2024-12-02 09:14:48'),
-(56, 56, 7, 'available', '2024-12-02 07:38:53', '2024-12-02 09:14:48'),
-(57, 57, 6, 'available', '2024-12-02 07:39:03', '2024-12-02 09:14:48'),
-(58, 76, 4, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(59, 77, 4, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(60, 78, 3, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(61, 79, 3, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(62, 80, 2, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(66, 81, 6, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(67, 82, 7, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(68, 83, 1, 'available', '2024-12-02 07:19:43', '2024-12-02 09:14:48'),
-(69, 101, 7, 'available', '2024-12-02 08:24:55', '2024-12-02 09:14:48'),
-(70, 102, 7, 'available', '2024-12-02 08:27:17', '2024-12-02 09:14:48'),
-(71, 103, 7, 'available', '2024-12-02 08:31:00', '2024-12-02 09:14:48'),
-(72, 104, 7, 'available', '2024-12-02 08:33:16', '2024-12-02 09:14:48'),
-(73, 105, 1, 'available', '2024-12-02 08:40:31', '2024-12-02 09:14:48'),
-(74, 106, 1, 'available', '2024-12-02 08:43:46', '2024-12-02 09:14:48'),
-(75, 107, 1, 'available', '2024-12-02 08:47:00', '2024-12-02 09:14:48'),
-(76, 108, 4, 'available', '2024-12-02 09:04:29', '2024-12-02 09:14:48'),
-(77, 109, 4, 'available', '2024-12-02 09:07:42', '2024-12-02 09:14:48'),
-(78, 110, 4, 'available', '2024-12-02 09:10:25', '2024-12-02 09:14:48'),
-(79, 111, 4, 'available', '2024-12-02 09:13:18', '2024-12-02 09:14:48');
+(1, 1, 2, 'available', '2024-10-25 09:37:26', '2024-12-03 06:33:39'),
+(2, 3, 3, 'available', '2024-10-25 09:37:26', '2024-12-03 06:33:39'),
+(3, 41, 1, 'available', '2024-10-30 04:43:17', '2024-12-03 06:33:39'),
+(4, 58, 1, 'sold', '2024-10-30 04:43:58', '2024-12-03 06:33:39'),
+(5, 20, 1, 'available', '2024-10-30 04:43:58', '2024-12-03 06:33:39'),
+(6, 21, 2, 'hide', '2024-10-30 04:43:58', '2024-12-03 06:33:39'),
+(7, 22, 3, 'available', '2024-10-30 04:43:58', '2024-12-03 06:33:39'),
+(8, 23, 4, 'available', '2024-10-30 04:43:58', '2024-12-03 06:33:39'),
+(9, 24, 1, 'available', '2024-10-30 04:43:58', '2024-12-03 06:33:39'),
+(10, 25, 2, 'available', '2024-10-30 04:43:58', '2024-12-03 06:33:39'),
+(11, 15, 3, 'available', '2024-10-30 04:43:58', '2024-12-03 06:33:39'),
+(12, 90, 6, 'available', '2024-10-31 07:12:38', '2024-12-03 06:33:39'),
+(13, 88, 4, 'available', '2024-10-31 08:09:02', '2024-12-03 06:33:39'),
+(14, 91, 3, 'available', '2024-11-04 06:10:14', '2024-12-03 06:33:39'),
+(15, 96, 1, 'available', '2024-11-08 18:02:55', '2024-12-03 06:33:39'),
+(16, 34, 4, 'available', '2024-11-13 06:52:33', '2024-12-03 06:33:39'),
+(17, 47, 2, 'available', '2024-11-13 06:53:41', '2024-12-03 06:33:39'),
+(18, 97, 3, 'available', '2024-11-13 14:37:12', '2024-12-03 06:33:39'),
+(19, 98, 3, 'available', '2024-11-13 15:09:04', '2024-12-03 06:33:39'),
+(20, 99, 4, 'available', '2024-11-14 17:04:41', '2024-12-03 06:33:39'),
+(21, 33, 6, 'available', '2024-11-20 18:54:23', '2024-12-03 06:33:39'),
+(22, 55, 2, 'available', '2024-11-20 18:54:23', '2024-12-03 06:33:39'),
+(23, 100, 6, 'available', '2024-11-20 19:17:46', '2024-12-03 06:33:39'),
+(24, 16, 6, 'available', '2024-11-21 08:23:35', '2024-12-03 06:33:39'),
+(25, 17, 4, 'available', '2024-11-21 08:23:35', '2024-12-03 06:33:39'),
+(26, 18, 3, 'available', '2024-11-21 08:26:49', '2024-12-03 06:33:39'),
+(27, 19, 2, 'available', '2024-11-21 08:26:49', '2024-12-03 06:33:39'),
+(28, 42, 2, 'available', '2024-11-21 08:34:53', '2024-12-03 06:33:39'),
+(29, 43, 2, 'available', '2024-11-21 08:34:53', '2024-12-03 06:33:39'),
+(30, 44, 4, 'available', '2024-11-21 08:34:53', '2024-12-03 06:33:39'),
+(31, 45, 1, 'available', '2024-11-21 08:34:53', '2024-12-03 06:33:39'),
+(32, 28, 1, 'available', '2024-11-21 09:00:19', '2024-12-03 06:33:39'),
+(33, 29, 6, 'available', '2024-11-21 09:00:19', '2024-12-03 06:33:39'),
+(34, 30, 4, 'available', '2024-11-21 09:00:19', '2024-12-03 06:33:39'),
+(35, 26, 1, 'available', '2024-11-21 09:10:49', '2024-12-03 06:33:39'),
+(36, 27, 2, 'available', '2024-11-21 09:10:49', '2024-12-03 06:33:39'),
+(37, 48, 1, 'available', '2024-11-21 09:13:53', '2024-12-03 06:33:39'),
+(38, 49, 2, 'available', '2024-11-21 09:13:53', '2024-12-03 06:33:39'),
+(39, 50, 6, 'available', '2024-11-21 09:13:53', '2024-12-03 06:33:39'),
+(41, 51, 1, 'available', '2024-11-21 09:23:57', '2024-12-03 06:33:39'),
+(42, 52, 2, 'sold', '2024-11-21 09:23:57', '2024-12-03 06:33:39'),
+(43, 53, 4, 'available', '2024-11-21 09:23:57', '2024-12-03 06:33:39'),
+(44, 54, 6, 'available', '2024-11-21 09:23:57', '2024-12-03 06:33:39'),
+(45, 59, 1, 'available', '2024-11-21 09:33:52', '2024-12-03 06:33:39'),
+(46, 60, 2, 'sold', '2024-11-21 09:33:52', '2024-12-03 06:33:39'),
+(47, 61, 4, 'available', '2024-11-21 09:33:52', '2024-12-03 06:33:39'),
+(48, 62, 6, 'available', '2024-11-21 09:33:52', '2024-12-03 06:33:39'),
+(49, 63, 6, 'available', '2024-11-21 09:33:52', '2024-12-03 06:33:39'),
+(50, 70, 7, 'available', '2024-12-02 07:19:17', '2024-12-03 06:33:39'),
+(51, 71, 7, 'available', '2024-12-02 07:19:26', '2024-12-03 06:33:39'),
+(52, 72, 7, 'available', '2024-12-02 07:19:32', '2024-12-03 06:33:39'),
+(53, 73, 7, 'available', '2024-12-02 07:19:38', '2024-12-03 06:33:39'),
+(54, 74, 7, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(55, 75, 7, 'available', '2024-12-02 07:19:48', '2024-12-03 06:33:39'),
+(56, 56, 7, 'available', '2024-12-02 07:38:53', '2024-12-03 06:33:39'),
+(57, 57, 6, 'available', '2024-12-02 07:39:03', '2024-12-03 06:33:39'),
+(58, 76, 4, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(59, 77, 4, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(60, 78, 3, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(61, 79, 3, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(62, 80, 2, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(66, 81, 6, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(67, 82, 7, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(68, 83, 1, 'available', '2024-12-02 07:19:43', '2024-12-03 06:33:39'),
+(69, 101, 7, 'available', '2024-12-02 08:24:55', '2024-12-03 06:33:39'),
+(70, 102, 7, 'available', '2024-12-02 08:27:17', '2024-12-03 06:33:39'),
+(71, 103, 7, 'available', '2024-12-02 08:31:00', '2024-12-03 06:33:39'),
+(72, 104, 7, 'available', '2024-12-02 08:33:16', '2024-12-03 06:33:39'),
+(73, 105, 1, 'available', '2024-12-02 08:40:31', '2024-12-03 06:33:39'),
+(74, 106, 1, 'available', '2024-12-02 08:43:46', '2024-12-03 06:33:39'),
+(75, 107, 1, 'available', '2024-12-02 08:47:00', '2024-12-03 06:33:39'),
+(76, 108, 4, 'available', '2024-12-02 09:04:29', '2024-12-03 06:33:39'),
+(77, 109, 4, 'available', '2024-12-02 09:07:42', '2024-12-03 06:33:39'),
+(78, 110, 4, 'available', '2024-12-02 09:10:25', '2024-12-03 06:33:39'),
+(79, 111, 4, 'available', '2024-12-02 09:13:18', '2024-12-03 06:33:39'),
+(80, 112, 4, 'available', '2024-12-02 15:13:15', '2024-12-03 06:33:39'),
+(81, 113, 4, 'available', '2024-12-02 15:15:16', '2024-12-03 06:33:39'),
+(82, 114, 3, 'available', '2024-12-02 15:41:08', '2024-12-03 06:33:39'),
+(83, 115, 3, 'available', '2024-12-02 15:43:35', '2024-12-03 06:33:39'),
+(84, 116, 3, 'available', '2024-12-02 15:45:44', '2024-12-03 06:33:39'),
+(85, 117, 3, 'available', '2024-12-02 15:48:07', '2024-12-03 06:33:39'),
+(86, 118, 3, 'available', '2024-12-02 15:48:44', '2024-12-03 06:33:39'),
+(87, 119, 3, 'available', '2024-12-02 15:49:14', '2024-12-03 06:33:39'),
+(88, 120, 3, 'available', '2024-12-02 15:51:26', '2024-12-03 06:33:39'),
+(89, 121, 3, 'available', '2024-12-02 15:53:36', '2024-12-03 06:33:39'),
+(90, 122, 3, 'available', '2024-12-02 15:54:21', '2024-12-03 06:33:39'),
+(91, 123, 3, 'available', '2024-12-02 15:56:57', '2024-12-03 06:33:39'),
+(92, 124, 1, 'available', '2024-12-02 16:01:29', '2024-12-03 06:33:39'),
+(93, 125, 1, 'available', '2024-12-02 16:05:55', '2024-12-03 06:33:39'),
+(94, 126, 1, 'available', '2024-12-02 16:12:16', '2024-12-03 06:33:39'),
+(95, 127, 1, 'available', '2024-12-02 16:15:58', '2024-12-03 06:33:39'),
+(96, 128, 1, 'available', '2024-12-02 16:46:57', '2024-12-03 06:33:39'),
+(97, 129, 1, 'available', '2024-12-02 16:50:35', '2024-12-03 06:33:39'),
+(98, 130, 2, 'available', '2024-12-02 16:59:25', '2024-12-03 06:33:39'),
+(99, 131, 2, 'available', '2024-12-02 17:02:20', '2024-12-03 06:33:39'),
+(100, 132, 2, 'available', '2024-12-02 17:04:43', '2024-12-03 06:33:39'),
+(101, 133, 2, 'available', '2024-12-02 17:14:08', '2024-12-03 06:33:39'),
+(102, 134, 2, 'available', '2024-12-02 17:20:02', '2024-12-03 06:33:39'),
+(103, 135, 2, 'available', '2024-12-02 17:53:53', '2024-12-03 06:33:39'),
+(104, 136, 2, 'available', '2024-12-02 18:20:48', '2024-12-03 06:33:39'),
+(105, 137, 2, 'available', '2024-12-02 18:52:02', '2024-12-03 06:33:39'),
+(106, 138, 2, 'available', '2024-12-02 19:06:53', '2024-12-03 06:33:39'),
+(107, 139, 2, 'available', '2024-12-02 19:08:28', '2024-12-03 06:33:39'),
+(108, 140, 2, 'available', '2024-12-02 19:40:11', '2024-12-03 06:33:39'),
+(109, 141, 2, 'available', '2024-12-02 20:05:24', '2024-12-03 06:33:39'),
+(110, 142, 2, 'available', '2024-12-02 20:06:54', '2024-12-03 06:33:39'),
+(111, 143, 7, 'available', '2024-12-03 05:15:44', '2024-12-03 06:33:39'),
+(112, 144, 7, 'available', '2024-12-03 05:17:39', '2024-12-03 06:33:39'),
+(113, 145, 7, 'available', '2024-12-03 05:19:36', '2024-12-03 06:33:39'),
+(114, 146, 7, 'available', '2024-12-03 05:22:13', '2024-12-03 06:33:39'),
+(115, 147, 7, 'available', '2024-12-03 05:23:55', '2024-12-03 06:33:39'),
+(116, 148, 7, 'available', '2024-12-03 06:05:58', '2024-12-03 06:33:39'),
+(117, 149, 7, 'available', '2024-12-03 06:07:27', '2024-12-03 06:33:39'),
+(118, 150, 7, 'available', '2024-12-03 06:08:49', '2024-12-03 06:33:39'),
+(119, 151, 7, 'available', '2024-12-03 06:09:57', '2024-12-03 06:33:39'),
+(120, 152, 7, 'available', '2024-12-03 06:10:50', '2024-12-03 06:33:39'),
+(121, 153, 7, 'available', '2024-12-03 06:12:01', '2024-12-03 06:33:39'),
+(122, 154, 8, 'available', '2024-12-03 06:19:07', '2024-12-03 06:33:39');
 
 -- --------------------------------------------------------
 
@@ -240,7 +283,8 @@ INSERT INTO `post_saves` (`post_save_id`, `user_sid`, `post_sid`, `created_save_
 (8, 2, 7, '2024-11-22 16:00:17'),
 (9, 2, 10, '2024-11-22 16:00:38'),
 (10, 1, 2, '2024-11-29 14:38:21'),
-(11, 1, 10, '2024-11-30 08:28:58');
+(11, 1, 10, '2024-11-30 08:28:58'),
+(12, 8, 3, '2024-12-03 06:27:15');
 
 -- --------------------------------------------------------
 
@@ -271,7 +315,7 @@ INSERT INTO `properties` (`property_id`, `title`, `description`, `price`, `area`
 (3, 'Chính chủ cần bán nhà phố Bạch Mai', 'Căn nhà rộng gồm 2 phòng ngủ 2 phòng vệ sinh diện tích 50m2', 5000, 50.0, 100.0, 'home', 81, '0927513642', 2, 2),
 (15, 'Bán nhà khu vực Hai Bà Trưng phố Cầu Dền', 'Nhà mới xây, diện tích 45m2, gồm 3 phòng ngủ và 2 phòng tắm', 4500, 45.0, 100.0, 'home', 82, '0936123456', 3, 2),
 (16, 'Chính chủ bán căn hộ tại Đống Mác, Hai Bà Trưng', 'Căn hộ chung cư cao cấp, diện tích 60m2 với 2 phòng ngủ và 2 phòng vệ sinh', 4750, 60.0, 79.2, 'apartment', 83, '0987654321', 2, 2),
-(17, 'Bán nhà cấp 4 tại Khâm Thiên, Đống Đa', 'Nhà cấp 4 diện tích 35m2, có 1 phòng ngủ và 1 phòng tắm', 48000, 60.0, 800.0, 'home', 11, '0945234789', 1, 1),
+(17, 'Bán nhà cấp 4 tại Khâm Thiên, Đống Đa', 'Nhà cấp 4 diện tích 35m2, có 1 phòng ngủ và 1 phòng tắm', 8000, 60.0, 133.3, 'home', 11, '0945234789', 1, 1),
 (18, 'Chính chủ cần bán biệt thự Long Biên', 'Biệt thự rộng 200m2, 4 phòng ngủ và 3 phòng tắm, khu vực yên tĩnh', 10000, 155.0, 64.5, 'home', 134, '0912345678', 4, 3),
 (19, 'Bán đất thổ cư tại Tây Hồ', 'Đất rộng 65m2, vị trí đắc địa, gần khu ngoại giao đoàn', 4000, 65.0, 61.5, 'land', 78, '0978561234', 0, 0),
 (20, 'Chính chủ bán nhà riêng Ba Đình', 'Nhà 4 tầng diện tích 70m2 với 3 phòng ngủ và 3 phòng vệ sinh', 7000, 70.0, 100.0, 'home', 43, '0903456789', 3, 3),
@@ -317,7 +361,7 @@ INSERT INTO `properties` (`property_id`, `title`, `description`, `price`, `area`
 (60, 'Bán nhà trên phố gần chợ Đồng Xuân', 'Căn nhà 3 phòng ngủ, rộng rãi', 8000, 65.0, 123.1, 'home', 55, '0912345687', 3, 2),
 (61, 'Rao bán nhà ở Chương Dương Hoàn Kiếm', 'Nhà đẹp 2 phòng ngủ, tiện nghi đầy đủ', 4350, 58.0, 75.0, 'home', 53, '0912345688', 2, 2),
 (62, 'Chính chủ cần bán nhà gần chợ đồ cũ Vạn Phúc, Hà Đông', 'Nhà 3 tầng, 70m2, sổ đỏ chính chủ', 5300, 70.0, 75.7, 'home', 172, '0912345689', 3, 2),
-(63, 'Cần bán gấp chung cư gần trăm tỷ đi hai bước chân là ra mặt hồ Gươm', 'Nhà 3 phòng ngủ, thoáng mát', 65000, 100.0, 650.0, 'apartment', 69, '0912345690', 3, 2),
+(63, 'Cần bán gấp chung cư gần trăm tỷ đi hai bước chân là ra mặt hồ Gươm', 'Nhà 3 phòng ngủ, thoáng mát', 20000, 100.0, 200.0, 'apartment', 69, '0912345690', 5, 5),
 (64, 'Nhà đẹp cần bán tại Phường Quang Trung', 'Gần trung tâm thương mại', 9000, 90.0, 100.0, 'home', 21, '0912345691', 3, 3),
 (65, 'Bán nhà phố tại Phường Quang Trung', 'Căn nhà 2 phòng ngủ, tiện nghi', 6000, 60.0, 100.0, 'home', 21, '0912345692', 2, 2),
 (66, 'Bán nhà phố tại Phường Quốc Tử Giám', 'Nhà đẹp 3 phòng ngủ, thoáng mát', 8500, 85.0, 100.0, 'home', 22, '0912345693', 3, 2),
@@ -358,7 +402,50 @@ INSERT INTO `properties` (`property_id`, `title`, `description`, `price`, `area`
 (108, 'Bán căn chung cư của tập đoàn Vinhome gần Lotte Liễu Giai, Ba Đình', 'Chung cư 2 phòng ngủ, đầy đủ tiện ích từ bãi đỗ xe, trường học', 5700, 60.0, 95.0, 'home', 44, '0985241360', 2, 2),
 (109, 'Bán nhà gần khu ngoại giao đoàn, phường Xuân Tảo, quận Bắc Từ Liêm', 'Nhà đầy đủ tiện ích, chỉ việc dọn đồ vào ở', 5000, 68.0, 73.5, 'home', 148, '0942300251', 2, 2),
 (110, 'Bán căn nhà tập thể ở Thành Công, Ba Đình', 'Căn hộ tập thể xây dựng từ 20 năm trước', 3800, 55.0, 69.1, 'apartment', 50, '0996358421', 2, 1),
-(111, 'Bán nhà ở Mai Dịch, Cầu Giấy', 'Diện tích 60m2, có sổ đỏ chính chủ, gần trường học, bệnh viện', 4200, 68.0, 61.8, 'home', 3, '0987564210', 2, 2);
+(111, 'Bán nhà ở Mai Dịch, Cầu Giấy', 'Diện tích 60m2, có sổ đỏ chính chủ, gần trường học, bệnh viện', 4200, 68.0, 61.8, 'home', 3, '0987564210', 2, 2),
+(112, 'Bán nhà phố Ngọc Hà Ba Đình, gần lăng Bác, bến xe Kim Mã', 'Sổ đỏ chính chủ, thủ tục sang tên nhanh chóng', 4500, 55.0, 81.8, 'home', 45, '0947651240', 2, 2),
+(113, 'Bán nhà tại khu vực Đức Giang, Long Biên ngay mặt đường', 'Nhà 4 tầng nội thất đầy đủ', 3500, 60.0, 58.3, 'home', 124, '0933221560', 2, 2),
+(114, 'Nhà ngõ 40 Vĩnh Phúc, Ba Đình cần rao bán, nhà xây từ cuối năm 2018', 'Nội thất đầy đủ, để lại toàn bộ cho người mua nhà, có giảm thêm nếu thiện chí', 4700, 63.0, 74.6, 'home', 52, '0332140741', 3, 2),
+(115, 'Do nhu cầu công việc cần bán nhà ở Quán Thánh, Ba Đình ', 'Nhà 5 tầng chào bán 7 tỉ, sổ đỏ chính chú', 7000, 70.0, 100.0, 'apartment', 49, '0978612350', 4, 3),
+(116, 'Chính chủ cần bán nhà ở Thụy Phương, Bắc Từ Liêm', 'Nhà đã có sổ đỏ, không nằm trong quy hoạch dự án, thủ tục nhanh chóng', 2900, 60.0, 48.3, 'home', 146, '0996258431', 2, 2),
+(117, 'Nghĩa Đô, Cầu Giấy cần bán nhà lô góc', 'Lô góc mặt ngõ hai ô tô tránh, thích hợp hộ kinh doanh nhỏ', 4400, 65.0, 67.7, 'home', 4, '0355241200', 3, 2),
+(118, 'Nghĩa Đô, Cầu Giấy cần bán nhà lô góc', 'Lô góc mặt ngõ hai ô tô tránh, thích hợp hộ kinh doanh nhỏ', 4400, 65.0, 67.7, 'home', 4, '0355241200', 3, 2),
+(119, 'Nghĩa Đô, Cầu Giấy cần bán nhà lô góc', 'Lô góc mặt ngõ hai ô tô tránh, thích hợp hộ kinh doanh nhỏ', 4400, 65.0, 67.7, 'home', 4, '0355241200', 3, 2),
+(120, 'Bán nhà phố Dịch Vọng, Cầu Giấy gần ga tàu điện cách các trường đại học vài trăm mét', 'Nhà 3 tầng, 1 tum phù hợp cho gia đình ít người', 6150, 64.0, 96.1, 'home', 1, '0824567321', 2, 2),
+(121, 'Rao bán nhà tại Yên Hòa, Cầu Giấy, đã có sổ đỏ', 'Nhà trong ngõ nhỏ, sâu, diện tích 55m2', 3900, 55.0, 70.9, 'home', 8, '0951357642', 3, 2),
+(122, 'Rao bán nhà tại Yên Hòa, Cầu Giấy, đã có sổ đỏ', 'Nhà trong ngõ nhỏ, sâu, diện tích 55m2', 3900, 55.0, 70.9, 'home', 8, '0951357642', 3, 2),
+(123, 'Bán nhà ở Hà Đông, phường Biên Giang gần bến xe Yên Nghĩa', 'Nhà 3 tầng, đã có sổ đỏ chính chủ', 3750, 70.0, 53.6, 'home', 159, '0357412510', 3, 3),
+(124, 'Bán nhà ở Cửa Nam, Hoàn Kiếm phù hợp kinh doanh', 'Nhà 4 tầng, mặt kính thoáng', 8000, 50.0, 160.0, 'home', 54, '0963351200', 3, 2),
+(125, 'Bán nhà ở gần hồ Khương Đình, Thanh Xuân', 'Nhà đã ở được hơn 10 năm, đã tu sửa lại ', 4600, 70.0, 65.7, 'home', 30, '0865742310', 2, 2),
+(126, 'Nhà mới tu sửa cần bán ở Thượng Đình, Thanh Xuân', 'Nhà 5 tầng, mua bán hợp đồng đầy đủ', 4650, 66.0, 70.5, 'home', 121, '0985321001', 2, 2),
+(127, 'Bán nhà trong ngõ khu vực Bách Khoa, Hai Bà Trưng', 'Trong khu vực ba trường đại học lớn, nhà dân đã xây nhiều năm', 5500, 60.0, 91.7, 'home', 79, '0392581220', 3, 3),
+(128, 'Bán nhà ngõ Thổ Quan, Đống Đa', 'Nhà đang chào bán 3,5 tỉ, chốt cọc sớm là một lợi thế', 3500, 50.0, 70.0, 'home', 24, '0975752415', 2, 2),
+(129, 'Bán nhà ở phố Cửa Đông, Hoàn Kiếm', 'Bán nhà ở phố Cửa Đông, Hoàn Kiếm đã có sổ đỏ chính chủ', 4850, 65.0, 74.6, 'home', 70, '0945567230', 3, 2),
+(130, 'Bán nhà ở Hà Đông thuộc phường Đồng Mai', 'Nhà 3 tầng thuộc đất dự án phân lô, có sổ đỏ chính chủ', 3600, 60.0, 60.0, 'home', 160, '0935432032', 3, 2),
+(131, 'Bán chung cư ở Dương Nội, Hà Đông gần trường đại học Phenikaa', 'View thoáng có cửa sổ cách 400m ra mặt đường lớn', 4000, 65.0, 61.5, 'apartment', 161, '0931543125', 3, 2),
+(132, 'Bán nhà số 1009 Bạch Đằng sau lưng nhà là sông Hồng', 'Nhà 3 tầng, đã ở được 15 năm nội thất vẫn còn mới', 4950, 70.0, 70.7, 'home', 80, '0975368140', 3, 2),
+(133, 'Nhà phố Lê Đại Hành cần bán do chuyển mô hình kinh doanh', 'Nhà 4 tầng phù hợp mở hàng quán', 8500, 60.0, 141.7, 'home', 86, '0988573210', 2, 2),
+(134, 'Bán nhà ở Nguyễn Du, Hai Bà Trưng', 'Bán nhà ở Nguyễn Du, Hai Bà Trưng', 7600, 64.0, 118.8, 'home', 88, '0985732010', 3, 2),
+(135, 'Chính chủ cần bán nhà phố hàng Bài, Hoàn Kiếm', 'Nhà 5 tầng đã cấp sổ đỏ đầy đủ', 6750, 60.0, 112.5, 'home', 57, '0938657241', 2, 2),
+(136, 'Bán nhà phố hàng Bồ, Hoàn Kiếm diện tích 60m2', 'Bán nhà phố hàng Bồ, Hoàn Kiếm diện tích 60m2', 5000, 50.0, 100.0, 'home', 58, '0368951240', 2, 2),
+(137, 'Bán nhà phố Hàng Gai, Hoàn Kiếm', 'Bán nhà phố Hàng Gai, Hoàn Kiếm', 6750, 60.0, 112.5, 'home', 62, '0923355474', 3, 3),
+(138, 'Bán nhà phố Hàng Trống, Hoàn Kiếm', 'Bán nhà phố Hàng Trống, Hoàn Kiếm', 7000, 68.0, 102.9, 'home', 64, '0981215410', 2, 2),
+(139, 'Bán nhà phố Hàng Trống, Hoàn Kiếm', 'Bán nhà phố Hàng Trống, Hoàn Kiếm', 4800, 55.0, 87.3, 'home', 51, '0813155215', 3, 3),
+(140, 'Bán nhà phố Phan Chu Trinh, Hoàn Kiếm', 'Bán nhà phố Phan Chu Trinh, Hoàn Kiếm', 5700, 60.0, 95.0, 'home', 66, '0975653206', 2, 2),
+(141, 'Bán nhà Phúc Tân, Hoàn Kiếm', 'Bán nhà Phúc Tân, Hoàn Kiếm', 8400, 80.0, 105.0, 'home', 67, '0954654812', 2, 2),
+(142, 'Bán nhà phố Trần Hưng Đạo, Hoàn Kiếm', 'Bán nhà phố Trần Hưng Đạo, Hoàn Kiếm', 5700, 70.0, 81.4, 'home', 68, '0572575757', 2, 2),
+(143, 'Bán nhà tại phố Ngọc Khánh, Ba Đình', 'Bán nhà tại phố Ngọc Khánh, Ba Đình', 5700, 55.0, 103.6, 'home', 46, '0972540475', 3, 2),
+(144, 'Bán nhà ngõ 118 tại phố Nguyễn Trung Trực, Ba Đình', 'Nhà 3 tầng, chưa có nội thất, sổ đỏ chính chủ', 4400, 58.0, 75.9, 'home', 47, '0972610250', 2, 2),
+(145, 'Chính chủ bán nhà trong ngõ ở Phúc Xá, Ba Đình', 'Nhà do ông bà ở để lại, đã tu sửa nội thất', 4950, 60.0, 82.5, 'home', 48, '0911257635', 3, 2),
+(146, 'Chung cư ở khu vực Cầu Diễn cần đăng bán', 'Chưa có nội thất, mới bàn giao từ 2022', 3500, 55.0, 63.6, 'apartment', 149, '0745621092', 2, 1),
+(147, 'Bán nhà mặt đất ở phường Tây Mỗ', 'Nhà chính chủ, có sổ đỏ lâu dài', 4400, 60.0, 73.3, 'home', 150, '0986574321', 2, 2),
+(148, 'Bán nhà ở Mễ Trì, Nam Từ Liêm', 'Bán nhà ở Mễ Trì, Nam Từ Liêm', 5700, 70.0, 81.4, 'home', 151, '0987566330', 2, 2),
+(149, 'Bán nhà ở Mỹ Đình 1, Nam Từ Liêm', 'Bán nhà ở Mỹ Đình 1, Nam Từ Liêm', 4350, 55.0, 79.1, 'home', 152, '0974524440', 2, 2),
+(150, 'Bán nhà ở Phú Đô, Nam Từ Liêm', 'Bán nhà ở Phú Đô, Nam Từ Liêm', 4400, 50.0, 88.0, 'home', 154, '0365125604', 2, 2),
+(151, 'Bán nhà ở Phương Canh, Nam Từ Liêm', 'Bán nhà ở Phương Canh, Nam Từ Liêm', 3700, 50.0, 74.0, 'home', 155, '0748126020', 3, 2),
+(152, 'Bán nhà ở Trung Văn, Nam Từ Liêm', 'Bán nhà ở Trung Văn, Nam Từ Liêm', 5000, 65.0, 76.9, 'apartment', 157, '0921212630', 3, 2),
+(153, 'Bán chung cư ở Xuân Phương, Nam Từ Liêm', 'Bán chung cư ở Phú Đô, Nam Từ Liêm', 3800, 55.0, 69.1, 'apartment', 158, '0787742101', 2, 1),
+(154, 'Bán nhà ở Đông Ngạc, Bắc Từ Liêm', 'Bán nhà ở Đông Ngạc, Bắc Từ Liêm, có sổ đỏ chính chủ', 4000, 50.0, 80.0, 'home', 138, '0978754241', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -465,13 +552,53 @@ INSERT INTO `property_images` (`image_id`, `property_id`, `image_url`, `public_i
 (151, 104, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733128401/mrl606gsc05ggud22q7x.jpg', 'mrl606gsc05ggud22q7x'),
 (152, 105, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733128838/dk5ihex9odxjj2dfemzt.jpg', 'dk5ihex9odxjj2dfemzt'),
 (153, 106, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733129040/skkt3yfhwmshkhpnxzzx.jpg', 'skkt3yfhwmshkhpnxzzx'),
-(154, 107, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733129237/ft8ehj9m7ac2sodpc5lb.jpg', 'ft8ehj9m7ac2sodpc5lb'),
 (155, 108, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733130282/gy0qe3yr7hvgkmr2bwan.jpg', 'gy0qe3yr7hvgkmr2bwan'),
 (156, 109, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733130479/l6ghwfeo4nzyfncj00on.jpg', 'l6ghwfeo4nzyfncj00on'),
 (157, 109, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733130486/x73hzy0aoghfdoc5pedk.jpg', 'x73hzy0aoghfdoc5pedk'),
 (158, 110, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733130637/iu9bhs0beq3xfrfoouyn.jpg', 'iu9bhs0beq3xfrfoouyn'),
 (159, 111, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733130804/zprgujfa82g1cszb2phg.jpg', 'zprgujfa82g1cszb2phg'),
-(160, 17, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733130893/vnxafsiz9bqzbriucstk.jpg', 'vnxafsiz9bqzbriucstk');
+(160, 17, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733130893/vnxafsiz9bqzbriucstk.jpg', 'vnxafsiz9bqzbriucstk'),
+(161, 112, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733152429/ixgbmrt9fgzmb4fdkx2c.jpg', 'ixgbmrt9fgzmb4fdkx2c'),
+(162, 113, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733152530/r7wjf1jy9fk3vl6kdko5.jpg', 'r7wjf1jy9fk3vl6kdko5'),
+(163, 114, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733154081/gldrmy8i4u48aufmq9lk.jpg', 'gldrmy8i4u48aufmq9lk'),
+(164, 115, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733154237/r0ybsucckofsbbpqmpvs.jpg', 'r0ybsucckofsbbpqmpvs'),
+(165, 116, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733154356/alklurfdyr6dhsmk9cir.jpg', 'alklurfdyr6dhsmk9cir'),
+(166, 119, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733154559/zfics4lqrswqm0n2uel7.jpg', 'zfics4lqrswqm0n2uel7'),
+(167, 120, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733154698/jno7rwjlbaeexhop9bwi.jpg', 'jno7rwjlbaeexhop9bwi'),
+(168, 122, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733154869/h6udgf6f3gek9grmwbsh.jpg', 'h6udgf6f3gek9grmwbsh'),
+(169, 123, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733155031/mh3hz6de30k4eqdgkhhz.jpg', 'mh3hz6de30k4eqdgkhhz'),
+(170, 124, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733155303/akjeosn31xdl919evbpq.jpg', 'akjeosn31xdl919evbpq'),
+(171, 107, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733155350/mxdxqyx9qgauruqfdpsn.jpg', 'mxdxqyx9qgauruqfdpsn'),
+(172, 125, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733155566/bi3syxitoarl4yvfstue.jpg', 'bi3syxitoarl4yvfstue'),
+(173, 126, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733155950/iptmbvvruwhebok2lf6l.jpg', 'iptmbvvruwhebok2lf6l'),
+(174, 127, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733156170/ubuhw7qddu6ogtm35mot.jpg', 'ubuhw7qddu6ogtm35mot'),
+(175, 128, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733158028/ncfubbym5gsvzik3ievt.jpg', 'ncfubbym5gsvzik3ievt'),
+(176, 129, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733158248/dtxnurtgyzcfscyihwjd.jpg', 'dtxnurtgyzcfscyihwjd'),
+(177, 130, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733158782/cqdvsgdz05psru0hjtth.jpg', 'cqdvsgdz05psru0hjtth'),
+(178, 131, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733158944/yj5texpqnctrh65rnh7s.jpg', 'yj5texpqnctrh65rnh7s'),
+(179, 132, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733159095/nmtsbbkr4vnjqhw0b7du.jpg', 'nmtsbbkr4vnjqhw0b7du'),
+(180, 133, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733159662/hujf7swd5329wzxj182r.jpg', 'hujf7swd5329wzxj182r'),
+(181, 134, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733160012/xr3yhr0rmb7qkunrf3ci.jpg', 'xr3yhr0rmb7qkunrf3ci'),
+(182, 135, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733162058/ofyqcazz7rmkcqgcrqwq.jpg', 'ofyqcazz7rmkcqgcrqwq'),
+(183, 136, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733163661/phcxejhnpcxbgjovr4bf.jpg', 'phcxejhnpcxbgjovr4bf'),
+(184, 137, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733165534/cycraxkxj7kihsgm9p4b.jpg', 'cycraxkxj7kihsgm9p4b'),
+(185, 138, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733166440/c6jnrwfm9d2rnymjcdit.jpg', 'c6jnrwfm9d2rnymjcdit'),
+(186, 139, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733166522/hvfkm86mwfvy7px9fejs.jpg', 'hvfkm86mwfvy7px9fejs'),
+(187, 140, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733168423/gr0td252tpcay7uwqzho.jpg', 'gr0td252tpcay7uwqzho'),
+(188, 141, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733169937/fs1szrod3romyoags6vi.jpg', 'fs1szrod3romyoags6vi'),
+(189, 142, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733170028/hvazgpyitxznrvzhhjhk.jpg', 'hvazgpyitxznrvzhhjhk'),
+(190, 143, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733202957/cfuthdd8dtf7qjgdbsx0.jpg', 'cfuthdd8dtf7qjgdbsx0'),
+(191, 144, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733203082/euba6unwhnr9dte9ukkp.jpg', 'euba6unwhnr9dte9ukkp'),
+(192, 145, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733203186/cgm5emaap0mx76gtqm3w.jpg', 'cgm5emaap0mx76gtqm3w'),
+(193, 146, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733203339/qnk0q76h2upsgifj0ovv.jpg', 'qnk0q76h2upsgifj0ovv'),
+(194, 147, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733203441/vruvmdvrjxzqx1lrot5n.jpg', 'vruvmdvrjxzqx1lrot5n'),
+(195, 148, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733205989/tt69btoou74en7zahcq5.jpg', 'tt69btoou74en7zahcq5'),
+(196, 149, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733206063/pwvvynqz3y63wys6guzq.jpg', 'pwvvynqz3y63wys6guzq'),
+(197, 150, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733206142/ecjsfxahsa7na2khtsbx.jpg', 'ecjsfxahsa7na2khtsbx'),
+(198, 151, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733206204/vdzphzucvjqfcdjhkis9.jpg', 'vdzphzucvjqfcdjhkis9'),
+(199, 152, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733206256/febpymvmphejaar1cbdg.jpg', 'febpymvmphejaar1cbdg'),
+(200, 153, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733206333/wwwl6gxsvj4ohjfeeoaf.jpg', 'wwwl6gxsvj4ohjfeeoaf'),
+(201, 154, 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733206757/qrvwi21cy0gutnuxeebp.jpg', 'qrvwi21cy0gutnuxeebp');
 
 -- --------------------------------------------------------
 
@@ -518,11 +645,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `password`, `created_user_at`, `citizen_id`, `method`, `avatar`, `public_id`, `introduce`) VALUES
 (1, 'Tăng Xuân Chiến', 'tangxuanchien511@gmail.com', '0911275613', '$2y$10$QAtIImMO9gdk2Y9o42mAweglNfGYD/Ma4c/RRrfgq5yqrD8QRSwES', '2024-09-08 16:07:37', '015320404567', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731399478/vvsg5a6d2opw6xl81hgq.jpg', 'vvsg5a6d2opw6xl81hgq', ''),
-(2, 'Trần Mạnh Tuấn', 'tuantran@gmail.com', '0911275612', '$2y$10$gOGo9IVtb0kJEStAHcxzNuoyq04fJ/4ZDwexZcNMpm1HwChGYxATC', '2024-09-08 16:08:56', '015203008503', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731399272/bqrwgsisgvasxeojgjhc.jpg', 'bqrwgsisgvasxeojgjhc', ''),
+(2, 'Trần Mạnh Tuấn', 'tuantran@gmail.com', '0911275612', '$2y$10$gOGo9IVtb0kJEStAHcxzNuoyq04fJ/4ZDwexZcNMpm1HwChGYxATC', '2024-09-08 16:08:56', '015203008503', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733158646/ykn2eliz9djstkudohp2.jpg', 'ykn2eliz9djstkudohp2', ''),
 (3, 'Trần Minh Chiến', 'tangxuanchien511@gmail.com', '0273765210', '', '2024-10-01 09:32:16', '10000242405', 'google', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731479263/tnxxwrzpyk3pdab52b6h.jpg', 'tnxxwrzpyk3pdab52b6h', 'Tôi đang làm trong lĩnh vực bất động sản khu vực Long Biên'),
 (4, 'HIEUTHUHAI', 'chien0181966@huce.edu.vn', '0967842511', NULL, '2024-10-15 06:49:11', '019684003214', 'google', 'https://lh3.googleusercontent.com/a/ACg8ocK8pqdiX-BAa3i6kVXViz8_n_ftZNWvQCf6JuXEQniNX0Z4Tg=s96-c', NULL, ''),
 (6, 'Lê Ngọc Anh', 'lengocanh@gmail.com', '0973206868', '$2y$10$7LYnYF7OmW4x1CluJE4uCezQ.cB8ZAU3tg9uYC56eeJZQyivus42C', '2024-11-14 07:50:53', '015203003695', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1731571944/z2s8ymcbmk8lopqawsbo.png', 'z2s8ymcbmk8lopqawsbo', ''),
-(7, 'Vũ Như Quỳnh', 'vunhuquynh@gmail.com', '0941858612', '$2y$10$s8lwlvkWMpfBR7UX.hiHAuP4ocfB/ogOpfI5EuFT0N8HijGwGHi32', '2024-12-02 06:29:41', '015203008504', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733120996/eosxv8ivu9inbmebzoi5.png', 'eosxv8ivu9inbmebzoi5', NULL);
+(7, 'Vũ Như Quỳnh', 'vunhuquynh@gmail.com', '0941858612', '$2y$10$s8lwlvkWMpfBR7UX.hiHAuP4ocfB/ogOpfI5EuFT0N8HijGwGHi32', '2024-12-02 06:29:41', '015203008504', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733120996/eosxv8ivu9inbmebzoi5.png', 'eosxv8ivu9inbmebzoi5', NULL),
+(8, 'Nguyễn Ngọc Ánh', 'nguyenngocanh@gmail', '0911275611', '$2y$10$YeM1/AZnm1ka2seFyBWfJuhOAyoNzDTe37u8Q/.3v7ivZkDVn0yJq', '2024-12-03 06:15:42', '015204875421', 'local', 'https://res.cloudinary.com/djdf56dfq/image/upload/v1733206544/soc7svnknl4xjv6bqlzs.png', 'soc7svnknl4xjv6bqlzs', 'Môi giới bất động sản đã có hơn 5 năm kinh nghiệm trong lĩnh vực');
 
 -- --------------------------------------------------------
 
@@ -816,7 +944,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT cho bảng `post_saves`
@@ -828,13 +956,13 @@ ALTER TABLE `post_saves`
 -- AUTO_INCREMENT cho bảng `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT cho bảng `property_images`
 --
 ALTER TABLE `property_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`
@@ -846,7 +974,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `wards`

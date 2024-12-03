@@ -15,34 +15,43 @@ require 'partials/banner.php';
 require '../controllers/manage-posts.controller.php';
 ?>
 <div class="container-post" style="width: 80%;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Lưu bài đăng</li>
+        </ol>
+    </nav>
     <?php
-    foreach ($post_saves as $index => $post_saves):
-        $date = date_parse($post_saves['updated_at']);
+    foreach ($post_saves as $index => $post_save):
+        $date = date_parse($post_save['updated_at']);
     ?>
         <div class="post-lists">
             <ul>
                 <li>
                     <div class="image-container">
-                        <a href="<?= $post_saves['image_url'] ?>" data-lightbox="image_property_<?= $index ?>" data-title="Ảnh mô tả">
-                            <img src="<?= $post_saves['image_url'] ?>" alt="Thumbnail" style="width: 200px;">
+                        <a href="<?= $post_save['image_url'] ?>" data-lightbox="image_property_<?= $index ?>" data-title="Ảnh mô tả">
+                            <img src="<?= $post_save['image_url'] ?>" alt="Thumbnail" style="width: 200px;">
                         </a>
                         <div class="image-overlay">
-                            <i class="fa-regular fa-images"></i> <?= $post_saves['total_images'] ?>
+                            <i class="fa-regular fa-images"></i> <?= $post_save['total_images'] ?>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div style="transform: translateY(15%);">
-                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $post_saves['post_id'] ?>" class="text-dark">
-                            <h5><?= $post_saves['title'] ?></h5>
+                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $post_save['post_id'] ?>&source=save" class="text-dark">
+                            <h5><?= $post_save['title'] ?></h5>
                         </a>
-                        <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small>
+                        <small class="text-muted">
+                            <i class="far fa-clock c"></i> <?= $date['hour'] . ':' . $date['minute'] ?>
+                            <i class="fa-solid fa-calendar-days me-1" style="margin-left: 10px;"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?>
+                        </small>
                     </div>
                     <div class="mt-2 post-edit">
                         <ul>
                             <li>
-                            <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $post_saves['post_id'] ?>" method="post">
-                                    <?php if ($post_saves['user_sid'] == $_SESSION['user_id'] and $post_saves['post_sid'] == $post_saves['post_id']): ?>
+                                <form action="/Datn/controllers/save-post.controller.php?post_id=<?= $post_save['post_id'] ?>" method="post">
+                                    <?php if ($post_save['user_sid'] == $_SESSION['user_id'] and $post_save['post_sid'] == $post_save['post_id']): ?>
                                         <button class="btn btn-success">
                                             <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
                                         </button>
