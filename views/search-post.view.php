@@ -35,6 +35,12 @@ require 'partials/banner.php';
 require '../controllers/search-post.controller.php';
 ?>
 <div class="container-post search">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tìm kiếm bài đăng</li>
+        </ol>
+    </nav>
     <form action="/Datn/views/search-post.view.php?page_number=1" method="post" class="d-flex my-3" role="search">
         <ul>
             <li>

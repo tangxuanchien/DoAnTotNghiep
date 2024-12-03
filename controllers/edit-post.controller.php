@@ -8,7 +8,7 @@ use Cloudinary\Cloudinary;
 
 $db = new Database();
 
-$post_id = $_GET['post_id'];
+$post_id = $_POST['post_id'];
 if (empty($_POST['keep_images'])) {
     $_POST['keep_images'] = 'no';
 }

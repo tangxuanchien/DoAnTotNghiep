@@ -5,7 +5,7 @@ require '../models/Database.php';
 
 $title = "Chỉnh sửa bài đăng";
 $banner = "Chỉnh sửa bài đăng";
-$post_id = $_GET['post_id'];
+$post_id = $_POST['post_id'];
 
 $db = new Database();
 $edit_post = $db->query("
@@ -84,7 +84,8 @@ require 'partials/banner.php';
     }
 </script>
 <div class="container-create-post">
-    <form action="/Datn/controllers/edit-post.controller.php?post_id=<?= $post_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
+    <form action="/Datn/controllers/edit-post.controller.php" method="POST" enctype="multipart/form-data" id="submit-post">
+        <input type="hidden" name="post_id" value="<?= $post_id ?>">
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_edit_post'] ?></div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>

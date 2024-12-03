@@ -30,15 +30,21 @@ require 'partials/navigation.php';
 require 'partials/banner.php';
 
 ?>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Thống kê giá bán</li>
+	</ol>
+</nav>
 <form action="/Datn/views/price-statistics.view.php" method="post">
 	<div class="select-ward">
-		<select class="type_id form-select w-auto" name="type">
+		<select class="type_id form-select w-auto" name="type" required>
 			<option value="">--Chọn Loại--</option>
 			<option value="home" <?= $type == 'home' ? 'selected' : '' ?>>Nhà ở</option>
 			<option value="apartment" <?= $type == 'apartment' ? 'selected' : '' ?>>Chung cư/Căn hộ</option>
 			<option value="land" <?= $type == 'land' ? 'selected' : '' ?>>Đất</option>
 		</select>
-		<select class="district_id form-select w-auto" name="district_id">
+		<select class="district_id form-select w-auto" name="district_id" required>
 			<option value="">--Chọn Quận--</option>
 			<?php foreach ($districts as $district): ?>
 				<option value="<?= $district['district_id'] ?>" <?= isset($_POST['district_id']) && $_POST['district_id'] == $district['district_id'] ? 'selected' : '' ?>>
@@ -46,7 +52,7 @@ require 'partials/banner.php';
 				</option>
 			<?php endforeach ?>
 		</select>
-		<select class="ward_id form-select w-auto" name="ward_id">
+		<select class="ward_id form-select w-auto" name="ward_id" required>
 			<option value="">--Chọn Phường--</option>
 			<?php if (isset($ward['ward_id'])): ?>
 				<option value="<?= $ward['ward_id'] ?>" selected><?= $ward['ward_name'] ?></option>
@@ -84,9 +90,12 @@ require 'partials/banner.php';
 </div>
 <div class="statistic-label">
 	<?php if ($statistic_of_ward['total'] > 0): ?>
-		<a href="/Datn/views/all-posts.view.php?page_number=1" class="text-dark fs-5">
-			Xem tất cả bài đăng ở phường <?= $ward['ward_name'] ?> <i class="fa-solid fa-angles-right"></i>
-		</a>
+		<form action="/Datn/views/search-post.view.php?page_number=1" class="text-dark fs-5" method="post">
+			<button type="submit" class="btn fs-4">
+				Xem tất cả bài đăng ở phường <?= $ward['ward_name'] ?> <i class="fa-solid fa-angles-right"></i>
+			</button>
+			<input type="hidden" value="<?= $ward['ward_id'] ?>" name="ward_id">
+		</form>
 	<?php endif ?>
 </div>
 <div class="chart">
@@ -179,7 +188,7 @@ require 'partials/banner.php';
 				success: function(response) {
 					console.log(district_id)
 					$('.ward_id').html('<option value="">--Chọn Phường--</option>');
-					$('.ward_id').append(response); 
+					$('.ward_id').append(response);
 				}
 			});
 		});

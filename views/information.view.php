@@ -40,7 +40,8 @@ require '../controllers/information.controller.php';
                     <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
                 </div>
             </div> -->
-            <form action="/Datn/views/edit-information.view.php?user_id=<?= $user['user_id'] ?>" method="post">
+            <form action="/Datn/views/edit-information.view.php" method="post">
+                <input type="hidden" value="<?= $user['user_id'] ?>" name="user_id">
                 <button class="btn btn-light w-100 mb-3">
                     <i class="fa-solid fa-pen-to-square" style="color: var(--primary-color)"></i> Chỉnh sửa hồ sơ
                 </button>

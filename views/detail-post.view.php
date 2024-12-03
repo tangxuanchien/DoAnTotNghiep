@@ -124,7 +124,7 @@ require '../controllers/detail-post.controller.php'; ?>
                         <div>
                             <img src="<?= $post_related['image_url'] ?>" class="card-img-top" alt="image_house">
                         </div>
-                        <h5 class="card-title mt-2"><?= strlen($post_related['title']) > 80 ? substr_replace($post_related['title'], ' ...', 80) : $post_related['title'] ?></h5>
+                        <h5 class="card-title mt-2"><?= strlen($post_related['title']) > 70 ? substr_replace($post_related['title'], ' ...', 70) : $post_related['title'] ?></h5>
                         <p>
                             <i class="fa-solid fa-bed"></i> <?= $post_related['num_bedrooms'] . " ngủ" ?>
                             <i class="fa-solid fa-bath" style="margin-left: 10px;"></i> <?= $post_related['num_bathrooms'] . " tắm" ?>
@@ -144,7 +144,7 @@ require '../controllers/detail-post.controller.php'; ?>
                         <div>
                             <img src="<?= $post_other['image_url'] ?>" class="card-img-top" alt="image_house">
                         </div>
-                        <h5 class="card-title mt-2"><?= strlen($post_other['title']) > 80 ? substr_replace($post_other['title'], ' ...', 80) : $post_other['title'] ?></h5>
+                        <h5 class="card-title mt-2"><?= strlen($post_other['title']) > 70 ? substr_replace($post_other['title'], ' ...', 70) : $post_other['title'] ?></h5>
                         <p>
                             <i class="fa-solid fa-bed"></i> <?= $post_other['num_bedrooms'] . " ngủ" ?>
                             <i class="fa-solid fa-bath" style="margin-left: 10px;"></i> <?= $post_other['num_bathrooms'] . " tắm" ?>

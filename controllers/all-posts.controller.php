@@ -3,7 +3,7 @@ require '../models/Database.php';
 
 $page_number = $_GET['page_number'];
 $user_id = $_SESSION['user_id'];
-$limit = 10;
+$limit = 15;
 if ($page_number == 1) {
     $offset = 0;
 } else {

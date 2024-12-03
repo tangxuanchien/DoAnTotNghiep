@@ -5,7 +5,7 @@ $title = "Việc cần làm";
 $banner = "Thay đổi thông tin";
 $login = $_SESSION['name'];
 
-$user_id = $_GET['user_id'];
+$user_id = $_POST['user_id'];
 require '../models/Database.php';
 $db = new Database();
 $user = $db->query("SELECT * FROM `users` WHERE user_id = $user_id")->fetch(PDO::FETCH_ASSOC);
@@ -20,8 +20,9 @@ $password = $user['password'];
 $confirmpassword = '';
 ?>
 <div style="width: 50%; margin-bottom: 50px;">
-    <form action="/Datn/controllers/edit-information.controller.php?user_id=<?= $user_id ?>" method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
+    <form action="/Datn/controllers/edit-information.controller.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" value="<?= $user_id ?>" name="user_id">    
+    <div class="mb-3">
             <label class="form-label">Họ và tên</label>
             <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>" required minlength="6">
         </div>

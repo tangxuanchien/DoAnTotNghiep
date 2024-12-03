@@ -2,7 +2,7 @@
 session_start();
 require '../function.php';
 
-$title = "Quản lí bài đăng";
+$title = "Tin đã lưu";
 $banner = "";
 $login = check_login($_SESSION['name']);
 
