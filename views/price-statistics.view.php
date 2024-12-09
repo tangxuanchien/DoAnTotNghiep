@@ -6,11 +6,13 @@ require '../controllers/price-statistics.controller.php';
 
 $db = new Database();
 $title = "Thống kê giá bán";
-$login = check_login($_SESSION['name']);
+if (!isset($_SESSION['name'])) {
+    $login = 'Đăng nhập';
+} else $login = $_SESSION['name'];
 
 if (isset($ward['ward_name'])) {
 	$banner = "Thống kê giá bán của phường " . $ward['ward_name'];
-} else $banner = '';
+} else $banner = 'Thống kê giá bán';
 
 if (!isset($ward['district_id'])) {
 	$ward['district_id'] = 0;
@@ -25,12 +27,12 @@ ORDER BY ward_id", [
 
 require 'partials/header.php';
 
-require 'partials/navigation.php';
+require 'partials/navigation.php';	
 
 require 'partials/banner.php';
 
 ?>
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb" style="margin-left:120px">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
 		<li class="breadcrumb-item active" aria-current="page">Thống kê giá bán</li>
@@ -88,6 +90,22 @@ require 'partials/banner.php';
 		<h2 class="text-danger"><i class="fa-solid fa-xmark text-danger"></i> Chưa có bất động sản nào được rao bán ở đây</h2>
 	<?php endif ?>
 </div>
+<?php if (isset($statistic_of_district) && isset($ward['district_name'])): ?>
+	<div class="price-range-container">
+		<div class="price-info">
+			<span id="min-label"><?= $statistic_of_district['min_district'] ?></span>
+			<span id="current-label"><?= $statistic_of_district['avg_district'] ?></span>
+			<span id="max-label"><?= $statistic_of_district['max_district'] ?></span>
+		</div>
+		<div class="range-bar">
+			<div class="track"></div>
+			<div class="highlight" id="highlight-bar"></div>
+			<div class="marker min-marker"></div>
+			<div class="marker max-marker"></div>
+		</div>
+		<p class="range-description">Khoảng giá phổ biến ở quận <b><?= $ward['district_name'] ?></b></p>
+	</div>
+<?php endif ?>
 <div class="statistic-label">
 	<?php if ($statistic_of_ward['total'] > 0): ?>
 		<form action="/Datn/views/search-post.view.php?page_number=1" class="text-dark fs-5" method="post">
@@ -99,26 +117,20 @@ require 'partials/banner.php';
 	<?php endif ?>
 </div>
 <div class="chart">
-	<ul>
-		<li>
-			<h2>Biểu đồ giá các quận thuộc thủ đô Hà Nội</h2>
-			<canvas id="districtChart"></canvas>
-			<a href="/Datn/views/all-posts.view.php?page_number=1" class="text-dark fs-5">
-				Xem tất cả bài đăng ở Hà Nội <i class="fa-solid fa-angles-right"></i>
-			</a>
-		</li>
-		<li style="margin-left: 50px;">
-			<h2>Biểu đồ giá các phường <?= !isset($ward['district_name']) ? '' : 'thuộc quận ' . $ward['district_name'] ?></h2>
-			<canvas id="wardChart"></canvas>
-			<?php if (isset($ward['district_name'])): ?>
-				<a href="/Datn/views/all-posts.view.php?page_number=1" class="text-dark fs-5">
-					Xem tất cả bài đăng ở quận <?= $ward['district_name'] ?> <i class="fa-solid fa-angles-right"></i>
-				</a>
-			<?php endif ?>
-		</li>
-	</ul>
-</div>
+	<h2>Biểu đồ giá các phường <?= !isset($ward['district_name']) ? '' : 'thuộc quận ' . $ward['district_name'] ?></h2>
+	<canvas id="wardChart"></canvas>
+	<?php if (isset($ward['district_name'])): ?>
+		<a href="/Datn/views/all-posts.view.php?page_number=1" class="fs-4">
+			Xem tất cả bài đăng ở quận <?= $ward['district_name'] ?> <i class="fa-solid fa-angles-right"></i>
+		</a>
+	<?php endif ?>
 
+	<h2 class="mt-5">Biểu đồ giá các quận thuộc thủ đô Hà Nội</h2>
+	<canvas id="districtChart"></canvas>
+	<a href="/Datn/views/all-posts.view.php?page_number=1" class="fs-4 mt-3">
+		Xem tất cả bài đăng ở Hà Nội <i class="fa-solid fa-angles-right"></i>
+	</a>
+</div>
 <script>
 	var backgroundColors = <?= json_encode($backgroundColors); ?>;
 	var borderColors = <?= json_encode($borderColors); ?>;

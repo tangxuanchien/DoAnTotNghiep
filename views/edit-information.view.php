@@ -19,10 +19,17 @@ require 'partials/banner.php';
 $password = $user['password'];
 $confirmpassword = '';
 ?>
-<div style="width: 50%; margin-bottom: 50px;">
+<div style="width: 50%; margin-bottom: 50px; margin-left: 120px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/Datn/views/information.view.php">Thông tin cá nhân</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa thông tin</li>
+        </ol>
+    </nav>
     <form action="/Datn/controllers/edit-information.controller.php" method="POST" enctype="multipart/form-data">
-    <input type="hidden" value="<?= $user_id ?>" name="user_id">    
-    <div class="mb-3">
+        <input type="hidden" value="<?= $user_id ?>" name="user_id">
+        <div class="mb-3">
             <label class="form-label">Họ và tên</label>
             <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>" required minlength="6">
         </div>

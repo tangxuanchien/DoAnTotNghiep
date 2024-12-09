@@ -4,9 +4,11 @@ require '../function.php';
 
 $title = 'Xem chi tiết';
 $login = 'Đăng nhập';
-$login = check_login($_SESSION['name']);
+if (!isset($_SESSION['name'])) {
+    $login = 'Đăng nhập';
+} else $login = $_SESSION['name'];
 $banner = "";
-if(!isset($_GET['source'])){
+if (!isset($_GET['source'])) {
     $_GET['source'] = '';
 }
 
@@ -22,11 +24,11 @@ require '../controllers/detail-post.controller.php'; ?>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
         <li class="breadcrumb-item">
-            <?php if($_GET['source'] == 'search'): ?>
-            <a href="/Datn/views/search-post.view.php?page_number=1">Tìm kiếm bài đăng</a>
-            <?php elseif($_GET['source'] == 'save'): ?>
-            <a href="/Datn/views/save-post.view.php">Lưu bài đăng</a>
-            <?php elseif($_GET['source'] == 'manage'): ?>
+            <?php if ($_GET['source'] == 'search'): ?>
+                <a href="/Datn/views/search-post.view.php?page_number=1">Tìm kiếm bài đăng</a>
+            <?php elseif ($_GET['source'] == 'save'): ?>
+                <a href="/Datn/views/save-post.view.php">Lưu bài đăng</a>
+            <?php elseif ($_GET['source'] == 'manage'): ?>
                 <a href="/Datn/views/manage-posts.view.php/available">Quản lí bài đăng</a>
             <?php else: ?>
                 <a href="/Datn/views/all-posts.view.php?page_number=1">Tất cả bài đăng</a>
@@ -80,6 +82,7 @@ require '../controllers/detail-post.controller.php'; ?>
                     <label class="form-label">
                         <h4>Bình luận</h4>
                     </label>
+                    <?php if(isset($_SESSION['user_id'])):?>
                     <ul>
                         <li>
                             <input type="text" name="content" class="form-control" placeholder="Thêm bình luận ..." required></input>
@@ -90,6 +93,7 @@ require '../controllers/detail-post.controller.php'; ?>
                             <button type="submit" class="btn btn-primary">Bình luận</button>
                         </li>
                     </ul>
+                    <?php endif ?>
                 </form>
             </div>
             <div class="view-comment" id="view-comment">
@@ -178,7 +182,8 @@ require '../controllers/detail-post.controller.php'; ?>
             Tham gia từ: <?= $formatted_create_at ?></br>
             Đánh giá: <b>5.0 - <?= $post_available['total'] ?> tin đăng - <?= $post_sold['total'] ?> tin đã bán </b></br>
             <button class="btn btn-primary mt-3 mb-3" id="btn-contact" onclick="changeContact('<?= $post['contact_info'] ?>')">Liên hệ người bán</button>
-            <?php if ($post['user_id'] != $_SESSION['user_id']): ?>
+            <?php if(isset($_SESSION['user_id'])):
+            if ($post['user_id'] != $_SESSION['user_id']): ?>
                 <form action="/Datn/controllers/save-post.controller.php" method="get">
                     <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
                     <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
@@ -189,7 +194,7 @@ require '../controllers/detail-post.controller.php'; ?>
                         <button class="btn btn-outline-success">
                             <i class="fa-solid fa-bookmark"></i> Lưu tin
                         </button>
-                    <?php endif ?>
+                    <?php endif; endif?>
                 </form>
             <?php endif ?>
             <p class="mt-4">Giới thiệu: <?= (empty($post['introduce'])) ? 'Người này chưa có giới thiệu' : $post['introduce'] ?></p>

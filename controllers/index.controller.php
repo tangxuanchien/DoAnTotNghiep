@@ -20,6 +20,7 @@ WHERE i.image_id = (
 SELECT MIN(image_id)
 FROM property_images
 WHERE property_id = pr.property_id)
+ORDER BY p.post_id
 LIMIT 9")->fetchAll(PDO::FETCH_ASSOC);
 
 $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC);

@@ -1,9 +1,7 @@
 </div>
 </main>
 <footer>
-    <?php
-    if ($_SERVER['REQUEST_URI'] == '/Datn/'):
-    ?>
+    <?php if ($_SERVER['REQUEST_URI'] == '/Datn/'): ?>
         <div class="container-footer">
             <div class="box-footer">
                 <ul>

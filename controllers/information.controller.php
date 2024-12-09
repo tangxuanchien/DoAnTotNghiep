@@ -6,13 +6,8 @@ $db = new Database();
 $user = $db->query("SELECT * FROM `users` where user_id = $user_id")->fetch(PDO::FETCH_ASSOC);
 
 $total_post = $db->query("
-SELECT count(*) as total_post FROM `posts` p
-INNER JOIN properties pr on pr.property_id = p.property_id
-INNER JOIN users u on u.user_id = p.user_id
-INNER JOIN wards w on w.ward_id = pr.ward_id
-INNER JOIN districts d on d.district_id = w.district_id
-INNER JOIN property_images i on i.property_id = pr.property_id
-WHERE u.user_id = :user_id LIMIT 3", [
+SELECT count(*) as total_post FROM `posts`
+WHERE user_id = :user_id", [
     'user_id' => $user_id
 ])->fetch(PDO::FETCH_ASSOC);
 

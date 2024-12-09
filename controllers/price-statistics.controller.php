@@ -27,15 +27,16 @@ if (!isset($ward['district_id'])) {
 };
 
 $statistic_of_ward = $db->query("
-Select count(*) AS total, REPLACE(CAST(avg(price_per_m2) AS DECIMAL(5, 1)), '.', ',') AS avg_ward 
+Select count(*) AS total, REPLACE(CAST(avg(price_per_m2) AS DECIMAL(5, 1)), '.', ',') AS avg_ward
 FROM `properties` where ward_id = :ward_id", [
 	'ward_id' => $ward_id
 ])->fetch(PDO::FETCH_ASSOC);
 
 $statistic_of_district = $db->query("
-SELECT CAST(avg(price_per_m2) AS DECIMAL(5, 0)) AS avg_district 
+SELECT CAST(avg(price_per_m2) AS DECIMAL(5, 0)) AS avg_district,
+MIN(price_per_m2) AS min_district, MAX(price_per_m2) AS max_district
 FROM `properties` WHERE ward_id IN (SELECT ward_id FROM `wards` WHERE district_id = :district_id)", [
-	'district_id' => $ward['district_id']
+	'district_id' => $district_id
 ])->fetch(PDO::FETCH_ASSOC);
 
 $avg_wards = $db->query("
@@ -44,16 +45,12 @@ $avg_wards = $db->query("
     w.ward_id, 
     w.ward_name, 
     CAST(IFNULL(AVG(p.price_per_m2), 0) AS DECIMAL(5,1)) AS avg_ward
-FROM 
-    wards w
+FROM wards w
 LEFT JOIN properties p ON p.ward_id = w.ward_id
 INNER JOIN districts d ON w.district_id = d.district_id
-WHERE 
-    d.district_id = :district_id
-GROUP BY 
-    w.ward_id
-ORDER BY 
-    w.ward_id;", [
+WHERE d.district_id = :district_id
+GROUP BY w.ward_id
+ORDER BY w.ward_id;", [
 	'district_id' => $district_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
@@ -68,6 +65,3 @@ $avg_districts = $db->query("
 
 $backgroundColors = randomRGBAColors(count($districts));
 $borderColors = borderColors(count($districts));
-
-
-

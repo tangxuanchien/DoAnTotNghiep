@@ -23,8 +23,8 @@ require '../controllers/manage-posts.controller.php';
     </nav>
     <?php
     foreach ($post_saves as $index => $post_save):
-        $date = date_parse($post_save['updated_at']);
-    ?>
+        $time = date("H:i", strtotime($post_save['created_save_at']));
+        $date = date("Y-m-d", strtotime($post_save['created_save_at'])); ?>
         <div class="post-lists">
             <ul>
                 <li>
@@ -43,8 +43,8 @@ require '../controllers/manage-posts.controller.php';
                             <h5><?= $post_save['title'] ?></h5>
                         </a>
                         <small class="text-muted">
-                            <i class="far fa-clock c"></i> <?= $date['hour'] . ':' . $date['minute'] ?>
-                            <i class="fa-solid fa-calendar-days me-1" style="margin-left: 10px;"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?>
+                            <i class="far fa-clock me-1"></i> <?= $time ?>
+                            <i class="fa-solid fa-calendar-days me-1" style="margin-left: 10px;"></i> <?= $date ?>
                         </small>
                     </div>
                     <div class="mt-2 post-edit">
