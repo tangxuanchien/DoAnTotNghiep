@@ -4,7 +4,9 @@ require '../function.php';
 
 $title = "Tất cả bài đăng";
 $banner = "Tất cả bài đăng";
-$login = check_login($_SESSION['name']);
+if (!isset($_SESSION['name'])) {
+    $login = 'Đăng nhập';
+} else $login = $_SESSION['name'];
 
 require 'partials/header.php';
 
@@ -49,6 +51,7 @@ foreach ($posts as $index => $post):
                                 </h5>
                             </li>
                             <li class="post-save">
+                                <?php if(isset($_SESSION['user_id'])): ?>
                                 <?php if ($post['user_id'] != $_SESSION['user_id']): ?>
                                     <form action="/Datn/controllers/save-post.controller.php" method="get">
                                         <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
@@ -60,6 +63,7 @@ foreach ($posts as $index => $post):
                                             <button class="btn btn-outline-success">
                                                 <i class="fa-solid fa-bookmark"></i> Lưu tin
                                             </button>
+                                        <?php endif ?>
                                         <?php endif ?>
                                     </form>
                                 <?php endif ?>

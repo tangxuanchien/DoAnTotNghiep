@@ -7,7 +7,7 @@ require '../controllers/price-statistics.controller.php';
 $db = new Database();
 $title = "Thống kê giá bán";
 if (!isset($_SESSION['name'])) {
-    $login = 'Đăng nhập';
+	$login = 'Đăng nhập';
 } else $login = $_SESSION['name'];
 
 if (isset($ward['ward_name'])) {
@@ -27,7 +27,7 @@ ORDER BY ward_id", [
 
 require 'partials/header.php';
 
-require 'partials/navigation.php';	
+require 'partials/navigation.php';
 
 require 'partials/banner.php';
 
@@ -108,7 +108,7 @@ require 'partials/banner.php';
 <?php endif ?>
 <div class="statistic-label">
 	<?php if ($statistic_of_ward['total'] > 0): ?>
-		<form action="/Datn/views/search-post.view.php?page_number=1" class="text-dark fs-5" method="post">
+		<form action="/Datn/views/search-post.view.php?page_number=1&source=statistic" class="text-dark fs-5" method="post">
 			<button type="submit" class="btn fs-4">
 				Xem tất cả bài đăng ở phường <?= $ward['ward_name'] ?> <i class="fa-solid fa-angles-right"></i>
 			</button>
@@ -120,11 +120,13 @@ require 'partials/banner.php';
 	<h2>Biểu đồ giá các phường <?= !isset($ward['district_name']) ? '' : 'thuộc quận ' . $ward['district_name'] ?></h2>
 	<canvas id="wardChart"></canvas>
 	<?php if (isset($ward['district_name'])): ?>
-		<a href="/Datn/views/all-posts.view.php?page_number=1" class="fs-4">
-			Xem tất cả bài đăng ở quận <?= $ward['district_name'] ?> <i class="fa-solid fa-angles-right"></i>
-		</a>
+		<form action="/Datn/views/search-post.view.php?page_number=1&source=statistic" class="text-dark fs-5" method="post">
+			<button type="submit" class="btn fs-4">
+				Xem tất cả bài đăng ở quận <?= $ward['district_name'] ?> <i class="fa-solid fa-angles-right"></i>
+			</button>
+			<input type="hidden" value="<?= $ward['district_id'] ?>" name="district_id">
+		</form>
 	<?php endif ?>
-
 	<h2 class="mt-5">Biểu đồ giá các quận thuộc thủ đô Hà Nội</h2>
 	<canvas id="districtChart"></canvas>
 	<a href="/Datn/views/all-posts.view.php?page_number=1" class="fs-4 mt-3">

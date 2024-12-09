@@ -2,7 +2,11 @@
 
 require '../models/Database.php';
 
-$user_id = $_SESSION['user_id'];
+if(!isset($SESSION['user_id'])){
+    $user_id = '';
+} else {
+    $user_id = $_SESSION['user_id'];
+}
 $limit = 8;
 
 $status = 'available';

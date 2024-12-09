@@ -29,7 +29,7 @@ require 'partials/banner.php';
                         <form id="passwordChangeForm" action="/Datn/controllers/change-password.controller.php" method="post">
                             <div class="mb-3 password-container">
                                 <label for="currentPassword" class="form-label">Mật khẩu hiện tại</label>
-                                <input type="password" class="form-control" id="currentPassword" name="current_password" required>
+                                <input type="password" class="form-control" id="currentPassword" name="current_password" required minlength="8">
                                 <span class="toggle-password" onclick="togglePassword('currentPassword')"><i class="fa-solid fa-eye"></i></span>
                             </div>
                             <div class="mb-3 password-container">
@@ -50,7 +50,7 @@ require 'partials/banner.php';
                     </div>
                 </div>
                 <div class="mt-3">
-                    <form action="/Datn">
+                    <form action="/Datn/" method="post">
                         <button type="submit" class="btn btn-dark"><i class="fa-solid fa-arrow-left-long text-light"></i> Quay về trang chủ</button>
                     </form>
                 </div>
