@@ -17,8 +17,13 @@ if ($user) {
         $_SESSION['method'] = 'local';
         $_SESSION['avatar'] = $user['avatar'];
         $_SESSION['error-login'] = '';
-        header('Location: /Datn');
-        exit();
+        if ($user['role'] == 'admin') {
+            header('Location: /Datn/admin/home.admin.php');
+            exit();
+        } else {
+            header('Location: /Datn');
+            exit();
+        }
     } else {
         $_SESSION['error-login'] = 'Sai thông tin đăng nhập';
     }

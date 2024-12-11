@@ -74,6 +74,7 @@ require '../controllers/search-post.controller.php';
                             <option value="">-Giá bán-</option>
                             <option value="price_ASC" <?= ($_POST['sort_by_price'] == 'price_ASC') ? 'selected' : '' ?>>Giá từ thấp nhất</option>
                             <option value="price_DESC" <?= ($_POST['sort_by_price'] == 'price_DESC') ? 'selected' : '' ?>>Giá từ cao nhất</option>
+                            <!-- <option value="price_1to2" <?= ($_POST['sort_by_price'] == 'price_1to2') ? 'selected' : '' ?>>Giá từ 1 đến 2 tỷ</option> -->
                         </select>
                     </li>
                     <li style=" margin-left: 15px;">
