@@ -22,3 +22,7 @@ $users = $db->query("
 SELECT * 
 FROM `users`
 ORDER BY user_id")->fetchAll(PDO::FETCH_ASSOC);
+
+$reports = $db->query("
+SELECT * 
+FROM `reports`")->fetchAll(PDO::FETCH_ASSOC);

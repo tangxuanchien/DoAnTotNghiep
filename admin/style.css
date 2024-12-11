@@ -30,15 +30,15 @@
   border-top: 1px solid #dee2e6;
 }
 
-.main-content td a{
-  padding: 5px 15px 5px 15px;
-  border: 2px solid black;
-  border-radius: 20px;
-  margin-right: 20px;
-  text-decoration: none;
+.main-content td li{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.main-content td ul{
+  padding-left: 0;
 }
 
 nav{
   position: fixed;
 }
-

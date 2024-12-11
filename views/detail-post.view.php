@@ -145,6 +145,7 @@ require '../controllers/detail-post.controller.php'; ?>
                             <div>
                                 <a href="/Datn/views/detail-post.view.php/edit?post_id=<?= $post['post_id'] ?>"><i class="fa-solid fa-pencil"></i></a>
                                 <a href="/Datn/controllers/delete-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>"><i class="fa-solid fa-trash"></i></a>
+                                <a href="/Datn/views/report.view.php?comment_id=<?= $comment['comment_id'] ?>"><i class="fa-solid fa-triangle-exclamation"></i></a>
                             </div>
                         <?php endif ?>
                     </div>
@@ -221,8 +222,8 @@ require '../controllers/detail-post.controller.php'; ?>
         </div>
         <div class="detail-support">
             <ul>
-                <li><a href="#"><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li>
-                <li><a href="/Datn/views/detail-post.view.php?post_id=<?=$post['post_id']?>/report"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
+                <!-- <li><a href="#"><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li> -->
+                <li><a href="/Datn/views/report.view.php?post_id=<?= $post_id ?>&source=detail"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
             </ul>
         </div>
     </div>
