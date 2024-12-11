@@ -93,6 +93,15 @@ require '../controllers/detail-post.controller.php'; ?>
                         </tr>
                     </tbody>
                 </table>
+                <h3>Xem trên bản đồ</h3>
+                <iframe
+                    width="800"
+                    height="400"
+                    style="border: 1px solid grey; border-radius: 20px"
+                    loading="lazy"
+                    allowfullscreen
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDJKLBheMXFGqapDSNbgnWGDvCzIrk_Jj8&q=<?= 'Phường ' . $location['ward_name'] . ', Quận ' . $location['district_name'] . ', TP.Hà Nội, Việt Nam' ?>">
+                </iframe>
             </div>
         </div>
         <div class="container-comment">

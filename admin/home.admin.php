@@ -202,6 +202,8 @@ require 'home.admin.controller.php';
                               <th>ID</th>
                               <th>Nội dung</th>
                               <th>Loại báo cáo</th>
+                              <th>ID bài viết</th>
+                              <th>ID người dùng báo cáo</th>
                               <th>Thời gian</th>
                               <th>Trạng thái</th>
                             </tr>
@@ -212,6 +214,8 @@ require 'home.admin.controller.php';
                                 <td><?= $report['report_id'] ?></td>
                                 <td><?= $report['content_report'] ?></td>
                                 <td><?= $report['type_report'] ?></td>
+                                <td><?= $report['post_report_id'] ?></td>
+                                <td><?= $report['user_report_id'] ?></td>
                                 <td><?= $report['created_report_at'] ?></td>
                                 <td>
                                   <form action="/Datn/admin/delete.admin.php" method="post">

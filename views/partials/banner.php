@@ -33,11 +33,18 @@
     </div>
     <div class="intro-hanoihome">
         <h2>GIỚI THIỆU VỀ CHÚNG TÔI</h2>
-        <img src="/Datn/images/hanoi.png" alt="intro" width="1170px">
+        <iframe
+            width="1170"
+            height="550"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDJKLBheMXFGqapDSNbgnWGDvCzIrk_Jj8&q=Ha+Noi,Vietnam">
+        </iframe>
         <p>"Hà Nội, thủ đô nghìn năm văn hiến của Việt Nam, là trung tâm văn hóa, giáo dục và chính trị hàng đầu cả nước.
-            Thành phố nổi bật với sự kết hợp giữa nhịp sống hiện đại và không gian thanh bình, 
+            Thành phố nổi bật với sự kết hợp giữa nhịp sống hiện đại và không gian thanh bình,
             tạo nên một môi trường sống lý tưởng. Với mật độ dân số đang phát triển nhanh chóng,
-            nhu cầu sở hữu bất động sản của người dân ngày càng gia tăng. 
+            nhu cầu sở hữu bất động sản của người dân ngày càng gia tăng.
             Hãy tham khảo ngay các bài đăng tại HANOIHOME !"</p>
     </div>
 <?php endif ?>

@@ -18,7 +18,7 @@ if ($user) {
         $_SESSION['avatar'] = $user['avatar'];
         $_SESSION['error-login'] = '';
         if ($user['role'] == 'admin') {
-            header('Location: /Datn/admin/home.admin.php');
+            header('Location: /Datn/admin/home.admin.php/posts');
             exit();
         } else {
             header('Location: /Datn');

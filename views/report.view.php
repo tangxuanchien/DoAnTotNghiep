@@ -8,8 +8,8 @@ $user_id = $_SESSION['user_id'];
 $title = "Báo cáo";
 $banner = "";
 $login = check_login($_SESSION['name']);
-if (!isset($_SESSION['error_post'])) {
-    $_SESSION['error_post'] = '';
+if (!isset($_SESSION['error_report'])) {
+    $_SESSION['error_report'] = '';
 }
 
 require 'partials/header.php';
@@ -31,15 +31,16 @@ require 'partials/banner.php';
         </ol>
     </nav>
     <h2>Báo cáo bài viết</h2>
-    <form action="/Datn/controllers/create.post.controller.php?user_id=<?= $user_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
-        <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_post'] ?></div>
+    <form action="/Datn/controllers/report.controller.php" method="POST" enctype="multipart/form-data" id="submit-post">
+        <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_report'] ?></div>
         <div class="mb-3">
             <label class="form-label">Mô tả chi tiết</label>
-            <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name='description' required maxlength="300"></textarea>
+            <textarea placeholder="Mô tả chi tiết về nội dung cần báo cáo" class="form-control" name='content_report' required maxlength="60"></textarea>
         </div>
-        <div class="mb-3 select-location">
+        <input type="hidden" name="post_report_id" value="<?= $_GET['post_id'] ?>">
+        <div class="mb-3">
             <label class="form-label">Phân loại báo cáo</label></br>
-            <select class="form-select" name="type" required>
+            <select class="form-select" name="type_report" required>
                 <option value="">--Chọn Loại--</option>
                 <option value="post">Bài viết</option>
                 <option value="comment">Bình luận</option>
