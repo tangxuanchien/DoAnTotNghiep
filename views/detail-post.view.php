@@ -72,8 +72,17 @@ require '../controllers/detail-post.controller.php'; ?>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th scope="row"><i class="fa-solid fa-phone"></i> Số điện thoại</th>
-                            <td><?= $post['contact_info'] ?></td>
+                            <th scope="row"><i class="fa-solid fa-building"></i> Loại hình</th>
+                            <td>
+                                <?php if ($post['type'] == 'home') {
+                                    echo 'Nhà ở';
+                                } elseif ($post['type'] == 'apartment') {
+                                    echo 'Chung cư';
+                                } else {
+                                    echo 'Đất';
+                                }
+                                ?>
+                            </td>
                             <th scope="row"><i class="fa-solid fa-layer-group"></i> Diện tích</th>
                             <td><?= $post['area'] ?> m<sup>2</sup></td>
 
@@ -154,8 +163,9 @@ require '../controllers/detail-post.controller.php'; ?>
                             <div>
                                 <a href="/Datn/views/detail-post.view.php/edit?post_id=<?= $post['post_id'] ?>"><i class="fa-solid fa-pencil"></i></a>
                                 <a href="/Datn/controllers/delete-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>"><i class="fa-solid fa-trash"></i></a>
-                                <a href="/Datn/views/report.view.php?comment_id=<?= $comment['comment_id'] ?>"><i class="fa-solid fa-triangle-exclamation"></i></a>
                             </div>
+                        <?php else: ?>
+                            <a href="/Datn/views/report.view.php?post_id=<?= $post_id ?>&source=detail" onclick="return confirm('Bạn chắc chắn muốn báo cáo bình luận này')"><i class="fa-solid fa-triangle-exclamation"></i></a>
                         <?php endif ?>
                     </div>
                 <?php endforeach ?>

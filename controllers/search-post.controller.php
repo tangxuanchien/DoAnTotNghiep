@@ -36,7 +36,6 @@ if (empty($order_by)) {
     $order_by = 'p.created_at DESC';
 }
 
-
 $sort_filter = [];
 if(!empty($district_id)){
     $sort_filter['district_id'] = 'AND d.district_id = '.$district_id;
@@ -46,6 +45,9 @@ if(!empty($type)){
 }
 if(!empty($ward_id)){
     $sort_filter['ward_id'] = 'AND w.ward_id = '.$ward_id;
+}
+if(!empty($_POST['price_range']) AND ($_POST['price_range'] != '0000 AND 0000')){
+    $sort_filter['price'] = 'AND pr.price BETWEEN '.$_POST['price_range'];
 }
 $filter = implode(' ', $sort_filter);
 

@@ -27,6 +27,12 @@ if (!isset($_POST['district_id'])) {
 if (!isset($_POST['sort_by_created_at'])) {
     $_POST['sort_by_created_at'] = '';
 }
+if (!isset($_POST['price_range'])) {
+    $_POST['price_range'] = '';
+}
+if (!isset($_POST['price_key_range'])) {
+    $_POST['price_key_range'] = '';
+}
 
 require 'partials/header.php';
 
@@ -61,20 +67,19 @@ require '../controllers/search-post.controller.php';
                 <?php if (!$posts): ?>
                     <h4><i class="fa-solid fa-square-xmark text-danger"></i> Không có kết quả nào trùng khớp</h4>
                 <?php else: ?>
-                    <h4 class="text-danger"><?= count($posts) ?> kết quả tìm kiếm</h4>
+                    <h4 class="text-danger"><?= count($posts) ?> kết quả tìm kiếm <?= ($_POST['price_key_range'] == '' OR $_POST['price_key_range'] == '0 - 0') ? '' : '- Áp dụng khoảng giá: '.$_POST['price_key_range'].' tỉ đồng'?></h4>
                 <?php endif; ?>
             </li>
             <li>
                 <ul class="ul-filter">
                     <li>
-                        <p><i class="fa-solid fa-sort"></i> Bộ lọc :</p>
+                        <p><i class="fa-solid fa-sort"></i> Sắp xếp :</p>
                     </li>
                     <li style=" margin-left: 15px;">
                         <select class="form-select w-auto" name="sort_by_price">
                             <option value="">-Giá bán-</option>
                             <option value="price_ASC" <?= ($_POST['sort_by_price'] == 'price_ASC') ? 'selected' : '' ?>>Giá từ thấp nhất</option>
                             <option value="price_DESC" <?= ($_POST['sort_by_price'] == 'price_DESC') ? 'selected' : '' ?>>Giá từ cao nhất</option>
-                            <!-- <option value="price_1to2" <?= ($_POST['sort_by_price'] == 'price_1to2') ? 'selected' : '' ?>>Giá từ 1 đến 2 tỷ</option> -->
                         </select>
                     </li>
                     <li style=" margin-left: 15px;">
@@ -108,11 +113,17 @@ require '../controllers/search-post.controller.php';
                                 <option value="<?= $ward['ward_id'] ?>" selected><?= $ward['ward_name'] ?></option>
                             <?php endif; ?>
                         </select>
+                        <input type="hidden" value="" name="price_range" id="priceRange">
+                        <input type="hidden" value="" name="price_key_range" id="priceKeyRange">
                     </li>
                     <li style="margin-left: 15px;">
                         <button class="btn btn-success" type="submit">Áp dụng</button>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <div id="rubber-slider" style="margin: 50px; width:300px;"></div>
+                <p>Khoảng giá đã chọn: <span id="rangeDisplay">0 - 100</span> tỉ đồng</p>
             </li>
         </ul>
     </form>
@@ -211,13 +222,29 @@ require '../controllers/search-post.controller.php';
                         console.log(district_id);
                         $('.ward_id').html('<option value="">--Chọn Phường--</option>');
                         $('.ward_id').append(response);
-
-                        // if (selectedWardId) {
-                        //     $('.ward_id').val(selectedWardId);
-                        // }
                     }
                 });
             });
+        });
+
+        const slider = document.getElementById('rubber-slider');
+        const hiddenInput = document.getElementById('priceRange');
+        const hiddenKeyInput = document.getElementById('priceKeyRange');
+        noUiSlider.create(slider, {
+            start: [0, 0],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 50
+            },
+            animate: true,
+            animationDuration: 300,
+        });
+        const rangeDisplay = document.getElementById('rangeDisplay');
+        slider.noUiSlider.on('update', function(values) {
+            rangeDisplay.textContent = `${Math.round(values[0])} - ${Math.round(values[1])}`;
+            hiddenInput.value = `${Math.round(values[0])}000 AND ${Math.round(values[1])}000`;
+            hiddenKeyInput.value = `${Math.round(values[0])} - ${Math.round(values[1])}`;
         });
     </script>
 <?php endforeach;

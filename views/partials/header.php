@@ -16,5 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Patrick+Hand&family=Handlee&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="https://res.cloudinary.com/djdf56dfq/image/upload/v1731690520/j3nhkxslgxq4mu0l8ycy.png" type="image/x-icon">
     <link rel="stylesheet" href="/Datn/templates/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.6.1/dist/nouislider.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.6.1/dist/nouislider.min.js"></script>
     <title><?= $title ?></title>
 </head>
