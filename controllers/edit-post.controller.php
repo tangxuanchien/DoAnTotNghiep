@@ -108,6 +108,12 @@ $property_id = $property['property_id'];
         }
     }
     $_SESSION['error_edit_post'] = '';
-    header('Location: /Datn/views/manage-posts.view.php/available');
-    exit();
+
+    if(isset($_POST['role'])){
+        header('Location: /Datn/admin/home.admin.php/posts');
+        exit();   
+    } else {
+        header('Location: /Datn/views/manage-posts.view.php/available');
+        exit();
+    }
 }

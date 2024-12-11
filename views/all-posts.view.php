@@ -15,7 +15,14 @@ require 'partials/navigation.php';
 require 'partials/banner.php';
 
 require '../controllers/all-posts.controller.php';
-
+?>
+<!-- <div class="form-check form-switch">
+    <form action="/Datn/views/all-posts.view.php?page_number=1/authentic" method="post">
+        <input class="form-check-input" type="checkbox" role="switch">
+        <label class="form-check-label" for="authentic-switch">Tin xác thực</label>
+    </form>
+</div> -->
+<?php
 foreach ($posts as $index => $post):
     $date = date_parse($post['created_at']);
 ?>
@@ -35,7 +42,12 @@ foreach ($posts as $index => $post):
                 <li>
                     <div>
                         <a href="/Datn/views/detail-post.view.php?post_id=<?= $post['post_id'] ?>" class="text-dark">
-                            <h5><?= $post['title'] ?></h5>
+                            <h5>
+                                <?php if ($post['authentic'] == 1): ?>
+                                    <i class="fa-solid fa-circle-check text-success"></i>
+                                <?php endif ?>
+                                <?= $post['title'] ?>
+                            </h5>
                         </a>
                         <ul class="text-muted">
                             <li><i class="fa-solid fa-user-tie text-muted"></i> <?= $post['name'] ?></li>
@@ -51,22 +63,22 @@ foreach ($posts as $index => $post):
                                 </h5>
                             </li>
                             <li class="post-save">
-                                <?php if(isset($_SESSION['user_id'])): ?>
-                                <?php if ($post['user_id'] != $_SESSION['user_id']): ?>
-                                    <form action="/Datn/controllers/save-post.controller.php" method="get">
-                                        <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
-                                        <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
-                                            <button class="btn btn-success">
-                                                <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
-                                            </button>
-                                        <?php else: ?>
-                                            <button class="btn btn-outline-success">
-                                                <i class="fa-solid fa-bookmark"></i> Lưu tin
-                                            </button>
+                                <?php if (isset($_SESSION['user_id'])): ?>
+                                    <?php if ($post['user_id'] != $_SESSION['user_id']): ?>
+                                        <form action="/Datn/controllers/save-post.controller.php" method="get">
+                                            <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
+                                            <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
+                                                <button class="btn btn-success">
+                                                    <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
+                                                </button>
+                                            <?php else: ?>
+                                                <button class="btn btn-outline-success">
+                                                    <i class="fa-solid fa-bookmark"></i> Lưu tin
+                                                </button>
+                                            <?php endif ?>
                                         <?php endif ?>
-                                        <?php endif ?>
-                                    </form>
-                                <?php endif ?>
+                                        </form>
+                                    <?php endif ?>
                             </li>
                         </ul>
                     </div>
@@ -98,6 +110,5 @@ foreach ($posts as $index => $post):
         </li>
     </ul>
 </div>
-
 <?php
 require 'partials/footer.php';

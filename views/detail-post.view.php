@@ -38,6 +38,9 @@ require '../controllers/detail-post.controller.php'; ?>
     </ol>
 </nav>
 <h1>Chi tiết bài đăng</h1>
+<?php if ($post['authentic'] == 1): ?>
+    <button class="btn btn-success" type="button"><i class="fa-solid fa-circle-check text-light"></i> BÀI ĐĂNG ĐÃ XÁC THỰC</button>
+<?php endif ?>
 <div class="position-relative">
     <div id="carouselAutoplaying" class="carousel slide container-detail" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
@@ -220,7 +223,14 @@ require '../controllers/detail-post.controller.php'; ?>
             <b><?= $post['name'] ?></b> <i class="fa-solid fa-briefcase"></i></br>
             Tham gia từ: <?= $formatted_create_at ?></br>
             Đánh giá: <b>5.0 - <?= $post_available['total'] ?> tin đăng - <?= $post_sold['total'] ?> tin đã bán </b></br>
-            <button class="btn btn-primary mt-3 mb-3" id="btn-contact" onclick="changeContact('<?= $post['contact_info'] ?>')">Liên hệ người bán</button>
+            <button class="btn btn-primary mt-3 mb-3" id="btn-contact" onclick="changeContact('<?= $post['contact_info'] ?>')">
+                <i class="fa-solid fa-phone text-light"></i> Liên hệ người bán
+            </button>
+            <div>
+                <a href="https://zalo.me/<?= $post['contact_info']?>" class="btn btn-outline-primary">
+                    <img src="../images/icon_zalo.svg" alt="zalo" width="22.3px"> Liên hệ qua Zalo
+                </a>
+            </div>
             <?php if (isset($_SESSION['user_id'])):
                 if ($post['user_id'] != $_SESSION['user_id']): ?>
                     <form action="/Datn/controllers/save-post.controller.php" method="get">
@@ -241,7 +251,7 @@ require '../controllers/detail-post.controller.php'; ?>
         </div>
         <div class="detail-support">
             <ul>
-                <!-- <li><a href="#"><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li> -->
+                <li><a href="#"><i class="fa-solid fa-headset"></i> 1900 2121</a></li>
                 <li><a href="/Datn/views/report.view.php?post_id=<?= $post_id ?>&source=detail"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
             </ul>
         </div>

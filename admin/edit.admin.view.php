@@ -4,7 +4,6 @@ require '../function.php';
 require '../models/Database.php';
 
 $title = "Chỉnh sửa bài đăng";
-$banner = "Chỉnh sửa bài đăng";
 $post_id = $_POST['post_id'];
 
 $db = new Database();
@@ -28,7 +27,6 @@ $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC)
 
 $_SESSION['ward_id_selected'] = $edit_post['ward_id'];
 $_SESSION['district_id_selected'] = $edit_post['district_id'];
-$login = check_login($_SESSION['name']);
 if (!isset($_SESSION['error_edit_post'])) {
     $_SESSION['error_edit_post'] = '';
 }
@@ -45,6 +43,7 @@ require '../views/partials/header.php';
     </nav>
     <form action="/Datn/controllers/edit-post.controller.php" method="POST" enctype="multipart/form-data" id="submit-post">
         <input type="hidden" name="post_id" value="<?= $post_id ?>">
+        <input type="hidden" name="role" value="admin">
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_edit_post'] ?></div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>

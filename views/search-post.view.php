@@ -67,7 +67,7 @@ require '../controllers/search-post.controller.php';
                 <?php if (!$posts): ?>
                     <h4><i class="fa-solid fa-square-xmark text-danger"></i> Không có kết quả nào trùng khớp</h4>
                 <?php else: ?>
-                    <h4 class="text-danger"><?= count($posts) ?> kết quả tìm kiếm <?= ($_POST['price_key_range'] == '' OR $_POST['price_key_range'] == '0 - 0') ? '' : '- Áp dụng khoảng giá: '.$_POST['price_key_range'].' tỉ đồng'?></h4>
+                    <h4 class="text-danger"><?= count($posts) ?> kết quả tìm kiếm <?= ($_POST['price_key_range'] == '' or $_POST['price_key_range'] == '0 - 0') ? '' : '- Áp dụng khoảng giá: ' . $_POST['price_key_range'] . ' tỉ đồng' ?></h4>
                 <?php endif; ?>
             </li>
             <li>
@@ -147,7 +147,12 @@ require '../controllers/search-post.controller.php';
                 <li>
                     <div>
                         <a href="/Datn/views/detail-post.view.php?post_id=<?= $post['post_id'] ?>&source=search" class="text-dark">
-                            <h5><?= $post['title'] ?></h5>
+                            <h5>
+                                <?php if ($post['authentic'] == 1): ?>
+                                    <i class="fa-solid fa-circle-check text-success"></i>
+                                <?php endif ?>
+                                <?= $post['title'] ?>
+                            </h5>
                         </a>
                         <ul class="text-muted">
                             <li><i class="fa-solid fa-user-tie text-muted"></i> <?= $post['name'] ?></li>

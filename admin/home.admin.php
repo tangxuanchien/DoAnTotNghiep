@@ -23,7 +23,7 @@ require 'home.admin.controller.php';
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Tiêu đề</th>
+                  <th>Người đăng</th>
                   <th>Phường</th>
                   <th>Quận</th>
                   <th>Trạng thái</th>
@@ -33,7 +33,7 @@ require 'home.admin.controller.php';
                 <?php foreach ($posts as $post): ?>
                   <tr>
                     <td><?= $post['post_id'] ?></td>
-                    <td><?= $post['title'] ?></td>
+                    <td><?= $post['name'] ?></td>
                     <td><?= $post['ward_name'] ?></td>
                     <td><?= $post['district_name'] ?></td>
                     <td>
@@ -52,6 +52,20 @@ require 'home.admin.controller.php';
                             <button class="btn btn-primary">
                               <i class="fa-solid fa-pen-to-square"></i> Sửa
                             </button>
+                          </form>
+                        </li>
+                        <li>
+                          <form action="/Datn/admin/authentic-post.admin.php" method="post">
+                            <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
+                            <?php if ($post['authentic'] == 0): ?>
+                              <button class="btn btn-outline-success" type="submit">
+                                <i class="fa-regular fa-circle-check"></i> Xác thực
+                              </button>
+                            <?php else: ?>
+                              <button class="btn btn-success" type="button">
+                                <i class="fa-solid fa-circle-check"></i> Đã xác thực
+                              </button>
+                            <?php endif ?>
                           </form>
                         </li>
                       </ul>
