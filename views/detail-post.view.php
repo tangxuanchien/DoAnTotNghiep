@@ -65,15 +65,34 @@ require '../controllers/detail-post.controller.php'; ?>
         </div>
         <div class="mt-3 detail-post">
             <h3><?= $post['title'] ?></h3>
-            <i class="fa-solid fa-location-dot"></i> <?= 'Phường ' . $location['ward_name'] . ', Quận ' . $location['district_name'] . ', TP.Hà Nội, Việt Nam' ?></br>
+            <p class="mb-3">Mô tả: <?= $post['description'] ?></p>
             <div class="mt-3">
-                <h4>Mô tả dự án</h4>
-                <p>Mô tả: <?= $post['description'] ?></p>
-                <p>Diện tích: <?= $post['area'] ?> m<sup>2</sup></p>
-                <p>Giá bán trên mét vuông: <?= $post['price_per_m2'] ?> triệu/m<sup>2</sup></p>
-                <p>Phòng ngủ: <?= $post['num_bedrooms'] ?></p>
-                <p>Phòng vệ sinh: <?= $post['num_bathrooms'] ?></p>
-                <p>Giá bán: <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?> (Có thương lượng)</p>
+                <h4>Đặc điểm dự án</h4>
+                <i class="fa-solid fa-location-dot mb-3"></i> <?= 'Phường ' . $location['ward_name'] . ', Quận ' . $location['district_name'] . ', TP.Hà Nội, Việt Nam' ?></br>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row"><i class="fa-solid fa-phone"></i> Số điện thoại</th>
+                            <td><?= $post['contact_info'] ?></td>
+                            <th scope="row"><i class="fa-solid fa-layer-group"></i> Diện tích</th>
+                            <td><?= $post['area'] ?> m<sup>2</sup></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="fa-solid fa-bed"></i> Phòng ngủ</th>
+                            <td><?= $post['num_bedrooms'] ?></td>
+
+                            <th scope="row"><i class="fa-solid fa-sack-dollar"></i> Giá bán</th>
+                            <td><?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?> (Có thương lượng)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="fa-solid fa-bath"></i> Phòng vệ sinh</th>
+                            <td><?= $post['num_bathrooms'] ?></td>
+                            <th scope="row"><i class="fa-solid fa-money-bill"></i> Giá bán trên mét vuông</th>
+                            <td><?= $post['price_per_m2'] ?> triệu/m<sup>2</sup></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="container-comment">
@@ -82,17 +101,17 @@ require '../controllers/detail-post.controller.php'; ?>
                     <label class="form-label">
                         <h4>Bình luận</h4>
                     </label>
-                    <?php if(isset($_SESSION['user_id'])):?>
-                    <ul>
-                        <li>
-                            <input type="text" name="content" class="form-control" placeholder="Thêm bình luận ..." required></input>
-                            <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
-                            <input type="hidden" name="property_id" value="<?= $post['property_id'] ?>">
-                        </li>
-                        <li>
-                            <button type="submit" class="btn btn-primary">Bình luận</button>
-                        </li>
-                    </ul>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <ul>
+                            <li>
+                                <input type="text" name="content" class="form-control" placeholder="Thêm bình luận ..." required></input>
+                                <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
+                                <input type="hidden" name="property_id" value="<?= $post['property_id'] ?>">
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-primary">Bình luận</button>
+                            </li>
+                        </ul>
                     <?php endif ?>
                 </form>
             </div>
@@ -182,27 +201,28 @@ require '../controllers/detail-post.controller.php'; ?>
             Tham gia từ: <?= $formatted_create_at ?></br>
             Đánh giá: <b>5.0 - <?= $post_available['total'] ?> tin đăng - <?= $post_sold['total'] ?> tin đã bán </b></br>
             <button class="btn btn-primary mt-3 mb-3" id="btn-contact" onclick="changeContact('<?= $post['contact_info'] ?>')">Liên hệ người bán</button>
-            <?php if(isset($_SESSION['user_id'])):
-            if ($post['user_id'] != $_SESSION['user_id']): ?>
-                <form action="/Datn/controllers/save-post.controller.php" method="get">
-                    <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
-                    <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
-                        <button class="btn btn-success">
-                            <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
-                        </button>
-                    <?php else: ?>
-                        <button class="btn btn-outline-success">
-                            <i class="fa-solid fa-bookmark"></i> Lưu tin
-                        </button>
-                    <?php endif; endif?>
-                </form>
-            <?php endif ?>
-            <p class="mt-4">Giới thiệu: <?= (empty($post['introduce'])) ? 'Người này chưa có giới thiệu' : $post['introduce'] ?></p>
+            <?php if (isset($_SESSION['user_id'])):
+                if ($post['user_id'] != $_SESSION['user_id']): ?>
+                    <form action="/Datn/controllers/save-post.controller.php" method="get">
+                        <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
+                        <?php if ($post['user_sid'] == $_SESSION['user_id'] and $post['post_sid'] == $post['post_id']): ?>
+                            <button class="btn btn-success">
+                                <i class="fa-regular fa-bookmark text-light"></i> Bỏ lưu tin
+                            </button>
+                        <?php else: ?>
+                            <button class="btn btn-outline-success">
+                                <i class="fa-solid fa-bookmark"></i> Lưu tin
+                            </button>
+                    <?php endif;
+                    endif ?>
+                    </form>
+                <?php endif ?>
+                <p class="mt-4">Giới thiệu: <?= (empty($post['introduce'])) ? 'Người này chưa có giới thiệu' : $post['introduce'] ?></p>
         </div>
         <div class="detail-support">
             <ul>
                 <li><a href="#"><i class="fa-solid fa-headset"></i> Cần hỗ trợ</a></li>
-                <li><a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
+                <li><a href="/Datn/views/detail-post.view.php?post_id=<?=$post['post_id']?>/report"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
             </ul>
         </div>
     </div>
