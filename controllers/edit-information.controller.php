@@ -70,5 +70,11 @@ $user = $db->query("SELECT * FROM `users` WHERE user_id = :user_id", [
 ])->fetch(PDO::FETCH_ASSOC);
 $_SESSION['name'] = $user['name'];
 $_SESSION['avatar'] = $user['avatar'];
-header('Location: /Datn/views/information.view.php');
-exit();
+
+if($_POST['role']){
+    header('Location: /Datn/admin/home.admin.php/users');
+    exit();
+} else{
+    header('Location: /Datn/views/information.view.php');
+    exit();
+}

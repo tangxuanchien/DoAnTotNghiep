@@ -39,6 +39,11 @@ require 'home.admin.controller.php';
                     <td>
                       <ul>
                         <li>
+                          <a href="/Datn/admin/view-post.admin.php?post_id=<?= $post['post_id'] ?>" class="btn btn-dark">
+                            <i class="fa-solid fa-eye"></i> Xem
+                          </a>
+                        </li>
+                        <li>
                           <form action="/Datn/admin/delete.admin.php" method="post">
                             <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
                             <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
@@ -47,7 +52,7 @@ require 'home.admin.controller.php';
                           </form>
                         </li>
                         <li>
-                          <form action="/Datn/admin/edit.admin.view.php" method="post">
+                          <form action="/Datn/admin/edit-post.admin.view.php" method="post">
                             <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
                             <button class="btn btn-primary">
                               <i class="fa-solid fa-pen-to-square"></i> Sửa
@@ -97,17 +102,22 @@ require 'home.admin.controller.php';
                         <td>
                           <ul>
                             <li>
+                              <a href="/Datn/admin/view-post.admin.php?post_id=<?= $comment['post_id'] ?>" class="btn btn-dark">
+                                <i class="fa-solid fa-eye"></i> Xem
+                              </a>
+                            </li>
+                            <li>
                               <form action="/Datn/admin/delete.admin.php" method="post">
-                                <button class="btn btn-danger">
-                                  <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>"
-                                    onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
+                                <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
                                   <i class="fa-solid fa-trash-can"></i> Xóa
                                 </button>
                               </form>
                             </li>
                             <li>
-                              <form action="/Datn/admin/edit.admin.php" method="post">
-                                <button class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                              <form action="/Datn/admin/edit-comment.admin.view.php" method="post">
+                                <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
+                                <button class="btn btn-primary">
                                   <i class="fa-solid fa-pen-to-square"></i> Sửa
                                 </button>
                               </form>
@@ -141,6 +151,11 @@ require 'home.admin.controller.php';
                             <td>
                               <ul>
                                 <li>
+                                  <a href="/Datn/admin/view-user.admin.php?user_id=<?= $user['user_id'] ?>" class="btn btn-dark">
+                                    <i class="fa-solid fa-eye"></i> Xem
+                                  </a>
+                                </li>
+                                <li>
                                   <form action="/Datn/admin/delete.admin.php" method="post">
                                     <input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
                                     <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
@@ -149,8 +164,9 @@ require 'home.admin.controller.php';
                                   </form>
                                 </li>
                                 <li>
-                                  <form action="/Datn/admin/edit.admin.php" method="post">
-                                    <button class="btn btn-primary" onclick="confirm('Bạn có chắc chắn muốn xóa không?')">
+                                  <form action="/Datn/admin/edit-user.admin.view.php" method="post">
+                                    <input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
+                                    <button class="btn btn-primary">
                                       <i class="fa-solid fa-pen-to-square"></i> Sửa
                                     </button>
                                   </form>

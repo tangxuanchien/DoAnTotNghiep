@@ -1,34 +1,29 @@
 <?php
 session_start();
 
-$title = "Thay đổi thông tin";
-$banner = "Thay đổi thông tin";
-$login = $_SESSION['name'];
+$title = "Việc cần làm";
 
 $user_id = $_POST['user_id'];
 require '../models/Database.php';
 $db = new Database();
 $user = $db->query("SELECT * FROM `users` WHERE user_id = $user_id")->fetch(PDO::FETCH_ASSOC);
 
-require 'partials/header.php';
-
-require 'partials/navigation.php';
-
-require 'partials/banner.php';
-
 $password = $user['password'];
 $confirmpassword = '';
+require '../views/partials/header.php';
+
 ?>
-<div style="width: 50%; margin-bottom: 50px; margin-left: 120px;">
+<div style="width: 50%; margin-bottom: 50px; margin-left: 120px;" class="mt-5">
+    <h1>Chỉnh sửa thông tin người dùng</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="/Datn/views/information.view.php">Thông tin cá nhân</a></li>
+            <li class="breadcrumb-item"><a href="/Datn/admin/home.admin.php/users">Trang chủ quản trị</a></li>
             <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa thông tin</li>
         </ol>
     </nav>
     <form action="/Datn/controllers/edit-information.controller.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" value="<?= $user_id ?>" name="user_id">
+        <input type="hidden" value="admin" name="role">
         <div class="mb-3">
             <label class="form-label">Họ và tên</label>
             <input type="text" class="form-control" placeholder="Nguyen Van A" name='name' value="<?= $user['name'] ?>" required minlength="6">
@@ -71,7 +66,7 @@ $confirmpassword = '';
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </li>
                 <li style="margin-left: 20px;">
-                    <form action="/Datn/information.view.php" method="post">
+                    <form action="/Datn/admin/home.admin.php/users" method="post">
                         <button type="submit" class="btn btn-dark">Quay lại</button>
                     </form>
                 </li>
@@ -101,6 +96,3 @@ $confirmpassword = '';
         }
     }
 </script>
-<?php
-require 'partials/footer.php';
-?>

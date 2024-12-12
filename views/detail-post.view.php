@@ -152,7 +152,7 @@ require '../controllers/detail-post.controller.php'; ?>
                     <div class="comment-content">
                         <?php if (isset($_SERVER['PATH_INFO']) and $comment['user_id'] == $_SESSION['user_id']): ?>
                             <div class="edit-comment">
-                                <form action="/Datn/controllers/edit-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>" method="post">
+                                <form action="/Datn/controllers/edit-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>" method="get">
                                     <ul>
                                         <li><input type="text" name="content" class="form-control" value="<?= $comment['content'] ?>" required></li>
                                         <li><button class="btn btn-primary">Xác nhận</button></li>

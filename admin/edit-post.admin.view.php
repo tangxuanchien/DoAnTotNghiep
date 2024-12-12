@@ -37,7 +37,7 @@ require '../views/partials/header.php';
     <h2>Chỉnh sửa bài đăng</h2>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/Datn/admin/home.admin.php/users">Trang quản trị</a></li>
+            <li class="breadcrumb-item"><a href="/Datn/admin/home.admin.php/posts">Trang quản trị</a></li>
             <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa bài đăng</li>
         </ol>
     </nav>
@@ -128,9 +128,6 @@ require '../views/partials/header.php';
         </div>
         <div class="mt-3 mb-5">
             <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn chắc chắn chỉnh sửa bài đăng không ?')">Chỉnh sửa</button>
-            <div class="mt-3 ml-3">
-                <a href="/Datn/views/manage-posts.view.php" class="link-dark">Quay lại</a>
-            </div>
         </div>
     </form>
 </div>

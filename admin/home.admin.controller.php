@@ -21,7 +21,8 @@ ORDER BY c.comment_id")->fetchAll(PDO::FETCH_ASSOC);
 $users = $db->query("
 SELECT * 
 FROM `users`
-ORDER BY user_id")->fetchAll(PDO::FETCH_ASSOC);
+WHERE NOT role = 'admin'
+ORDER BY user_id ")->fetchAll(PDO::FETCH_ASSOC);
 
 $reports = $db->query("
 SELECT * 

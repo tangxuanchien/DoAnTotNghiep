@@ -1,7 +1,12 @@
 <?php
 require '../models/Database.php';
 
-$user_id = $_SESSION['user_id'];
+if(isset($_GET['user_id'])){
+    $user_id = $_GET['user_id'];
+} else {
+    $user_id = $_SESSION['user_id'];
+}
+
 $db = new Database();
 $user = $db->query("SELECT * FROM `users` where user_id = $user_id")->fetch(PDO::FETCH_ASSOC);
 
