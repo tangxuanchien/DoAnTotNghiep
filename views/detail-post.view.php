@@ -152,7 +152,8 @@ require '../controllers/detail-post.controller.php'; ?>
                     <div class="comment-content">
                         <?php if (isset($_SERVER['PATH_INFO']) and $comment['user_id'] == $_SESSION['user_id']): ?>
                             <div class="edit-comment">
-                                <form action="/Datn/controllers/edit-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>" method="get">
+                                <form action="/Datn/controllers/edit-comment.controller.php" method="get">
+                                    <input type="hidden" value="<?= $comment['comment_id'] ?>" name="comment_id">
                                     <ul>
                                         <li><input type="text" name="content" class="form-control" value="<?= $comment['content'] ?>" required></li>
                                         <li><button class="btn btn-primary">Xác nhận</button></li>
@@ -162,13 +163,15 @@ require '../controllers/detail-post.controller.php'; ?>
                         <?php else: ?>
                             <?= $comment['content'] ?>
                         <?php endif ?>
-                        <?php if ($comment['user_id'] == $_SESSION['user_id']) : ?>
-                            <div>
-                                <a href="/Datn/views/detail-post.view.php/edit?post_id=<?= $post['post_id'] ?>"><i class="fa-solid fa-pencil"></i></a>
-                                <a href="/Datn/controllers/delete-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>"><i class="fa-solid fa-trash"></i></a>
-                            </div>
-                        <?php else: ?>
-                            <a href="/Datn/views/report.view.php?post_id=<?= $post_id ?>&source=detail" onclick="return confirm('Bạn chắc chắn muốn báo cáo bình luận này')"><i class="fa-solid fa-triangle-exclamation"></i></a>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <?php if ($comment['user_id'] == $_SESSION['user_id']) : ?>
+                                <div>
+                                    <a href="/Datn/views/detail-post.view.php/edit?post_id=<?= $post['post_id'] ?>"><i class="fa-solid fa-pencil"></i></a>
+                                    <a href="/Datn/controllers/delete-comment.controller.php?comment_id=<?= $comment['comment_id'] ?>"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            <?php else: ?>
+                                <a href="/Datn/views/report.view.php?post_id=<?= $post_id ?>&source=detail" onclick="return confirm('Bạn chắc chắn muốn báo cáo bình luận này')"><i class="fa-solid fa-triangle-exclamation"></i></a>
+                            <?php endif ?>
                         <?php endif ?>
                     </div>
                 <?php endforeach ?>
@@ -226,11 +229,9 @@ require '../controllers/detail-post.controller.php'; ?>
             <button class="btn btn-primary mt-3 mb-3" id="btn-contact" onclick="changeContact('<?= $post['contact_info'] ?>')">
                 <i class="fa-solid fa-phone text-light"></i> Liên hệ người bán
             </button>
-            <div>
-                <a href="https://zalo.me/<?= $post['contact_info']?>" class="btn btn-outline-primary">
-                    <img src="../images/icon_zalo.svg" alt="zalo" width="22.3px"> Liên hệ qua Zalo
-                </a>
-            </div>
+            <a href="https://zalo.me/<?= $post['contact_info'] ?>" class="btn btn-outline-primary">
+                <img src="../images/icon_zalo.svg" alt="zalo" width="22.3px"> Liên hệ qua Zalo
+            </a>
             <?php if (isset($_SESSION['user_id'])):
                 if ($post['user_id'] != $_SESSION['user_id']): ?>
                     <form action="/Datn/controllers/save-post.controller.php" method="get">

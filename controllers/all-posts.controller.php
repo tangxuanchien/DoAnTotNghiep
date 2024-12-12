@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 require '../models/Database.php';
 
 $page_number = $_GET['page_number'];
@@ -36,10 +39,9 @@ LIMIT $limit OFFSET $offset", [
 // WHERE user_sid = :user_sid", [
 //     'user_sid' => $user_id
 // ])->fetchAll(PDO::FETCH_ASSOC);
-
 $total_properties = $db->query("SELECT Count(post_id) as total FROM `posts`")->fetch(PDO::FETCH_ASSOC);
 
-$residual_page_number = ((int)$total_properties["total"] % $limit);
-$last_page_numbers = ($residual_page_number === 0) ? ((int)$total_properties["total"] / $limit) : (((int)$total_properties["total"] - $residual_page_number) / $limit) + 1;
+$residual_page_number = $total_properties["total"] % $limit;
+$last_page_numbers = ($residual_page_number == 0) ? ($total_properties["total"] / $limit) : (($total_properties["total"] - $residual_page_number) / $limit) + 1;
 $total_pages = range(1, $last_page_numbers);
 

@@ -60,9 +60,9 @@ require '../controllers/information.controller.php';
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fa-regular fa-address-card"></i> Thông tin liên hệ</h5>
-                            <p><strong>Email:</strong> <?= $user['email'] ?></p>
-                            <p><strong>Số điện thoại:</strong> <?= $user['phone'] ?></p>
-                            <p><strong>Địa chỉ:</strong> Hà Nội, Việt Nam</p>
+                            <p><b>Email:</b> <?= $user['email'] ?></p>
+                            <p><b>Số điện thoại:</b> <?= $user['phone'] ?></p>
+                            <p><b>Địa chỉ:</b> Hà Nội, Việt Nam</p>
                         </div>
                     </div>
                 </div>
@@ -70,9 +70,27 @@ require '../controllers/information.controller.php';
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fa-regular fa-building"></i> Thông tin giao dịch</h5>
-                            <p><strong>Số bài đăng:</strong> <?= $total_post['total_post'] ?> </p>
-                            <p><strong>Khu vực chủ yếu:</strong> Hai Bà Trưng</p>
-                            <p><strong>Loại hình ưa thích:</strong> Chung cư</p>
+                            <p>
+                                <b>Số bài đăng:</b> <?= $total_post['total_post'] ?> -
+                                <b>Đã bán:</b> <?= (!$post_sold) ? '0' : $post_sold['total_post'] ?>
+                            </p>
+                            <p>
+                                <b>Khu vực chủ yếu:</b>
+                                <?= ($favourite_district) ? $favourite_district[0]['district_name'] . ', ' . $favourite_district[1]['district_name'] : 'Không có'?>
+                            </p>
+                            <p>
+                                <b>Loại hình ưa thích:</b>
+                                <?php if ($favourite_type[0]['type'] == 'home') {
+                                    echo 'Nhà ở';
+                                } elseif ($favourite_type[0]['type'] == 'apartment') {
+                                    echo 'Chung cư';
+                                } elseif ($favourite_type[0]['type'] == 'land') {
+                                    echo 'Đất đai';
+                                } else {
+                                    echo 'Không có';
+                                } ?>
+                                - <?= $favourite_type[0]['total'] ?> bài đăng
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -89,7 +107,7 @@ require '../controllers/information.controller.php';
                 <h5>Dự án gần đây</h5>
                 <div class="list-group">
                     <?php foreach ($posts as $post): ?>
-                        <a href="/Datn/views/detail-post.view.php?post_id=<?=$post['post_id']?>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="/Datn/views/detail-post.view.php?post_id=<?= $post['post_id'] ?>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             <div>
                                 <h6 class="mb-1"><?= $post['title'] ?></h6>
                                 <p class="mb-1 text-muted"><?= 'Phường ' . $post['ward_name'] . ', Quận ' . $post['district_name'] ?>, Hà Nội</p>

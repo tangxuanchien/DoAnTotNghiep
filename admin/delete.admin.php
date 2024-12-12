@@ -32,8 +32,21 @@ if (isset($_POST['user_id'])) {
 
 if (isset($_POST['post_id'])) {
     $post_id = $_POST['post_id'];
+    $property = $db->query("
+    SELECT * FROM `properties` pr 
+    INNER JOIN posts p ON p.property_id = pr.property_id 
+    WHERE p.post_id = :post_id", [
+        'post_id' => $post_id
+    ])->fetch(PDO::FETCH_ASSOC);
+    $property_id = $property['property_id'];
     $delete_post = $db->query("DELETE FROM `posts` WHERE post_id = :post_id", [
         'post_id' => $post_id
+    ]);
+    $delete_image = $db->query("DELETE FROM `property_images` WHERE property_id = :property_id", [
+        'property_id' => $property_id
+    ]);
+    $delete_property = $db->query("DELETE FROM `properties` WHERE property_id = :property_id", [
+        'property_id' => $property_id
     ]);
     header('Location: /Datn/admin/home.admin.php/posts');
     exit();

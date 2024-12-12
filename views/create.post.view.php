@@ -8,7 +8,7 @@ $districts = $db->query("SELECT * FROM `districts`")->fetchAll(PDO::FETCH_ASSOC)
 
 $user_id = $_SESSION['user_id'];
 $title = "Tạo bài đăng";
-$banner = "Bài đăng mới";
+$banner = "";
 $login = check_login($_SESSION['name']);
 if (!isset($_SESSION['error_post'])) {
     $_SESSION['error_post'] = '';
@@ -21,6 +21,7 @@ require 'partials/navigation.php';
 require 'partials/banner.php';
 ?>
 <div class="container-create-post">
+    <h1>Bài đăng mới</h1>
     <form action="/Datn/controllers/create.post.controller.php?user_id=<?= $user_id ?>" method="POST" enctype="multipart/form-data" id="submit-post">
         <div class="text-danger fw-semibold lh-1 fs-5 mt-3"><?= $_SESSION['error_post'] ?></div>
         <div class="mb-3">
@@ -90,9 +91,6 @@ require 'partials/banner.php';
         </div>
         <div class="mt-3 mb-5">
             <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn chắc chắn muốn đăng bài không ?')">Đăng bài</button>
-            <div class="mt-3 ml-3">
-                <a href="/Datn/views/login.view.php" class="link-dark">Quay lại</a>
-            </div>
         </div>
     </form>
 </div>

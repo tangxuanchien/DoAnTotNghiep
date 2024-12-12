@@ -16,6 +16,32 @@ WHERE user_id = :user_id", [
     'user_id' => $user_id
 ])->fetch(PDO::FETCH_ASSOC);
 
+$post_sold = $db->query("
+SELECT count(*) as total_post FROM `posts`
+WHERE user_id = :user_id AND status = 'sold'", [
+    'user_id' => $user_id
+])->fetch(PDO::FETCH_ASSOC);
+
+$favourite_type = $db->query("
+SELECT pr.type, count(*) as total FROM `posts` p
+INNER JOIN properties pr ON pr.property_id = p.post_id
+WHERE user_id = :user_id
+GROUP BY pr.type
+ORDER BY total DESC", [
+    'user_id' => $user_id
+])->fetchAll(PDO::FETCH_ASSOC);
+
+$favourite_district = $db->query("
+SELECT d.district_name, count(*) as total FROM `posts` p
+INNER JOIN properties pr ON pr.property_id = p.post_id
+INNER JOIN wards w ON w.ward_id = pr.ward_id
+INNER JOIN districts d ON d.district_id = w.district_id
+WHERE user_id = :user_id
+GROUP BY d.district_name
+ORDER BY total DESC LIMIT 2", [
+    'user_id' => $user_id
+])->fetchAll(PDO::FETCH_ASSOC);
+
 $posts = $db->query("
 SELECT * FROM `posts` p
 INNER JOIN properties pr on pr.property_id = p.property_id
@@ -23,16 +49,14 @@ INNER JOIN users u on u.user_id = p.user_id
 INNER JOIN wards w on w.ward_id = pr.ward_id
 INNER JOIN districts d on d.district_id = w.district_id
 INNER JOIN property_images i on i.property_id = pr.property_id
-WHERE u.user_id = :user_id LIMIT 3", [
+WHERE u.user_id = :user_id
+ORDER BY p.post_id DESC 
+LIMIT 3", [
     'user_id' => $user_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
 if (empty($user['introduce'])) {
     $user['introduce'] = 'Chưa có giới thiệu';
-}
-
-if (empty($user['avatar'])) {
-    $user['avatar'] = 'Chưa có giới thiệu';
 }
 
 $date = date_parse($user['created_user_at']);

@@ -208,5 +208,4 @@ require 'partials/banner.php';
 		});
 	});
 </script>
-<?php
-require 'partials/footer.php';
+
