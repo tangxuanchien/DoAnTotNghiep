@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'header.admin.php';
-isset($_SESSION['email-success']) ? $_SESSION['email-success'] : ''; 
+$_SESSION['email-success'] = (!isset($_SESSION['email-success'])) ?  '' : $_SESSION['email-success']; 
 ?>
 <div class="container mt-5 w-75">
     <h2 class="mb-2">Phản hồi Email cho khách hàng</h2>
@@ -25,4 +25,4 @@ isset($_SESSION['email-success']) ? $_SESSION['email-success'] : '';
     </form>
     <h4 class="text-success"><?= $_SESSION['email-success'] ?></h4>
 </div>
-<?php $_SESSION['email-success'] = NULL ?>
+<?php $_SESSION['email-success'] = '' ?>

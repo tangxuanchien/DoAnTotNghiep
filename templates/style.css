@@ -177,7 +177,7 @@ body {
 
 .mega-menu {
     position: absolute;
-    left: 47%;
+    left: 51%;
     background: white;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     opacity: 0;
@@ -188,15 +188,41 @@ body {
     z-index: 1000;
 }
 
-.navbar-shrink {
-    padding: 0.5rem 0;
+.menu-post {
+    position: absolute;
+    left: 33%;
+    background: white;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    padding: 10px;
+    z-index: 1000;
 }
 
+.dropdown-item {
+    display: block;
+    padding: 0.7rem 1.5rem;
+    color: #2c3e50;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: #e0e0e0;
+    color: #e74c3c;
+}
+
+.nav-item:hover .menu-post,
 .nav-item:hover .mega-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+
+.navbar-shrink {
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* BANNER */

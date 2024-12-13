@@ -231,7 +231,7 @@ require 'home.admin.controller.php';
                   } ?>
                 </td>
                 <td>
-                  <?php if ($report['status_report'] == 'approved'): ?>
+                  <?php if ($report['status_report'] == 'pending'): ?>
                     <ul>
                       <li>
                         <form action="/Datn/admin/change-report.admin.php" method="post">

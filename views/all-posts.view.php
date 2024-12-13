@@ -58,9 +58,20 @@ foreach ($posts as $index => $post):
                     <div class="mt-2">
                         <ul>
                             <li class="post-price">
-                                <h5 class="text-danger">
-                                    <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?>
-                                </h5>
+                                <ul>
+                                    <li>
+                                        <?php if ($post['status'] == 'available') {
+                                            echo '<p class ="badge text-bg-primary text-wrap">Đang bán</p>';
+                                        } elseif ($post['status'] == 'for_rent') {
+                                            echo '<p class ="badge text-bg-warning text-wrap">Cho thuê</p>';
+                                        } ?>
+                                    </li>
+                                    <li>
+                                        <h5 class="text-danger">
+                                            <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?>
+                                        </h5>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="post-save">
                                 <?php if (isset($_SESSION['user_id'])): ?>
@@ -87,24 +98,23 @@ foreach ($posts as $index => $post):
         </div>
     </div>
 <?php endforeach; ?>
-
 <div class="page-numbers">
     <ul>
         <li>
-            <a href="<?= checkpagenumber($page_number, 1, '', '/Datn/views/all-posts.view.php?page_number=' . ($page_number - 1)) ?>" style="color: <?= ($page_number == 1) ? 'gray' : 'black' ?>">
+            <a href="<?= checkpagenumber($page_number, 1, '', '/Datn/views/all-posts.view.php' . $path_info . '?page_number=' . ($page_number - 1)) ?>" style="color: <?= ($page_number == 1) ? 'gray' : 'black' ?>">
                 <i class="fa-solid fa-angles-left" style="color: <?= ($page_number == 1) ? 'gray' : 'black' ?>"></i> Trước
             </a>
         </li>
         <?php
         foreach ($total_pages as $number) : ?>
             <li>
-                <form action="/Datn/views/all-posts.view.php?page_number=<?= $number ?>" method="post">
+                <form action="/Datn/views/all-posts.view.php<?= $path_info ?>?page_number=<?= $number ?>" method="post">
                     <button type="submit" style="background-color: <?= ($number == $page_number) ? '#6e9eeb' : 'white' ?>"><?= $number ?></button>
                 </form>
             </li>
         <?php endforeach ?>
         <li>
-            <a href="<?= checkpagenumber($page_number, $last_page_numbers, '', '/Datn/views/all-posts.view.php?page_number=' . ($page_number + 1)) ?>" style="color: <?= ($page_number == $last_page_numbers) ? 'gray' : 'black' ?>">
+            <a href="<?= checkpagenumber($page_number, $last_page_numbers, '', '/Datn/views/all-posts.view.php' . $path_info . '?page_number=' . ($page_number + 1)) ?>" style="color: <?= ($page_number == $last_page_numbers) ? 'gray' : 'black' ?>">
                 Sau <i class="fa-solid fa-angles-right" style="color: <?= ($page_number == $last_page_numbers) ? 'gray' : 'black' ?>"></i>
             </a>
         </li>

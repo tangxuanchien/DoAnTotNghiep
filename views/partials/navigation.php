@@ -11,6 +11,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/all-posts.view.php' ? 'nav-link active' : 'nav-link' ?>">
+                                <i class="fa-solid fa-newspaper"></i> Bài đăng
+                            </a>
+                            <div class="menu-post">
+                                <ul class="list-unstyled">
+                                    <li><a href="/Datn/views/all-posts.view.php/all?page_number=1" class="dropdown-item">Tất cả bài đăng</a></li>
+                                    <li><a href="/Datn/views/all-posts.view.php/available?page_number=1" class="dropdown-item">Bài đăng bán</a></li>
+                                    <li><a href="/Datn/views/all-posts.view.php/for_rent?page_number=1" class="dropdown-item">Bài đăng cho thuê</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
                             <a class='<?= $_SERVER['REQUEST_URI'] == '/Datn/views/price-statistics.view.php' ? 'nav-link active' : 'nav-link' ?>' href="/Datn/views/price-statistics.view.php">
                                 <i class="fa-solid fa-chart-simple"></i> Thống kê giá
                             </a>
@@ -34,7 +46,7 @@
                                     <i class="fa-solid fa-pen-to-square"></i> Đăng tin mới
                                 </a>
                             <?php else: ?>
-                                <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/create.post.view.php' ? 'nav-link active' : 'nav-link' ?>" href="#">
+                                <a class="<?= $_SERVER['SCRIPT_NAME'] == '/Datn/views/create.post.view.php' ? 'nav-link active' : 'nav-link' ?>" href="">
                                     <i class="fa-solid fa-pen-to-square"></i> Đăng tin mới
                                 </a>
                             <?php endif ?>
@@ -62,8 +74,9 @@
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li><a class="dropdown-item" href="/Datn/views/information.view.php"><i class="fa-solid fa-user"></i> Hồ sơ</a></li>
                                             <?php if ($_SESSION['method'] == 'local') : ?>
-                                            <li><a class="dropdown-item" href="/Datn/views/change-password.view.php"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a></li>
+                                                <li><a class="dropdown-item" href="/Datn/views/change-password.view.php"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a></li>
                                             <?php endif ?>
+                                            <li><a class="dropdown-item" href="/Datn/views/information.view.php"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo, hỗ trợ</a></li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>

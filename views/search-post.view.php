@@ -188,69 +188,71 @@ require '../controllers/search-post.controller.php';
             </ul>
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            var initialProperties = $('#properties').html();
-            $('#search').keyup(function(e) {
-                var search = $('#search').val();
-                if (search.length > 0) {
-                    $.ajax({
-                        url: '/Datn/controllers/get_searchs.php',
-                        type: 'POST',
-                        data: {
-                            search: search
-                        },
-                        success: function(response) {
-                            $('#result').html(response).show();
-                            $('#properties').html("");
-                        },
-                    });
-                } else {
-                    $('#result').html('').hide();
-                    $('#properties').html(initialProperties);
+<?php endforeach; ?>
+<script>
+    $(document).ready(function() {
+        var initialProperties = $('#properties').html();
+        $('#search').keyup(function(e) {
+            var search = $('#search').val();
+            if (search.length > 0) {
+                $.ajax({
+                    url: '/Datn/controllers/get_searchs.php',
+                    type: 'POST',
+                    data: {
+                        search: search
+                    },
+                    success: function(response) {
+                        $('#result').html(response).show();
+                        $('#properties').html("");
+                    },
+                });
+            } else {
+                $('#result').html('').hide();
+                $('#properties').html(initialProperties);
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $('.district_id').change(function(e) {
+            var district_id = $('.district_id').val().trim();
+            var ward_id = $('.ward_id').val().trim();
+            $.ajax({
+                url: '../controllers/get_wards.php',
+                type: 'POST',
+                data: {
+                    district_id: district_id,
+                    ward_id: ward_id
+                },
+                success: function(response) {
+                    console.log(district_id);
+                    $('.ward_id').html('<option value="">--Chọn Phường--</option>');
+                    $('.ward_id').append(response);
                 }
             });
         });
+    });
 
-        $(document).ready(function() {
-            $('.district_id').change(function(e) {
-                var district_id = $('.district_id').val().trim();
-                var ward_id = $('.ward_id').val().trim();
-                $.ajax({
-                    url: '../controllers/get_wards.php',
-                    type: 'POST',
-                    data: {
-                        district_id: district_id,
-                        ward_id: ward_id
-                    },
-                    success: function(response) {
-                        console.log(district_id);
-                        $('.ward_id').html('<option value="">--Chọn Phường--</option>');
-                        $('.ward_id').append(response);
-                    }
-                });
-            });
-        });
+    const slider = document.getElementById('rubber-slider');
+    const hiddenInput = document.getElementById('priceRange');
+    const hiddenKeyInput = document.getElementById('priceKeyRange');
+    noUiSlider.create(slider, {
+        start: [0, 0],
+        connect: true,
+        range: {
+            'min': 0,
+            'max': 50
+        },
+        animate: true,
+        animationDuration: 300,
+    });
+    const rangeDisplay = document.getElementById('rangeDisplay');
+    slider.noUiSlider.on('update', function(values) {
+        rangeDisplay.textContent = `${Math.round(values[0])} - ${Math.round(values[1])}`;
+        hiddenInput.value = `${Math.round(values[0])}000 AND ${Math.round(values[1])}000`;
+        hiddenKeyInput.value = `${Math.round(values[0])} - ${Math.round(values[1])}`;
+    });
+</script>
 
-        const slider = document.getElementById('rubber-slider');
-        const hiddenInput = document.getElementById('priceRange');
-        const hiddenKeyInput = document.getElementById('priceKeyRange');
-        noUiSlider.create(slider, {
-            start: [0, 0],
-            connect: true,
-            range: {
-                'min': 0,
-                'max': 50
-            },
-            animate: true,
-            animationDuration: 300,
-        });
-        const rangeDisplay = document.getElementById('rangeDisplay');
-        slider.noUiSlider.on('update', function(values) {
-            rangeDisplay.textContent = `${Math.round(values[0])} - ${Math.round(values[1])}`;
-            hiddenInput.value = `${Math.round(values[0])}000 AND ${Math.round(values[1])}000`;
-            hiddenKeyInput.value = `${Math.round(values[0])} - ${Math.round(values[1])}`;
-        });
-    </script>
-<?php endforeach;
+<?php
 require 'partials/footer.php';

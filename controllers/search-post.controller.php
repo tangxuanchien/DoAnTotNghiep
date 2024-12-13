@@ -7,7 +7,7 @@ if(!isset($SESSION['user_id'])){
 } else {
     $user_id = $_SESSION['user_id'];
 }
-$limit = 8;
+
 
 $status = 'available';
 $db = new Database();
@@ -91,4 +91,5 @@ SELECT * FROM `wards`
 WHERE ward_id = :ward_id", [
 	'ward_id' => $ward_id
 ])->fetch(PDO::FETCH_ASSOC);
+
 

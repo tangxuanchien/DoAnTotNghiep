@@ -253,7 +253,7 @@ require '../controllers/detail-post.controller.php'; ?>
         <div class="detail-support">
             <ul>
                 <li><a href="#"><i class="fa-solid fa-headset"></i> 1900 2121</a></li>
-                <li><a href="/Datn/views/report.view.php?post_id=<?= $post_id ?>&source=detail"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo bài viết</a></li>
+                <li><a href="/Datn/views/report.view.php?post_id=<?= $post_id ?>&source=detail"><i class="fa-solid fa-triangle-exclamation"></i> Báo cáo, hỗ trợ</a></li>
             </ul>
         </div>
     </div>
