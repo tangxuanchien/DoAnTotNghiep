@@ -56,7 +56,7 @@ LEFT JOIN post_saves ps on ps.post_sid = p.post_id
 INNER JOIN property_images i on i.property_id = pr.property_id
 WHERE ps.user_sid = :user_id
 AND p.status = :status
-AND i.image_id = (
+AND i.image_id = ( 
 SELECT MIN(image_id)
 FROM property_images
 WHERE property_id = pr.property_id)

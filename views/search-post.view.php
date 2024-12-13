@@ -163,9 +163,20 @@ require '../controllers/search-post.controller.php';
                     <div class="mt-2">
                         <ul>
                             <li class="post-price">
-                                <h5 class="text-danger">
-                                    <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?>
-                                </h5>
+                                <ul>
+                                    <li>
+                                        <?php if ($post['status'] == 'available') {
+                                            echo '<p class ="badge text-bg-primary text-wrap">Đang bán</p>';
+                                        } elseif ($post['status'] == 'for_rent') {
+                                            echo '<p class ="badge text-bg-warning text-wrap">Cho thuê</p>';
+                                        } ?>
+                                    </li>
+                                    <li>
+                                        <h5 class="text-danger">
+                                            <?= strlen($post['price']) > 3 ? ($post['price'] / 1000) . ' tỷ' : $post['price'] . ' triệu' ?>
+                                        </h5>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="post-save">
                                 <?php if (isset($_SESSION['user_id'])): ?>

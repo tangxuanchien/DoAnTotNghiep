@@ -14,9 +14,9 @@ $property = $db->query("SELECT max(property_id) as last_property_id FROM `proper
 $property_id = $property['last_property_id'] + 1;
 $user_id = $_GET['user_id'];
 $post_id = $post['last_post_id'] + 1;
-$status = 'available';
 
 $title = $_POST['title'];
+$status = $_POST['status'];
 $description = $_POST['description'];
 $price = $_POST['price'];
 $area = $_POST['area'];

@@ -9,7 +9,6 @@ if(!isset($SESSION['user_id'])){
 }
 
 
-$status = 'available';
 $db = new Database();
 
 $sort_by_created_at = check_isset($_POST['sort_by_created_at']);
@@ -60,16 +59,14 @@ INNER JOIN wards w on w.ward_id = pr.ward_id
 INNER JOIN districts d on d.district_id = w.district_id 
 LEFT JOIN post_saves ps on ps.post_sid = p.post_id
 INNER JOIN property_images i on i.property_id = pr.property_id
-WHERE p.status = :status
+WHERE p.status IN ('available', 'for_rent')
 AND pr.title like '%$search%'
 $filter
 AND i.image_id = (
 SELECT MIN(image_id)
 FROM property_images
 WHERE property_id = pr.property_id)
-ORDER BY $order_by", [
-    'status' => $status
-])->fetchAll(PDO::FETCH_ASSOC);
+ORDER BY $order_by")->fetchAll(PDO::FETCH_ASSOC);
 
 $post_saves = $db->query("
 SELECT *

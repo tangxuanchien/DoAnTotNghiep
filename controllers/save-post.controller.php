@@ -20,7 +20,6 @@ AND user_sid = :user_sid", [
     'user_sid' => $user_id
 ])->fetch(PDO::FETCH_ASSOC);
 
-
 if (!$check_save) {
     $save = $db->query(
         "INSERT INTO `post_saves` (`post_save_id`, `post_sid`, `user_sid`, `created_save_at`) 
@@ -44,7 +43,8 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     $previousPage = $_SERVER['HTTP_REFERER'];
     header("Location: $previousPage");
     exit();
-} else {
+}
+else {
     header("Location: /Datn/views/save-post.view.php");
     exit();
 }

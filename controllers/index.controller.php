@@ -20,6 +20,7 @@ WHERE i.image_id = (
 SELECT MIN(image_id)
 FROM property_images
 WHERE property_id = pr.property_id)
+AND p.status IN ('available', 'for_rent')
 ORDER BY p.post_id
 LIMIT 9")->fetchAll(PDO::FETCH_ASSOC);
 

@@ -464,6 +464,12 @@ body {
     width: 140px;
 }
 
+.select-status li {
+    display: inline-block;
+    margin-right: 50px;
+    width: 345px;
+}
+
 .select-room label {
     margin-bottom: 10px;
 }

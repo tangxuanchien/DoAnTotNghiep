@@ -32,15 +32,27 @@ require 'partials/banner.php';
             <label class="form-label">Mô tả chi tiết</label>
             <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name='description' required maxlength="300"></textarea>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Số điện thoại liên hệ người bán</label>
-            <input type="number" class="form-control" name='contact_info' required min="100000000" max="999999999">
+        <div class="select-status mb-3">
+            <ul>
+                <li>
+                    <label class="form-label">Số điện thoại liên hệ người bán</label>
+                    <input type="number" class="form-control" name='contact_info' required min="100000000" max="999999999">
+                </li>
+                <li>
+                    <label class="form-label">Loại bài đăng</label>
+                    <select class="form-select" name="status" required>
+                        <option value="">--Chọn Loại--</option>
+                        <option value="available">Đăng bán</option>
+                        <option value="for_rent">Cho thuê</option>
+                    </select>
+                </li>
+            </ul>
         </div>
         <div class="select-room mb-3">
             <ul>
                 <li>
                     <label class="form-label">Giá bán (triệu VND)</label>
-                    <input type="number" class="form-control" name='price' required min="500" max="100000">
+                    <input type="number" class="form-control" name='price' required min="0" max="100000">
                 </li>
                 <li>
                     <label class="form-label">Diện tích đất (m<sup>2</sup>)</label>
@@ -62,9 +74,9 @@ require 'partials/banner.php';
                     <label class="form-label">Phân loại bất động sản</label></br>
                     <select class="form-select" name="type" required>
                         <option value="">--Chọn Loại--</option>
-                            <option value="home">Nhà ở</option>
-                            <option value="apartment">Chung cư/Căn hộ</option>
-                            <option value="land">Đất</option>
+                        <option value="home">Nhà ở</option>
+                        <option value="apartment">Chung cư/Căn hộ</option>
+                        <option value="land">Đất</option>
                     </select>
                 </li>
                 <li>
