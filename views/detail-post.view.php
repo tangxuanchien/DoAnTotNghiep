@@ -31,7 +31,7 @@ require '../controllers/detail-post.controller.php'; ?>
             <?php elseif ($_GET['source'] == 'manage'): ?>
                 <a href="/Datn/views/manage-posts.view.php/available">Quản lí bài đăng</a>
             <?php else: ?>
-                <a href="/Datn/views/all-posts.view.php?page_number=1">Tất cả bài đăng</a>
+                <a href="/Datn/views/all-posts.view.php/all?page_number=1">Tất cả bài đăng</a>
             <?php endif ?>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Chi tiết bài đăng</li>

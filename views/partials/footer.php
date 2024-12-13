@@ -28,14 +28,14 @@
                                 <h6 class="text-light">Về chúng tôi</h6>
                                 <p><a href="/Datn/"><i class="fa-solid fa-angle-right"></i> Trang chủ</a></p>
                                 <p><a href="/Datn/"><i class="fa-solid fa-angle-right"></i> Giới thiệu</a></p>
-                                <p><a href="/Datn/views/all-posts.view.php?page_number=1"><i class="fa-solid fa-angle-right"></i> Bài đăng</a></p>
+                                <p><a href="/Datn/views/all-posts.view.php/all?page_number=1"><i class="fa-solid fa-angle-right"></i> Bài đăng</a></p>
                             </div>
 
                         </li>
                         <li>
                             <div style="margin-left: 20px;">
                                 <p><a href="/Datn/views/price-statistics.view.php"><i class="fa-solid fa-angle-right"></i> Thống kê giá</a></p>
-                                <p><a href="/Datn/views/all-posts.view.php?page_number=1"><i class="fa-solid fa-angle-right"></i> Bảng tin</a></p>
+                                <p><a href="/Datn/views/all-posts.view.php/all?page_number=1"><i class="fa-solid fa-angle-right"></i> Bảng tin</a></p>
                                 <p><a href="/Datn/views/manage-posts.view.php/available"><i class="fa-solid fa-angle-right"></i> Quản lí bài đăng</a></p>
                             </div>
                         </li>

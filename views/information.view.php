@@ -51,7 +51,6 @@ require '../controllers/information.controller.php';
                     <i class="fa-solid fa-arrow-right-from-bracket" style="color: white"></i> Đăng xuất
                 </button>
             </form>
-
         </div>
         <div class="col-lg-8 col-xl-9 profile-main">
             <h1 class="mb-4">Thông tin cá nhân</h1>

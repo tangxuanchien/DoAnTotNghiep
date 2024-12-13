@@ -83,7 +83,7 @@ require 'partials/banner.php';
     </ul>
 </div>
 <div class="btn-view-all">
-    <form action="/Datn/views/all-posts.view.php?page_number=1" method="post">
+    <form action="/Datn/views/all-posts.view.php/all?page_number=1" method="post">
         <button type="submit" class="btn btn-dark">Xem tất cả bài đăng <i class="fa-solid fa-arrow-right text-light"></i></button>
     </form>
 </div>

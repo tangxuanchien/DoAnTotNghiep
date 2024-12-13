@@ -64,11 +64,16 @@ require '../controllers/manage-posts.controller.php';
                         <a href="/Datn/views/detail-post.view.php?post_id=<?= $my_post['post_id'] ?>&source=manage" class="text-dark">
                             <h5><?= $my_post['title'] ?></h5>
                         </a>
-                        <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small>
+                        <small class="text-muted me-5"><i class="far fa-clock me-1"></i> <?= $date['day'] . '-' . $date['month'] . '-' . $date['year'] ?></small>
+                        <?php if ($my_post['status'] == 'available') {
+                            echo '<p class ="badge text-bg-primary text-wrap">Đang bán</p>';
+                        } elseif ($my_post['status'] == 'for_rent') {
+                            echo '<p class ="badge text-bg-warning text-wrap">Cho thuê</p>';
+                        } ?>
                     </div>
                     <div class="mt-2 post-edit">
                         <ul>
-                            <?php if ($_SERVER['PATH_INFO'] == '/available'): ?>
+                            <?php if ($_SERVER['PATH_INFO'] == '/available' OR $_SERVER['PATH_INFO'] == '/for_rent'): ?>
                                 <li>
                                     <form action="/Datn/views/edit-post.view.php" method="post">
                                         <input type="hidden" value="<?= $my_post['post_id'] ?>" name="post_id">

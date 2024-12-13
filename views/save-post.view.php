@@ -42,10 +42,15 @@ require '../controllers/manage-posts.controller.php';
                         <a href="/Datn/views/detail-post.view.php?post_id=<?= $post_save['post_id'] ?>&source=save" class="text-dark">
                             <h5><?= $post_save['title'] ?></h5>
                         </a>
-                        <small class="text-muted">
+                        <small class="text-muted me-4">
                             <i class="far fa-clock me-1"></i> <?= $time ?>
                             <i class="fa-solid fa-calendar-days me-1" style="margin-left: 10px;"></i> <?= $date ?>
                         </small>
+                                <?php if ($post_save['status'] == 'available') {
+                                    echo '<p class ="badge text-bg-primary text-wrap">Đang bán</p>';
+                                } elseif ($post_save['status'] == 'for_rent') {
+                                    echo '<p class ="badge text-bg-warning text-wrap">Cho thuê</p>';
+                                } ?>
                     </div>
                     <div class="mt-2 post-edit">
                         <ul>

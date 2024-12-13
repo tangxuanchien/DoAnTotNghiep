@@ -129,7 +129,7 @@ require 'partials/banner.php';
 	<?php endif ?>
 	<h2 class="mt-5">Biểu đồ giá các quận thuộc thủ đô Hà Nội</h2>
 	<canvas id="districtChart"></canvas>
-	<a href="/Datn/views/all-posts.view.php?page_number=1" class="fs-4 mt-3">
+	<a href="/Datn/views/all-posts.view.php/all?page_number=1" class="fs-4 mt-3">
 		Xem tất cả bài đăng ở Hà Nội <i class="fa-solid fa-angles-right"></i>
 	</a>
 </div>

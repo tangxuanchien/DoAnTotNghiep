@@ -22,6 +22,7 @@ $num_bedrooms = $_POST['num_bedrooms'];
 $num_bathrooms = $_POST['num_bathrooms'];
 $type = $_POST['type'];
 $ward_id = $_POST['ward_id'];
+$status = $_POST['status'];
 $updated_at = get_time();
 $price_per_m2 = get_price_per_m2($price, $area);
 
@@ -59,9 +60,11 @@ $property_id = $property['property_id'];
         ]
     );
     $post = $db->query(
-        "UPDATE `posts` SET updated_at = :updated_at",
+        "UPDATE `posts` SET updated_at = :updated_at, status = :status WHERE post_id = :post_id",
         [
-            'updated_at' => $updated_at
+            'updated_at' => $updated_at,
+            'status' => $status,
+            'post_id' => $post_id
         ]
     );
 

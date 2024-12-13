@@ -95,15 +95,27 @@ require 'partials/banner.php';
             <label class="form-label">Mô tả chi tiết</label>
             <textarea placeholder="Mô tả chi tiết về bài đăng" class="form-control" name='description' required maxlength="300"><?= $edit_post['description'] ?></textarea>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Số điện thoại liên hệ người bán</label>
-            <input type="number" class="form-control" name='contact_info' value="<?= $edit_post['contact_info'] ?>" required min="100000000" max="999999999">
+        <div class="select-status mb-3">
+            <ul>
+                <li>
+                    <label class="form-label">Số điện thoại liên hệ người bán</label>
+                    <input type="number" class="form-control" name='contact_info' value="<?= $edit_post['contact_info'] ?>" required min="100000000" max="999999999">
+                </li>
+                <li>
+                    <label class="form-label">Loại bài đăng</label>
+                    <select class="form-select" name="status" required>
+                        <option value="">--Chọn Loại--</option>
+                        <option value="available" <?= $edit_post['status'] == 'available' ? 'selected' : '' ?>>Đăng bán</option>
+                        <option value="for_rent" <?= $edit_post['status'] == 'for_rent' ? 'selected' : '' ?>>Cho thuê</option>
+                    </select>
+                </li>
+            </ul>
         </div>
         <div class="select-room mb-3">
             <ul>
                 <li>
                     <label class="form-label">Giá bán (triệu VND)</label>
-                    <input type="number" class="form-control" placeholder="Đơn vị triệu đồng (2,2 tỉ = 2200 triệu đồng)" name='price' value="<?= $edit_post['price'] ?>" required min="500" max="1000000">
+                    <input type="number" class="form-control" placeholder="Đơn vị triệu đồng (2,2 tỉ = 2200 triệu đồng)" name='price' value="<?= $edit_post['price'] ?>" required min="0" max="1000000">
                 </li>
                 <li>
                     <label class="form-label">Diện tích đất (m<sup>2</sup>)</label>
@@ -171,7 +183,7 @@ require 'partials/banner.php';
         <div class="mt-3 mb-5">
             <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn chắc chắn chỉnh sửa bài đăng không ?')">Chỉnh sửa</button>
             <div class="mt-3 ml-3">
-                <a href="/Datn/views/manage-posts.view.php" class="link-dark">Quay lại</a>
+                <a href="/Datn/views/manage-posts.view.php/available" class="link-dark">Quay lại</a>
             </div>
         </div>
     </form>

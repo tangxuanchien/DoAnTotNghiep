@@ -45,6 +45,7 @@ ORDER BY p.created_at DESC", [
     'status' => $status
 ])->fetchAll(PDO::FETCH_ASSOC);
 
+$status_save = "p.status IN ('available', 'for_rent')";
 $post_saves = $db->query("
 SELECT *, (SELECT COUNT(*) FROM property_images WHERE property_id = pr.property_id) AS total_images
 FROM `posts` p
@@ -55,14 +56,13 @@ INNER JOIN districts d on d.district_id = w.district_id
 LEFT JOIN post_saves ps on ps.post_sid = p.post_id 
 INNER JOIN property_images i on i.property_id = pr.property_id
 WHERE ps.user_sid = :user_id
-AND p.status = :status
+AND $status_save
 AND i.image_id = ( 
 SELECT MIN(image_id)
 FROM property_images
 WHERE property_id = pr.property_id)
 ORDER BY p.created_at DESC", [
-    'user_id' => $user_id,
-    'status' => $status
+    'user_id' => $user_id
 ])->fetchAll(PDO::FETCH_ASSOC);
 
 $total_status = ['available', 'sold', 'hide', 'for_rent'];
@@ -79,5 +79,3 @@ foreach ($total_status as $type_status) {
 
     $num_status[$type_status] = $index['total'];
 }
-
-// $_SESSION['my_posts'] = $my_posts;
