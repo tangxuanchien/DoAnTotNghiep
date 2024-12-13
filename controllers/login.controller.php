@@ -11,6 +11,11 @@ $user = $db->query("SELECT * FROM `users` where phone = :phone", [
 ])->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
+    if ($user['role'] == 'delete') {
+        $_SESSION['error-login'] = 'Tài khoản đã bị tạm ngưng';
+        header('Location: /Datn/views/login.view.php');
+        exit();
+    }
     if (password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['name'] = $user['name'];

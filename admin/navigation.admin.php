@@ -27,19 +27,20 @@
                 <a <?= $_SERVER['PATH_INFO'] == '/reports' ? 'class="nav-link active"' : 'class="nav-link"' ?>
                     href="/Datn/admin/home.admin.php/reports">
                     <i class="fa-solid fa-triangle-exclamation"></i>
-                    Báo cáo
+                    Báo cáo, hỗ trợ
+                </a>
+            </li>
+            <li class="nav-item">
+                <a <?= $_SERVER['PATH_INFO'] == '/email-feedbacks' ? 'class="nav-link active"' : 'class="nav-link"' ?>
+                    href="/Datn/admin/home.admin.php/email-feedbacks">
+                    <i class="fa-solid fa-envelope"></i>
+                    Phản hồi Email
                 </a>
             </li>
         </ul>
     </div>
     <div class="sidebar-bottom">
         <ul class="nav flex-column">
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="/Datn/views/information.view.php">
-                <i class="fa-solid fa-circle-user"></i>
-                Hồ sơ
-              </a>
-            </li> -->
             <li class="nav-item">
                 <a class="nav-link text-danger" href="/Datn/controllers/logout.controller.php">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>

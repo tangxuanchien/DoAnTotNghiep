@@ -90,7 +90,7 @@ WHERE property_id = pr.property_id)", [
 $comments = $db->query("
 SELECT * FROM `comments` c
 INNER JOIN `users` u on u.user_id = c.user_id
-WHERE c.post_id = :post_id",[
+WHERE c.post_id = :post_id AND c.status_comment = 'approved'",[
         'post_id' => $post['post_id']
 ])->fetchAll(PDO::FETCH_ASSOC);
 

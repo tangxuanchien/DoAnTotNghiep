@@ -21,9 +21,10 @@ ORDER BY c.comment_id")->fetchAll(PDO::FETCH_ASSOC);
 $users = $db->query("
 SELECT * 
 FROM `users`
-WHERE NOT role = 'admin'
+WHERE role = 'user'
 ORDER BY user_id ")->fetchAll(PDO::FETCH_ASSOC);
 
 $reports = $db->query("
 SELECT * 
-FROM `reports`")->fetchAll(PDO::FETCH_ASSOC);
+FROM `reports`
+ORDER BY (status_report = 'pending') DESC, status_report")->fetchAll(PDO::FETCH_ASSOC);

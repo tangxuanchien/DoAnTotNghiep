@@ -3,7 +3,7 @@ session_start();
 require '../function.php';
 
 $title = "Tin đã lưu";
-$banner = "";
+$banner = "Tin đã lưu";
 $login = check_login($_SESSION['name']);
 
 require 'partials/header.php';
@@ -18,7 +18,7 @@ require '../controllers/manage-posts.controller.php';
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/Datn">Trang chủ</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Lưu bài đăng</li>
+            <li class="breadcrumb-item active" aria-current="page">Tin đã lưu</li>
         </ol>
     </nav>
     <?php
